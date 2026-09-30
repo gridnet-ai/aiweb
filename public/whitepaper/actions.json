@@ -1,0 +1,26 @@
+{
+  "protocol": "aiweb-actions/0.1",
+  "page": {
+    "name": "AIWEB",
+    "url": "https://www.theaiwebcompany.com/whitepaper",
+    "slug": "whitepaper"
+  },
+  "actions": [],
+  "note": "This document is knowledge. Live Calls go through https://publisher.theaiwebcompany.com/mcp. find_pages then request_service / execute_action. business_id is the published IRL slug. Media-only pages: present_media.",
+  "remoteMcp": {
+    "url": "https://publisher.theaiwebcompany.com/mcp",
+    "alias": "https://publisher.theaiwebcompany.com/api/v1/mcp",
+    "tools": [
+      "find_pages",
+      "present_media",
+      "list_actions",
+      "request_service",
+      "submit_quote",
+      "execute_action",
+      "get_receipt",
+      "reply_receipt",
+      "list_receipts",
+      "select_quote"
+    ]
+  }
+}

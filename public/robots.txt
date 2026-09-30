@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Allow: /plugins
+Allow: /album
+Allow: /moa
+Allow: /whitepaper
+Allow: /whitepaper/llms.txt
+Allow: /whitepaper/json.ld
+Allow: /whitepaper/chatgpt.txt
+
+Sitemap: https://www.theaiwebcompany.com/sitemap.xml

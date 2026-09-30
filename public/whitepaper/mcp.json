@@ -1,0 +1,103 @@
+{
+  "status": "live",
+  "note": "This file is the page descriptor (A). Live tools run on the publisher MCP, not as stubs on this URL.",
+  "page": {
+    "name": "Intention is all you need",
+    "description": "Voice over AI (VoA): two-way communication between ChatGPT users and the world. Traditional communications route by address. AIWEB can route-by-intention.",
+    "canonical": "https://www.theaiwebcompany.com/whitepaper",
+    "irl": "https://publisher.theaiwebcompany.com/irl/aiweb"
+  },
+  "vcap": {
+    "visibility": "https://www.theaiwebcompany.com/whitepaper/llms.txt",
+    "citability": "https://www.theaiwebcompany.com/whitepaper/json.ld",
+    "actionability": "https://www.theaiwebcompany.com/whitepaper/mcp.json",
+    "performability": "https://www.theaiwebcompany.com/whitepaper/openapi.json",
+    "actions": "https://www.theaiwebcompany.com/whitepaper/actions.json",
+    "chatgpt": "https://www.theaiwebcompany.com/whitepaper/chatgpt.txt"
+  },
+  "remoteMcp": {
+    "url": "https://publisher.theaiwebcompany.com/mcp",
+    "alias": "https://publisher.theaiwebcompany.com/api/v1/mcp",
+    "transport": "streamable-http",
+    "protocol": "MCP",
+    "serverName": "aiweb-publisher",
+    "auth": "none-for-developer-mode",
+    "chatgpt": {
+      "product": "ChatGPT",
+      "how": "ChatGPT → Settings → Apps & connectors → Developer Mode → Create custom app. MCP URL: https://publisher.theaiwebcompany.com/mcp",
+      "instructions": "https://www.theaiwebcompany.com/whitepaper/chatgpt.txt"
+    },
+    "tools": [
+      "find_pages",
+      "present_media",
+      "list_actions",
+      "request_service",
+      "submit_quote",
+      "execute_action",
+      "get_receipt",
+      "reply_receipt",
+      "list_receipts",
+      "select_quote"
+    ]
+  },
+  "mcp": {
+    "protocolVersion": "2024-11-05",
+    "serverInfo": {
+      "name": "aiweb-publisher",
+      "title": "AIWEB",
+      "version": "1.4.20"
+    },
+    "tools": [
+      {
+        "name": "find_pages",
+        "description": "Live tool on https://publisher.theaiwebcompany.com/mcp",
+        "status": "live"
+      },
+      {
+        "name": "present_media",
+        "description": "Live tool on https://publisher.theaiwebcompany.com/mcp",
+        "status": "live"
+      },
+      {
+        "name": "list_actions",
+        "description": "Live tool on https://publisher.theaiwebcompany.com/mcp",
+        "status": "live"
+      },
+      {
+        "name": "request_service",
+        "description": "Live tool on https://publisher.theaiwebcompany.com/mcp",
+        "status": "live"
+      },
+      {
+        "name": "submit_quote",
+        "description": "Live tool on https://publisher.theaiwebcompany.com/mcp",
+        "status": "live"
+      },
+      {
+        "name": "execute_action",
+        "description": "Live tool on https://publisher.theaiwebcompany.com/mcp",
+        "status": "live"
+      },
+      {
+        "name": "get_receipt",
+        "description": "Live tool on https://publisher.theaiwebcompany.com/mcp",
+        "status": "live"
+      },
+      {
+        "name": "reply_receipt",
+        "description": "Live tool on https://publisher.theaiwebcompany.com/mcp",
+        "status": "live"
+      },
+      {
+        "name": "list_receipts",
+        "description": "Live tool on https://publisher.theaiwebcompany.com/mcp",
+        "status": "live"
+      },
+      {
+        "name": "select_quote",
+        "description": "Live tool on https://publisher.theaiwebcompany.com/mcp",
+        "status": "live"
+      }
+    ]
+  }
+}

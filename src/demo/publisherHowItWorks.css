@@ -1,0 +1,161 @@
+/* Marketing embed: match site media (square corners, outer shadow only).
+   Fixed stage heights keep the outer box still while demos animate.
+   Owner steps (01, 03) = black bands; ChatGPT steps (02, 04) = sand — chessboard story. */
+
+.publisher-how {
+  --publisher-how-stage: var(--pwa-stage-bg, #eceae6);
+  --publisher-how-owner: #0a0a0a;
+}
+
+.publisher-how-heading {
+  width: 100%;
+  max-width: 1080px;
+  margin: 6.5rem auto 2.25rem;
+  padding-inline: 0;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .publisher-how-heading {
+    margin-top: 8.5rem;
+    margin-bottom: 2.75rem;
+  }
+}
+
+/* Full-bleed owner bands (business side of the story) */
+.publisher-how-owner {
+  --publisher-how-stage: #eceae6;
+  --publisher-how-owner: #0a0a0a;
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding-block: 3.25rem 4.5rem;
+  box-sizing: border-box;
+  /* Longer, softer dissolve — especially on the bottom edge */
+  background:
+    linear-gradient(
+      to bottom,
+      #eceae6 0%,
+      #c5c3bf 1.75rem,
+      #6a6966 3.75rem,
+      #2a2a29 5.5rem,
+      #0a0a0a 7rem,
+      #0a0a0a calc(100% - 10.5rem),
+      #1f1f1e calc(100% - 7.5rem),
+      #4e4d4b calc(100% - 5rem),
+      #9a9894 calc(100% - 2.75rem),
+      #eceae6 100%
+    );
+}
+
+.publisher-how-agent {
+  padding-block: 2.5rem 2.75rem;
+}
+
+.publisher-how-step-inner {
+  width: 100%;
+  max-width: 1080px;
+  margin-inline: auto;
+  padding-inline: 1rem;
+  box-sizing: border-box;
+}
+
+@media (min-width: 640px) {
+  .publisher-how-step-inner {
+    padding-inline: 1.25rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .publisher-how-step-inner {
+    padding-inline: 2rem;
+  }
+}
+
+.publisher-how-owner-mark {
+  margin: 0;
+  padding: 0.06em 0.22em;
+  border-radius: 0;
+  background: #2563eb;
+  color: #fff;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.publisher-how-stage {
+  width: 100%;
+}
+
+.publisher-how-stage--leads {
+  contain: layout size;
+  height: 320px;
+}
+
+.publisher-how-stage--publish {
+  /* Height set inline from scale × design height */
+  height: auto;
+  max-width: 100%;
+}
+
+.publisher-how-stage--publish .story-card-real {
+  width: 100%;
+  height: 100%;
+}
+
+.publisher-how-stage--chat {
+  /* Height comes from reserved final reply (sizer) — stable from first paint */
+  height: auto;
+}
+
+.publisher-how .cgpt-card {
+  border-radius: 0;
+  border-color: #e5e5e5;
+  box-shadow: none;
+  min-height: 0;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.publisher-how .cgpt-thread {
+  flex: 1;
+  width: 100%;
+  max-width: none;
+  box-sizing: border-box;
+}
+
+.publisher-how .cgpt-assistant--stable {
+  position: relative;
+}
+
+.publisher-how .cgpt-assistant-sizer {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.publisher-how .cgpt-assistant-live {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.publisher-how .story-card-real {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.publisher-how .story-card-real[data-demo='publish'] > .story-publish-body {
+  flex: 1;
+  min-height: 0;
+}
+
+.publisher-how .story-card-real[data-demo='leads'] > .story-leads-body {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}

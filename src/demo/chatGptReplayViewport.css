@@ -1,0 +1,20 @@
+.gq-replay-viewport {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+}
+
+.gq-replay-viewport--wide {
+  max-width: 1024px;
+}
+
+.gq-replay-viewport-inner {
+  will-change: transform;
+}
+
+.gq-replay-viewport .gq-replay,
+.gq-replay-viewport .aos-mail-app {
+  max-width: none;
+}

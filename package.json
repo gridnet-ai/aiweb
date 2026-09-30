@@ -1,0 +1,34 @@
+{
+  "name": "theaiwebcompany",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "AI Web Company corporate site — theaiwebcompany.com",
+  "scripts": {
+    "dev": "vite",
+    "dev:api": "node --env-file=.env api/dev-server.mjs",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "deploy:hosting": "npm run build && npx -y firebase-tools@15.15.0 deploy --only hosting --project aiweb-7e40e",
+    "deploy:all": "npm run build && npm --prefix functions run build && npx -y firebase-tools@15.15.0 deploy --only hosting,functions --project aiweb-7e40e",
+    "stripe:catalog": "node --env-file=.env scripts/create-stripe-catalog.mjs"
+  },
+  "dependencies": {
+    "firebase": "^12.16.0",
+    "lucide-react": "^1.25.0",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "react-router-dom": "^7.18.1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.13.3",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.3",
+    "autoprefixer": "^10.5.4",
+    "postcss": "^8.5.20",
+    "tailwindcss": "^3.4.15",
+    "typescript": "~5.9.3",
+    "vite": "^8.1.1"
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Intention is all you need",
+    "description": "Voice over AI (VoA): two-way communication between ChatGPT users and the world. Traditional communications route by address. AIWEB can route-by-intention. Live MCP: https://publisher.theaiwebcompany.com/mcp",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://www.theaiwebcompany.com"
+    }
+  ],
+  "x-vcap": {
+    "visibility": "https://www.theaiwebcompany.com/whitepaper/llms.txt",
+    "citability": "https://www.theaiwebcompany.com/whitepaper/json.ld",
+    "actionability": "https://www.theaiwebcompany.com/whitepaper/mcp.json",
+    "performability": "https://www.theaiwebcompany.com/whitepaper/openapi.json",
+    "chatgpt": "https://www.theaiwebcompany.com/whitepaper/chatgpt.txt",
+    "liveMcp": "https://publisher.theaiwebcompany.com/mcp"
+  },
+  "paths": {
+    "/whitepaper/llms.txt": {
+      "get": {
+        "summary": "V · Visibility — llms.txt",
+        "responses": {
+          "200": {
+            "description": "text/plain"
+          }
+        }
+      }
+    },
+    "/whitepaper/json.ld": {
+      "get": {
+        "summary": "C · Citability — JSON-LD",
+        "responses": {
+          "200": {
+            "description": "application/ld+json"
+          }
+        }
+      }
+    },
+    "/whitepaper/mcp.json": {
+      "get": {
+        "summary": "A · Actionability — MCP descriptor",
+        "responses": {
+          "200": {
+            "description": "application/json"
+          }
+        }
+      }
+    },
+    "/whitepaper/openapi.json": {
+      "get": {
+        "summary": "P · Performability — this document",
+        "responses": {
+          "200": {
+            "description": "application/json"
+          }
+        }
+      }
+    },
+    "/whitepaper/chatgpt.txt": {
+      "get": {
+        "summary": "Instructions for ChatGPT",
+        "responses": {
+          "200": {
+            "description": "text/plain"
+          }
+        }
+      }
+    },
+    "/mcp": {
+      "post": {
+        "summary": "AIWEB live MCP (Streamable HTTP)",
+        "description": "Canonical MCP for ChatGPT Developer Mode. Alias https://publisher.theaiwebcompany.com/api/v1/mcp.",
+        "responses": {
+          "200": {
+            "description": "MCP Streamable HTTP"
+          }
+        }
+      },
+      "get": {
+        "summary": "MCP discovery (non-event-stream Accept)",
+        "responses": {
+          "200": {
+            "description": "MCP server info JSON"
+          }
+        }
+      }
+    },
+    "/api/v1/mcp": {
+      "post": {
+        "summary": "MCP alias",
+        "responses": {
+          "200": {
+            "description": "MCP Streamable HTTP"
+          }
+        }
+      }
+    }
+  }
+}

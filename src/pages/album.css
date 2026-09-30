@@ -1,0 +1,604 @@
+/* AIWEB Album / MoA landing — public /album */
+
+html.al-html,
+html.al-html body {
+  margin: 0;
+  background: #ffffff;
+  scroll-padding-top: 5.25rem;
+}
+
+.al-root {
+  --al-ink: #0b0b0c;
+  --al-mute: #5f5e5a;
+  --al-paper: #ffffff;
+  --al-sand: #faf8f3;
+  --al-gold: #ffc629;
+  --al-line: rgba(0, 0, 0, 0.08);
+  --al-display: Merriweather, Georgia, 'Iowan Old Style', serif;
+  --al-sans: 'DM Sans', 'Nunito Sans', ui-sans-serif, system-ui, sans-serif;
+  min-height: 100dvh;
+  color: var(--al-ink);
+  background: var(--al-paper);
+  font-family: var(--al-sans);
+}
+
+.al-skip {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  z-index: 20;
+  padding: 0.45rem 0.75rem;
+  background: var(--al-ink);
+  color: #fff;
+}
+
+.al-skip:focus {
+  left: 0.75rem;
+  top: 0.75rem;
+}
+
+.al-banner {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem 1.1rem;
+  padding: 0.55rem 1rem;
+  background: var(--al-sand);
+  border-bottom: 1px solid var(--al-line);
+  font-size: 0.82rem;
+  color: #3f3e3a;
+  text-align: center;
+}
+
+.al-banner a {
+  font-weight: 700;
+  color: var(--al-ink);
+  text-decoration: none;
+  border-bottom: 2px solid var(--al-gold);
+}
+
+.al-chrome {
+  position: sticky;
+  top: 0;
+  z-index: 8;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.7rem clamp(1rem, 4vw, 2.5rem);
+  border-bottom: 1px solid var(--al-line);
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(10px);
+}
+
+.al-chrome-brand {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  color: inherit;
+  text-decoration: none;
+}
+
+.al-chrome-logo {
+  display: block;
+  height: auto;
+}
+
+.al-chrome-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.85rem 1.15rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.al-chrome-nav a {
+  color: var(--al-mute);
+  text-decoration: none;
+}
+
+.al-chrome-nav a:hover {
+  color: var(--al-ink);
+}
+
+.al-hero,
+.al-section,
+.al-split,
+.al-cta-band,
+.al-legal {
+  width: min(46rem, 100%);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(1rem, 4vw, 2.25rem);
+  padding-right: clamp(1rem, 4vw, 2.25rem);
+}
+
+.al-hero {
+  padding-top: 2.75rem;
+  padding-bottom: 2.5rem;
+  text-align: center;
+}
+
+.al-kicker {
+  margin: 0 0 0.7rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--al-mute);
+}
+
+.al-h1 {
+  margin: 0 auto 0.75rem;
+  max-width: 18ch;
+  font-family: var(--al-display);
+  font-size: clamp(2.05rem, 5.4vw, 3.35rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.12;
+}
+
+.al-h1 em {
+  font-style: italic;
+  font-weight: 700;
+}
+
+.al-sub {
+  margin: 0 0 1.1rem;
+  font-size: 1.15rem;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+.al-lede {
+  margin: 0 auto 1.35rem;
+  max-width: 38rem;
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: #2a2a2c;
+}
+
+.al-lede--narrow {
+  margin-bottom: 1.6rem;
+}
+
+.al-copy {
+  margin: 0 0 1rem;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: #2a2a2c;
+}
+
+.al-copy--center {
+  text-align: center;
+  max-width: 36rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.al-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  justify-content: center;
+}
+
+.al-ctas--center {
+  margin-top: 1.15rem;
+}
+
+.al-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.7rem;
+  padding: 0.55rem 1.2rem;
+  border-radius: 999px;
+  border: 1px solid var(--al-ink);
+  background: var(--al-ink);
+  color: #fff;
+  font-size: 0.92rem;
+  font-weight: 650;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.al-btn:hover {
+  opacity: 0.92;
+}
+
+.al-btn--ghost {
+  background: #fff;
+  color: var(--al-ink);
+}
+
+.al-btn--ghost:hover {
+  background: var(--al-sand);
+  opacity: 1;
+}
+
+#setup,
+#prompt,
+#faq {
+  scroll-margin-top: 5.25rem;
+}
+
+.al-section {
+  padding-top: 2.4rem;
+  padding-bottom: 2.6rem;
+  border-top: 1px solid var(--al-line);
+}
+
+.al-h2 {
+  margin: 0 0 0.65rem;
+  font-family: var(--al-display);
+  font-size: clamp(1.55rem, 3.2vw, 2.05rem);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.al-steps {
+  list-style: none;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.85rem;
+}
+
+@media (min-width: 840px) {
+  .al-hero,
+  .al-section,
+  .al-split,
+  .al-cta-band,
+  .al-legal {
+    width: min(68rem, 100%);
+  }
+
+  .al-steps {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.al-step {
+  margin: 0;
+  padding: 1.15rem 1.1rem 1.2rem;
+  border: 1px solid var(--al-line);
+  border-radius: 16px;
+  background: #fff;
+  text-align: center;
+}
+
+.al-step__n {
+  display: block;
+  margin-bottom: 0.45rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--al-mute);
+}
+
+.al-step h3 {
+  margin: 0 0 0.45rem;
+  font-size: 1.02rem;
+}
+
+.al-step p {
+  margin: 0 0 0.75rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #3f3e3a;
+}
+
+.al-copyfield {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-width: 0;
+  padding: 0.35rem 0.4rem 0.35rem 0.65rem;
+  border: 1px solid var(--al-line);
+  border-radius: 10px;
+  background: var(--al-sand);
+}
+
+.al-copyfield__value {
+  min-width: 0;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.72rem;
+  color: #3f3e3a;
+}
+
+.al-copyfield__btn {
+  flex-shrink: 0;
+  border: 0;
+  border-radius: 8px;
+  background: var(--al-ink);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 650;
+  padding: 0.4rem 0.6rem;
+  cursor: pointer;
+}
+
+.al-section--pay .al-h2 {
+  text-align: center;
+}
+
+.al-facts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.85rem;
+}
+
+@media (min-width: 720px) {
+  .al-facts {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.al-facts li {
+  padding: 1.1rem 1.05rem 1.15rem;
+  border: 1px solid var(--al-line);
+  border-radius: 16px;
+  background: var(--al-sand);
+}
+
+.al-facts__kicker {
+  margin: 0 0 0.25rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--al-mute);
+}
+
+.al-facts__value {
+  margin: 0 0 0.45rem;
+  font-family: var(--al-display);
+  font-size: 1.45rem;
+  letter-spacing: -0.03em;
+}
+
+.al-facts li p:last-child {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: #3f3e3a;
+}
+
+.al-split {
+  display: grid;
+  gap: 1.5rem;
+  padding-top: 2.4rem;
+  padding-bottom: 2.6rem;
+  border-top: 1px solid var(--al-line);
+  align-items: center;
+}
+
+@media (min-width: 840px) {
+  .al-split {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+    width: min(68rem, 100%);
+  }
+
+  .al-split .al-h2 {
+    text-align: left;
+  }
+}
+
+.al-mock {
+  padding: 1.1rem;
+  border: 1px solid var(--al-line);
+  border-radius: 18px;
+  background: var(--al-sand);
+}
+
+.al-mock__bubble {
+  margin: 0 0 1rem;
+  padding: 0.75rem 0.9rem;
+  border-radius: 14px 14px 14px 4px;
+  background: #fff;
+  border: 1px solid var(--al-line);
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+.al-mock__label {
+  margin: 0 0 0.55rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--al-mute);
+}
+
+.al-mock__row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.55rem 0;
+  border-top: 1px solid var(--al-line);
+}
+
+.al-mock__art {
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 8px;
+  background: #0b0b0c;
+  flex-shrink: 0;
+}
+
+.al-mock__art--b {
+  background: #3f3e3a;
+}
+
+.al-mock__title {
+  margin: 0;
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.al-mock__meta {
+  margin: 0.15rem 0 0;
+  font-size: 0.78rem;
+  color: var(--al-mute);
+}
+
+.al-text-link {
+  font-weight: 650;
+  color: var(--al-ink);
+}
+
+.al-promptbox {
+  margin: 1.25rem auto 0;
+  max-width: 32rem;
+  padding: 1.15rem;
+  border: 1px solid var(--al-line);
+  border-radius: 16px;
+  background: var(--al-sand);
+  display: grid;
+  gap: 0.85rem;
+  justify-items: stretch;
+}
+
+.al-promptbox .al-btn {
+  width: 100%;
+}
+
+.al-promptbox__label {
+  display: grid;
+  gap: 0.35rem;
+  font-size: 0.82rem;
+  font-weight: 650;
+  color: var(--al-mute);
+  text-align: left;
+}
+
+.al-select {
+  width: 100%;
+  min-height: 2.5rem;
+  border: 1px solid var(--al-line);
+  border-radius: 10px;
+  background: #fff;
+  font: inherit;
+  font-size: 0.95rem;
+  color: var(--al-ink);
+  padding: 0.4rem 0.65rem;
+}
+
+.al-prompt-out {
+  margin: 0;
+  padding: 0.85rem 0.9rem;
+  border-radius: 12px;
+  background: #fff;
+  border: 1px solid var(--al-line);
+}
+
+.al-prompt-out p {
+  margin: 0 0 0.75rem;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.al-faq {
+  width: min(42rem, 100%);
+}
+
+.al-faq__item {
+  margin: 0 0 0.65rem;
+  padding: 0.95rem 1.05rem;
+  border: 1px solid var(--al-line);
+  border-radius: 14px;
+  background: #fff;
+}
+
+.al-faq__item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  cursor: pointer;
+  font-weight: 700;
+  list-style: none;
+}
+
+.al-faq__item summary::-webkit-details-marker {
+  display: none;
+}
+
+.al-faq__item summary::after {
+  content: '';
+  width: 0.42rem;
+  height: 0.42rem;
+  flex-shrink: 0;
+  border-right: 2px solid var(--al-ink);
+  border-bottom: 2px solid var(--al-ink);
+  transform: rotate(45deg);
+  margin-top: -0.2rem;
+}
+
+.al-faq__item[open] summary::after {
+  transform: rotate(-135deg);
+  margin-top: 0.15rem;
+}
+
+.al-faq__item p {
+  margin: 0.65rem 0 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #3f3e3a;
+}
+
+.al-cta-band {
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+  padding-top: 2.25rem;
+  padding-bottom: 2.35rem;
+  border-radius: 22px;
+  background: var(--al-sand);
+  border: 1px solid var(--al-line);
+  text-align: center;
+}
+
+.al-cta-band p {
+  margin: 0 auto;
+  max-width: 34rem;
+  line-height: 1.6;
+  color: #3f3e3a;
+}
+
+.al-legal {
+  margin: 0 auto 2.75rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--al-line);
+  font-size: 0.78rem;
+  line-height: 1.55;
+  color: var(--al-mute);
+}
+
+@media (max-width: 640px) {
+  .al-chrome {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .al-chrome-nav {
+    justify-content: flex-start;
+  }
+
+  .al-btn {
+    width: 100%;
+  }
+
+  .al-ctas {
+    flex-direction: column;
+  }
+}

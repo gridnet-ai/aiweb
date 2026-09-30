@@ -1,0 +1,10 @@
+# AIWEB
+
+> AIWEB is the commercial action layer for AI. Publish AIWEB Pages that AI agents can discover, understand, and act through. Build. Publish. Get discovered. Receive Calls. Respond. Improve. Repeat.
+
+- Plugins: https://www.theaiwebcompany.com/plugins
+- Whitepaper (llms.txt): https://www.theaiwebcompany.com/whitepaper/llms.txt
+- Whitepaper: https://www.theaiwebcompany.com/whitepaper
+- MCP (Streamable HTTP): https://publisher.theaiwebcompany.com/mcp
+- MCP alias: https://publisher.theaiwebcompany.com/api/v1/mcp
+- ChatGPT instructions: https://www.theaiwebcompany.com/whitepaper/chatgpt.txt

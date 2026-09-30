@@ -1,0 +1,178 @@
+/* Dress shopping replay — stylist carousel + Get Quote */
+
+.gq-story--dress {
+  margin-bottom: 2.5rem;
+}
+
+.gq-story--dress .gq-assistant-block .gq-reserve-paint > .gq-hold {
+  position: absolute;
+  width: 100%;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.gq-story--dress .gq-assistant-block .gq-reserve {
+  position: relative;
+}
+
+.gq-dress-quote .gq-ok.gq-hold {
+  visibility: hidden;
+}
+
+.gq-assistant-block {
+  margin-top: 4px;
+}
+
+.gq-stylist-reply {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--gq-ink, #0d0d0d);
+}
+
+.gq-dress-carousel-wrap {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--gq-line, #e5e5e5);
+}
+
+.gq-dress-carousel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #6b7280;
+}
+
+.gq-dress-carousel-nav {
+  display: inline-flex;
+  gap: 6px;
+  color: #9ca3af;
+}
+
+.gq-dress-carousel {
+  display: flex;
+  gap: 10px;
+  overflow: hidden;
+  transform: translateX(calc(var(--gq-dress-i, 0) * -220px));
+  transition: transform 0.55s ease;
+}
+
+.gq-dress-card {
+  flex: 0 0 min(100%, 210px);
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #fff;
+  overflow: hidden;
+  opacity: 0.72;
+  transform: scale(0.96);
+  transition:
+    opacity 0.45s ease,
+    transform 0.45s ease,
+    box-shadow 0.45s ease,
+    border-color 0.45s ease;
+}
+
+.gq-dress-card.is-active {
+  opacity: 1;
+  transform: scale(1);
+  border-color: #cbd5e1;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+}
+
+.gq-dress-card.is-selected {
+  border-color: #18181b;
+}
+
+.gq-dress-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: top center;
+  background: #f4f4f5;
+}
+
+.gq-dress-card-copy {
+  padding: 10px 10px 12px;
+}
+
+.gq-dress-card-name {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #18181b;
+}
+
+.gq-dress-card-meta {
+  margin: 3px 0 0;
+  font-size: 11px;
+  font-weight: 700;
+  color: #059669;
+}
+
+.gq-dress-card-note {
+  margin: 4px 0 8px;
+  font-size: 10px;
+  line-height: 1.35;
+  color: #71717a;
+}
+
+.gq-dress-quote-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: #18181b;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.gq-dress-quote-btn.is-press {
+  transform: scale(0.98);
+  opacity: 0.92;
+}
+
+.gq-dress-quote {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--gq-line, #e5e5e5);
+}
+
+.gq-dress-quote.is-sent .gq-fields,
+.gq-dress-quote.is-sent .gq-submit {
+  opacity: 0.55;
+}
+
+.gq-dress-quote .gq-ok {
+  margin-top: 10px;
+}
+
+@media (max-width: 640px) {
+  .gq-dress-carousel {
+    transform: translateX(calc(var(--gq-dress-i, 0) * -190px));
+  }
+
+  .gq-dress-card {
+    flex: 0 0 180px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gq-dress-carousel {
+    transform: none;
+  }
+
+  .gq-dress-card {
+    opacity: 1;
+    transform: none;
+  }
+}

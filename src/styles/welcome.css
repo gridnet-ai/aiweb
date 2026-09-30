@@ -1,0 +1,702 @@
+﻿/* AIWA welcome tokens + gate (ported from aiwebpage pwa-theme.css) */
+
+.pwa-root {
+  --pwa-ink: #f8f7f4;
+  --pwa-panel: #ffffff;
+  --pwa-panel-2: #f0eeea;
+  --pwa-line: rgba(0, 0, 0, 0.08);
+  --pwa-gold: #e8a33d;
+  --pwa-text: #0b0b0c;
+  --pwa-text-dim: #5f5e5a;
+  --pwa-serif: 'Merriweather', 'Iowan Old Style', Georgia, serif;
+  --pwa-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --pwa-stage-bg: #eceae6;
+
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--pwa-stage-bg);
+  color: var(--pwa-text);
+  font-family: var(--pwa-sans);
+  display: flex;
+  flex-direction: column;
+}
+
+.pwa-root--welcome {
+  background: var(--pwa-stage-bg);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Cloud carousel — waits for logo hello (0.9s), then drifts edge-to-edge */
+.welcome-cloud-carousel {
+  position: absolute;
+  top: max(16px, env(safe-area-inset-top, 0px));
+  left: 0;
+  right: 0;
+  height: 96px;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  animation: welcome-cloud-fade-in 0.7s ease 0.9s both;
+}
+
+.welcome-cloud-track {
+  display: flex;
+  width: max-content;
+  height: 100%;
+  align-items: center;
+  animation: welcome-cloud-drift 48s linear 0.9s infinite;
+  will-change: transform;
+}
+
+.welcome-cloud-strip {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  padding: 12px 24px;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.welcome-cloud-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 8px 0;
+  animation: welcome-cloud-bob 5.5s ease-in-out var(--cloud-bob, 0s) infinite;
+}
+
+.aiweb-cloud-icon {
+  display: block;
+  max-height: 64px;
+}
+
+.aiweb-cloud-icon--on-dark {
+  filter: invert(1);
+}
+
+.welcome-cloud-terminal {
+  display: block;
+  max-height: 56px;
+  filter: none;
+}
+
+@keyframes welcome-cloud-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes welcome-cloud-drift {
+  from {
+    transform: translate3d(-50%, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes welcome-cloud-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .welcome-cloud-carousel,
+  .welcome-cloud-track,
+  .welcome-cloud-item {
+    animation: none !important;
+  }
+  .welcome-cloud-carousel {
+    opacity: 0.35;
+  }
+}
+
+.pwa-logo-bare {
+  display: block;
+  object-fit: contain;
+}
+
+.publisher-icon--invert {
+  filter: invert(1);
+}
+
+.publisher-icon--mono {
+  filter: grayscale(1);
+}
+
+.publisher-icon--invert.publisher-icon--mono {
+  filter: invert(1) grayscale(1);
+}
+
+/* AIWEB OS lockup — AIWEB wordmark + @ (O) + S, matched to publisher welcome */
+.publisher-os-cta-combo {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+  margin-top: 2rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.publisher-os-lockup {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(10px, 2vw, 16px);
+  flex-wrap: wrap;
+  max-width: 100%;
+}
+
+.publisher-os-lockup-aiweb {
+  width: min(120px, 34vw);
+  max-width: none;
+  height: auto;
+  flex-shrink: 0;
+}
+
+.publisher-os-lockup-os {
+  --os-mark-size: clamp(2rem, 5.5vw, 2.85rem);
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(6px, 1.2vw, 10px);
+}
+
+.publisher-os-lockup-mark-clip {
+  display: inline-flex;
+  width: var(--os-mark-size);
+  height: var(--os-mark-size);
+  overflow: hidden;
+  border-radius: 22%;
+  flex-shrink: 0;
+}
+
+.publisher-os-lockup-mark {
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  transform: scale(1.08);
+  transform-origin: center;
+}
+
+.publisher-os-lockup-s {
+  font-family: 'Nunito Sans', 'DM Sans', system-ui, sans-serif;
+  font-size: var(--os-mark-size);
+  font-weight: 800;
+  font-optical-sizing: auto;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: #000000;
+}
+
+.publisher-os-cta-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 12.5rem;
+  padding: 0.9rem 2rem;
+  border: 1px solid #0b0b0c;
+  border-radius: 0;
+  background: #0b0b0c;
+  color: #eceae6;
+  font-family: 'Source Sans 3', var(--pwa-sans);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  text-decoration: none;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.08) inset,
+    0 12px 28px rgba(15, 23, 42, 0.14);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.publisher-os-cta-combo:hover .publisher-os-cta-box {
+  opacity: 0.92;
+}
+
+.publisher-os-cta-combo:active .publisher-os-cta-box {
+  transform: translateY(1px);
+}
+
+/* Google-style AIWEB Page definition panel */
+.aiweb-page-def {
+  margin-top: 2rem;
+  width: 100%;
+  max-width: 44rem;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+
+.aiweb-page-def-intro {
+  margin: 0 0 1.1rem;
+  text-align: center;
+}
+
+.aiweb-page-def-kicker {
+  margin: 0;
+  font-family: 'Source Code Pro', ui-monospace, monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #6b6560;
+}
+
+.aiweb-page-def-lede {
+  margin: 0.55rem 0 0;
+  font-family: 'Source Sans 3', 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+  font-size: clamp(0.95rem, 2.2vw, 1.05rem);
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.015em;
+  color: #3c4043;
+}
+
+.aiweb-page-def-headline {
+  margin: 0.45rem 0 0;
+  font-family: Merriweather, Georgia, 'Iowan Old Style', serif;
+  font-size: clamp(1.25rem, 3.2vw, 1.65rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  color: #0b0b0c;
+}
+
+.aiweb-page-def-card {
+  padding: 1.125rem 1.25rem 1rem;
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 1px 6px rgba(32, 33, 36, 0.08);
+}
+
+.aiweb-page-def-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem 0.75rem;
+}
+
+.aiweb-page-def-term {
+  margin: 0;
+  font-family: 'DM Sans', 'Source Sans 3', var(--pwa-sans);
+  font-size: clamp(1.35rem, 3vw, 1.75rem);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: #202124;
+}
+
+.aiweb-page-def-phonetic {
+  margin: 0;
+  font-family: 'DM Sans', 'Source Sans 3', var(--pwa-sans);
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #70757a;
+}
+
+.aiweb-page-def-pos {
+  margin: 0.35rem 0 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: #70757a;
+}
+
+.aiweb-page-def-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: aiweb-def;
+}
+
+.aiweb-page-def-list li {
+  position: relative;
+  padding-left: 1.35rem;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: #3c4043;
+}
+
+.aiweb-page-def-list li + li {
+  margin-top: 0.65rem;
+}
+
+.aiweb-page-def-list li::before {
+  counter-increment: aiweb-def;
+  content: counter(aiweb-def) '.';
+  position: absolute;
+  left: 0;
+  color: #70757a;
+  font-size: 0.875rem;
+}
+
+.aiweb-page-def-combines-label {
+  margin: 1rem 0 0.45rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #202124;
+}
+
+.aiweb-page-def-combines {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.aiweb-page-def-combines li {
+  position: relative;
+  padding-left: 1.1rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #3c4043;
+}
+
+.aiweb-page-def-combines li + li {
+  margin-top: 0.35rem;
+}
+
+.aiweb-page-def-combines li::before {
+  content: '–';
+  position: absolute;
+  left: 0;
+  color: #70757a;
+}
+
+.aiweb-page-def-value {
+  margin: 0.9rem 0 0;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.55;
+  color: #202124;
+}
+
+.aiweb-page-def-example {
+  margin: 0.85rem 0 0;
+  padding-top: 0.85rem;
+  border-top: 1px solid #ebebeb;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  font-style: italic;
+  color: #70757a;
+}
+
+.aiweb-page-def-footer {
+  margin-top: 0.85rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #ebebeb;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+}
+
+.aiweb-page-def-footer-label {
+  color: #70757a;
+}
+
+.aiweb-page-def-footer-link {
+  color: #1a0dab;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.aiweb-page-def-footer-link:hover {
+  text-decoration: underline;
+}
+
+.pwa-logo-chip {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  flex-shrink: 0;
+}
+
+.pwa-brand {
+  font-family: var(--pwa-serif);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--pwa-text);
+}
+
+.pwa-welcome {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: max(24px, env(safe-area-inset-top, 0px)) 24px
+    calc(24px + env(safe-area-inset-bottom, 0px));
+  text-align: center;
+}
+
+.pwa-welcome-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 420px;
+  gap: 24px;
+}
+
+.pwa-welcome-brand-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.pwa-welcome-brand-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: max-content;
+  max-width: 100%;
+}
+
+.pwa-welcome-logo-wrap {
+  animation: pwa-welcome-hello 0.9s cubic-bezier(0.34, 1.4, 0.64, 1) both;
+  align-self: center;
+}
+
+.pwa-welcome-logo-wrap .pwa-logo-bare,
+.pwa-welcome-logo-wrap .pwa-logo-wordmark {
+  width: min(280px, 72vw);
+  max-width: none;
+  height: auto;
+  display: block;
+  shape-rendering: geometricPrecision;
+}
+
+.pwa-welcome-hero {
+  max-width: none;
+  align-self: stretch;
+}
+
+.pwa-welcome-title-row {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+}
+
+.pwa-welcome-title-row h2 {
+  margin: 0;
+}
+
+.pwa-welcome-publisher-mark-clip {
+  display: inline-flex;
+  width: 52px;
+  height: 52px;
+  overflow: hidden;
+  border-radius: 22%;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12);
+  flex-shrink: 0;
+}
+
+.pwa-welcome-publisher-mark {
+  border-radius: 0;
+  box-shadow: none;
+  /* Crop residual light fringe baked into the asset edge */
+  transform: scale(1.06);
+  transform-origin: center;
+}
+
+.pwa-welcome-brand-stack .pwa-brand {
+  font-size: 20px;
+}
+
+.pwa-welcome-brand-name {
+  animation: pwa-welcome-rise 0.62s ease 0.3s both;
+}
+
+.pwa-welcome-hero-reveal {
+  animation: pwa-welcome-rise 0.68s ease 0.46s both;
+}
+
+.pwa-welcome-actions-reveal {
+  animation: pwa-welcome-rise 0.58s ease 0.62s both;
+}
+
+@keyframes pwa-welcome-hello {
+  0% {
+    opacity: 0;
+    transform: scale(0.32) rotate(-14deg) translateY(28px);
+  }
+  58% {
+    opacity: 1;
+    transform: scale(1.12) rotate(5deg) translateY(-8px);
+  }
+  78% {
+    transform: scale(0.95) rotate(-2deg) translateY(3px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg) translateY(0);
+  }
+}
+
+@keyframes pwa-welcome-rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pwa-welcome-logo-wrap,
+  .pwa-welcome-brand-name,
+  .pwa-welcome-hero-reveal,
+  .pwa-welcome-actions-reveal,
+  .welcome-cloud-carousel,
+  .welcome-cloud-track,
+  .welcome-cloud-item {
+    animation: none;
+  }
+  .welcome-cloud-carousel {
+    opacity: 0.35;
+  }
+}
+
+.pwa-welcome-hero h2 {
+  display: block;
+  font-family: 'Nunito Sans', 'DM Sans', system-ui, sans-serif;
+  font-size: clamp(2rem, 5.5vw, 2.75rem);
+  font-weight: 800;
+  font-optical-sizing: auto;
+  line-height: 1.1;
+  margin: 0;
+  color: var(--pwa-text);
+  text-align: center;
+  letter-spacing: -0.045em;
+}
+
+.pwa-welcome-hero .accent {
+  color: var(--pwa-gold);
+}
+
+.pwa-welcome-kicker {
+  margin: 10px 0 0;
+  font-family: 'Source Sans 3', var(--pwa-sans);
+  font-size: clamp(1.05rem, 2.2vw, 1.2rem);
+  font-weight: 750;
+  letter-spacing: -0.03em;
+  color: var(--pwa-text);
+  text-align: left;
+}
+
+.pwa-welcome-tagline {
+  margin: 10px 0 0;
+  max-width: 26rem;
+  font-family: 'Source Sans 3', var(--pwa-sans);
+  font-size: clamp(1.05rem, 2.4vw, 1.2rem);
+  font-weight: 600;
+  font-style: normal;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+  color: var(--pwa-text);
+  text-align: center;
+}
+
+.pwa-welcome-hero p,
+.pwa-welcome-playful {
+  margin: 0;
+  font-family: var(--pwa-serif);
+  font-size: 15px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.45;
+  color: var(--pwa-text);
+  max-width: 320px;
+}
+
+.pwa-welcome-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 280px;
+  flex-shrink: 0;
+  margin-top: 28px;
+}
+
+.pwa-welcome-btn {
+  min-height: 0;
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  background: transparent;
+}
+
+.pwa-welcome-btn-primary {
+  color: var(--pwa-ink);
+  background: var(--pwa-text);
+  border: 1px solid var(--pwa-text);
+}
+
+.pwa-welcome-btn-secondary {
+  color: var(--pwa-text);
+  border: 1px solid var(--pwa-line);
+  background: transparent;
+}
+
+.pwa-welcome-btn:active {
+  opacity: 0.72;
+}
+
+/* Corp site: welcome fills the full viewport (no site header) */
+.pwa-root--corp-home {
+  flex: 1 1 auto;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+.pwa-root--corp-home .pwa-welcome,
+.pwa-root--corp-home .pwa-welcome-main {
+  max-width: min(820px, 100%);
+}
+
+.pwa-welcome-btn {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pwa-welcome-btn:hover {
+  opacity: 0.88;
+}

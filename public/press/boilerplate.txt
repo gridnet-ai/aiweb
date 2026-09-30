@@ -1,0 +1,10 @@
+AI Web Company — boilerplate
+
+Long (≈70 words)
+AIWEB is the commercial action layer for AI. Based in San Antonio, AI Web Company ships AIWEB OS so businesses can publish AIWEB Pages that AI agents can discover, understand, and act through — Build. Publish. Get discovered. Receive Calls. Respond. Improve. Repeat. Founded by U.S. Army Signal Corps veteran Terry French after Founder Institute Fall 2025, the company joined Google for Startups in 2026 and recorded early commercial traction including a SATX District One pilot LOI. Corporate news, press, investors, and careers live at theaiwebcompany.com.
+
+Medium (≈40 words)
+AIWEB is the commercial action layer for AI. From San Antonio, AI Web Company ships AIWEB OS, AI Web App, Big Search, and Publish To AI so agents can discover, understand, and act through AIWEB Pages.
+
+Short (≈20 words)
+AIWEB is the commercial action layer for AI — publish AIWEB Pages that agents can discover, understand, and act through.
