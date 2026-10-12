@@ -74,63 +74,12 @@
   white-space: nowrap;
 }
 
-.lv2p-icon-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border: 0;
-  background: transparent;
-  color: var(--px-ink);
-  cursor: pointer;
-}
-
-.lv2p-search,
-.lv2p-drawer {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 100%;
-  background: #fff;
-  border-bottom: 1px solid var(--px-line);
-  padding: 0.85rem 1rem 1.1rem;
-}
-
-.lv2p-search input,
 .lv2p-news-form input {
   width: 100%;
   border: 1px solid #d7dbe0;
   border-radius: 10px;
   padding: 0.8rem 0.9rem;
   font: inherit;
-}
-
-.lv2p-acc {
-  border-bottom: 1px solid var(--px-line);
-}
-
-.lv2p-acc summary {
-  padding: 0.95rem 0;
-  font-size: 1.15rem;
-  font-weight: 650;
-  cursor: pointer;
-  list-style: none;
-}
-
-.lv2p-acc summary::-webkit-details-marker {
-  display: none;
-}
-
-.lv2p-acc a {
-  display: block;
-  padding: 0.35rem 0 0.7rem;
-  color: var(--px-mute);
-  text-decoration: none;
-}
-
-.lv2p-drawer-cta {
-  margin-top: 1rem;
 }
 
 .lv2p-promo {
@@ -236,25 +185,39 @@
   display: grid;
   gap: 0;
   width: min(100%, 40rem);
-  margin: 1.6rem auto 0;
+  margin: 0.7rem auto 0;
   padding: 0;
   text-align: left;
-  border-top: 1px solid color-mix(in srgb, var(--px-ink) 16%, transparent);
+  border: 0;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--px-ink) 6%, transparent);
+  overflow: hidden;
 }
 
 .lv2p-faq-item {
-  border-bottom: 1px solid color-mix(in srgb, var(--px-ink) 16%, transparent);
+  position: relative;
+  border: 0;
+}
+
+.lv2p-faq-item + .lv2p-faq-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0.75rem;
+  right: 0;
+  height: 0.5px;
+  background: color-mix(in srgb, var(--px-ink) 14%, transparent);
 }
 
 .lv2p-faq-item summary {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
-  padding: 1rem 0;
-  font-size: 1.05rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  gap: 0.75rem;
+  padding: 0.48rem 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
   color: var(--px-ink);
   cursor: pointer;
   list-style: none;
@@ -280,10 +243,10 @@
 
 .lv2p-faq-item p {
   margin: 0;
-  padding: 0 1.75rem 1rem 0;
-  font-size: 0.98rem;
-  font-weight: 500;
-  line-height: 1.45;
+  padding: 0 2rem 0.55rem 0.75rem;
+  font-size: 0.82rem;
+  font-weight: 450;
+  line-height: 1.4;
   color: var(--px-mute);
 }
 
@@ -296,9 +259,9 @@
 
 .lv2p-faq-entities {
   width: min(100%, 40rem);
-  margin: 2.4rem auto 0;
-  padding-top: 1.6rem;
-  border-top: 1px solid color-mix(in srgb, var(--px-ink) 12%, transparent);
+  margin: 1rem auto 0;
+  padding-top: 0;
+  border: 0;
   text-align: left;
 }
 
@@ -307,10 +270,12 @@
 }
 
 .lv2p-faq-entities h3 {
-  margin: 0 0 0.85rem;
-  font-size: 1.1rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--px-mute);
 }
 
 .lv2p-faq-entities ul {
@@ -767,6 +732,17 @@
   color: var(--px-ink);
 }
 
+.lv2p-faq.lv2p-block {
+  padding: 1rem 1rem 0.15rem;
+}
+
+.lv2p-faq h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 650;
+  letter-spacing: -0.03em;
+}
+
 #create.lv2p-block h2 {
   margin-top: 2.2rem;
   white-space: normal;
@@ -908,11 +884,6 @@
 .lv2p-pill--lg {
   min-width: 11rem;
   padding: 0.85rem 1.6rem;
-}
-
-.lv2p-drawer .lv2p-pill {
-  width: 100%;
-  margin-top: 0.7rem;
 }
 
 .lv2p-carousel {
@@ -1393,9 +1364,54 @@
 }
 
 .lv2p-foot {
-  padding: 1.5rem 1.15rem 2.5rem;
+  padding: 0.2rem 1rem 1rem;
   text-align: left;
-  border-top: 1px solid var(--px-line);
+  border-top: 0;
+}
+
+.lv2p-foot .lv2p-call-meta-block + .lv2p-call-meta-block {
+  margin-top: 0.75rem;
+}
+
+.lv2p-foot .lv2p-call-meta h3 {
+  margin: 0 0 0.2rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--px-mute);
+}
+
+.lv2p-foot .lv2p-call-meta-app {
+  gap: 0.45rem;
+  padding: 0.15rem 0 0.25rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.lv2p-foot .lv2p-call-meta-app img {
+  width: 22px;
+  height: 22px;
+  border-radius: 5px;
+}
+
+.lv2p-foot .lv2p-call-meta-list > div {
+  padding: 0.32rem 0;
+  border: 0;
+}
+
+.lv2p-foot .lv2p-call-meta-list > div + div {
+  box-shadow: inset 0 0.5px 0 color-mix(in srgb, var(--px-ink) 12%, transparent);
+}
+
+.lv2p-foot .lv2p-call-meta-list > div:last-child {
+  border: 0;
+}
+
+.lv2p-foot .lv2p-call-meta-list dt,
+.lv2p-foot .lv2p-call-meta-list dd {
+  font-size: 0.84rem;
+  font-weight: 500;
 }
 
 .lv2p-foot .lv2p-call-meta {
@@ -1447,10 +1463,6 @@
     text-decoration: none;
   }
 
-  .lv2p-menu-btn {
-    display: none;
-  }
-
   .lv2p-hero,
   .lv2p-block {
     max-width: 980px;
@@ -1493,8 +1505,6 @@
 .landing-v2--dark,
 .landing-v2--dark .lv2p,
 .landing-v2--dark .lv2p-nav,
-.landing-v2--dark .lv2p-search,
-.landing-v2--dark .lv2p-drawer,
 .landing-v2--dark .lv2p-impact {
   background: #000;
   color: #fff;
@@ -1510,7 +1520,6 @@
 .landing-v2--dark .lv2p-hero p,
 .landing-v2--dark .lv2p-hero-explain,
 .landing-v2--dark .lv2p-nav-brand,
-.landing-v2--dark .lv2p-icon-btn,
 .landing-v2--dark .lv2p-block h2,
 .landing-v2--dark .lv2p-product h3,
 .landing-v2--dark .lv2p-impact h2,
@@ -1559,6 +1568,40 @@
 
 .landing-v2--dark .lv2p-close .lv2p-pricing .border-marketing-ink {
   border-color: #fff;
+}
+
+.landing-v2--dark .lv2p-close .lv2p-pricing .seller-plan .text-marketing-ink {
+  color: #111;
+}
+
+.landing-v2--dark .lv2p-close .lv2p-pricing .seller-plan .text-marketing-muted,
+.landing-v2--dark .lv2p-close .lv2p-pricing .seller-plan .text-marketing-muted2 {
+  color: #425466;
+}
+
+.landing-v2--dark .lv2p-close .lv2p-pricing .seller-plan a.bg-white,
+.landing-v2--dark .lv2p-close .lv2p-pricing .seller-plan button.bg-white {
+  background: #fff;
+  color: #111;
+}
+
+.landing-v2--dark .lv2p-close .lv2p-pricing .seller-plan--best a.bg-white,
+.landing-v2--dark .lv2p-close .lv2p-pricing .seller-plan--best button.bg-white {
+  background: #0b0b0c;
+  color: #fff;
+}
+
+.landing-v2--dark .billing-toggle-track {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.landing-v2--dark .billing-toggle-track button {
+  color: #f5f5f7;
+}
+
+.landing-v2--dark .billing-toggle-track button[aria-pressed='true'] {
+  background: #f5f5f7;
+  color: #1d1d1f;
 }
 
 .landing-v2--dark .lv2p-carousel-viewport::before {

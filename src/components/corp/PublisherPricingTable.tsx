@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { PRICING_PLANS, type CheckoutPlanId, type PricingPlanId } from '@/lib/pricingPlans';
-import { startCheckout } from '@/lib/stripeCheckout';
+import { startCheckout, type BillingInterval } from '@/lib/stripeCheckout';
 
 type Cell = string | 'check' | 'dash';
 
@@ -97,7 +97,7 @@ function CellValue({ value }: { value: Cell }) {
 }
 
 const SELLER_FEATURES = [
-  'Public AIWEB presence',
+  'Public AIWEB Profile',
   'Product or service listings',
   'Calling Cards',
   'AIWEB Directory distribution',
@@ -135,7 +135,7 @@ const OFFER_CARDS = {
   plus: {
     title: 'AIWEB Seller',
     price: '$19.99',
-    lede: 'Designed for authors, artists, consultants and independent sellers.',
+    lede: 'For the entrepreneur.',
     features: SELLER_FEATURES,
     cta: 'Start selling through AIWEB',
     sales: false,
@@ -159,6 +159,27 @@ const OFFER_CARDS = {
 } as const;
 
 const VISIBLE_PLANS = PRICING_PLANS.filter((plan) => plan.id !== 'agency_pro');
+
+const BEST_PLAN_ID: PricingPlanId = 'business';
+
+function formatUsd(cents: number): string {
+  const dollars = cents / 100;
+  return dollars.toLocaleString('en-US', {
+    minimumFractionDigits: Number.isInteger(dollars) ? 0 : 2,
+    maximumFractionDigits: 2,
+  });
+}
+
+function displayPrice(planId: PricingPlanId, billing: BillingInterval): { amount: string; period: string } {
+  const plan = PRICING_PLANS.find((item) => item.id === planId);
+  if (!plan || plan.amountCents == null) return { amount: 'Custom', period: '' };
+  const prefix = planId === 'agency' ? 'from ' : '';
+  const cents = billing === 'annual' ? (plan.annualCents ?? plan.amountCents * 10) : plan.amountCents;
+  return {
+    amount: `${prefix}$${formatUsd(cents)}`,
+    period: billing === 'annual' ? '/year' : '/month',
+  };
+}
 
 const PLAN_TITLES: Record<PricingPlanId, string> = {
   plus: 'AIWEB Seller',
@@ -209,6 +230,7 @@ function PlanCta({
 export function PublisherPricingTable({ showHeading = true }: { showHeading?: boolean } = {}) {
   const [busy, setBusy] = useState<CheckoutPlanId | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [billing, setBilling] = useState<BillingInterval>('monthly');
 
   useEffect(() => {
     const raw = window.location.hash.replace(/^#/, '');
@@ -223,7 +245,7 @@ export function PublisherPricingTable({ showHeading = true }: { showHeading?: bo
     setError(null);
     setBusy(planId);
     try {
-      await startCheckout(planId);
+      await startCheckout(planId, billing);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Checkout failed. Try again.');
       setBusy(null);
@@ -243,19 +265,40 @@ export function PublisherPricingTable({ showHeading = true }: { showHeading?: bo
         </>
       ) : null}
 
+      <div className="billing-toggle">
+        <div className="billing-toggle-track" role="group" aria-label="Billing period">
+          <button
+            type="button"
+            aria-pressed={billing === 'monthly'}
+            onClick={() => setBilling('monthly')}
+          >
+            Monthly
+          </button>
+          <button
+            type="button"
+            aria-pressed={billing === 'annual'}
+            onClick={() => setBilling('annual')}
+          >
+            Annual
+            <span className="billing-toggle-save">−20%</span>
+          </button>
+        </div>
+      </div>
+
       {/* Mobile: one plan per block */}
-      <div className="mt-8 space-y-8 md:hidden">
+      <div className="mt-3 space-y-3 md:hidden">
         {VISIBLE_PLANS.map((plan) => {
-          const price = FEATURE_ROWS[0].values[plan.id];
+          const priced = displayPrice(plan.id, billing);
           const offer = plan.id in OFFER_CARDS ? OFFER_CARDS[plan.id as keyof typeof OFFER_CARDS] : null;
           if (offer) {
             return (
               <section
                 key={plan.id}
                 data-plan-id={plan.id}
-                className="seller-plan scroll-mt-24"
+                className={`seller-plan scroll-mt-24${plan.id === BEST_PLAN_ID ? ' seller-plan--best' : ''}`}
                 aria-labelledby={`plan-${plan.id}-name`}
               >
+                {plan.id === BEST_PLAN_ID ? <p className="seller-plan-best">Best choice</p> : null}
                 <div className="flex items-baseline justify-between gap-2">
                   <h3
                     id={`plan-${plan.id}-name`}
@@ -264,8 +307,12 @@ export function PublisherPricingTable({ showHeading = true }: { showHeading?: bo
                     {offer.title}
                   </h3>
                   <p className="shrink-0 text-[0.95rem] font-extrabold leading-none tracking-[-0.02em] text-marketing-ink">
-                    {offer.price}
-                    <span className="ml-0.5 text-[11px] font-semibold text-marketing-muted2">/month</span>
+                    {priced.amount}
+                    {priced.period ? (
+                      <span className="ml-0.5 text-[11px] font-semibold text-marketing-muted2">
+                        {priced.period}
+                      </span>
+                    ) : null}
                   </p>
                 </div>
                 <p className="mt-1.5 text-[12px] font-medium leading-snug text-marketing-muted">{offer.lede}</p>
@@ -303,7 +350,10 @@ export function PublisherPricingTable({ showHeading = true }: { showHeading?: bo
                   {PLAN_TITLES[plan.id]}
                 </h3>
                 <p className="shrink-0 text-[0.95rem] font-extrabold leading-none tracking-[-0.02em] text-marketing-ink">
-                  {price}
+                  {priced.amount}
+                  {priced.period ? (
+                    <span className="ml-0.5 text-[11px] font-semibold text-marketing-muted2">{priced.period}</span>
+                  ) : null}
                 </p>
               </div>
               <div className="mt-2.5">
@@ -329,6 +379,11 @@ export function PublisherPricingTable({ showHeading = true }: { showHeading?: bo
                   className="scroll-mt-24 px-2 py-3 text-center font-display text-[15px] font-extrabold tracking-[-0.02em] text-marketing-ink lg:text-[17px]"
                 >
                   {PLAN_TITLES[plan.id]}
+                  {plan.id === BEST_PLAN_ID ? (
+                    <span className="mt-1 block text-[11px] font-semibold normal-case tracking-normal text-[#0071e3]">
+                      Best choice
+                    </span>
+                  ) : null}
                 </th>
               ))}
             </tr>
@@ -344,7 +399,13 @@ export function PublisherPricingTable({ showHeading = true }: { showHeading?: bo
                 </th>
                 {VISIBLE_PLANS.map((plan) => (
                   <td key={plan.id} className="px-2 py-3.5 text-center align-middle">
-                    <CellValue value={row.values[plan.id]} />
+                    <CellValue
+                      value={
+                        row.label === 'Price'
+                          ? `${displayPrice(plan.id, billing).amount}${displayPrice(plan.id, billing).period}`
+                          : row.values[plan.id]
+                      }
+                    />
                   </td>
                 ))}
               </tr>
@@ -374,8 +435,8 @@ export function PublisherPricingTable({ showHeading = true }: { showHeading?: bo
         </p>
       ) : null}
       <p className="mt-4 text-center text-[12px] text-marketing-muted2">
-        Prices shown monthly · billed in USD via Stripe. You’ll sign in to AIWEB OS, then complete
-        checkout.
+        Annual is 20% off. Promotion codes are entered on the Stripe checkout screen. You’ll sign in to
+        AIWEB OS, then complete checkout.
       </p>
     </div>
   );

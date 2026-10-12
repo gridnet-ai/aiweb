@@ -1634,44 +1634,159 @@ html:has(.marketing-home-chapters) {
   }
 }
 
-.seller-plan {
-  border: 1px solid #e0ddd6;
-  border-radius: 12px;
-  padding: 0.8rem 0.7rem 0.7rem;
+.billing-toggle {
+  display: flex;
+  justify-content: center;
+  margin: 0 0 0.75rem;
+}
+
+.billing-toggle-track {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px;
+  border-radius: 8px;
+  background: #e8e8ed;
+}
+
+.billing-toggle-track button {
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: #1d1d1f;
+  padding: 0.28rem 0.7rem;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  cursor: pointer;
+}
+
+.billing-toggle-track button[aria-pressed='true'] {
   background: #fff;
+  box-shadow: 0 0.5px 2px rgba(0, 0, 0, 0.12);
+}
+
+.billing-toggle-track button[aria-pressed='true'] .billing-toggle-save {
+  color: inherit;
+}
+
+.billing-toggle-save {
+  margin-left: 0.35rem;
+  color: #0071e3;
+  font-size: 11px;
+  font-weight: 650;
+}
+
+.seller-plan {
+  display: grid;
+  gap: 0.35rem;
+  border: 0;
+  border-radius: 4px;
+  padding: 0.7rem 0.55rem 0.55rem;
+  background: linear-gradient(120deg, #a8d8ff 0%, #c8ebe0 55%, #d8f0e4 100%);
+  color: #111;
+}
+
+.seller-plan--best {
+  box-shadow: 0 0 0 1.5px #0071e3;
+}
+
+.seller-plan-best {
+  margin: 0;
+  color: #0071e3;
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
 }
 
 .seller-feature-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.4rem;
-  margin: 0.7rem 0 0;
+  grid-template-columns: 1fr;
+  gap: 0.22rem;
+  margin: 0.1rem 0 0;
   padding: 0;
   list-style: none;
 }
 
 .seller-feature-card {
   margin: 0;
-  min-height: 2.6rem;
+  min-height: 0;
   display: flex;
   align-items: center;
-  border: 1px solid #e0ddd6;
-  border-radius: 8px;
-  background: #f6f5f2;
-  padding: 0.4rem 0.5rem;
-  color: #1a1a1a;
-  font-size: 12px;
-  font-weight: 650;
+  border: 0;
+  border-radius: 4px;
+  background: #fff;
+  padding: 0.28rem 0.55rem;
+  color: #111;
+  font-size: 13px;
+  font-weight: 550;
   line-height: 1.25;
 }
 
+.seller-plan a,
+.seller-plan button {
+  width: 100%;
+  border: 1px solid #111;
+  border-radius: 4px;
+  background: #fff;
+  color: #111;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.seller-plan--best a,
+.seller-plan--best button {
+  border-color: #0b0b0c;
+  background: #0b0b0c;
+  color: #fff;
+}
+
+@media (min-width: 720px) {
+  .seller-plan {
+    gap: 0.4rem;
+    padding: 0.8rem 0.7rem 0.65rem;
+    border-radius: 6px;
+  }
+
+  .seller-feature-card,
+  .seller-plan a,
+  .seller-plan button {
+    border-radius: 5px;
+  }
+}
+
 .landing-v2--dark .lv2p-close .seller-plan {
-  border-color: rgba(255, 255, 255, 0.16);
-  background: #111;
+  border: 0;
+  background: linear-gradient(120deg, #a8d8ff 0%, #c8ebe0 55%, #d8f0e4 100%);
+  color: #111;
+}
+
+.landing-v2--dark .lv2p-close .seller-plan .text-marketing-ink {
+  color: #111;
+}
+
+.landing-v2--dark .lv2p-close .seller-plan .text-marketing-muted,
+.landing-v2--dark .lv2p-close .seller-plan .text-marketing-muted2 {
+  color: #425466;
 }
 
 .landing-v2--dark .lv2p-close .seller-feature-card {
-  border-color: rgba(255, 255, 255, 0.14);
-  background: #1c1c1c;
+  border: 0;
+  background: #fff;
+  color: #111;
+}
+
+.landing-v2--dark .lv2p-close .seller-plan a,
+.landing-v2--dark .lv2p-close .seller-plan button {
+  background: #fff;
+  color: #111;
+}
+
+.landing-v2--dark .lv2p-close .seller-plan--best a,
+.landing-v2--dark .lv2p-close .seller-plan--best button {
+  background: #0b0b0c;
   color: #fff;
 }

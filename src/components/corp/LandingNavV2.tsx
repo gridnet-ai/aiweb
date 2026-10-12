@@ -1,6 +1,4 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
 import { PRODUCT_URLS } from '@/lib/aiWebCompanyBrand';
 import { OS_PATH } from '@/lib/corpSiteRoutes';
 
@@ -13,44 +11,7 @@ export const OS_LOGIN_HREF = PRODUCT_URLS.aiWebOs;
 export const CHATGPT_AIWEB_PLUGIN_HREF =
   'https://chatgpt.com/plugins/plugin_asdk_app_6a8e85029ad08191b8cd1435be85f221?q=call';
 
-const MENU = [
-  {
-    label: 'Create',
-    links: [{ label: 'Create for AI', href: `${OS_PATH}#create` }],
-  },
-  {
-    label: 'Measure',
-    links: [{ label: 'AI kitchen sink', href: `${OS_PATH}#stories` }],
-  },
-  {
-    label: 'AIWEB OS',
-    links: [
-      { label: 'OS', href: OS_PATH },
-      { label: 'AIWEB OS', href: `${OS_PATH}#os` },
-      { label: 'Self-improving pages', href: `${OS_PATH}#pages` },
-      { label: 'AIWEB Pages', href: '#sites' },
-      { label: 'Message buyers', href: `${OS_PATH}#inbox` },
-      { label: 'Calls', href: `${OS_PATH}#calls` },
-      { label: 'Metrics', href: `${OS_PATH}#metrics` },
-    ],
-  },
-  {
-    label: 'ChatGPT',
-    links: [{ label: 'Keep ChatGPT', href: `${OS_PATH}#partners` }],
-  },
-  {
-    label: 'Get started',
-    links: [
-      { label: 'Pricing', href: '#start' },
-      { label: 'Who it fits', href: `${OS_PATH}#sized` },
-      { label: 'Resources', href: `${OS_PATH}#resources` },
-    ],
-  },
-] as const;
-
 export function LandingNavV2() {
-  const [open, setOpen] = useState(false);
-
   return (
     <header className="lv2p-nav">
       <Link to="/" className="lv2p-nav-brand" aria-label="AIWEB — home">
@@ -87,55 +48,7 @@ export function LandingNavV2() {
         >
           Try it
         </a>
-        <button
-          type="button"
-          className="lv2p-icon-btn lv2p-menu-btn"
-          aria-label={open ? 'Close menu' : 'Open menu'}
-          aria-expanded={open}
-          onClick={() => setOpen((v) => !v)}
-        >
-          {open ? <X size={22} /> : <Menu size={22} strokeWidth={1.75} />}
-        </button>
       </div>
-
-      {open ? (
-        <div className="lv2p-drawer">
-          {MENU.map((group) => (
-            <details key={group.label} className="lv2p-acc">
-              <summary>{group.label}</summary>
-              <div>
-                {group.links.map((link) =>
-                  link.href.startsWith('/') ? (
-                    <Link key={link.label} to={link.href} onClick={() => setOpen(false)}>
-                      {link.label}
-                    </Link>
-                  ) : (
-                    <a key={link.label} href={link.href} onClick={() => setOpen(false)}>
-                      {link.label}
-                    </a>
-                  ),
-                )}
-              </div>
-            </details>
-          ))}
-          <a
-            className="lv2p-pill lv2p-pill--fill lv2p-drawer-cta"
-            href={OS_LOGIN_HREF}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Get Started
-          </a>
-          <a
-            className="lv2p-pill lv2p-pill--line"
-            href={OS_LOGIN_HREF}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Log in
-          </a>
-        </div>
-      ) : null}
     </header>
   );
 }
