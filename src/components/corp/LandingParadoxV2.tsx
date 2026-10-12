@@ -1,11 +1,11 @@
-import { useEffect, useRef, type ReactNode } from 'react';
+import { useRef, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
-import { OS_LOGIN_HREF } from '@/components/corp/LandingNavV2';
+import { CHATGPT_AIWEB_PLUGIN_HREF, OS_LOGIN_HREF } from '@/components/corp/LandingNavV2';
 import { PublisherPricingTable } from '@/components/corp/PublisherPricingTable';
 import { PRIVACY_PATH, TERMS_PATH, OS_PATH } from '@/lib/corpSiteRoutes';
 import { SITE_ORIGIN } from '@/lib/aiWebCompanyBrand';
-import { AIWEB_CALL_FAQS, SITE_CANONICAL_DESCRIPTION } from '@/lib/siteSeo';
+import { AIWEB_CALL_FAQS } from '@/lib/siteSeo';
 
 type LandingPage = 'home' | 'os';
 
@@ -13,46 +13,57 @@ function sectionHref(hash: string, page: LandingPage) {
   return page === 'home' ? `${OS_PATH}${hash}` : hash;
 }
 
-function HeroVisual() {
-  const videoRef = useRef<HTMLVideoElement>(null);
+const PHONE_BOOK_HREF = 'https://os.theaiwebcompany.com/call';
 
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
+const ENTITY_FAQS = [
+  { question: 'AIWEB Page', answer: 'A callable identity.' },
+  { question: 'AIWEB Directory', answer: 'The public discovery layer.' },
+  { question: 'AIWEB Call', answer: 'The DM for ChatGPT. It is an asynchronous message from chat.' },
+  { question: 'AIWEB Mail', answer: 'Recipient inbox and response tracking.' },
+  { question: 'AIWEB Receipt', answer: 'The sender’s delivery record.' },
+  { question: 'Calling Card', answer: 'The in-conversation interface.' },
+] as const;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          void video.play().catch(() => {});
-        } else {
-          video.pause();
-        }
-      },
-      { threshold: 0.25 },
-    );
+const HERO_STORY = [
+  {
+    src: '/images/promo/aiweb-call-hero-suppliers.png',
+    alt: 'ChatGPT compares packaging suppliers on AIWEB Calling Cards, from telling ChatGPT what you need through checking AIWEB Mail.',
+  },
+  {
+    src: '/images/promo/aiweb-call-hero-receipt.png',
+    alt: 'An AIWEB Receipt confirms the Call to Meridian Packaging was delivered.',
+  },
+] as const;
 
-    observer.observe(video);
-    return () => observer.disconnect();
-  }, []);
+const HERO_MAIL = {
+  src: '/images/promo/aiweb-call-hero-mail.png',
+  alt: 'AIWEB Mail keeps the same Call going after one sync, from the inbox into the conversation.',
+} as const;
 
+function HeroStory() {
   return (
-    <video
-      ref={videoRef}
-      className="lv2p-hero-visual"
-      src="/videos/cup-collage-animated.mp4"
-      poster="/images/promo/aiweb-phonebook-network.png"
-      muted
-      playsInline
-      loop
-      preload="metadata"
-      aria-label="People and businesses connected in the AIWEB directory"
-    />
+    <div className="lv2p-hero-story">
+      {HERO_STORY.map((image) => (
+        <img key={image.src} src={image.src} alt={image.alt} />
+      ))}
+    </div>
   );
 }
 
-const CHATGPT_AIWEB_PLUGIN_HREF =
-  'https://chatgpt.com/plugins/plugin_asdk_app_6a8e85029ad08191b8cd1435be85f221?q=call';
-const PHONE_BOOK_HREF = 'https://os.theaiwebcompany.com/call';
+function HeroMail() {
+  return (
+    <figure className="lv2p-hero-mail">
+      <h2>Keep your AIWEB Calls in one place.</h2>
+      <p>Manage your messages.</p>
+      <p className="lv2p-hero-mail-cta">
+        <a href={OS_LOGIN_HREF}>
+          <strong>Create a free AIWEB Mailbox</strong>
+        </a>
+      </p>
+      <img src={HERO_MAIL.src} alt={HERO_MAIL.alt} />
+    </figure>
+  );
+}
 
 const CREATE_CARDS = [
   {
@@ -271,8 +282,18 @@ function SitesBlock() {
 function StartSection() {
   return (
     <section className="lv2p-close" id="start">
-      <h2>Every great page starts with a conversation.</h2>
-      <p className="lv2p-close-lede">Pick a plan, sign in to AIWEB OS, and start publishing.</p>
+      <img
+        className="lv2p-close-logo"
+        src="/images/promo/aiweb-seller-logo.png?v=2"
+        alt="AIWEB Seller"
+      />
+      <img
+        className="lv2p-close-inbox"
+        src="/images/promo/aiweb-inbox-phones.png"
+        alt="AIWEB Inbox on two phones, with qualified inquiries in one inbox and replies sent from anywhere."
+      />
+      <h2>Connect with ChatGPT users and grow your business with AIWEB.</h2>
+      <p className="lv2p-close-lede">Choose a plan to start receiving customer conversations.</p>
       <div className="lv2p-pricing">
         <PublisherPricingTable showHeading={false} />
       </div>
@@ -283,43 +304,59 @@ function StartSection() {
   );
 }
 
-function LandingFooter({ page }: { page: LandingPage }) {
-  const href = (hash: string) => sectionHref(hash, page);
+function LandingFooter() {
   return (
     <footer className="lv2p-foot">
-      <Link to="/" aria-label="AIWEB home">
-        AIWEB
-      </Link>
-      <a href={page === 'os' ? '#os-top' : '#hero'}>Back to top</a>
-      <div className="lv2p-foot-grid">
-        <div>
-          <p>Product</p>
-          <a href={href('#os')}>AIWEB OS</a>
-          <a href={href('#pages')}>Self-improving pages</a>
-          <a href={href('#inbox')}>Inbox</a>
-          <a href={href('#metrics')}>Metrics</a>
+      <div className="lv2p-call-meta">
+        <div className="lv2p-call-meta-block">
+          <h3>App</h3>
+          <div className="lv2p-call-meta-app">
+            <img src="/images/promo/aiweb-call-mark.png" alt="" width={28} height={28} />
+            <span>AIWEB Call</span>
+          </div>
         </div>
-        <div>
-          <p>How we help</p>
-          <a href={href('#create')}>Create</a>
-          <a href={href('#pages')}>Update</a>
-          <a href={page === 'home' ? '#sites' : href('#sites')}>Publish</a>
-          <a href={href('#inbox')}>Respond</a>
-        </div>
-        <div>
-          <p>Use cases</p>
-          <a href={href('#sized')}>Agencies</a>
-          <a href={href('#sized')}>Local business</a>
-          <a href={href('#create')}>Retail</a>
-          <a href={href('#create')}>Restaurant</a>
-        </div>
-        <div>
-          <p>Partners</p>
-          <a href={href('#partners')}>AIWEB for ChatGPT</a>
-          <a href={href('#partners')}>Other models</a>
+        <div className="lv2p-call-meta-block">
+          <h3>Information</h3>
+          <dl className="lv2p-call-meta-list">
+            <div>
+              <dt>Developer</dt>
+              <dd>AIWEB</dd>
+            </div>
+            <div>
+              <dt>Category</dt>
+              <dd>Business &amp; Operations</dd>
+            </div>
+            <div>
+              <dt>Website</dt>
+              <dd>
+                <a href={SITE_ORIGIN} target="_blank" rel="noopener noreferrer" aria-label="Website">
+                  <ExternalLink size={16} strokeWidth={1.75} />
+                </a>
+              </dd>
+            </div>
+            <div>
+              <dt>Version</dt>
+              <dd>1.0.0</dd>
+            </div>
+            <div>
+              <dt>Privacy Policy</dt>
+              <dd>
+                <Link to={PRIVACY_PATH} aria-label="Privacy Policy">
+                  <ExternalLink size={16} strokeWidth={1.75} />
+                </Link>
+              </dd>
+            </div>
+            <div>
+              <dt>Terms of Service</dt>
+              <dd>
+                <Link to={TERMS_PATH} aria-label="Terms of Service">
+                  <ExternalLink size={16} strokeWidth={1.75} />
+                </Link>
+              </dd>
+            </div>
+          </dl>
         </div>
       </div>
-      <p className="lv2p-legal">© {new Date().getFullYear()} AI Web Company. Draft landing.</p>
     </footer>
   );
 }
@@ -549,44 +586,20 @@ export function LandingParadoxV2({ page = 'home' }: { page?: LandingPage }) {
           <h1>OS</h1>
         </section>
         <OsBody />
-        <LandingFooter page="os" />
+        <LandingFooter />
       </div>
     );
   }
 
   return (
     <div className="lv2p">
-      <a
-        className="lv2p-promo"
-        href={CHATGPT_AIWEB_PLUGIN_HREF}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <span>AIWEB CALL IS NOW LIVE IN CHATGPT</span>
-        <span className="lv2p-promo-cta">Try it</span>
-      </a>
-
       <section id="hero" className="lv2p-hero">
-        <h1>AIWEB Call is the DM for ChatGPT.</h1>
-        <HeroVisual />
-        <p className="lv2p-hero-kicker">NO PHONE NUMBER TO DIAL. NO EMAIL ADDRESS TO FIND.</p>
+        <h1>DM for ChatGPT.</h1>
         <p className="lv2p-hero-explain">
-          Find a person or business, send them a message from the chat, and track the response in
-          AIWEB Mail. We’re starting with ChatGPT and building toward AI assistants broadly.
+          A new communications network connecting people and businesses through AI
+          assistants—starting with ChatGPT.
         </p>
-        <div className="lv2p-product-ctas lv2p-hero-ctas">
-          <a className="lv2p-pill lv2p-pill--fill lv2p-pill--lg" href={OS_LOGIN_HREF}>
-            Become callable
-          </a>
-          <a
-            className="lv2p-pill lv2p-pill--line lv2p-pill--lg"
-            href={CHATGPT_AIWEB_PLUGIN_HREF}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Try AIWEB Call
-          </a>
-        </div>
+        <HeroStory />
       </section>
 
       <section id="call" className="lv2p-call">
@@ -633,158 +646,40 @@ export function LandingParadoxV2({ page = 'home' }: { page?: LandingPage }) {
             </a>
           ))}
         </div>
-        <div className="lv2p-call-copy">
-          <p>{SITE_CANONICAL_DESCRIPTION}</p>
-          <p>
-            An AIWEB Page is a callable identity. The AIWEB Directory is the public discovery layer.
-            AIWEB Mail is where recipients track messages and respond. The sender receives an AIWEB
-            Receipt.
-          </p>
-          <p>
-            Technical note: Voice over AI (VoA) is the communication model underneath—resolve by
-            name or by intention, and continue the same Receipt for follow-ups. The app does not take
-            payment or Instant Checkout in ChatGPT.
-          </p>
-        </div>
-        <div className="lv2p-call-meta">
-          <div className="lv2p-call-meta-block">
-            <h3>App</h3>
-            <div className="lv2p-call-meta-app">
-              <img src="/images/promo/aiweb-call-mark.png" alt="" width={28} height={28} />
-              <span>AIWEB Call</span>
-            </div>
-          </div>
-          <div className="lv2p-call-meta-block">
-            <h3>Information</h3>
-            <dl className="lv2p-call-meta-list">
-              <div>
-                <dt>Developer</dt>
-                <dd>AIWEB</dd>
-              </div>
-              <div>
-                <dt>Category</dt>
-                <dd>Business &amp; Operations</dd>
-              </div>
-              <div>
-                <dt>Website</dt>
-                <dd>
-                  <a href={SITE_ORIGIN} target="_blank" rel="noopener noreferrer" aria-label="Website">
-                    <ExternalLink size={16} strokeWidth={1.75} />
-                  </a>
-                </dd>
-              </div>
-              <div>
-                <dt>Version</dt>
-                <dd>1.0.0</dd>
-              </div>
-              <div>
-                <dt>Privacy Policy</dt>
-                <dd>
-                  <Link to={PRIVACY_PATH} aria-label="Privacy Policy">
-                    <ExternalLink size={16} strokeWidth={1.75} />
-                  </Link>
-                </dd>
-              </div>
-              <div>
-                <dt>Terms of Service</dt>
-                <dd>
-                  <Link to={TERMS_PATH} aria-label="Terms of Service">
-                    <ExternalLink size={16} strokeWidth={1.75} />
-                  </Link>
-                </dd>
-              </div>
-            </dl>
-          </div>
-        </div>
-        <p className="lv2p-call-notice">
-          When connected to AIWEB Call, ChatGPT may share relevant chats and memories with this app
-          to help provide context for your requests. AIWEB Call’s use of this data is subject to
-          their{' '}
-          <a href="https://theaiwebcompany.com/terms" target="_blank" rel="noopener noreferrer">
-            terms
-          </a>{' '}
-          and{' '}
-          <a href="https://theaiwebcompany.com/privacy" target="_blank" rel="noopener noreferrer">
-            privacy policy
-          </a>
-          . If you have{' '}
-          <a
-            href="https://help.openai.com/en/articles/8590148-memory-in-chatgpt"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Memory
-          </a>{' '}
-          enabled, data from the app may be used to proactively provide helpful information or
-          suggestions. ChatGPT always respects your training data preferences, including for data
-          from connected apps. Use of apps may come with{' '}
-          <a
-            href="https://help.openai.com/en/articles/20001062-elevated-risk-labels"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            elevated risk
-          </a>
-          . You can manage your preferences or disconnect from apps anytime in your settings.{' '}
-          <a
-            href="https://help.openai.com/en/articles/11487775-connected-apps-in-chatgpt"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn more
-          </a>
-        </p>
+        <HeroMail />
       </section>
 
+      <StartSection />
       <section id="faq" className="lv2p-block lv2p-faq">
         <h2>Questions about AIWEB Call</h2>
-        <dl className="lv2p-faq-list">
+        <div className="lv2p-faq-list">
           {AIWEB_CALL_FAQS.map((item) => (
-            <div key={item.question} className="lv2p-faq-item">
-              <dt>{item.question}</dt>
-              <dd>{item.answer}</dd>
-            </div>
+            <details key={item.question} className="lv2p-faq-item">
+              <summary>{item.question}</summary>
+              <p>{item.answer}</p>
+            </details>
           ))}
-        </dl>
+        </div>
         <div className="lv2p-faq-entities">
           <h3>AIWEB entities</h3>
-          <ul>
-            <li>
-              <strong>AIWEB Page</strong> — callable identity
-            </li>
-            <li>
-              <strong>AIWEB Directory</strong> — public discovery layer
-            </li>
-            <li>
-              <strong>AIWEB Call</strong> — the DM for ChatGPT (asynchronous message from chat)
-            </li>
-            <li>
-              <strong>AIWEB Mail</strong> — recipient inbox and response tracking
-            </li>
-            <li>
-              <strong>AIWEB Receipt</strong> — sender delivery record
-            </li>
-            <li>
-              <strong>Calling Card</strong> — in-conversation interface
-            </li>
-          </ul>
-          <p className="lv2p-faq-vcap">
-            Agent tool sequence: <code>search_directory</code> → <code>prepare_call</code> →{' '}
-            <code>send_call</code> → <code>get_receipt</code>. Call mode is asynchronous text with
-            user confirmation.
-          </p>
+          <div className="lv2p-faq-list">
+            {ENTITY_FAQS.map((item) => (
+              <details key={item.question} className="lv2p-faq-item">
+                <summary>{item.question}</summary>
+                <p>{item.answer}</p>
+              </details>
+            ))}
+            <details className="lv2p-faq-item">
+              <summary>What is the agent tool sequence?</summary>
+              <p>
+                <code>search_directory</code> → <code>prepare_call</code> → <code>send_call</code> →{' '}
+                <code>get_receipt</code>. Call mode is asynchronous text with user confirmation.
+              </p>
+            </details>
+          </div>
         </div>
       </section>
-
-      <section id="create" className="lv2p-block">
-        <CreateCtas />
-        <CreateHeadline />
-        <CreateCarousel page="home" />
-      </section>
-
-      <SitesBlock />
-      <StartSection />
-      <LandingFooter page="home" />
+      <LandingFooter />
     </div>
   );
 }

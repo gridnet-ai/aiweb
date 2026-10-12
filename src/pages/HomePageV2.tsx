@@ -10,7 +10,7 @@ import {
 import '@/styles/landingV2.css';
 import '@/styles/landingV2Paradox.css';
 
-/** Live homepage. Previous homepage remains at `/classic`. */
+/** Live homepage. The pre-Calling-Card version remains at `/archive`. Older homepage remains at `/classic`. */
 export function HomePageV2() {
   useScrollReveal();
   useMarketingPageSeo({
@@ -22,7 +22,7 @@ export function HomePageV2() {
   useJsonLd(homePageJsonLd());
 
   return (
-    <div className="landing-v2">
+    <div className="landing-v2 landing-v2--dark">
       <LandingNavV2 />
       <LandingParadoxV2 />
     </div>

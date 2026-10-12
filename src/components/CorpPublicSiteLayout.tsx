@@ -22,18 +22,20 @@ interface CorpPublicSiteLayoutProps {
 export function CorpPublicSiteLayout({ children }: CorpPublicSiteLayoutProps) {
   const { pathname } = useLocation();
   const isClassicHome = pathname === '/classic';
-  const isNewHome = pathname === HOME_PATH || pathname === '/v2' || pathname === OS_PATH;
+  const isNewHome =
+    pathname === HOME_PATH || pathname === '/v2' || pathname === '/archive' || pathname === OS_PATH;
+  const isDarkHome = pathname === HOME_PATH;
 
   useEffect(() => {
     document.documentElement.classList.remove('dark');
-    document.documentElement.style.colorScheme = 'light';
-  }, []);
+    document.documentElement.style.colorScheme = isDarkHome ? 'dark' : 'light';
+  }, [isDarkHome]);
 
   return (
     <div
       className={[
         'marketing-site flex min-h-screen flex-col font-marketing text-marketing-ink',
-        isClassicHome ? 'bg-[var(--pwa-stage-bg,#eceae6)]' : 'bg-white',
+        isClassicHome ? 'bg-[var(--pwa-stage-bg,#eceae6)]' : isDarkHome ? 'bg-black' : 'bg-white',
       ].join(' ')}
     >
       <main className="flex min-w-0 flex-1 flex-col overflow-x-clip">{children}</main>

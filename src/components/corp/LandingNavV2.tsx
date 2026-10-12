@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, Search, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { PRODUCT_URLS } from '@/lib/aiWebCompanyBrand';
 import { OS_PATH } from '@/lib/corpSiteRoutes';
 
@@ -9,6 +9,9 @@ export const AGENCY_PILOT_HREF =
 
 /** Unsigned visitors land on the AIWEB OS welcome screen, which opens sign-in. */
 export const OS_LOGIN_HREF = PRODUCT_URLS.aiWebOs;
+
+export const CHATGPT_AIWEB_PLUGIN_HREF =
+  'https://chatgpt.com/plugins/plugin_asdk_app_6a8e85029ad08191b8cd1435be85f221?q=call';
 
 const MENU = [
   {
@@ -47,7 +50,6 @@ const MENU = [
 
 export function LandingNavV2() {
   const [open, setOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
 
   return (
     <header className="lv2p-nav">
@@ -77,14 +79,14 @@ export function LandingNavV2() {
         >
           Log in
         </a>
-        <button
-          type="button"
-          className="lv2p-icon-btn"
-          aria-label="Search"
-          onClick={() => setSearchOpen((v) => !v)}
+        <a
+          className="lv2p-nav-try"
+          href={CHATGPT_AIWEB_PLUGIN_HREF}
+          target="_blank"
+          rel="noopener noreferrer"
         >
-          <Search size={20} strokeWidth={1.75} />
-        </button>
+          Try it
+        </a>
         <button
           type="button"
           className="lv2p-icon-btn lv2p-menu-btn"
@@ -95,16 +97,6 @@ export function LandingNavV2() {
           {open ? <X size={22} /> : <Menu size={22} strokeWidth={1.75} />}
         </button>
       </div>
-
-      {searchOpen ? (
-        <form
-          className="lv2p-search"
-          action={`${OS_PATH}#create`}
-          onSubmit={() => setSearchOpen(false)}
-        >
-          <input type="search" placeholder="Search AIWEB" aria-label="Search" />
-        </form>
-      ) : null}
 
       {open ? (
         <div className="lv2p-drawer">

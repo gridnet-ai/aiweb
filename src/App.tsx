@@ -21,6 +21,7 @@ import { WhitepaperPage } from '@/pages/WhitepaperPage';
 import { PluginsPage } from '@/pages/PluginsPage';
 import { AlbumPage } from '@/pages/AlbumPage';
 import { AiwebOsScratchPage } from '@/pages/dev/AiwebOsScratchPage';
+import { HomePageArchive } from '@/pages/archive/HomePageArchive';
 import { HomePageV2 } from '@/pages/HomePageV2';
 import { OsPage } from '@/pages/OsPage';
 
@@ -52,6 +53,7 @@ export default function App() {
     <CorpPublicSiteLayout>
       <Routes>
         <Route path="/" element={<HomePageV2 />} />
+        <Route path="/archive" element={<HomePageArchive />} />
         <Route path="/os" element={<OsPage />} />
         <Route path="/classic" element={<HomePage />} />
         <Route path="/v2" element={<Navigate to="/" replace />} />

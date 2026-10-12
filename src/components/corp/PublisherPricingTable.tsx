@@ -10,7 +10,7 @@ const FEATURE_ROWS: { label: string; values: Record<PricingPlanId, Cell> }[] = [
     values: {
       plus: '$19.99',
       business: '$49',
-      agency: '$499',
+      agency: 'from $499',
       agency_pro: '$1,499',
       enterprise: 'Custom',
     },
@@ -96,22 +96,98 @@ function CellValue({ value }: { value: Cell }) {
   return <span className="text-[13px] font-semibold text-marketing-ink sm:text-[14px]">{value}</span>;
 }
 
+const SELLER_FEATURES = [
+  'Public AIWEB presence',
+  'Product or service listings',
+  'Calling Cards',
+  'AIWEB Directory distribution',
+  'AIWEB Mail',
+  'Customer inquiries',
+  'Receipts',
+  'Basic analytics',
+] as const;
+
+const BUSINESS_FEATURES = [
+  'Everything in Seller',
+  'Verified business',
+  'Rich product and service catalog',
+  'Get Quote and AIWEB Actions',
+  'Multiple inbox users',
+  'Message routing',
+  'Files and media',
+  'Business analytics',
+  'Priority support',
+] as const;
+
+const AGENCY_FEATURES = [
+  'Multiple businesses or brands',
+  'Bulk publishing',
+  'Shared administration',
+  'Team permissions',
+  'Client reporting',
+  'API and integrations',
+  'Centralized billing',
+] as const;
+
+const SALES_MAILTO = 'mailto:sales@theaiwebcompany.com';
+
+const OFFER_CARDS = {
+  plus: {
+    title: 'AIWEB Seller',
+    price: '$19.99',
+    lede: 'Designed for authors, artists, consultants and independent sellers.',
+    features: SELLER_FEATURES,
+    cta: 'Start selling through AIWEB',
+    sales: false,
+  },
+  business: {
+    title: 'AIWEB Pro',
+    price: '$49',
+    lede: 'Designed for operating businesses.',
+    features: BUSINESS_FEATURES,
+    cta: 'Connect with ChatGPT users',
+    sales: false,
+  },
+  agency: {
+    title: 'AIWEB Business',
+    price: 'from $499',
+    lede: 'Designed for agencies, associations, publishers and multi-brand operators.',
+    features: AGENCY_FEATURES,
+    cta: 'Contact sales',
+    sales: true,
+  },
+} as const;
+
+const VISIBLE_PLANS = PRICING_PLANS.filter((plan) => plan.id !== 'agency_pro');
+
+const PLAN_TITLES: Record<PricingPlanId, string> = {
+  plus: 'AIWEB Seller',
+  business: 'AIWEB Pro',
+  agency: 'AIWEB Business',
+  agency_pro: 'Agency Pro',
+  enterprise: 'Enterprise',
+};
+
 function PlanCta({
   planId,
   busy,
   onSelect,
+  label,
+  sales = false,
 }: {
   planId: PricingPlanId;
   busy: CheckoutPlanId | null;
   onSelect: (id: CheckoutPlanId) => void;
+  label?: string;
+  sales?: boolean;
 }) {
-  if (planId === 'enterprise') {
+  if (planId === 'enterprise' || sales) {
     return (
       <a
-        href="mailto:sales@theaiwebcompany.com"
-        className={`${CTA_CLASS} bg-marketing-ink text-white hover:bg-black`}
+        href={SALES_MAILTO}
+        className={`${CTA_CLASS} bg-white text-marketing-ink hover:bg-marketing-ink hover:text-white`}
       >
-        Contact sales
+        {label ?? 'Contact sales'}
       </a>
     );
   }
@@ -122,7 +198,7 @@ function PlanCta({
       onClick={() => onSelect(planId)}
       className={`${CTA_CLASS} bg-white text-marketing-ink hover:bg-marketing-ink hover:text-white`}
     >
-      {busy === planId ? 'Redirecting…' : planId === 'plus' ? 'Get Plus' : 'Subscribe'}
+      {busy === planId ? 'Redirecting…' : label ?? (planId === 'plus' ? 'Get Plus' : 'Subscribe')}
     </button>
   );
 }
@@ -169,42 +245,68 @@ export function PublisherPricingTable({ showHeading = true }: { showHeading?: bo
 
       {/* Mobile: one plan per block */}
       <div className="mt-8 space-y-8 md:hidden">
-        {PRICING_PLANS.map((plan) => {
+        {VISIBLE_PLANS.map((plan) => {
           const price = FEATURE_ROWS[0].values[plan.id];
+          const offer = plan.id in OFFER_CARDS ? OFFER_CARDS[plan.id as keyof typeof OFFER_CARDS] : null;
+          if (offer) {
+            return (
+              <section
+                key={plan.id}
+                data-plan-id={plan.id}
+                className="seller-plan scroll-mt-24"
+                aria-labelledby={`plan-${plan.id}-name`}
+              >
+                <div className="flex items-baseline justify-between gap-2">
+                  <h3
+                    id={`plan-${plan.id}-name`}
+                    className="font-display text-[1.05rem] font-extrabold leading-none tracking-[-0.02em] text-marketing-ink"
+                  >
+                    {offer.title}
+                  </h3>
+                  <p className="shrink-0 text-[0.95rem] font-extrabold leading-none tracking-[-0.02em] text-marketing-ink">
+                    {offer.price}
+                    <span className="ml-0.5 text-[11px] font-semibold text-marketing-muted2">/month</span>
+                  </p>
+                </div>
+                <p className="mt-1.5 text-[12px] font-medium leading-snug text-marketing-muted">{offer.lede}</p>
+                <ul className="seller-feature-grid">
+                  {offer.features.map((feature) => (
+                    <li key={feature} className="seller-feature-card">
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-2.5">
+                  <PlanCta
+                    planId={plan.id}
+                    busy={busy}
+                    onSelect={(id) => void onSelect(id)}
+                    label={offer.cta}
+                    sales={offer.sales}
+                  />
+                </div>
+              </section>
+            );
+          }
           return (
             <section
               key={plan.id}
               data-plan-id={plan.id}
-              className="scroll-mt-24 border-y border-[#d8d5cf] py-6"
+              className="seller-plan scroll-mt-24"
               aria-labelledby={`plan-${plan.id}-name`}
             >
-              <div className="flex items-baseline justify-between gap-3">
+              <div className="flex items-baseline justify-between gap-2">
                 <h3
                   id={`plan-${plan.id}-name`}
-                  className="font-display text-[1.35rem] font-extrabold tracking-[-0.02em] text-marketing-ink"
+                  className="font-display text-[1.05rem] font-extrabold leading-none tracking-[-0.02em] text-marketing-ink"
                 >
-                  {plan.name}
+                  {PLAN_TITLES[plan.id]}
                 </h3>
-                <p className="shrink-0 text-[1.1rem] font-extrabold tracking-[-0.02em] text-marketing-ink">
-                  {price === 'Custom' ? 'Custom' : (
-                    <>
-                      {price}
-                      <span className="ml-0.5 text-[12px] font-semibold text-marketing-muted2">/mo</span>
-                    </>
-                  )}
+                <p className="shrink-0 text-[0.95rem] font-extrabold leading-none tracking-[-0.02em] text-marketing-ink">
+                  {price}
                 </p>
               </div>
-              <dl className="mt-4 divide-y divide-[#e8e5df]">
-                {FEATURE_ROWS.filter((row) => row.label !== 'Price').map((row) => (
-                  <div key={row.label} className="flex items-center justify-between gap-4 py-2.5">
-                    <dt className="min-w-0 text-[13px] font-medium text-marketing-muted">{row.label}</dt>
-                    <dd className="shrink-0 text-right">
-                      <CellValue value={row.values[plan.id]} />
-                    </dd>
-                  </div>
-                ))}
-              </dl>
-              <div className="mt-5">
+              <div className="mt-2.5">
                 <PlanCta planId={plan.id} busy={busy} onSelect={(id) => void onSelect(id)} />
               </div>
             </section>
@@ -220,13 +322,13 @@ export function PublisherPricingTable({ showHeading = true }: { showHeading?: bo
               <th className="py-3 pr-4 text-[12px] font-bold uppercase tracking-[0.12em] text-marketing-muted2">
                 <span className="sr-only">Feature</span>
               </th>
-              {PRICING_PLANS.map((plan) => (
+              {VISIBLE_PLANS.map((plan) => (
                 <th
                   key={plan.id}
                   data-plan-id={plan.id}
                   className="scroll-mt-24 px-2 py-3 text-center font-display text-[15px] font-extrabold tracking-[-0.02em] text-marketing-ink lg:text-[17px]"
                 >
-                  {plan.name}
+                  {PLAN_TITLES[plan.id]}
                 </th>
               ))}
             </tr>
@@ -240,7 +342,7 @@ export function PublisherPricingTable({ showHeading = true }: { showHeading?: bo
                 >
                   {row.label}
                 </th>
-                {PRICING_PLANS.map((plan) => (
+                {VISIBLE_PLANS.map((plan) => (
                   <td key={plan.id} className="px-2 py-3.5 text-center align-middle">
                     <CellValue value={row.values[plan.id]} />
                   </td>
@@ -251,9 +353,14 @@ export function PublisherPricingTable({ showHeading = true }: { showHeading?: bo
               <th scope="row" className="py-5 pr-4">
                 <span className="sr-only">Get started</span>
               </th>
-              {PRICING_PLANS.map((plan) => (
+              {VISIBLE_PLANS.map((plan) => (
                 <td key={plan.id} className="px-2 py-5 text-center align-middle">
-                  <PlanCta planId={plan.id} busy={busy} onSelect={(id) => void onSelect(id)} />
+                  <PlanCta
+                    planId={plan.id}
+                    busy={busy}
+                    onSelect={(id) => void onSelect(id)}
+                    sales={plan.id === 'agency'}
+                  />
                 </td>
               ))}
             </tr>

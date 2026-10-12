@@ -14,7 +14,7 @@ export const SITE_CANONICAL_DESCRIPTION =
   'AIWEB Call is the DM for ChatGPT. Find a person or business, send them a message from the chat, and track the response in AIWEB Mail. We’re starting with ChatGPT and building toward AI assistants broadly.';
 
 /** Homepage / default title */
-export const SITE_TAGLINE = 'AIWEB Call | The DM for ChatGPT';
+export const SITE_TAGLINE = 'AIWEB | The DM for ChatGPT';
 
 /** Homepage meta description */
 export const SITE_SUBHEADLINE =
@@ -30,6 +30,7 @@ export const DEFAULT_PAGE_DESCRIPTION = SITE_SUBHEADLINE;
 
 export const DEFAULT_KEYWORDS = [
   'AIWEB',
+  'The DM for ChatGPT',
   'AIWEB Call',
   'DM for ChatGPT',
   'message from ChatGPT',

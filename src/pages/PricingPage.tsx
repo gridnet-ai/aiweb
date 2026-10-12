@@ -9,7 +9,7 @@ export function PricingPage() {
   useMarketingPageSeo({
     title: 'Pricing · AIWEB OS',
     description:
-      'AIWEB OS plans — Plus $19.99, Business $49, Agency, and Agency Pro. Publish, receive inquiries, and sell inside ChatGPT.',
+      'AIWEB OS plans — Seller $19.99, Pro $49, and Business from $499. Publish, receive inquiries, and sell inside ChatGPT.',
     canonicalPath: '/pricing',
   });
 
