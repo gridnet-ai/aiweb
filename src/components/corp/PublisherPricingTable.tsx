@@ -186,15 +186,22 @@ const PLAN_TITLES: Record<PricingPlanId, string> = {
   enterprise: 'Enterprise',
 };
 
-function PlanBrand({ name, headingId }: { name: string; headingId?: string }) {
+function PlanBrand({
+  name,
+  headingId,
+  stacked = false,
+}: {
+  name: string;
+  headingId?: string;
+  stacked?: boolean;
+}) {
   const label = (
     <>
       <img src="/images/promo/aiweb-nav-logo-black.png" alt="" className="seller-plan-logo" />
       <span>{name}</span>
     </>
   );
-  const className =
-    'inline-flex min-w-0 items-center gap-1.5 font-display text-[1.05rem] font-extrabold leading-none tracking-[-0.02em] text-marketing-ink';
+  const className = `${stacked ? 'flex flex-col items-center' : 'inline-flex items-center'} min-w-0 justify-center gap-1.5 font-display text-[1.05rem] font-extrabold leading-none tracking-[-0.02em] text-marketing-ink`;
   if (headingId) {
     return (
       <h3 id={headingId} className={className} aria-label={`aiweb ${name}`}>
@@ -405,12 +412,14 @@ export function PublisherPricingTable({ showHeading = true }: { showHeading?: bo
                   data-plan-id={plan.id}
                   className="scroll-mt-24 px-2 py-3 text-center font-display text-[15px] font-extrabold tracking-[-0.02em] text-marketing-ink lg:text-[17px]"
                 >
-                  <PlanBrand name={PLAN_TITLES[plan.id]} />
-                  {plan.id === BEST_PLAN_ID ? (
-                    <span className="mt-1 block text-[11px] font-semibold normal-case tracking-normal text-[#0071e3]">
-                      Best choice
-                    </span>
-                  ) : null}
+                  <div className="flex flex-col items-center">
+                    <PlanBrand name={PLAN_TITLES[plan.id]} stacked />
+                    {plan.id === BEST_PLAN_ID ? (
+                      <span className="mt-1 block text-[11px] font-semibold normal-case tracking-normal text-[#0071e3]">
+                        Best choice
+                      </span>
+                    ) : null}
+                  </div>
                 </th>
               ))}
             </tr>

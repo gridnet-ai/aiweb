@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
 import { CHATGPT_AIWEB_PLUGIN_HREF, OS_LOGIN_HREF } from '@/components/corp/LandingNavV2';
 import { PublisherPricingTable } from '@/components/corp/PublisherPricingTable';
-import { PRIVACY_PATH, TERMS_PATH, OS_PATH } from '@/lib/corpSiteRoutes';
+import { MAIL_SITE_URL, PRIVACY_PATH, TERMS_PATH, OS_PATH } from '@/lib/corpSiteRoutes';
 import { SITE_ORIGIN } from '@/lib/aiWebCompanyBrand';
 import { AIWEB_CALL_FAQS } from '@/lib/siteSeo';
 
@@ -95,8 +95,9 @@ function HeroMail({ full = true }: { full?: boolean }) {
       {full ? (
         <>
           <img src={HERO_MAIL.src} alt={HERO_MAIL.alt} />
-          <a className="lv2p-pill lv2p-hero-mail-start" href={OS_LOGIN_HREF}>
-            Start a free AIWEB mailbox
+          <a className="lv2p-pill lv2p-hero-mail-start" href={MAIL_SITE_URL}>
+            Start
+            <img className="lv2p-mail-icon" src="/images/promo/aiweb-mail-lockup-black.png" alt="Mail" />
           </a>
         </>
       ) : null}

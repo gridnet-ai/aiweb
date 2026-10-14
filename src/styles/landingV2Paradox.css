@@ -56,6 +56,27 @@
   display: none;
 }
 
+.lv2p-nav-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.lv2p-nav-item-icon {
+  width: 1.05rem;
+  height: 1.05rem;
+  object-fit: contain;
+  flex: 0 0 auto;
+}
+
+.landing-v2--dark .lv2p-nav-item-icon--cloud {
+  filter: invert(1);
+}
+
+.lv2p-nav-drawer a.lv2p-nav-item {
+  display: flex;
+}
+
 .lv2p-nav-actions {
   display: flex;
   align-items: center;
@@ -562,6 +583,24 @@
   font-weight: 750;
 }
 
+@media (min-width: 720px) {
+  .lv2p-hero-story .lv2p-hero-reach-steps p {
+    text-align: center;
+  }
+
+  .lv2p-hero-reach-steps ol {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+
+  .lv2p-hero-reach-steps li {
+    white-space: nowrap;
+    justify-content: center;
+    gap: 0.35rem;
+    font-size: 0.8rem;
+  }
+}
+
 .lv2p-hero-reach a.lv2p-hero-reach-cta {
   margin-top: 0.2rem;
   background: #fff;
@@ -618,10 +657,20 @@
 
 .lv2p-hero-mail .lv2p-hero-mail-start {
   align-self: center;
+  gap: 0.4rem;
   min-width: 0;
   border: 0;
   background: linear-gradient(120deg, #ff7a7a 0%, #ffb0a4 55%, #ffd0c8 100%);
   color: #000;
+}
+
+.lv2p-hero-mail a img.lv2p-mail-icon {
+  width: auto;
+  height: 1.35em;
+  max-height: none;
+  border-radius: 0;
+  object-fit: contain;
+  flex: 0 0 auto;
 }
 
 .lv2p-hero-visual {
@@ -1749,14 +1798,23 @@
 }
 
 @media (min-width: 900px) {
-  .lv2p-nav-links,
-  .lv2p-nav-text {
+  .lv2p-nav-links {
     display: flex;
-    gap: 1.1rem;
+    flex: 1;
+    align-items: center;
+    justify-content: space-evenly;
     font-size: 0.95rem;
     font-weight: 650;
     color: var(--px-ink);
+  }
+
+  .lv2p-nav-links a {
+    color: inherit;
     text-decoration: none;
+  }
+
+  .lv2p-nav-menu {
+    display: none;
   }
 
   .lv2p-hero,

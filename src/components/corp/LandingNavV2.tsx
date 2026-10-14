@@ -2,7 +2,7 @@ import { useEffect, useId, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { Link, useLocation } from 'react-router-dom';
 import { PRODUCT_URLS } from '@/lib/aiWebCompanyBrand';
-import { MAIL_PATH, PLUGIN_PATH } from '@/lib/corpSiteRoutes';
+import { MAIL_SITE_URL, PLUGIN_PATH } from '@/lib/corpSiteRoutes';
 
 export const AGENCY_PILOT_HREF =
   'mailto:support@theaiwebcompany.com?subject=Agency%20pilot%20application';
@@ -12,11 +12,6 @@ export const OS_LOGIN_HREF = PRODUCT_URLS.aiWebOs;
 
 export const CHATGPT_AIWEB_PLUGIN_HREF =
   'https://chatgpt.com/plugins/plugin_asdk_app_6a8e85029ad08191b8cd1435be85f221?q=call';
-
-const MENU_LINKS = [
-  { label: 'AIWEB Mail', to: MAIL_PATH },
-  { label: 'Plugin', to: PLUGIN_PATH },
-] as const;
 
 export function LandingNavV2() {
   const [open, setOpen] = useState(false);
@@ -51,12 +46,16 @@ export function LandingNavV2() {
         onClick={() => setOpen(false)}
       />
       <nav id={drawerId} className="lv2p-nav-drawer" aria-label="Menu" aria-hidden={!open}>
-        {MENU_LINKS.map((item) => (
-          <Link key={item.label} to={item.to} onClick={() => setOpen(false)}>
-            {item.label}
-          </Link>
-        ))}
-        <a href={OS_LOGIN_HREF} target="_blank" rel="noopener noreferrer">
+        <a className="lv2p-nav-item" href={MAIL_SITE_URL}>
+          <img className="lv2p-nav-item-icon lv2p-nav-item-icon--cloud" src="/icons/aiweb-cloud.png?v=2" alt="" />
+          Mail
+        </a>
+        <Link className="lv2p-nav-item" to={PLUGIN_PATH} onClick={() => setOpen(false)}>
+          <img className="lv2p-nav-item-icon lv2p-nav-item-icon--cloud" src="/icons/aiweb-cloud.png?v=2" alt="" />
+          Plugin
+        </Link>
+        <a className="lv2p-nav-item" href={OS_LOGIN_HREF} target="_blank" rel="noopener noreferrer">
+          <img className="lv2p-nav-item-icon lv2p-nav-item-icon--cloud" src="/icons/aiweb-cloud.png?v=2" alt="" />
           Log in
         </a>
       </nav>
@@ -79,17 +78,20 @@ export function LandingNavV2() {
         />
       </Link>
       <nav className="lv2p-nav-links" aria-label="Landing">
-        <Link to={PLUGIN_PATH}>Plugin</Link>
-      </nav>
-      <div className="lv2p-nav-actions">
-        <a
-          className="lv2p-nav-text"
-          href={OS_LOGIN_HREF}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a className="lv2p-nav-item" href={MAIL_SITE_URL}>
+          <img className="lv2p-nav-item-icon lv2p-nav-item-icon--cloud" src="/icons/aiweb-cloud.png?v=2" alt="" />
+          Mail
+        </a>
+        <Link className="lv2p-nav-item" to={PLUGIN_PATH}>
+          <img className="lv2p-nav-item-icon lv2p-nav-item-icon--cloud" src="/icons/aiweb-cloud.png?v=2" alt="" />
+          Plugin
+        </Link>
+        <a className="lv2p-nav-item" href={OS_LOGIN_HREF} target="_blank" rel="noopener noreferrer">
+          <img className="lv2p-nav-item-icon lv2p-nav-item-icon--cloud" src="/icons/aiweb-cloud.png?v=2" alt="" />
           Log in
         </a>
+      </nav>
+      <div className="lv2p-nav-actions">
         <a
           className="lv2p-nav-try"
           href={CHATGPT_AIWEB_PLUGIN_HREF}
