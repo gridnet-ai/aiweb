@@ -6,6 +6,7 @@ import { PublisherPricingTable } from '@/components/corp/PublisherPricingTable';
 import { MAIL_SITE_URL, PRIVACY_PATH, TERMS_PATH, OS_PATH } from '@/lib/corpSiteRoutes';
 import { SITE_ORIGIN } from '@/lib/aiWebCompanyBrand';
 import { AIWEB_CALL_FAQS } from '@/lib/siteSeo';
+import { WelcomeCloudCarousel } from '@/components/WelcomeCloudCarousel';
 
 type LandingPage = 'home' | 'os' | 'plugin';
 
@@ -95,9 +96,10 @@ function HeroStory({ pitch = true }: { pitch?: boolean }) {
 function HeroMail({ full = true }: { full?: boolean }) {
   return (
     <figure className="lv2p-hero-mail">
+      <WelcomeCloudCarousel />
       <img
         className="lv2p-hero-mail-mark"
-        src="/images/promo/aiweb-mail-lockup-white.png"
+        src="/images/promo/aiweb-mail-bear-lockup.png"
         alt="Mail"
       />
       <h2>Get on the AIWEB</h2>
@@ -745,6 +747,7 @@ export function LandingParadoxV2({ page = 'home' }: { page?: LandingPage }) {
 
   return (
     <div className="lv2p">
+      <WelcomeCloudCarousel />
       <section id="hero" className="lv2p-hero">
         <h1>DM for ChatGPT.</h1>
         <p className="lv2p-hero-explain">
