@@ -24,12 +24,10 @@ import { AiwebOsScratchPage } from '@/pages/dev/AiwebOsScratchPage';
 import { HomePageArchive } from '@/pages/archive/HomePageArchive';
 import { HomePageV2 } from '@/pages/HomePageV2';
 import { OsPage } from '@/pages/OsPage';
+import { PluginPage } from '@/pages/PluginPage';
 
 export default function App() {
   const { pathname } = useLocation();
-  if (pathname === '/plugin') {
-    return <Navigate to="/plugins" replace />;
-  }
   if (pathname.startsWith('/dev/aiweb-os')) {
     return <AiwebOsScratchPage />;
   }
@@ -55,6 +53,7 @@ export default function App() {
         <Route path="/" element={<HomePageV2 />} />
         <Route path="/archive" element={<HomePageArchive />} />
         <Route path="/os" element={<OsPage />} />
+        <Route path="/plugin" element={<PluginPage />} />
         <Route path="/classic" element={<HomePage />} />
         <Route path="/v2" element={<Navigate to="/" replace />} />
         <Route path="/pricing" element={<PricingPage />} />

@@ -1,7 +1,9 @@
 export const HOME_PATH = '/';
 export const OS_PATH = '/os';
+export const MAIL_PATH = '/mail';
 export const PRICING_PATH = '/pricing';
 export const PLUGINS_PATH = '/plugins';
+export const PLUGIN_PATH = '/plugin';
 export const ALBUM_PATH = '/album';
 /** Former marketing home (CorpHero + mission / team / products). */
 export const OVERVIEW_PATH = '/overview';

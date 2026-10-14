@@ -1,6 +1,8 @@
-import { Link } from 'react-router-dom';
+import { useEffect, useId, useState } from 'react';
+import { createPortal } from 'react-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { PRODUCT_URLS } from '@/lib/aiWebCompanyBrand';
-import { OS_PATH } from '@/lib/corpSiteRoutes';
+import { MAIL_PATH, PLUGIN_PATH } from '@/lib/corpSiteRoutes';
 
 export const AGENCY_PILOT_HREF =
   'mailto:support@theaiwebcompany.com?subject=Agency%20pilot%20application';
@@ -11,25 +13,73 @@ export const OS_LOGIN_HREF = PRODUCT_URLS.aiWebOs;
 export const CHATGPT_AIWEB_PLUGIN_HREF =
   'https://chatgpt.com/plugins/plugin_asdk_app_6a8e85029ad08191b8cd1435be85f221?q=call';
 
+const MENU_LINKS = [
+  { label: 'AIWEB Mail', to: MAIL_PATH },
+  { label: 'Plugin', to: PLUGIN_PATH },
+] as const;
+
 export function LandingNavV2() {
+  const [open, setOpen] = useState(false);
+  const location = useLocation();
+  const drawerId = useId();
+
+  useEffect(() => {
+    setOpen(false);
+  }, [location.pathname, location.hash]);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setOpen(false);
+    };
+    document.addEventListener('keydown', onKey);
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [open]);
+
+  const menu = createPortal(
+    <div className={`lv2p-nav-overlay${open ? ' is-open' : ''}`}>
+      <button
+        type="button"
+        className="lv2p-nav-backdrop"
+        aria-label="Close menu"
+        tabIndex={open ? 0 : -1}
+        onClick={() => setOpen(false)}
+      />
+      <nav id={drawerId} className="lv2p-nav-drawer" aria-label="Menu" aria-hidden={!open}>
+        {MENU_LINKS.map((item) => (
+          <Link key={item.label} to={item.to} onClick={() => setOpen(false)}>
+            {item.label}
+          </Link>
+        ))}
+        <a href={OS_LOGIN_HREF} target="_blank" rel="noopener noreferrer">
+          Log in
+        </a>
+      </nav>
+    </div>,
+    document.body,
+  );
+
   return (
     <header className="lv2p-nav">
       <Link to="/" className="lv2p-nav-brand" aria-label="AIWEB — home">
         <img
-          className="lv2p-nav-mark"
-          src="/images/promo/aiweb-call-mark.png"
+          className="lv2p-nav-logo lv2p-nav-logo--on-light"
+          src="/images/promo/aiweb-nav-logo-black.png"
           alt=""
-          width={28}
-          height={28}
         />
-        <span className="lv2p-nav-brand-name">AIWEB</span>
+        <img
+          className="lv2p-nav-logo lv2p-nav-logo--on-dark"
+          src="/images/promo/aiweb-nav-logo-white.png"
+          alt=""
+        />
       </Link>
       <nav className="lv2p-nav-links" aria-label="Landing">
-        <Link to={`${OS_PATH}#create`}>Create</Link>
-        <Link to={`${OS_PATH}#stories`}>Measure</Link>
-        <Link to={OS_PATH}>AIWEB OS</Link>
-        <Link to={`${OS_PATH}#partners`}>ChatGPT</Link>
-        <a href="#start">Get started</a>
+        <Link to={PLUGIN_PATH}>Plugin</Link>
       </nav>
       <div className="lv2p-nav-actions">
         <a
@@ -48,7 +98,22 @@ export function LandingNavV2() {
         >
           Try it
         </a>
+        <button
+          type="button"
+          className="lv2p-nav-menu"
+          aria-expanded={open}
+          aria-controls={drawerId}
+          onClick={() => setOpen((value) => !value)}
+        >
+          <span className="lv2p-nav-menu-label">{open ? 'Close menu' : 'Open menu'}</span>
+          <span className={`lv2p-nav-menu-icon${open ? ' is-open' : ''}`} aria-hidden>
+            <span />
+            <span />
+            <span />
+          </span>
+        </button>
       </div>
+      {menu}
     </header>
   );
 }

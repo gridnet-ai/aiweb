@@ -4,6 +4,7 @@ import { AI_WEB_COMPANY_BRAND, PRODUCT_URLS } from '@/lib/aiWebCompanyBrand';
 import {
   HOME_PATH,
   OS_PATH,
+  PLUGIN_PATH,
   PLUGINS_PATH,
   PRICING_PATH,
   PRIVACY_PATH,
@@ -23,8 +24,12 @@ export function CorpPublicSiteLayout({ children }: CorpPublicSiteLayoutProps) {
   const { pathname } = useLocation();
   const isClassicHome = pathname === '/classic';
   const isNewHome =
-    pathname === HOME_PATH || pathname === '/v2' || pathname === '/archive' || pathname === OS_PATH;
-  const isDarkHome = pathname === HOME_PATH;
+    pathname === HOME_PATH ||
+    pathname === '/v2' ||
+    pathname === '/archive' ||
+    pathname === OS_PATH ||
+    pathname === PLUGIN_PATH;
+  const isDarkHome = pathname === HOME_PATH || pathname === PLUGIN_PATH;
 
   useEffect(() => {
     document.documentElement.classList.remove('dark');

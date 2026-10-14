@@ -26,22 +26,29 @@
 .lv2p-nav-brand {
   display: inline-flex;
   align-items: center;
-  gap: 0.55rem;
+  min-width: 0;
   color: var(--px-ink);
   text-decoration: none;
 }
 
-.lv2p-nav-mark {
-  width: 28px;
+.lv2p-nav-logo {
+  display: none;
   height: 28px;
+  width: auto;
+  max-width: 100%;
   object-fit: contain;
-  border-radius: 7px;
 }
 
-.lv2p-nav-brand-name {
-  font-size: 1.05rem;
-  font-weight: 750;
-  letter-spacing: -0.03em;
+.lv2p-nav-logo--on-light {
+  display: block;
+}
+
+.landing-v2--dark .lv2p-nav-logo--on-light {
+  display: none;
+}
+
+.landing-v2--dark .lv2p-nav-logo--on-dark {
+  display: block;
 }
 
 .lv2p-nav-links,
@@ -72,6 +79,136 @@
   text-decoration: none;
   text-transform: uppercase;
   white-space: nowrap;
+}
+
+.lv2p-nav-menu {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 2.25rem;
+  height: 2.25rem;
+  margin-left: 0.15rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.lv2p-nav-menu-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.lv2p-nav-menu-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  width: 18px;
+}
+
+.lv2p-nav-menu-icon span {
+  display: block;
+  height: 2px;
+  width: 100%;
+  border-radius: 1px;
+  background: currentColor;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.lv2p-nav-menu-icon.is-open span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.lv2p-nav-menu-icon.is-open span:nth-child(2) {
+  opacity: 0;
+}
+
+.lv2p-nav-menu-icon.is-open span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+.lv2p-nav-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+}
+
+.lv2p-nav-overlay.is-open {
+  pointer-events: auto;
+}
+
+.lv2p-nav-backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  padding: 0;
+  background: rgba(0, 0, 0, 0.28);
+  opacity: 0;
+  cursor: pointer;
+  backdrop-filter: blur(0);
+  -webkit-backdrop-filter: blur(0);
+  transition: opacity 0.28s ease, backdrop-filter 0.28s ease, -webkit-backdrop-filter 0.28s ease;
+}
+
+.lv2p-nav-overlay.is-open .lv2p-nav-backdrop {
+  opacity: 1;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.lv2p-nav-drawer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  width: min(18.5rem, 86vw);
+  height: 100%;
+  margin: 0;
+  padding: 4.75rem 1.35rem 1.5rem;
+  background: #000;
+  color: #fff;
+  transform: translateX(100%);
+  transition: transform 0.28s ease;
+}
+
+.lv2p-nav-overlay.is-open .lv2p-nav-drawer {
+  transform: translateX(0);
+}
+
+.lv2p-nav-drawer a {
+  display: block;
+  padding: 0.85rem 0.15rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  color: #fff;
+  font-size: 1.15rem;
+  font-weight: 650;
+  letter-spacing: -0.03em;
+  text-decoration: none;
+}
+
+.lv2p-nav {
+  z-index: 70;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lv2p-nav-backdrop,
+  .lv2p-nav-drawer,
+  .lv2p-nav-menu-icon span {
+    transition: none;
+  }
 }
 
 .lv2p-news-form input {
@@ -334,13 +471,119 @@
   border-radius: 18px;
 }
 
+.lv2p-hero-story .lv2p-hero-stat {
+  margin: 0.35rem 0 0;
+  max-width: none;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--px-mute);
+}
+
+.landing-v2--dark .lv2p-hero p.lv2p-hero-stat {
+  color: var(--px-mute);
+}
+
+.lv2p-hero-story .lv2p-hero-stat strong {
+  display: block;
+  margin-bottom: 0.2rem;
+  font-size: clamp(1.9rem, 6.2vw, 2.65rem);
+  font-weight: 750;
+  letter-spacing: -0.045em;
+  line-height: 1;
+  color: var(--px-ink);
+}
+
+.lv2p-hero-reach {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.7rem;
+  margin-top: 0.55rem;
+  text-align: center;
+}
+
+.lv2p-hero-story .lv2p-hero-reach-q {
+  margin: 0;
+  max-width: 18rem;
+  font-size: clamp(1.28rem, 4.4vw, 1.7rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.18;
+  color: var(--px-ink);
+}
+
+.landing-v2--dark .lv2p-hero p.lv2p-hero-reach-q {
+  color: #fff;
+}
+
+.lv2p-hero-reach-steps {
+  width: 100%;
+  margin: 0;
+  text-align: left;
+}
+
+.lv2p-hero-story .lv2p-hero-reach-steps p {
+  margin: 0 0 0.45rem;
+  max-width: none;
+  font-size: 0.78rem;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: var(--px-mute);
+}
+
+.landing-v2--dark .lv2p-hero .lv2p-hero-reach-steps p {
+  color: var(--px-mute);
+}
+
+.lv2p-hero-reach-steps ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.lv2p-hero-reach-steps li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+  font-size: 0.98rem;
+  font-weight: 550;
+  line-height: 1.35;
+  color: var(--px-ink);
+}
+
+.lv2p-hero-reach-steps li span {
+  flex-shrink: 0;
+  font-weight: 750;
+}
+
+.lv2p-hero-reach a.lv2p-hero-reach-cta {
+  margin-top: 0.2rem;
+  background: #fff;
+  color: #000;
+  border: 0;
+}
+
 .lv2p-hero-mail {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
   width: min(100%, 42rem);
   margin: 1.8rem auto 0;
+  padding-top: 2.25rem;
   text-align: center;
+}
+
+.lv2p-hero-mail-mark {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
 }
 
 .lv2p-hero-mail h2 {
@@ -362,20 +605,23 @@
   text-wrap: pretty;
 }
 
-.lv2p-hero-mail-cta {
-  font-weight: 750;
-}
-
-.lv2p-hero-mail-cta a {
-  color: inherit;
-  text-decoration: none;
-}
-
 .lv2p-hero-mail img {
   display: block;
   width: 100%;
   height: auto;
   border-radius: 18px;
+}
+
+.lv2p-hero-mail img.lv2p-hero-mail-mark {
+  border-radius: 0;
+}
+
+.lv2p-hero-mail .lv2p-hero-mail-start {
+  align-self: center;
+  min-width: 0;
+  border: 0;
+  background: linear-gradient(120deg, #ff7a7a 0%, #ffb0a4 55%, #ffd0c8 100%);
+  color: #000;
 }
 
 .lv2p-hero-visual {
@@ -484,6 +730,10 @@
   width: 36px;
   height: 36px;
   object-fit: contain;
+}
+
+.landing-v2--dark .lv2p-call-mark {
+  filter: invert(1);
 }
 
 .lv2p-call-brand h2 {
@@ -730,6 +980,33 @@
 .lv2p-news h2 {
   font-size: clamp(1.85rem, 6vw, 2.7rem);
   color: var(--px-ink);
+}
+
+#start > h2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  white-space: nowrap;
+  font-size: clamp(1.02rem, 5vw, 2.4rem);
+}
+
+.lv2p-close img.lv2p-start-mark {
+  width: 1.2em;
+  height: 1.2em;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  border-radius: 0.28em;
+  background: transparent;
+  object-fit: contain;
+  flex: 0 0 auto;
+}
+
+.lv2p-plugin {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0.2rem 1.15rem 2.2rem;
 }
 
 .lv2p-faq.lv2p-block {
@@ -1279,7 +1556,7 @@
 }
 
 .lv2p-close-lede {
-  margin: 0.8rem auto 0;
+  margin: 2.4rem auto 0;
   max-width: 36rem;
   color: #d7dbe0;
   font-size: 1.05rem;
@@ -1320,25 +1597,44 @@
   border-radius: 8px;
 }
 
-.lv2p-close img.lv2p-close-logo {
+.lv2p-close h2 + .lv2p-call-head {
+  margin-top: 1.35rem;
+  text-align: left;
+}
+
+.lv2p-close img.lv2p-call-mark {
+  width: 36px;
+  height: 36px;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  border-radius: 0;
+  background: transparent;
+  object-fit: contain;
+  object-position: center;
+}
+
+.lv2p-close img.seller-plan-logo {
   display: block;
+  width: auto;
+  height: 1.05rem;
+  max-width: none;
+  max-height: 1.05rem;
+  margin: 0;
+  border-radius: 0;
+  background: transparent;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.lv2p-close img.lv2p-close-logo {
+  display: none;
   width: min(100%, 18rem);
   max-width: 18rem;
   height: auto;
   margin: 0 auto;
   border-radius: 0;
   background: transparent;
-}
-
-.lv2p-close img.lv2p-close-inbox {
-  width: min(100%, 42rem);
-  max-width: 42rem;
-  height: auto;
-  border-radius: 0;
-}
-
-.lv2p-close img.lv2p-close-inbox + h2 {
-  margin-top: 1.15rem;
 }
 
 .lv2p-news-form {

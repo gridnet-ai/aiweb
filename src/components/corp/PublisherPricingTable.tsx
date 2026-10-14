@@ -133,7 +133,6 @@ const SALES_MAILTO = 'mailto:sales@theaiwebcompany.com';
 
 const OFFER_CARDS = {
   plus: {
-    title: 'AIWEB Seller',
     price: '$19.99',
     lede: 'For the entrepreneur.',
     features: SELLER_FEATURES,
@@ -141,7 +140,6 @@ const OFFER_CARDS = {
     sales: false,
   },
   business: {
-    title: 'AIWEB Pro',
     price: '$49',
     lede: 'Designed for operating businesses.',
     features: BUSINESS_FEATURES,
@@ -149,7 +147,6 @@ const OFFER_CARDS = {
     sales: false,
   },
   agency: {
-    title: 'AIWEB Business',
     price: 'from $499',
     lede: 'Designed for agencies, associations, publishers and multi-brand operators.',
     features: AGENCY_FEATURES,
@@ -182,12 +179,46 @@ function displayPrice(planId: PricingPlanId, billing: BillingInterval): { amount
 }
 
 const PLAN_TITLES: Record<PricingPlanId, string> = {
-  plus: 'AIWEB Seller',
-  business: 'AIWEB Pro',
-  agency: 'AIWEB Business',
+  plus: 'Seller',
+  business: 'Pro',
+  agency: 'Business',
   agency_pro: 'Agency Pro',
   enterprise: 'Enterprise',
 };
+
+function PlanBrand({ name, headingId }: { name: string; headingId?: string }) {
+  const label = (
+    <>
+      <img src="/images/promo/aiweb-nav-logo-black.png" alt="" className="seller-plan-logo" />
+      <span>{name}</span>
+    </>
+  );
+  const className =
+    'inline-flex min-w-0 items-center gap-1.5 font-display text-[1.05rem] font-extrabold leading-none tracking-[-0.02em] text-marketing-ink';
+  if (headingId) {
+    return (
+      <h3 id={headingId} className={className} aria-label={`aiweb ${name}`}>
+        {label}
+      </h3>
+    );
+  }
+  return (
+    <span className={`${className} justify-center`} aria-label={`aiweb ${name}`}>
+      {label}
+    </span>
+  );
+}
+
+function PlanPrice({ amount, period }: { amount: string; period: string }) {
+  return (
+    <p className="text-right text-[0.95rem] font-extrabold leading-none tracking-[-0.02em] text-marketing-ink">
+      {amount}
+      {period ? (
+        <span className="mt-0.5 block text-[11px] font-semibold text-marketing-muted2">{period}</span>
+      ) : null}
+    </p>
+  );
+}
 
 function PlanCta({
   planId,
@@ -299,21 +330,18 @@ export function PublisherPricingTable({ showHeading = true }: { showHeading?: bo
                 aria-labelledby={`plan-${plan.id}-name`}
               >
                 {plan.id === BEST_PLAN_ID ? <p className="seller-plan-best">Best choice</p> : null}
-                <div className="flex items-baseline justify-between gap-2">
-                  <h3
-                    id={`plan-${plan.id}-name`}
-                    className="font-display text-[1.05rem] font-extrabold leading-none tracking-[-0.02em] text-marketing-ink"
-                  >
-                    {offer.title}
-                  </h3>
-                  <p className="shrink-0 text-[0.95rem] font-extrabold leading-none tracking-[-0.02em] text-marketing-ink">
-                    {priced.amount}
-                    {priced.period ? (
-                      <span className="ml-0.5 text-[11px] font-semibold text-marketing-muted2">
-                        {priced.period}
-                      </span>
-                    ) : null}
-                  </p>
+                <div className="flex items-center justify-between gap-2">
+                  <img src="/images/promo/aiweb-nav-logo-black.png" alt="" className="seller-plan-logo" />
+                  <div className="flex flex-col items-end gap-1">
+                    <h3
+                      id={`plan-${plan.id}-name`}
+                      className="font-display text-[1.05rem] font-extrabold leading-none tracking-[-0.02em] text-marketing-ink"
+                      aria-label={`aiweb ${PLAN_TITLES[plan.id]}`}
+                    >
+                      <span>{PLAN_TITLES[plan.id]}</span>
+                    </h3>
+                    <PlanPrice amount={priced.amount} period={priced.period} />
+                  </div>
                 </div>
                 <p className="mt-1.5 text-[12px] font-medium leading-snug text-marketing-muted">{offer.lede}</p>
                 <ul className="seller-feature-grid">
@@ -342,19 +370,18 @@ export function PublisherPricingTable({ showHeading = true }: { showHeading?: bo
               className="seller-plan scroll-mt-24"
               aria-labelledby={`plan-${plan.id}-name`}
             >
-              <div className="flex items-baseline justify-between gap-2">
-                <h3
-                  id={`plan-${plan.id}-name`}
-                  className="font-display text-[1.05rem] font-extrabold leading-none tracking-[-0.02em] text-marketing-ink"
-                >
-                  {PLAN_TITLES[plan.id]}
-                </h3>
-                <p className="shrink-0 text-[0.95rem] font-extrabold leading-none tracking-[-0.02em] text-marketing-ink">
-                  {priced.amount}
-                  {priced.period ? (
-                    <span className="ml-0.5 text-[11px] font-semibold text-marketing-muted2">{priced.period}</span>
-                  ) : null}
-                </p>
+              <div className="flex items-center justify-between gap-2">
+                <img src="/images/promo/aiweb-nav-logo-black.png" alt="" className="seller-plan-logo" />
+                <div className="flex flex-col items-end gap-1">
+                  <h3
+                    id={`plan-${plan.id}-name`}
+                    className="font-display text-[1.05rem] font-extrabold leading-none tracking-[-0.02em] text-marketing-ink"
+                    aria-label={`aiweb ${PLAN_TITLES[plan.id]}`}
+                  >
+                    <span>{PLAN_TITLES[plan.id]}</span>
+                  </h3>
+                  <PlanPrice amount={priced.amount} period={priced.period} />
+                </div>
               </div>
               <div className="mt-2.5">
                 <PlanCta planId={plan.id} busy={busy} onSelect={(id) => void onSelect(id)} />
@@ -378,7 +405,7 @@ export function PublisherPricingTable({ showHeading = true }: { showHeading?: bo
                   data-plan-id={plan.id}
                   className="scroll-mt-24 px-2 py-3 text-center font-display text-[15px] font-extrabold tracking-[-0.02em] text-marketing-ink lg:text-[17px]"
                 >
-                  {PLAN_TITLES[plan.id]}
+                  <PlanBrand name={PLAN_TITLES[plan.id]} />
                   {plan.id === BEST_PLAN_ID ? (
                     <span className="mt-1 block text-[11px] font-semibold normal-case tracking-normal text-[#0071e3]">
                       Best choice
@@ -434,10 +461,6 @@ export function PublisherPricingTable({ showHeading = true }: { showHeading?: bo
           {error}
         </p>
       ) : null}
-      <p className="mt-4 text-center text-[12px] text-marketing-muted2">
-        Annual is 20% off. Promotion codes are entered on the Stripe checkout screen. You’ll sign in to
-        AIWEB OS, then complete checkout.
-      </p>
     </div>
   );
 }

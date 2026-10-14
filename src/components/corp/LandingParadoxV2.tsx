@@ -7,7 +7,7 @@ import { PRIVACY_PATH, TERMS_PATH, OS_PATH } from '@/lib/corpSiteRoutes';
 import { SITE_ORIGIN } from '@/lib/aiWebCompanyBrand';
 import { AIWEB_CALL_FAQS } from '@/lib/siteSeo';
 
-type LandingPage = 'home' | 'os';
+type LandingPage = 'home' | 'os' | 'plugin';
 
 function sectionHref(hash: string, page: LandingPage) {
   return page === 'home' ? `${OS_PATH}${hash}` : hash;
@@ -40,27 +40,66 @@ const HERO_MAIL = {
   alt: 'AIWEB Mail keeps the same Call going after one sync, from the inbox into the conversation.',
 } as const;
 
-function HeroStory() {
+function HeroStory({ pitch = true }: { pitch?: boolean }) {
   return (
     <div className="lv2p-hero-story">
       {HERO_STORY.map((image) => (
         <img key={image.src} src={image.src} alt={image.alt} />
       ))}
+      {pitch ? (
+        <>
+      <p className="lv2p-hero-stat">
+        <strong>1.2 billion+</strong>
+        people using ChatGPT each week.
+      </p>
+      <div className="lv2p-hero-reach">
+        <p className="lv2p-hero-reach-q">When they need what you sell, can they reach you?</p>
+        <img
+          className="lv2p-hero-reach-photo"
+          src="/images/promo/aiweb-call-hero-reach.jpg"
+          alt="A business owner reads a new AIWEB Call from Northstar Retail requesting pricing on 10,000 custom shipping boxes."
+        />
+        <div className="lv2p-hero-reach-steps">
+          <p>Three easy steps</p>
+          <ol>
+            <li>
+              <span>1</span>Start your AIWEB Mailbox.
+            </li>
+            <li>
+              <span>2</span>Get a call from ChatGPT users.
+            </li>
+            <li>
+              <span>3</span>Answer questions and send quotes.
+            </li>
+          </ol>
+        </div>
+        <a className="lv2p-pill lv2p-hero-reach-cta" href="#start">
+          List your business
+        </a>
+      </div>
+        </>
+      ) : null}
     </div>
   );
 }
 
-function HeroMail() {
+function HeroMail({ full = true }: { full?: boolean }) {
   return (
     <figure className="lv2p-hero-mail">
-      <h2>Keep your AIWEB Calls in one place.</h2>
-      <p>Manage your messages.</p>
-      <p className="lv2p-hero-mail-cta">
-        <a href={OS_LOGIN_HREF}>
-          <strong>Create a free AIWEB Mailbox</strong>
-        </a>
-      </p>
-      <img src={HERO_MAIL.src} alt={HERO_MAIL.alt} />
+      <img
+        className="lv2p-hero-mail-mark"
+        src="/images/promo/aiweb-call-logo.png"
+        alt="CALL"
+      />
+      <h2>Get on the AIWEB</h2>
+      {full ? (
+        <>
+          <img src={HERO_MAIL.src} alt={HERO_MAIL.alt} />
+          <a className="lv2p-pill lv2p-hero-mail-start" href={OS_LOGIN_HREF}>
+            Start a free AIWEB mailbox
+          </a>
+        </>
+      ) : null}
     </figure>
   );
 }
@@ -279,20 +318,68 @@ function SitesBlock() {
   );
 }
 
+function CallPrompts() {
+  return (
+    <>
+      <div className="lv2p-call-head">
+        <div className="lv2p-call-brand">
+          <img
+            className="lv2p-call-mark"
+            src="/images/promo/aiweb-call-mark.png"
+            alt=""
+            width={44}
+            height={44}
+          />
+          <div>
+            <h2>AIWEB Call</h2>
+            <p>Call through ChatGPT</p>
+          </div>
+        </div>
+        <a
+          className="lv2p-call-install"
+          href={CHATGPT_AIWEB_PLUGIN_HREF}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Install plugin
+        </a>
+      </div>
+      <div className="lv2p-call-panel">
+        {[
+          'Find suppliers for 10,000 custom shipping boxes.',
+          'Ask Meridian Packaging for pricing.',
+          'Check my AIWEB Mail.',
+        ].map((prompt) => (
+          <a
+            key={prompt}
+            className="lv2p-call-prompt"
+            href={CHATGPT_AIWEB_PLUGIN_HREF}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>{prompt}</span>
+            <span className="lv2p-call-prompt-go" aria-hidden>
+              →
+            </span>
+          </a>
+        ))}
+      </div>
+    </>
+  );
+}
+
 function StartSection() {
   return (
     <section className="lv2p-close" id="start">
       <img
         className="lv2p-close-logo"
-        src="/images/promo/aiweb-seller-logo.png?v=2"
-        alt="AIWEB Seller"
+        src="/images/promo/aiweb-seller-logo.png?v=3"
+        alt="SELLER"
       />
-      <img
-        className="lv2p-close-inbox"
-        src="/images/promo/aiweb-inbox-phones.png"
-        alt="AIWEB Inbox on two phones, with qualified inquiries in one inbox and replies sent from anywhere."
-      />
-      <h2>Connect with ChatGPT users and grow your business with AIWEB.</h2>
+      <h2>
+        <img className="lv2p-start-mark" src="/images/promo/chatgpt-mark.png" alt="" />
+        Plugin live on Chat GPT!
+      </h2>
       <p className="lv2p-close-lede">Choose a plan to start receiving customer conversations.</p>
       <div className="lv2p-pricing">
         <PublisherPricingTable showHeading={false} />
@@ -309,7 +396,6 @@ function LandingFooter() {
     <footer className="lv2p-foot">
       <div className="lv2p-call-meta">
         <div className="lv2p-call-meta-block">
-          <h3>App</h3>
           <div className="lv2p-call-meta-app">
             <img src="/images/promo/aiweb-call-mark.png" alt="" width={28} height={28} />
             <span>AIWEB Call</span>
@@ -578,6 +664,35 @@ function OsBody() {
   );
 }
 
+function FaqSection() {
+  return (
+    <section id="faq" className="lv2p-block lv2p-faq">
+      <h2>Questions about AIWEB Call</h2>
+      <div className="lv2p-faq-list">
+        {AIWEB_CALL_FAQS.map((item) => (
+          <details key={item.question} className="lv2p-faq-item">
+            <summary>{item.question}</summary>
+            <p>{item.answer}</p>
+          </details>
+        ))}
+        {ENTITY_FAQS.map((item) => (
+          <details key={item.question} className="lv2p-faq-item">
+            <summary>{item.question}</summary>
+            <p>{item.answer}</p>
+          </details>
+        ))}
+        <details className="lv2p-faq-item">
+          <summary>What is the agent tool sequence?</summary>
+          <p>
+            <code>search_directory</code> → <code>prepare_call</code> → <code>send_call</code> →{' '}
+            <code>get_receipt</code>. Call mode is asynchronous text with user confirmation.
+          </p>
+        </details>
+      </div>
+    </section>
+  );
+}
+
 export function LandingParadoxV2({ page = 'home' }: { page?: LandingPage }) {
   if (page === 'os') {
     return (
@@ -586,6 +701,29 @@ export function LandingParadoxV2({ page = 'home' }: { page?: LandingPage }) {
           <h1>OS</h1>
         </section>
         <OsBody />
+        <LandingFooter />
+      </div>
+    );
+  }
+
+  if (page === 'plugin') {
+    return (
+      <div className="lv2p">
+        <section id="hero" className="lv2p-hero">
+          <h1>DM for ChatGPT.</h1>
+          <p className="lv2p-hero-explain">
+            A new communications network connecting people and businesses through AI
+            assistants—starting with ChatGPT.
+          </p>
+          <HeroStory pitch={false} />
+        </section>
+        <section id="call" className="lv2p-call">
+          <HeroMail full={false} />
+        </section>
+        <section className="lv2p-plugin" aria-label="AIWEB Call">
+          <CallPrompts />
+        </section>
+        <FaqSection />
         <LandingFooter />
       </div>
     );
@@ -603,82 +741,14 @@ export function LandingParadoxV2({ page = 'home' }: { page?: LandingPage }) {
       </section>
 
       <section id="call" className="lv2p-call">
-        <div className="lv2p-call-head">
-          <div className="lv2p-call-brand">
-            <img
-              className="lv2p-call-mark"
-              src="/images/promo/aiweb-call-mark.png"
-              alt=""
-              width={44}
-              height={44}
-            />
-            <div>
-              <h2>AIWEB Call</h2>
-              <p>Call through ChatGPT</p>
-            </div>
-          </div>
-          <a
-            className="lv2p-call-install"
-            href={CHATGPT_AIWEB_PLUGIN_HREF}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Install plugin
-          </a>
-        </div>
-        <div className="lv2p-call-panel">
-          {[
-            '@AIWEB Call Sue Storm.',
-            '@AIWEB Call a caterer for 80 guests this Saturday.',
-            '@AIWEB Call three caterers for the same dinner.',
-          ].map((prompt) => (
-            <a
-              key={prompt}
-              className="lv2p-call-prompt"
-              href={CHATGPT_AIWEB_PLUGIN_HREF}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span>{prompt}</span>
-              <span className="lv2p-call-prompt-go" aria-hidden>
-                →
-              </span>
-            </a>
-          ))}
-        </div>
         <HeroMail />
       </section>
 
       <StartSection />
-      <section id="faq" className="lv2p-block lv2p-faq">
-        <h2>Questions about AIWEB Call</h2>
-        <div className="lv2p-faq-list">
-          {AIWEB_CALL_FAQS.map((item) => (
-            <details key={item.question} className="lv2p-faq-item">
-              <summary>{item.question}</summary>
-              <p>{item.answer}</p>
-            </details>
-          ))}
-        </div>
-        <div className="lv2p-faq-entities">
-          <h3>AIWEB entities</h3>
-          <div className="lv2p-faq-list">
-            {ENTITY_FAQS.map((item) => (
-              <details key={item.question} className="lv2p-faq-item">
-                <summary>{item.question}</summary>
-                <p>{item.answer}</p>
-              </details>
-            ))}
-            <details className="lv2p-faq-item">
-              <summary>What is the agent tool sequence?</summary>
-              <p>
-                <code>search_directory</code> → <code>prepare_call</code> → <code>send_call</code> →{' '}
-                <code>get_receipt</code>. Call mode is asynchronous text with user confirmation.
-              </p>
-            </details>
-          </div>
-        </div>
+      <section className="lv2p-plugin" aria-label="AIWEB Call">
+        <CallPrompts />
       </section>
+      <FaqSection />
       <LandingFooter />
     </div>
   );
