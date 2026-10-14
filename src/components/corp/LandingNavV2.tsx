@@ -94,7 +94,7 @@ export function LandingNavV2() {
       <div className="lv2p-nav-actions">
         <a
           className="lv2p-nav-try"
-          href={CHATGPT_AIWEB_PLUGIN_HREF}
+          href={MAIL_SITE_URL}
           target="_blank"
           rel="noopener noreferrer"
         >

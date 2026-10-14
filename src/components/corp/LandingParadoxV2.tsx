@@ -73,7 +73,7 @@ function HeroStory({ pitch = true }: { pitch?: boolean }) {
             </li>
           </ol>
         </div>
-        <a className="lv2p-pill lv2p-hero-reach-cta" href="#start">
+        <a className="lv2p-pill lv2p-hero-reach-cta" href={MAIL_SITE_URL}>
           List your business
         </a>
       </div>
@@ -385,7 +385,7 @@ function StartSection() {
       <div className="lv2p-pricing">
         <PublisherPricingTable showHeading={false} />
       </div>
-      <a className="lv2p-pill lv2p-pill--line" href={OS_LOGIN_HREF}>
+      <a className="lv2p-pill lv2p-pill--line" href={MAIL_SITE_URL}>
         Get Started
       </a>
     </section>
