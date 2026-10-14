@@ -1,6 +1,6 @@
 import { useRef, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ExternalLink, Mail, Phone, Send } from 'lucide-react';
 import { CHATGPT_AIWEB_PLUGIN_HREF, OS_LOGIN_HREF } from '@/components/corp/LandingNavV2';
 import { PublisherPricingTable } from '@/components/corp/PublisherPricingTable';
 import { MAIL_SITE_URL, PRIVACY_PATH, TERMS_PATH, OS_PATH } from '@/lib/corpSiteRoutes';
@@ -63,13 +63,22 @@ function HeroStory({ pitch = true }: { pitch?: boolean }) {
           <p>Three easy steps</p>
           <ol>
             <li>
-              <span>1</span>Start your AIWEB Mailbox.
+              <span className="lv2p-step-icon" aria-hidden>
+                <Mail strokeWidth={1.75} />
+              </span>
+              Start your AIWEB Mailbox.
             </li>
             <li>
-              <span>2</span>Get a call from ChatGPT users.
+              <span className="lv2p-step-icon" aria-hidden>
+                <Phone strokeWidth={1.75} />
+              </span>
+              Get a call from ChatGPT users.
             </li>
             <li>
-              <span>3</span>Answer questions and send quotes.
+              <span className="lv2p-step-icon" aria-hidden>
+                <Send strokeWidth={1.75} />
+              </span>
+              Answer questions and send quotes.
             </li>
           </ol>
         </div>
@@ -88,8 +97,8 @@ function HeroMail({ full = true }: { full?: boolean }) {
     <figure className="lv2p-hero-mail">
       <img
         className="lv2p-hero-mail-mark"
-        src="/images/promo/aiweb-call-logo.png"
-        alt="CALL"
+        src="/images/promo/aiweb-mail-lockup-white.png"
+        alt="Mail"
       />
       <h2>Get on the AIWEB</h2>
       {full ? (
@@ -322,6 +331,10 @@ function SitesBlock() {
 function CallPrompts() {
   return (
     <>
+      <h2 className="lv2p-plugin-live">
+        <img className="lv2p-start-mark" src="/images/promo/chatgpt-mark.png" alt="" />
+        Plugin live on Chat GPT!
+      </h2>
       <div className="lv2p-call-head">
         <div className="lv2p-call-brand">
           <img
@@ -668,7 +681,7 @@ function OsBody() {
 function FaqSection() {
   return (
     <section id="faq" className="lv2p-block lv2p-faq">
-      <h2>Questions about AIWEB Call</h2>
+      <h2>Questions about AIWEB</h2>
       <div className="lv2p-faq-list">
         {AIWEB_CALL_FAQS.map((item) => (
           <details key={item.question} className="lv2p-faq-item">
