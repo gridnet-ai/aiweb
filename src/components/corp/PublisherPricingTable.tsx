@@ -97,13 +97,10 @@ function CellValue({ value }: { value: Cell }) {
 }
 
 const SELLER_FEATURES = [
-  'Public AIWEB Profile',
-  'Product or service listings',
-  'Calling Cards',
-  'AIWEB Directory distribution',
-  'AIWEB Mail',
-  'Customer inquiries',
-  'Receipts',
+  'Instant publish to Chat GPT',
+  'Unlimited AIWEB pages',
+  'Unlimited Calling Cards',
+  'Direct messaging',
   'Basic analytics',
 ] as const;
 
