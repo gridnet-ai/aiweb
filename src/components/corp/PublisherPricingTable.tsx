@@ -265,7 +265,13 @@ function PlanCta({
 /**
  * Comparison pricing — stacked plans on mobile, matrix table from md up.
  */
-export function PublisherPricingTable({ showHeading = true }: { showHeading?: boolean } = {}) {
+export function PublisherPricingTable({
+  showHeading = true,
+  planIds,
+}: {
+  showHeading?: boolean;
+  planIds?: PricingPlanId[];
+} = {}) {
   const [busy, setBusy] = useState<CheckoutPlanId | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [billing, setBilling] = useState<BillingInterval>('monthly');
@@ -278,6 +284,11 @@ export function PublisherPricingTable({ showHeading = true }: { showHeading?: bo
     const visible = [...nodes].find((n) => n.getClientRects().length > 0) ?? nodes[0];
     visible?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }, []);
+
+  const plans = (planIds ?? VISIBLE_PLANS.map((plan) => plan.id))
+    .map((id) => PRICING_PLANS.find((plan) => plan.id === id))
+    .filter((plan): plan is (typeof PRICING_PLANS)[number] => Boolean(plan));
+  const singleOffer = plans.length === 1;
 
   const onSelect = async (planId: CheckoutPlanId) => {
     setError(null);
@@ -303,29 +314,31 @@ export function PublisherPricingTable({ showHeading = true }: { showHeading?: bo
         </>
       ) : null}
 
-      <div className="billing-toggle">
-        <div className="billing-toggle-track" role="group" aria-label="Billing period">
-          <button
-            type="button"
-            aria-pressed={billing === 'monthly'}
-            onClick={() => setBilling('monthly')}
-          >
-            Monthly
-          </button>
-          <button
-            type="button"
-            aria-pressed={billing === 'annual'}
-            onClick={() => setBilling('annual')}
-          >
-            Annual
-            <span className="billing-toggle-save">−20%</span>
-          </button>
+      {singleOffer ? null : (
+        <div className="billing-toggle">
+          <div className="billing-toggle-track" role="group" aria-label="Billing period">
+            <button
+              type="button"
+              aria-pressed={billing === 'monthly'}
+              onClick={() => setBilling('monthly')}
+            >
+              Monthly
+            </button>
+            <button
+              type="button"
+              aria-pressed={billing === 'annual'}
+              onClick={() => setBilling('annual')}
+            >
+              Annual
+              <span className="billing-toggle-save">−20%</span>
+            </button>
+          </div>
         </div>
-      </div>
+      )}
 
-      {/* Mobile: one plan per block */}
-      <div className="mt-3 space-y-3 md:hidden">
-        {VISIBLE_PLANS.map((plan) => {
+      {/* One plan per block. A single offer stays on desktop too. */}
+      <div className={singleOffer ? 'mx-auto mt-3 max-w-[28rem]' : 'mt-3 space-y-3 md:hidden'}>
+        {plans.map((plan) => {
           const priced = displayPrice(plan.id, billing);
           const offer = plan.id in OFFER_CARDS ? OFFER_CARDS[plan.id as keyof typeof OFFER_CARDS] : null;
           if (offer) {
@@ -399,6 +412,7 @@ export function PublisherPricingTable({ showHeading = true }: { showHeading?: bo
       </div>
 
       {/* Desktop: comparison matrix */}
+      {singleOffer ? null : (
       <div className="mt-10 hidden overflow-x-auto md:block">
         <table className="w-full border-collapse text-left">
           <thead>
@@ -406,7 +420,7 @@ export function PublisherPricingTable({ showHeading = true }: { showHeading?: bo
               <th className="py-3 pr-4 text-[12px] font-bold uppercase tracking-[0.12em] text-marketing-muted2">
                 <span className="sr-only">Feature</span>
               </th>
-              {VISIBLE_PLANS.map((plan) => (
+              {plans.map((plan) => (
                 <th
                   key={plan.id}
                   data-plan-id={plan.id}
@@ -433,7 +447,7 @@ export function PublisherPricingTable({ showHeading = true }: { showHeading?: bo
                 >
                   {row.label}
                 </th>
-                {VISIBLE_PLANS.map((plan) => (
+                {plans.map((plan) => (
                   <td key={plan.id} className="px-2 py-3.5 text-center align-middle">
                     <CellValue
                       value={
@@ -450,7 +464,7 @@ export function PublisherPricingTable({ showHeading = true }: { showHeading?: bo
               <th scope="row" className="py-5 pr-4">
                 <span className="sr-only">Get started</span>
               </th>
-              {VISIBLE_PLANS.map((plan) => (
+              {plans.map((plan) => (
                 <td key={plan.id} className="px-2 py-5 text-center align-middle">
                   <PlanCta
                     planId={plan.id}
@@ -464,6 +478,7 @@ export function PublisherPricingTable({ showHeading = true }: { showHeading?: bo
           </tbody>
         </table>
       </div>
+      )}
 
       {error ? (
         <p className="mt-4 text-center text-[13px] font-semibold text-marketing-crimson" role="alert">

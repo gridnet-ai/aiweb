@@ -396,9 +396,8 @@ function StartSection() {
         <img className="lv2p-start-mark" src="/images/promo/chatgpt-mark.png" alt="" />
         Plugin live on Chat GPT!
       </h2>
-      <p className="lv2p-close-lede">Choose a plan to start receiving customer conversations.</p>
       <div className="lv2p-pricing">
-        <PublisherPricingTable showHeading={false} />
+        <PublisherPricingTable showHeading={false} planIds={['plus']} />
       </div>
       <a className="lv2p-pill lv2p-pill--line" href={MAIL_SITE_URL}>
         Get Started
