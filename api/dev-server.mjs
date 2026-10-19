@@ -8,6 +8,8 @@ const PORT = Number(process.env.API_PORT || 8787);
 const SITE_ORIGIN = process.env.SITE_ORIGIN || 'http://localhost:5174';
 
 const PRICE_BY_PLAN = {
+  business_500: process.env.STRIPE_PRICE_BUSINESS_500 || 'price_1USLPKDSe2OspJOfHSKBL8Wb',
+  seller: process.env.STRIPE_PRICE_SELLER || 'price_1US0VfDSe2OspJOfV6KzhwmZ',
   business: process.env.STRIPE_PRICE_BUSINESS,
   agency: process.env.STRIPE_PRICE_AGENCY,
   agency_pro: process.env.STRIPE_PRICE_AGENCY_PRO,

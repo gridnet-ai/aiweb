@@ -8,7 +8,7 @@ import { useMarketingPageSeo } from '@/hooks/useScrollReveal';
 export function PricingPage() {
   useMarketingPageSeo({
     title: 'Pricing · AIWEB OS',
-    description: 'AIWEB Seller is $19.99 a month. Publish, receive inquiries, and sell inside ChatGPT.',
+    description: 'AIWEB Business is $500 a month. Publish, receive calls, and sell inside ChatGPT.',
     canonicalPath: '/pricing',
   });
 
@@ -26,12 +26,12 @@ export function PricingPage() {
       </div>
       <PageHero
         eyebrow="Pricing"
-        title="Seller is $19.99 a month."
+        title="Business is $500 a month."
         lede="Sign in to AIWEB OS and finish on Stripe. Manage billing anytime from your AIWEB OS account."
       />
       <section className="w-full px-4 pb-20 sm:px-5 md:px-8">
         <div className="mx-auto max-w-[1080px]">
-          <PublisherPricingTable showHeading={false} planIds={['plus']} />
+          <PublisherPricingTable showHeading={false} planIds={['business_500']} />
         </div>
       </section>
     </>

@@ -1,5 +1,10 @@
 import { useEffect, useState } from 'react';
-import { PRICING_PLANS, type CheckoutPlanId, type PricingPlanId } from '@/lib/pricingPlans';
+import {
+  isCheckoutPlanId,
+  PRICING_PLANS,
+  type CheckoutPlanId,
+  type PricingPlanId,
+} from '@/lib/pricingPlans';
 import { startCheckout, type BillingInterval } from '@/lib/stripeCheckout';
 
 type Cell = string | 'check' | 'dash';
@@ -8,6 +13,8 @@ const FEATURE_ROWS: { label: string; values: Record<PricingPlanId, Cell> }[] = [
   {
     label: 'Price',
     values: {
+      business_500: '$500',
+      seller: '$19.99',
       plus: '$19.99',
       business: '$49',
       agency: 'from $499',
@@ -18,6 +25,8 @@ const FEATURE_ROWS: { label: string; values: Record<PricingPlanId, Cell> }[] = [
   {
     label: 'AI work hour ( aiWh )',
     values: {
+      business_500: '—',
+      seller: '—',
       plus: '500',
       business: '1,000',
       agency: '8,000',
@@ -28,6 +37,8 @@ const FEATURE_ROWS: { label: string; values: Record<PricingPlanId, Cell> }[] = [
   {
     label: 'Pages',
     values: {
+      business_500: 'Unlimited',
+      seller: 'Unlimited',
       plus: 'Unlimited',
       business: 'Unlimited',
       agency: 'Unlimited',
@@ -38,6 +49,8 @@ const FEATURE_ROWS: { label: string; values: Record<PricingPlanId, Cell> }[] = [
   {
     label: 'Projects',
     values: {
+      business_500: 'Unlimited',
+      seller: 'Unlimited',
       plus: 'Unlimited',
       business: 'Unlimited',
       agency: 'Unlimited',
@@ -47,31 +60,31 @@ const FEATURE_ROWS: { label: string; values: Record<PricingPlanId, Cell> }[] = [
   },
   {
     label: 'AIWEB OS Agent',
-    values: { plus: 'check', business: 'check', agency: 'check', agency_pro: 'check', enterprise: 'check' },
+    values: { business_500: 'dash', seller: 'dash', plus: 'check', business: 'check', agency: 'check', agency_pro: 'check', enterprise: 'check' },
   },
   {
     label: 'AI Check',
-    values: { plus: 'check', business: 'check', agency: 'check', agency_pro: 'check', enterprise: 'check' },
+    values: { business_500: 'dash', seller: 'dash', plus: 'check', business: 'check', agency: 'check', agency_pro: 'check', enterprise: 'check' },
   },
   {
     label: 'Get Quote / AIWEB Actions',
-    values: { plus: 'check', business: 'check', agency: 'check', agency_pro: 'check', enterprise: 'check' },
+    values: { business_500: 'dash', seller: 'dash', plus: 'check', business: 'check', agency: 'check', agency_pro: 'check', enterprise: 'check' },
   },
   {
     label: 'Project organization',
-    values: { plus: 'Basic', business: 'Basic', agency: 'check', agency_pro: 'check', enterprise: 'check' },
+    values: { business_500: 'dash', seller: 'dash', plus: 'Basic', business: 'Basic', agency: 'check', agency_pro: 'check', enterprise: 'check' },
   },
   {
     label: 'Client reporting',
-    values: { plus: 'dash', business: 'dash', agency: 'check', agency_pro: 'check', enterprise: 'check' },
+    values: { business_500: 'dash', seller: 'dash', plus: 'dash', business: 'dash', agency: 'check', agency_pro: 'check', enterprise: 'check' },
   },
   {
     label: 'Team permissions',
-    values: { plus: 'dash', business: 'dash', agency: 'Basic', agency_pro: 'Advanced', enterprise: 'Custom' },
+    values: { business_500: 'dash', seller: 'dash', plus: 'dash', business: 'dash', agency: 'Basic', agency_pro: 'Advanced', enterprise: 'Custom' },
   },
   {
     label: 'API / integrations',
-    values: { plus: 'dash', business: 'dash', agency: 'dash', agency_pro: 'check', enterprise: 'check' },
+    values: { business_500: 'dash', seller: 'dash', plus: 'dash', business: 'dash', agency: 'dash', agency_pro: 'check', enterprise: 'check' },
   },
 ];
 
@@ -129,6 +142,20 @@ const AGENCY_FEATURES = [
 const SALES_MAILTO = 'mailto:sales@theaiwebcompany.com';
 
 const OFFER_CARDS = {
+  business_500: {
+    price: '$500',
+    lede: 'For businesses ready for more calls.',
+    features: SELLER_FEATURES,
+    cta: 'Start selling through AIWEB',
+    sales: false,
+  },
+  seller: {
+    price: '$19.99',
+    lede: 'For the entrepreneur.',
+    features: SELLER_FEATURES,
+    cta: 'Start selling through AIWEB',
+    sales: false,
+  },
   plus: {
     price: '$19.99',
     lede: 'For the entrepreneur.',
@@ -152,7 +179,9 @@ const OFFER_CARDS = {
   },
 } as const;
 
-const VISIBLE_PLANS = PRICING_PLANS.filter((plan) => plan.id !== 'agency_pro');
+const VISIBLE_PLANS = PRICING_PLANS.filter(
+  (plan) => plan.id !== 'agency_pro' && plan.id !== 'seller' && plan.id !== 'business_500',
+);
 
 const BEST_PLAN_ID: PricingPlanId = 'business';
 
@@ -176,6 +205,8 @@ function displayPrice(planId: PricingPlanId, billing: BillingInterval): { amount
 }
 
 const PLAN_TITLES: Record<PricingPlanId, string> = {
+  business_500: 'Business',
+  seller: 'Seller',
   plus: 'Seller',
   business: 'Pro',
   agency: 'Business',
@@ -247,11 +278,13 @@ function PlanCta({
       </a>
     );
   }
+  if (!isCheckoutPlanId(planId)) return null;
   return (
     <button
       type="button"
       disabled={busy !== null}
       onClick={() => onSelect(planId)}
+      data-checkout={planId}
       className={`${CTA_CLASS} bg-white text-marketing-ink hover:bg-marketing-ink hover:text-white`}
     >
       {busy === planId ? 'Redirecting…' : label ?? (planId === 'plus' ? 'Get Plus' : 'Subscribe')}
@@ -291,7 +324,7 @@ export function PublisherPricingTable({
     setError(null);
     setBusy(planId);
     try {
-      await startCheckout(planId, billing);
+      await startCheckout(planId, planId === 'seller' || planId === 'business_500' ? 'monthly' : billing);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Checkout failed. Try again.');
       setBusy(null);

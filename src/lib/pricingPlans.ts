@@ -1,4 +1,11 @@
-export type PricingPlanId = 'plus' | 'business' | 'agency' | 'agency_pro' | 'enterprise';
+export type PricingPlanId =
+  | 'business_500'
+  | 'seller'
+  | 'plus'
+  | 'business'
+  | 'agency'
+  | 'agency_pro'
+  | 'enterprise';
 
 export type PricingPlan = {
   id: PricingPlanId;
@@ -14,6 +21,8 @@ export type PricingPlan = {
  * (plus / business / agency / agency_pro).
  */
 export const PRICING_PLANS: PricingPlan[] = [
+  { id: 'business_500', name: 'Business', amountCents: 50000, annualCents: null },
+  { id: 'seller', name: 'Seller', amountCents: 1999, annualCents: null },
   { id: 'plus', name: 'Plus', amountCents: 1999, annualCents: 19190 },
   { id: 'business', name: 'Business', amountCents: 4900, annualCents: 47000 },
   { id: 'agency', name: 'Agency', amountCents: 49900, annualCents: 479000 },
@@ -21,7 +30,7 @@ export const PRICING_PLANS: PricingPlan[] = [
   { id: 'enterprise', name: 'Enterprise', amountCents: null, annualCents: null },
 ];
 
-export const CHECKOUT_PLAN_IDS = ['plus', 'business', 'agency', 'agency_pro'] as const;
+export const CHECKOUT_PLAN_IDS = ['business_500', 'seller', 'plus', 'business', 'agency', 'agency_pro'] as const;
 export type CheckoutPlanId = (typeof CHECKOUT_PLAN_IDS)[number];
 
 export function isCheckoutPlanId(id: string): id is CheckoutPlanId {

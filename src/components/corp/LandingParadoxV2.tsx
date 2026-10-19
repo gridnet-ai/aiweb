@@ -1,7 +1,8 @@
 import { useRef, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, ExternalLink, Mail, Phone, Send } from 'lucide-react';
-import { CHATGPT_AIWEB_PLUGIN_HREF, OS_LOGIN_HREF } from '@/components/corp/LandingNavV2';
+import { CHATGPT_AIWEB_PLUGIN_HREF } from '@/components/corp/LandingNavV2';
+import { businessCheckoutUrl } from '@/lib/stripeCheckout';
 import { PublisherPricingTable } from '@/components/corp/PublisherPricingTable';
 import { MAIL_SITE_URL, PRIVACY_PATH, TERMS_PATH, OS_PATH } from '@/lib/corpSiteRoutes';
 import { SITE_ORIGIN } from '@/lib/aiWebCompanyBrand';
@@ -83,7 +84,7 @@ function HeroStory({ pitch = true }: { pitch?: boolean }) {
             </li>
           </ol>
         </div>
-        <a className="lv2p-pill lv2p-hero-reach-cta" href={MAIL_SITE_URL}>
+        <a className="lv2p-pill lv2p-hero-reach-cta" href="#seller">
           List your business
         </a>
       </div>
@@ -151,7 +152,7 @@ const CREATE_CARDS = [
     title: 'Tokens measure input. aiWh measures completed work.',
     body: 'The AI work hour metric shows the full unit clearly: one plain-language request becomes one finished, published, accurate, action-ready page.',
     image: '/images/promo/aiweb-image-026.png?v=1',
-    href: '#start',
+    href: '#seller',
   },
 ] as const;
 
@@ -260,7 +261,7 @@ function ProductBlock({
             <a className="lv2p-pill lv2p-pill--fill" href={learnMoreHref ?? `#${id}`}>
               Learn more
             </a>
-            <a className="lv2p-pill lv2p-pill--line" href={OS_LOGIN_HREF}>
+            <a className="lv2p-pill lv2p-pill--line" href={businessCheckoutUrl()}>
               Get Started
             </a>
           </div>
@@ -283,7 +284,7 @@ function ProductBlock({
 function CreateCtas() {
   return (
     <div className="lv2p-product-ctas lv2p-hero-ctas">
-      <a className="lv2p-pill lv2p-pill--fill lv2p-pill--lg" href={OS_LOGIN_HREF}>
+      <a className="lv2p-pill lv2p-pill--fill lv2p-pill--lg" href={businessCheckoutUrl()}>
         Publish AIWEB Page
       </a>
       <a
@@ -386,7 +387,7 @@ function CallPrompts() {
 
 function StartSection() {
   return (
-    <section className="lv2p-close" id="start">
+    <section className="lv2p-close" id="seller">
       <img
         className="lv2p-close-logo"
         src="/images/promo/aiweb-seller-logo.png?v=3"
@@ -397,11 +398,8 @@ function StartSection() {
         Plugin live on Chat GPT!
       </h2>
       <div className="lv2p-pricing">
-        <PublisherPricingTable showHeading={false} planIds={['plus']} />
+        <PublisherPricingTable showHeading={false} planIds={['business_500']} />
       </div>
-      <a className="lv2p-pill lv2p-pill--line" href={MAIL_SITE_URL}>
-        Get Started
-      </a>
     </section>
   );
 }
@@ -514,7 +512,7 @@ function OsBody() {
             </article>
           ))}
         </Carousel>
-        <a className="lv2p-pill lv2p-pill--fill" href={OS_LOGIN_HREF}>
+        <a className="lv2p-pill lv2p-pill--fill" href={businessCheckoutUrl()}>
           Get Started
         </a>
       </section>
