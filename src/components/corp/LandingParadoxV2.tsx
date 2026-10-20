@@ -44,6 +44,23 @@ function HeroDmHeadline() {
   );
 }
 
+function HeroHowItWorks() {
+  return (
+    <div className="lv2p-hero-how">
+      <img
+        className="lv2p-hero-how-mark"
+        src="/images/promo/aiweb-mail-bear-lockup.png"
+        alt="Mail"
+      />
+      <h2 className="lv2p-hero-how-title">How it works</h2>
+      <p className="lv2p-hero-how-body">
+        With AIWEB Mail, lead generation is on autopilot — incoming from anyone using frontier AI
+        assistants or the world wide web, 24/7.
+      </p>
+    </div>
+  );
+}
+
 function sectionHref(hash: string, page: LandingPage) {
   return page === 'home' ? `${OS_PATH}${hash}` : hash;
 }
@@ -761,6 +778,7 @@ export function LandingParadoxV2({ page = 'home' }: { page?: LandingPage }) {
       <div className="lv2p">
         <section id="hero" className="lv2p-hero">
           <HeroDmHeadline />
+          <HeroHowItWorks />
           <HeroStory pitch={false} />
         </section>
         <section id="call" className="lv2p-call">
@@ -790,6 +808,7 @@ export function LandingParadoxV2({ page = 'home' }: { page?: LandingPage }) {
           alt="AIWEB Mail inbox with direct messages from ChatGPT, Claude, Gemini, Grok, and the web."
         />
         <HeroDmHeadline />
+        <HeroHowItWorks />
         <HeroStory />
       </section>
 

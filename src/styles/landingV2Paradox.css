@@ -547,6 +547,37 @@
   }
 }
 
+.lv2p-hero-how {
+  max-width: 22rem;
+  margin: 2.75rem auto 0;
+  text-align: center;
+}
+
+.lv2p-hero-how-mark {
+  display: block;
+  width: min(100%, 16rem);
+  height: auto;
+  margin: 0 auto 0.85rem;
+}
+
+.lv2p-hero-how-title {
+  margin: 0;
+  font-size: clamp(1.05rem, 3.4vw, 1.25rem);
+  font-weight: 650;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  color: var(--px-ink);
+}
+
+.lv2p-hero-how-body {
+  margin: 0.55rem 0 0;
+  font-size: clamp(0.95rem, 2.6vw, 1.08rem);
+  font-weight: 500;
+  line-height: 1.45;
+  text-wrap: pretty;
+  color: var(--px-mute);
+}
+
 .lv2p-hero-story {
   display: flex;
   flex-direction: column;
