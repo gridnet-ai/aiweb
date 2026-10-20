@@ -1,4 +1,4 @@
-import { useRef, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, ExternalLink, Mail, Phone, Send } from 'lucide-react';
 import { CHATGPT_AIWEB_PLUGIN_HREF } from '@/components/corp/LandingNavV2';
@@ -10,6 +10,39 @@ import { AIWEB_CALL_FAQS } from '@/lib/siteSeo';
 import { WelcomeCloudCarousel } from '@/components/WelcomeCloudCarousel';
 
 type LandingPage = 'home' | 'os' | 'plugin';
+
+const LEAD_TARGETS = ['Chat GPT', 'Muse', 'Claude', 'Grok', 'Anthropic', 'Internet'] as const;
+
+function HeroDmHeadline() {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (reduce.matches) return;
+    const timer = window.setInterval(() => {
+      setIndex((current) => (current + 1) % LEAD_TARGETS.length);
+    }, 2200);
+    return () => window.clearInterval(timer);
+  }, []);
+
+  const active = LEAD_TARGETS[index];
+
+  return (
+    <h1
+      className="lv2p-hero-dm"
+      aria-label={`Spend less money generating more leads from ${active}`}
+    >
+      <span className="lv2p-hero-dm-fixed">Spend less money generating more leads from&nbsp;</span>
+      <span className="lv2p-hero-dm-rotator" aria-hidden="true">
+        {LEAD_TARGETS.map((name, i) => (
+          <span key={name} className={i === index ? 'is-active' : undefined}>
+            {name}
+          </span>
+        ))}
+      </span>
+    </h1>
+  );
+}
 
 function sectionHref(hash: string, page: LandingPage) {
   return page === 'home' ? `${OS_PATH}${hash}` : hash;
@@ -45,6 +78,10 @@ const HERO_MAIL = {
 function HeroStory({ pitch = true }: { pitch?: boolean }) {
   return (
     <div className="lv2p-hero-story">
+      <WelcomeCloudCarousel className="lv2p-hero-story-clouds" />
+      <h2 className="lv2p-hero-story-title">
+        Customers are moving to the chat. We give you a direct business line.
+      </h2>
       {HERO_STORY.map((image) => (
         <img key={image.src} src={image.src} alt={image.alt} />
       ))}
@@ -723,11 +760,7 @@ export function LandingParadoxV2({ page = 'home' }: { page?: LandingPage }) {
     return (
       <div className="lv2p">
         <section id="hero" className="lv2p-hero">
-          <h1>DM for ChatGPT.</h1>
-          <p className="lv2p-hero-explain">
-            A new communications network connecting people and businesses through AI
-            assistants—starting with ChatGPT.
-          </p>
+          <HeroDmHeadline />
           <HeroStory pitch={false} />
         </section>
         <section id="call" className="lv2p-call">
@@ -746,11 +779,17 @@ export function LandingParadoxV2({ page = 'home' }: { page?: LandingPage }) {
     <div className="lv2p">
       <WelcomeCloudCarousel />
       <section id="hero" className="lv2p-hero">
-        <h1>DM for ChatGPT.</h1>
-        <p className="lv2p-hero-explain">
-          A new communications network connecting people and businesses through AI
-          assistants—starting with ChatGPT.
-        </p>
+        <img
+          className="lv2p-hero-mailbox lv2p-hero-mailbox--for-dark"
+          src="/images/promo/aiweb-mailbox-lightmode.png"
+          alt="AIWEB Mail inbox with direct messages from ChatGPT, Claude, Gemini, Grok, and the web."
+        />
+        <img
+          className="lv2p-hero-mailbox lv2p-hero-mailbox--for-light"
+          src="/images/promo/aiweb-mailbox-darkmode.png"
+          alt="AIWEB Mail inbox with direct messages from ChatGPT, Claude, Gemini, Grok, and the web."
+        />
+        <HeroDmHeadline />
         <HeroStory />
       </section>
 
