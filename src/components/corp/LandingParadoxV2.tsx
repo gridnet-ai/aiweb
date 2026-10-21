@@ -121,8 +121,8 @@ const INDUSTRY_ICONS: readonly { label: string; Icon: LucideIcon }[] = [
 
 function IndustrySearchGrid() {
   return (
-    <div className="lv2p-industry" aria-label="Search by Industry">
-      <h3 className="lv2p-industry-title">Search by Industry</h3>
+    <div className="lv2p-industry" aria-label="Find your industry">
+      <h3 className="lv2p-industry-title">Find your industry</h3>
       <ul className="lv2p-industry-grid">
         {INDUSTRY_ICONS.map(({ label, Icon }) => (
           <li key={label} className="lv2p-industry-item">
