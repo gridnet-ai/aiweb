@@ -142,18 +142,24 @@ function HeroStory({ pitch = true }: { pitch?: boolean }) {
   return (
     <div className="lv2p-hero-story">
       <WelcomeCloudCarousel className="lv2p-hero-story-clouds" />
-      <h2 className="lv2p-hero-story-title">
-        <span className="lv2p-hero-story-title-line">
+      <div className="lv2p-hero-story-lead">
+        <h2 className="lv2p-hero-story-title">
           Healthcare industry trends with AI assistants discovery{' '}
           <span className="lv2p-hero-story-stat" aria-label="up 36 percent">
             <ArrowUp className="lv2p-hero-story-arrow" strokeWidth={2.4} aria-hidden />
             36%
           </span>
-        </span>
-        <span className="lv2p-hero-story-title-line">
+        </h2>
+        <p className="lv2p-hero-story-follow">
           We provide the phone and phone book to AI assistants.
-        </span>
-      </h2>
+        </p>
+        <ul className="lv2p-hero-routes" aria-label="Mailbox routes">
+          <li>AI assistant → mailbox</li>
+          <li>mailbox → AI assistant</li>
+          <li>Internet → mailbox</li>
+          <li>mailbox → mailbox</li>
+        </ul>
+      </div>
       <IndustrySearchGrid />
       {HERO_STORY.map((image) => (
         <img key={image.src} src={image.src} alt={image.alt} />

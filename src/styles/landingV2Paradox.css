@@ -598,21 +598,21 @@
   z-index: 1;
 }
 
-.lv2p-hero-story-title {
+.lv2p-hero-story-lead {
   display: flex;
   flex-direction: column;
-  gap: 0.55rem;
+  gap: 1.35rem;
   margin: 0.35rem 0 0.15rem;
+}
+
+.lv2p-hero-story-title {
+  margin: 0;
   font-size: clamp(1.35rem, 4.5vw, 1.85rem);
   font-weight: 650;
   letter-spacing: -0.04em;
   line-height: 1.15;
   color: var(--px-ink);
   text-wrap: balance;
-}
-
-.lv2p-hero-story-title-line {
-  display: block;
 }
 
 .lv2p-hero-story-stat {
@@ -627,6 +627,45 @@
   width: 0.85em;
   height: 0.85em;
   flex-shrink: 0;
+}
+
+.lv2p-hero-routes {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.45rem;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  width: fit-content;
+  max-width: 100%;
+  text-align: center;
+  justify-items: center;
+}
+
+.lv2p-hero-routes li {
+  margin: 0;
+  font-size: clamp(0.92rem, 2.6vw, 1.02rem);
+  font-weight: 550;
+  letter-spacing: -0.02em;
+  line-height: 1.35;
+  color: var(--px-mute);
+}
+
+.lv2p-hero-story-follow {
+  margin: 0;
+  font-size: clamp(1.35rem, 4.5vw, 1.85rem);
+  font-weight: 650;
+  letter-spacing: -0.04em;
+  line-height: 1.15;
+  color: var(--px-ink);
+  text-wrap: balance;
+}
+
+@media (min-width: 520px) {
+  .lv2p-hero-routes {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.55rem 1rem;
+  }
 }
 
 .lv2p-industry {
