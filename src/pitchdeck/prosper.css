@@ -1,0 +1,314 @@
+/* Prosper HealthTech corporate pitch + executive summary */
+
+.prosper-root .pd-panel-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: min(100%, 46rem);
+  margin: 0 auto;
+  padding: clamp(4.5rem, 10vh, 6.5rem) clamp(1.25rem, 4vw, 2.5rem)
+    calc(5.5rem + env(safe-area-inset-bottom, 0px));
+}
+
+.prosper-slide,
+.prosper-cover {
+  width: 100%;
+  text-align: left;
+}
+
+.prosper-slide--product {
+  display: grid;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.prosper-product-copy {
+  min-width: 0;
+}
+
+.prosper-product-visual {
+  margin: 0;
+  justify-self: center;
+}
+
+.prosper-product-visual img {
+  display: block;
+  width: min(100%, 18rem);
+  height: auto;
+}
+
+@media (min-width: 820px) {
+  .prosper-slide--product {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.85fr);
+    gap: 2rem;
+  }
+
+  .prosper-product-visual img {
+    width: min(100%, 22rem);
+  }
+}
+
+.prosper-kicker {
+  margin: 0 0 0.85rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--pd-mute, #5f5e5a);
+}
+
+.prosper-title {
+  margin: 0 0 1.1rem;
+  font-family: var(--pd-display, Merriweather, Georgia, serif);
+  font-size: clamp(2rem, 5.5vw, 3.1rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+  color: var(--pd-ink, #0b0b0c);
+  text-wrap: balance;
+}
+
+.prosper-body,
+.prosper-lede,
+.prosper-note {
+  margin: 0 0 0.95rem;
+  max-width: 38rem;
+  font-size: clamp(1rem, 2.2vw, 1.15rem);
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--pd-ink, #0b0b0c);
+  text-wrap: pretty;
+}
+
+.prosper-note {
+  margin-top: 1.25rem;
+  color: var(--pd-mute, #5f5e5a);
+}
+
+.prosper-points,
+.prosper-steps {
+  margin: 1.1rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.prosper-points li,
+.prosper-steps li {
+  margin: 0;
+  font-size: clamp(1rem, 2.2vw, 1.12rem);
+  line-height: 1.45;
+  color: var(--pd-ink, #0b0b0c);
+}
+
+.prosper-steps li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.75rem;
+  align-items: start;
+}
+
+.prosper-step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 999px;
+  background: #0b0b0c;
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.prosper-cover {
+  text-align: center;
+}
+
+.prosper-cover-logo {
+  display: block;
+  width: min(7.5rem, 34vw);
+  height: auto;
+  margin: 0 auto 1.4rem;
+}
+
+.prosper-cover-title {
+  margin: 0;
+  font-family: var(--pd-display, Merriweather, Georgia, serif);
+  font-size: clamp(3rem, 12vw, 5.5rem);
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 0.95;
+  color: var(--pd-ink, #0b0b0c);
+}
+
+.prosper-cover-lede {
+  margin: 0.85rem auto 0;
+  max-width: 22rem;
+  font-size: clamp(1.15rem, 3.4vw, 1.45rem);
+  font-weight: 550;
+  line-height: 1.3;
+  color: var(--pd-ink, #0b0b0c);
+  text-wrap: balance;
+}
+
+.prosper-cover-sub {
+  margin: 0.7rem auto 0;
+  font-size: clamp(1rem, 2.8vw, 1.2rem);
+  font-weight: 600;
+  color: var(--pd-mute, #5f5e5a);
+}
+
+.prosper-cover-byline {
+  margin: 1.5rem auto 0;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--pd-mute, #5f5e5a);
+}
+
+.prosper-cover-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem 1.25rem;
+  margin-top: 1.6rem;
+}
+
+.prosper-link {
+  font-size: 0.92rem;
+  font-weight: 650;
+  color: var(--pd-ink, #0b0b0c);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.prosper-close {
+  margin-top: 1.75rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid rgba(11, 11, 12, 0.12);
+}
+
+.prosper-close p {
+  margin: 0.2rem 0 0;
+  font-size: 0.98rem;
+  font-weight: 550;
+  color: var(--pd-ink, #0b0b0c);
+}
+
+.prosper-close a {
+  color: inherit;
+}
+
+/* Executive summary document */
+
+html.prosper-exec-html,
+html.prosper-exec-html body {
+  margin: 0;
+  min-height: 100%;
+  background: #f7f6f3;
+}
+
+.prosper-exec {
+  --pd-ink: #0b0b0c;
+  --pd-mute: #5f5e5a;
+  --pd-display: Merriweather, Georgia, 'Iowan Old Style', serif;
+  --pd-sans: 'DM Sans', 'Nunito Sans', ui-sans-serif, system-ui, sans-serif;
+  min-height: 100dvh;
+  color: var(--pd-ink);
+  background:
+    radial-gradient(ellipse 70% 40% at 100% 0%, rgba(255, 198, 41, 0.12), transparent 55%),
+    #f7f6f3;
+  font-family: var(--pd-sans);
+}
+
+.prosper-exec-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem clamp(1.15rem, 4vw, 2.5rem);
+  border-bottom: 1px solid rgba(11, 11, 12, 0.08);
+  background: rgba(247, 246, 243, 0.92);
+  backdrop-filter: blur(8px);
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.prosper-exec-brand {
+  display: inline-flex;
+  width: 5.5rem;
+}
+
+.prosper-exec-brand svg,
+.prosper-exec-brand img {
+  width: 100%;
+  height: auto;
+}
+
+.prosper-exec-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem 1.15rem;
+}
+
+.prosper-exec-nav a {
+  font-size: 0.9rem;
+  font-weight: 650;
+  color: var(--pd-ink);
+  text-decoration: none;
+}
+
+.prosper-exec-nav a:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.prosper-exec-main {
+  width: min(100%, 42rem);
+  margin: 0 auto;
+  padding: clamp(2rem, 6vw, 3.5rem) clamp(1.15rem, 4vw, 2rem)
+    calc(3rem + env(safe-area-inset-bottom, 0px));
+}
+
+.prosper-exec-title {
+  margin: 0.35rem 0 0;
+  font-family: var(--pd-display);
+  font-size: clamp(2.2rem, 6vw, 3.4rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  text-wrap: balance;
+}
+
+.prosper-exec-sub {
+  margin: 0.7rem 0 1.75rem;
+  font-size: 1.05rem;
+  font-weight: 550;
+  color: var(--pd-mute);
+}
+
+.prosper-exec-body {
+  margin: 0 0 1.15rem;
+  font-size: clamp(1.02rem, 2.2vw, 1.12rem);
+  font-weight: 500;
+  line-height: 1.62;
+  text-wrap: pretty;
+}
+
+.prosper-exec-foot {
+  margin-top: 2.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(11, 11, 12, 0.12);
+}
+
+.prosper-exec-foot p {
+  margin: 0.25rem 0 0;
+  font-size: 0.98rem;
+  font-weight: 550;
+}
+
+.prosper-exec-foot a {
+  color: inherit;
+}

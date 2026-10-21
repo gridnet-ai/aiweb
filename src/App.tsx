@@ -10,7 +10,8 @@ import { InvestorsPage } from '@/pages/InvestorsPage';
 import { NewsIndexPage } from '@/pages/NewsIndexPage';
 import { NewsPostPage } from '@/pages/NewsPostPage';
 import { OverviewPage } from '@/pages/OverviewPage';
-import { PitchDeckPage } from '@/pages/PitchDeckPage';
+import { ProsperPitchDeckPage } from '@/pitchdeck/ProsperPitchDeckPage';
+import { ExecutiveSummaryPage } from '@/pitchdeck/ExecutiveSummaryPage';
 import { PressPage } from '@/pages/PressPage';
 import { PricingPage } from '@/pages/PricingPage';
 import { PrivacyPage } from '@/pages/PrivacyPage';
@@ -41,7 +42,10 @@ export default function App() {
     return <AlbumPage />;
   }
   if (pathname.startsWith('/pitchdeck')) {
-    return <PitchDeckPage />;
+    return <ProsperPitchDeckPage />;
+  }
+  if (pathname.startsWith('/executivesummary')) {
+    return <ExecutiveSummaryPage />;
   }
   if (pathname.startsWith('/whitepaper')) {
     return <WhitepaperPage />;

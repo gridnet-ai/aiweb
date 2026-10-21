@@ -1,6 +1,22 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronLeft, ChevronRight, ExternalLink, Mail, Phone, Send } from 'lucide-react';
+import {
+  ChevronLeft,
+  ChevronRight,
+  ExternalLink,
+  HeartPulse,
+  Home,
+  Landmark,
+  Mail,
+  Network,
+  Package,
+  Phone,
+  Scale,
+  Send,
+  Shield,
+  Truck,
+  type LucideIcon,
+} from 'lucide-react';
 import { CHATGPT_AIWEB_PLUGIN_HREF } from '@/components/corp/LandingNavV2';
 import { businessCheckoutUrl } from '@/lib/stripeCheckout';
 import { PublisherPricingTable } from '@/components/corp/PublisherPricingTable';
@@ -92,6 +108,35 @@ const HERO_MAIL = {
   alt: 'AIWEB Mail keeps the same Call going after one sync, from the inbox into the conversation.',
 } as const;
 
+const INDUSTRY_ICONS: readonly { label: string; Icon: LucideIcon }[] = [
+  { label: 'Healthcare', Icon: HeartPulse },
+  { label: 'Finance', Icon: Landmark },
+  { label: 'Insurance', Icon: Shield },
+  { label: 'Logistics', Icon: Truck },
+  { label: 'IT managed services', Icon: Network },
+  { label: 'Legal', Icon: Scale },
+  { label: 'Supply Chain', Icon: Package },
+  { label: 'Real Estate', Icon: Home },
+] as const;
+
+function IndustrySearchGrid() {
+  return (
+    <div className="lv2p-industry" aria-label="Search by Industry">
+      <h3 className="lv2p-industry-title">Search by Industry</h3>
+      <ul className="lv2p-industry-grid">
+        {INDUSTRY_ICONS.map(({ label, Icon }) => (
+          <li key={label} className="lv2p-industry-item">
+            <span className="lv2p-industry-icon" aria-hidden>
+              <Icon strokeWidth={1.6} />
+            </span>
+            <span className="lv2p-industry-label">{label}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 function HeroStory({ pitch = true }: { pitch?: boolean }) {
   return (
     <div className="lv2p-hero-story">
@@ -99,6 +144,7 @@ function HeroStory({ pitch = true }: { pitch?: boolean }) {
       <h2 className="lv2p-hero-story-title">
         Customers are moving to the chat. We give you a direct business line.
       </h2>
+      <IndustrySearchGrid />
       {HERO_STORY.map((image) => (
         <img key={image.src} src={image.src} alt={image.alt} />
       ))}
