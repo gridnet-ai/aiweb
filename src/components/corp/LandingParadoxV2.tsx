@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import {
+  ArrowUp,
   ChevronLeft,
   ChevronRight,
   ExternalLink,
@@ -142,7 +143,16 @@ function HeroStory({ pitch = true }: { pitch?: boolean }) {
     <div className="lv2p-hero-story">
       <WelcomeCloudCarousel className="lv2p-hero-story-clouds" />
       <h2 className="lv2p-hero-story-title">
-        Customers are moving to the chat. We give you a direct business line.
+        <span className="lv2p-hero-story-title-line">
+          Healthcare industry trends with AI assistants discovery{' '}
+          <span className="lv2p-hero-story-stat" aria-label="up 36 percent">
+            <ArrowUp className="lv2p-hero-story-arrow" strokeWidth={2.4} aria-hidden />
+            36%
+          </span>
+        </span>
+        <span className="lv2p-hero-story-title-line">
+          We provide the phone and phone book to AI assistants.
+        </span>
       </h2>
       <IndustrySearchGrid />
       {HERO_STORY.map((image) => (

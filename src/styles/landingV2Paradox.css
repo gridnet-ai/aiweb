@@ -599,13 +599,34 @@
 }
 
 .lv2p-hero-story-title {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
   margin: 0.35rem 0 0.15rem;
   font-size: clamp(1.35rem, 4.5vw, 1.85rem);
   font-weight: 650;
   letter-spacing: -0.04em;
-  line-height: 1.1;
+  line-height: 1.15;
   color: var(--px-ink);
   text-wrap: balance;
+}
+
+.lv2p-hero-story-title-line {
+  display: block;
+}
+
+.lv2p-hero-story-stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.08em;
+  white-space: nowrap;
+  color: #3dd68c;
+}
+
+.lv2p-hero-story-arrow {
+  width: 0.85em;
+  height: 0.85em;
+  flex-shrink: 0;
 }
 
 .lv2p-industry {
