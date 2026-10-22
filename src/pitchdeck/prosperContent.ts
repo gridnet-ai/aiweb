@@ -23,6 +23,36 @@ export const PROSPER_PRODUCT_LOOP = {
   },
 } as const;
 
+const PROSPER_PRODUCT_SLIDE_BODY = {
+  points: [
+    {
+      label: 'Find',
+      text: 'the practice appears in Chat GPT, Claude, and the open web.',
+    },
+    {
+      label: 'Call',
+      text: 'the patient messages the practice directly. Nothing to install.',
+    },
+    {
+      label: 'Mail',
+      text: 'the practice answers from one inbox. One thread, with a receipt.',
+    },
+  ],
+  note: 'Live today: AIWEB Call is an accepted plugin on Chat GPT.',
+  noteIcon: {
+    id: 'chatgpt',
+    label: 'Chat GPT',
+    src: '/images/promo/chatgpt-mark.png',
+  },
+  compatible: [
+    { id: 'claude', label: 'Claude', src: '/images/promo/claude-mark.png' },
+    { id: 'gemini', label: 'Gemini', src: '/images/promo/gemini-mark.png' },
+    { id: 'grok', label: 'Grok', src: '/images/demo/workers/grok.png' },
+    { id: 'muse', label: 'Muse', src: '/images/promo/muse-mark.png' },
+    { id: 'web', label: 'Web', src: '/images/promo/web-mark.svg' },
+  ],
+} as const;
+
 export const PROSPER_DECK_SLIDES = [
   {
     id: 'cover',
@@ -93,22 +123,17 @@ export const PROSPER_DECK_SLIDES = [
     id: 'problem',
     section: 'The Problem',
     title: 'The problem',
-    lead: 'People now start their search for care inside AI assistants',
-    leadBut: 'But…',
     assistants: [
       { id: 'chatgpt', label: 'Chat GPT', src: '/images/demo/workers/chatgpt.png' },
       { id: 'claude', label: 'Claude', src: '/images/promo/claude-mark.png' },
       { id: 'gemini', label: 'Gemini', src: '/images/promo/gemini-mark.png' },
       { id: 'grok', label: 'Grok', src: '/images/demo/workers/grok.png' },
       { id: 'muse', label: 'Muse', src: '/images/promo/muse-mark.png' },
+      { id: 'web', label: 'Web', src: '/images/promo/web-mark.svg' },
     ],
-    body: [
-      'Medical practices do not have a reliable way to connect to this new patient behavior.',
-    ],
-    summary: 'The person to patient value chain is broken.',
-    bodyIcon: {
-      src: '/images/promo/healthcare-mark.png',
-      alt: 'Medical practices — heartbeat, caduceus, and stethoscope.',
+    summaryStat: {
+      value: '36%',
+      text: 'of individuals use healthcare AI assistants specifically to research health information privately before or instead of consulting a traditional provider',
     },
     images: [
       {
@@ -134,36 +159,24 @@ export const PROSPER_DECK_SLIDES = [
     ],
   },
   {
+    id: 'solution',
+    section: 'The Solution',
+    title: 'The solution',
+    lede: 'Expand healthcare access for stronger communities by meeting people where they are.',
+    note: PROSPER_PRODUCT_SLIDE_BODY.note,
+    noteIcon: PROSPER_PRODUCT_SLIDE_BODY.noteIcon,
+    compatible: PROSPER_PRODUCT_SLIDE_BODY.compatible,
+    visual: {
+      src: '/corporate/aiweb-healthcare-access-community.png',
+      alt: 'A patient smiles across the reception desk in a community healthcare setting.',
+    },
+  },
+  {
     id: 'product',
     section: 'The Product',
     title: 'The product',
     lede: 'AIWEB is the native AI assistant communication network',
-    points: [
-      {
-        label: 'Find',
-        text: 'the practice appears in Chat GPT, Claude, and the open web.',
-      },
-      {
-        label: 'Call',
-        text: 'the patient messages the practice directly. Nothing to install.',
-      },
-      {
-        label: 'Mail',
-        text: 'the practice answers from one inbox. One thread, with a receipt.',
-      },
-    ],
-    note: 'Live today: AIWEB Call is an accepted plugin on Chat GPT.',
-    noteIcon: {
-      id: 'chatgpt',
-      label: 'Chat GPT',
-      src: '/images/promo/chatgpt-mark.png',
-    },
-    compatible: [
-      { id: 'claude', label: 'Claude', src: '/images/promo/claude-mark.png' },
-      { id: 'gemini', label: 'Gemini', src: '/images/promo/gemini-mark.png' },
-      { id: 'grok', label: 'Grok', src: '/images/demo/workers/grok.png' },
-      { id: 'muse', label: 'Muse', src: '/images/promo/muse-mark.png' },
-    ],
+    ...PROSPER_PRODUCT_SLIDE_BODY,
     loop: PROSPER_PRODUCT_LOOP,
   },
   {

@@ -40,6 +40,21 @@
   height: auto;
 }
 
+.prosper-product-visual--story {
+  width: 100%;
+  min-width: 0;
+  align-self: center;
+  overflow: hidden;
+}
+
+.prosper-product-visual--story img {
+  width: 100%;
+  max-width: none;
+  height: min(62vh, calc(100dvh - 10rem), 32rem);
+  object-fit: cover;
+  object-position: center center;
+}
+
 .prosper-product-loop {
   display: flex;
   flex-direction: column;
@@ -432,15 +447,17 @@
   }
 }
 
-/* Product: fill the stage; Send/Receive loop must fit above chrome. */
-.prosper-root #pd-product {
+/* Product + Solution: fill the stage; Send/Receive loop must fit above chrome. */
+.prosper-root #pd-product,
+.prosper-root #pd-solution {
   justify-content: flex-start;
   padding-top: clamp(1.25rem, 2.8vh, 2rem);
   padding-bottom: calc(5rem + env(safe-area-inset-bottom, 0px));
   overflow: hidden;
 }
 
-.prosper-root #pd-product .pd-panel-inner {
+.prosper-root #pd-product .pd-panel-inner,
+.prosper-root #pd-solution .pd-panel-inner {
   width: min(100%, 72rem);
   flex: 1 1 auto;
   min-height: 0;
@@ -451,7 +468,8 @@
   overflow: hidden;
 }
 
-.prosper-root #pd-product .prosper-slide--product {
+.prosper-root #pd-product .prosper-slide--product,
+.prosper-root #pd-solution .prosper-slide--product {
   width: 100%;
   height: 100%;
   min-height: 0;
@@ -461,11 +479,14 @@
 }
 
 .prosper-root #pd-product .prosper-lede,
-.prosper-root #pd-product .prosper-note {
+.prosper-root #pd-product .prosper-note,
+.prosper-root #pd-solution .prosper-lede,
+.prosper-root #pd-solution .prosper-note {
   max-width: none;
 }
 
-.prosper-root #pd-product .prosper-product-loop {
+.prosper-root #pd-product .prosper-product-loop,
+.prosper-root #pd-solution .prosper-product-loop {
   justify-content: center;
   align-self: center;
   min-height: 0;
@@ -473,12 +494,14 @@
   overflow: visible;
 }
 
-.prosper-root #pd-product .prosper-product-loop-forward {
+.prosper-root #pd-product .prosper-product-loop-forward,
+.prosper-root #pd-solution .prosper-product-loop-forward {
   min-height: 0;
   align-items: center;
 }
 
-.prosper-root #pd-product .prosper-product-shot {
+.prosper-root #pd-product .prosper-product-shot,
+.prosper-root #pd-solution .prosper-product-shot {
   align-self: center;
   min-height: 0;
   overflow: visible;
@@ -490,6 +513,36 @@
   max-height: min(58vh, calc(100dvh - 11rem), 30rem);
   width: auto;
   max-width: none;
+}
+
+.prosper-root #pd-solution {
+  padding-right: 0;
+}
+
+.prosper-root #pd-solution .pd-panel-inner {
+  width: 100%;
+  max-width: none;
+  padding-left: clamp(1.25rem, 4vw, 2.5rem);
+}
+
+.prosper-root #pd-solution .prosper-slide--product {
+  column-gap: clamp(1.25rem, 3vw, 2.5rem);
+}
+
+.prosper-root #pd-solution .prosper-product-visual--story {
+  justify-self: end;
+  align-self: stretch;
+  width: min(100%, 40rem);
+  max-height: 100%;
+  margin: 0;
+}
+
+.prosper-root #pd-solution .prosper-product-visual--story img {
+  width: 100%;
+  height: 100%;
+  max-height: min(72vh, calc(100dvh - 8rem), 38rem);
+  object-fit: cover;
+  object-position: center right;
 }
 
 /* Founder: fit one viewport — no inner scrollbar. */
@@ -555,9 +608,12 @@
 .prosper-root #pd-problem .prosper-split-copy {
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
   gap: 0.85rem;
   min-height: 0;
+  height: 100%;
+  text-align: center;
 }
 
 .prosper-root #pd-problem .prosper-practices {
@@ -565,13 +621,28 @@
 }
 
 .prosper-root #pd-problem .prosper-title {
-  margin-bottom: 0.75rem;
+  flex: 0 0 auto;
+  margin: 0;
   overflow: visible;
   padding-top: 0.08em;
+  text-align: center;
 }
 
-.prosper-root #pd-problem .prosper-body-icon {
-  width: min(100%, 6.5rem);
+.prosper-root #pd-problem .prosper-summary-value {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  margin: 0;
+  min-height: 0;
+}
+
+.prosper-root #pd-problem .prosper-summary--stat {
+  flex: 0 0 auto;
+  margin: 0;
+  text-align: center;
+  max-width: 100%;
 }
 
 .prosper-root #pd-problem .prosper-problem-gallery {
@@ -643,18 +714,6 @@
   gap: 0.5rem;
 }
 
-.prosper-root #pd-problem .prosper-disconnect {
-  flex: 0 0 auto;
-  width: min(100%, 14rem);
-  margin: 0 auto;
-}
-
-.prosper-root #pd-problem .prosper-problem-gallery > .prosper-body-icon {
-  display: block;
-  width: min(100%, 5.5rem);
-  margin: 0 auto;
-}
-
 .prosper-kicker {
   margin: 0 0 0.85rem;
   font-size: 0.78rem;
@@ -707,28 +766,6 @@
   list-style: none;
 }
 
-.prosper-disconnect {
-  display: flex;
-  align-items: center;
-  gap: 0.55rem;
-  width: min(100%, 14rem);
-  margin: 0.15rem 0 0.85rem;
-}
-
-.prosper-disconnect-rail {
-  flex: 1 1 auto;
-  height: 0;
-  border-top: 1.5px dashed color-mix(in srgb, var(--pd-ink, #0b0b0c) 38%, transparent);
-}
-
-.prosper-disconnect-break {
-  display: block;
-  flex: 0 0 auto;
-  width: 1.85rem;
-  height: 1.85rem;
-  object-fit: contain;
-}
-
 .prosper-practices {
   display: grid;
   gap: 0.45rem;
@@ -740,19 +777,57 @@
 }
 
 .prosper-summary {
-  margin: 1.35rem 0 0;
-  width: max-content;
-  max-width: 100%;
-  padding: 0.85rem 1rem;
-  border: 1.5px solid color-mix(in srgb, var(--pd-ink, #0b0b0c) 22%, transparent);
-  border-radius: 0.65rem;
-  background: rgba(11, 11, 12, 0.03);
+  margin: 0;
+  width: 100%;
+  max-width: 28rem;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: none;
   font-size: clamp(0.98rem, 2vw, 1.08rem);
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.35;
   color: var(--pd-ink, #0b0b0c);
+}
+
+.prosper-summary--stat {
+  display: block;
+  width: 100%;
+  max-width: 28rem;
+}
+
+.prosper-summary-value {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  width: 100%;
+  margin: 0.55rem 0 0.85rem;
+  font-size: clamp(4.8rem, 10vw, 6.5rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: #0b8f4d;
   white-space: nowrap;
+  text-align: center;
+}
+
+.prosper-summary-arrow {
+  display: inline-block;
+  font-size: 0.72em;
+  font-weight: 800;
+  line-height: 1;
+  transform: translateY(-0.04em);
+}
+
+.prosper-summary-text {
+  font-size: clamp(1.72rem, 3.4vw, 1.96rem);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.4;
+  color: var(--pd-ink, #0b0b0c);
+  text-wrap: pretty;
 }
 
 .prosper-assistant {
@@ -771,14 +846,6 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
-}
-
-.prosper-body-icon {
-  display: block;
-  width: min(100%, 7.5rem);
-  height: auto;
-  margin: 0.35rem 0 0;
-  overflow: visible;
 }
 
 .prosper-note {
@@ -848,7 +915,8 @@
   margin: 0;
 }
 
-.prosper-root #pd-product .prosper-product-compat-also .prosper-assistant {
+.prosper-root #pd-product .prosper-product-compat-also .prosper-assistant,
+.prosper-root #pd-solution .prosper-product-compat-also .prosper-assistant {
   width: 2.15rem;
   height: 2.15rem;
   border-radius: 0.62rem;

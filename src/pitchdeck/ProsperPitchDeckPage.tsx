@@ -219,7 +219,7 @@ const SLIDES: Slide[] = PROSPER_DECK_SLIDES.map((slide) => {
     };
   }
 
-  if (slide.id === 'problem' && 'body' in slide && 'images' in slide && 'lead' in slide) {
+  if (slide.id === 'problem' && 'images' in slide && 'summaryStat' in slide) {
     return {
       id: slide.id,
       section: slide.section,
@@ -227,20 +227,15 @@ const SLIDES: Slide[] = PROSPER_DECK_SLIDES.map((slide) => {
         <div className="pd-stack prosper-slide prosper-slide--problem">
           <div className="prosper-split-copy">
             <h1 className="prosper-title">{slide.title}</h1>
-            <p className="prosper-body prosper-body--lead">{slide.lead}</p>
-            {'leadBut' in slide && slide.leadBut ? (
-              <p className="prosper-body prosper-body--but">{slide.leadBut}</p>
-            ) : null}
-            <div className="prosper-practices">
-              {slide.body.map((paragraph) => (
-                <p key={paragraph} className="prosper-body prosper-body--practices">
-                  {paragraph}
-                </p>
-              ))}
-              {'summary' in slide && slide.summary ? (
-                <p className="prosper-summary">{slide.summary}</p>
-              ) : null}
-            </div>
+            <p className="prosper-summary-value">
+              <span className="prosper-summary-arrow" aria-hidden>
+                ↑
+              </span>
+              {slide.summaryStat.value}
+            </p>
+            <p className="prosper-summary prosper-summary--stat">
+              <span className="prosper-summary-text">{slide.summaryStat.text}</span>
+            </p>
           </div>
           <div className="prosper-problem-gallery">
             <div className="prosper-gallery-stage">
@@ -258,29 +253,17 @@ const SLIDES: Slide[] = PROSPER_DECK_SLIDES.map((slide) => {
                 <AssistantLogoRow assistants={slide.assistants} />
               </div>
             </div>
-            <div className="prosper-disconnect" role="presentation" aria-hidden="true">
-              <span className="prosper-disconnect-rail" />
-              <img
-                className="prosper-disconnect-break"
-                src="/images/promo/broken-link-mark.png"
-                alt=""
-              />
-              <span className="prosper-disconnect-rail" />
-            </div>
-            {'bodyIcon' in slide && slide.bodyIcon ? (
-              <img
-                className="prosper-body-icon"
-                src={slide.bodyIcon.src}
-                alt={slide.bodyIcon.alt}
-              />
-            ) : null}
           </div>
         </div>
       ),
     };
   }
 
-  if (slide.id === 'product' && 'points' in slide) {
+  if (
+    (slide.id === 'product' || slide.id === 'solution') &&
+    'lede' in slide &&
+    'note' in slide
+  ) {
     return {
       id: slide.id,
       section: slide.section,
@@ -289,13 +272,15 @@ const SLIDES: Slide[] = PROSPER_DECK_SLIDES.map((slide) => {
           <div className="prosper-product-copy">
             <h1 className="prosper-title">{slide.title}</h1>
             <p className="prosper-lede">{slide.lede}</p>
-            <ul className="prosper-points">
-              {slide.points.map((point) => (
-                <li key={point.label}>
-                  <strong>{point.label}</strong> — {point.text}
-                </li>
-              ))}
-            </ul>
+            {'points' in slide && slide.points?.length ? (
+              <ul className="prosper-points">
+                {slide.points.map((point) => (
+                  <li key={point.label}>
+                    <strong>{point.label}</strong> — {point.text}
+                  </li>
+                ))}
+              </ul>
+            ) : null}
             {'noteIcon' in slide && slide.noteIcon ? (
               <div className="prosper-product-compat">
                 <p className="prosper-note prosper-note--plugin">
@@ -318,7 +303,13 @@ const SLIDES: Slide[] = PROSPER_DECK_SLIDES.map((slide) => {
               <p className="prosper-note">{slide.note}</p>
             )}
           </div>
-          {'loop' in slide && slide.loop ? <ProductLoop loop={slide.loop} /> : null}
+          {'visual' in slide && slide.visual ? (
+            <figure className="prosper-product-visual prosper-product-visual--story">
+              <img src={slide.visual.src} alt={slide.visual.alt} />
+            </figure>
+          ) : 'loop' in slide && slide.loop ? (
+            <ProductLoop loop={slide.loop} />
+          ) : null}
         </div>
       ),
     };
