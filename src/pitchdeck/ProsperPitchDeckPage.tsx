@@ -262,7 +262,27 @@ const SLIDES: Slide[] = PROSPER_DECK_SLIDES.map((slide) => {
                 </li>
               ))}
             </ul>
-            <p className="prosper-note">{slide.note}</p>
+            {'noteIcon' in slide && slide.noteIcon ? (
+              <div className="prosper-product-compat">
+                <p className="prosper-note prosper-note--plugin">
+                  <img
+                    className="prosper-note-plugin-icon"
+                    src={slide.noteIcon.src}
+                    alt=""
+                    aria-hidden
+                  />
+                  <span>{slide.note}</span>
+                </p>
+                {'compatible' in slide && slide.compatible?.length ? (
+                  <div className="prosper-product-compat-also">
+                    <p className="prosper-product-compat-label">Also compatible with</p>
+                    <AssistantLogoRow assistants={slide.compatible} />
+                  </div>
+                ) : null}
+              </div>
+            ) : (
+              <p className="prosper-note">{slide.note}</p>
+            )}
           </div>
           {'loop' in slide && slide.loop ? (
             <div className="prosper-product-loop" aria-label="Send and receive">
@@ -288,7 +308,7 @@ const SLIDES: Slide[] = PROSPER_DECK_SLIDES.map((slide) => {
                   {slide.loop.receive.label}
                 </span>
                 <span
-                  className="prosper-product-loop-arrow prosper-product-loop-arrow--extended"
+                  className="prosper-product-loop-arrow prosper-product-loop-arrow--extended prosper-product-loop-arrow--back"
                   aria-hidden
                 />
                 <span className="prosper-product-loop-label">

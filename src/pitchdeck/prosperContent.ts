@@ -127,7 +127,7 @@ export const PROSPER_DECK_SLIDES = [
     id: 'product',
     section: 'The Product',
     title: 'The product',
-    lede: 'AIWEB gives every organization a public page assistants can find — its number — and a mailbox anyone can reach from inside the chat.',
+    lede: 'AIWEB is the native AI assistant communication network',
     points: [
       {
         label: 'Find',
@@ -143,6 +143,17 @@ export const PROSPER_DECK_SLIDES = [
       },
     ],
     note: 'Live today: AIWEB Call is an accepted plugin on Chat GPT.',
+    noteIcon: {
+      id: 'chatgpt',
+      label: 'Chat GPT',
+      src: '/images/promo/chatgpt-mark.png',
+    },
+    compatible: [
+      { id: 'claude', label: 'Claude', src: '/images/promo/claude-mark.png' },
+      { id: 'gemini', label: 'Gemini', src: '/images/promo/gemini-mark.png' },
+      { id: 'grok', label: 'Grok', src: '/images/demo/workers/grok.png' },
+      { id: 'muse', label: 'Muse', src: '/images/promo/muse-mark.png' },
+    ],
     loop: {
       send: {
         label: 'Send',
@@ -151,8 +162,8 @@ export const PROSPER_DECK_SLIDES = [
       },
       receive: {
         label: 'Receive',
-        src: '/corporate/aiweb-mailbox-darkmode.png',
-        alt: 'AIWEB Mail inbox receiving direct messages from Chat GPT, Claude, Gemini, Grok, Muse, and the web.',
+        src: '/corporate/aiweb-mailbox-iphone-mockup.png',
+        alt: 'AIWEB Mail on iPhone — unified inbox of direct messages from ChatGPT, Claude, Gemini, Grok, Muse, and the web.',
       },
     },
   },
