@@ -24,20 +24,6 @@ export const PROSPER_PRODUCT_LOOP = {
 } as const;
 
 const PROSPER_PRODUCT_SLIDE_BODY = {
-  points: [
-    {
-      label: 'Find',
-      text: 'the practice appears in Chat GPT, Claude, and the open web.',
-    },
-    {
-      label: 'Call',
-      text: 'the patient messages the practice directly. Nothing to install.',
-    },
-    {
-      label: 'Mail',
-      text: 'the practice answers from one inbox. One thread, with a receipt.',
-    },
-  ],
   note: 'Live today: AIWEB Call is an accepted plugin on Chat GPT.',
   noteIcon: {
     id: 'chatgpt',
@@ -112,11 +98,47 @@ export const PROSPER_DECK_SLIDES = [
       text: 'This is how I save the world.',
       by: 'Terry French, Founder & CEO',
     },
-    tags: [
-      'Military Communications',
-      'Healthcare IT',
-      'AI Infrastructure',
-      'Founder Institute grad 2025',
+    employers: [
+      {
+        id: 'army',
+        label: 'U.S. Army',
+        src: '/images/promo/employer-logos/us-army.webp',
+      },
+      {
+        id: '7eleven',
+        label: '7-Eleven',
+        src: '/images/promo/employer-logos/7-eleven.webp',
+      },
+      {
+        id: 'papa-johns',
+        label: "Papa John's",
+        src: '/images/promo/employer-logos/papa-johns.png?v=2',
+      },
+      {
+        id: 'amazon',
+        label: 'Amazon',
+        src: '/images/promo/employer-logos/amazon.jpg',
+      },
+      {
+        id: 'vista',
+        label: 'VISTA International Operations',
+        src: '/images/promo/employer-logos/vista.jpg',
+      },
+      {
+        id: 'metro-health',
+        label: 'City of San Antonio Metro Health',
+        src: '/images/promo/employer-logos/metro-health.png',
+      },
+      {
+        id: 'va',
+        label: 'U.S. Department of Veterans Affairs',
+        src: '/images/promo/employer-logos/va.png',
+      },
+      {
+        id: 'founder-institute',
+        label: 'Founder Institute',
+        src: '/images/promo/founder-institute.png',
+      },
     ],
   },
   {
@@ -134,6 +156,8 @@ export const PROSPER_DECK_SLIDES = [
     summaryStat: {
       value: '36%',
       text: 'of individuals use healthcare AI assistants specifically to research health information privately before or instead of consulting a traditional provider',
+      textMobile:
+        'use healthcare AI assistants to research health info privately before seeing a provider',
     },
     images: [
       {
@@ -177,79 +201,378 @@ export const PROSPER_DECK_SLIDES = [
     title: 'The product',
     lede: 'AIWEB is the native AI assistant communication network',
     ...PROSPER_PRODUCT_SLIDE_BODY,
+    mascot: {
+      src: '/corporate/aiweb-mail-relaxing-bear.png',
+      alt: 'AIWEB Mail bear, relaxing.',
+    },
     loop: PROSPER_PRODUCT_LOOP,
   },
   {
-    id: 'proof',
-    section: 'Proof',
-    title: 'Proof',
-    body: [
-      'October 20, 2026 — the full loop, demonstrated live: the same business directory inside Muse as in Chat GPT; a call placed by tap; answered from the owner’s phone — “Good to go!”; the conversation continued on a single thread, badged by source.',
-      'October 2, 2026 — the network’s first organic healthcare inquiry arrived before healthcare was a target: a clinic, seeking administrative FAQ and appointment communication.',
-      'Not a concept. A working network, looking for its first vertical.',
-    ],
+    id: 'howitworks',
+    section: 'How it works',
+    title: 'From Search to Chat',
+    lede: 'How patients discover care is changing.',
+    shift: 'A SHIFT IN HOW PATIENTS FIND CARE',
+    summary: {
+      before:
+        'Patients are shifting from typing rigid keywords into search engines to ',
+      emphasis:
+        'chatting with AI assistants for direct, personalized care recommendations.',
+    },
+    old: {
+      title: 'Old Journey',
+      subtitle: 'Keyword search',
+      search: 'best cardiologist near me',
+      steps: [
+        { id: 'websites', icon: 'browser', text: 'Click 3 or more website directories' },
+        { id: 'reviews', icon: 'reviews', text: 'Read reviews' },
+        { id: 'call', icon: 'phone', text: 'Call clinic and try again.' },
+      ],
+    },
+    ai: {
+      title: 'AI Journey',
+      subtitle: 'Conversational discovery',
+      assistants: [
+        {
+          id: 'chatgpt',
+          label: 'Chat GPT',
+          src: '/images/demo/workers/chatgpt.png',
+        },
+        {
+          id: 'claude',
+          label: 'Claude',
+          src: '/images/promo/claude-mark.png',
+        },
+        {
+          id: 'gemini',
+          label: 'Gemini',
+          src: '/images/promo/gemini-mark.png',
+        },
+        {
+          id: 'grok',
+          label: 'Grok',
+          src: '/images/demo/workers/grok.png',
+        },
+        {
+          id: 'muse',
+          label: 'Muse',
+          src: '/images/promo/muse-mark.png',
+        },
+        {
+          id: 'web',
+          label: 'Web',
+          src: '/images/promo/web-mark.svg',
+        },
+      ],
+      query:
+        'My 8-year-old child’s adult teeth are coming in crowded. Should I see a dentist or an orthodontist, and who are the top three pediatric orthodontists in North Austin with short wait times?',
+      steps: [
+        { id: 'map', icon: 'sparkles', text: 'AI maps symptoms to specialty' },
+        {
+          id: 'recommend',
+          icon: 'pin',
+          text: 'AI recommends top providers by intent',
+        },
+        {
+          id: 'direct',
+          icon: 'chat',
+          text: 'Direct communication with the clinic',
+        },
+      ],
+    },
   },
   {
-    id: 'wedge',
-    section: 'Healthcare Wedge',
-    title: 'The healthcare wedge',
-    body: [
-      'The front door only — scoped on purpose: discovery + general and administrative inquiries. No clinical messaging, no patient health information in the current system.',
-      'First practices: independent dental, vision, and small specialty — the segments Prosper’s own announcement names, alongside rural access and administrative bottlenecks.',
-      'Behind the front door, practices keep their systems: scheduling, intake, EHR.',
-      'Federal policy is moving the same direction — CMS payer APIs land 2026–2027.',
+    id: 'competition',
+    section: 'Competitive Landscape',
+    title: 'The Competitive Landscape',
+    channels: [
+      { id: 'chatgpt', label: 'Chat GPT', src: '/images/demo/workers/chatgpt.png' },
+      { id: 'claude', label: 'Claude', src: '/images/promo/claude-mark.png' },
+      { id: 'gemini', label: 'Gemini', src: '/images/promo/gemini-mark.png' },
+      { id: 'grok', label: 'Grok', src: '/images/demo/workers/grok.png' },
+      { id: 'muse', label: 'Muse', src: '/images/promo/muse-mark.png' },
+      { id: 'web', label: 'Web', src: '/images/promo/web-mark.svg' },
     ],
+    categories: [
+      {
+        name: 'Patient-facing search & discovery',
+        competitors: [
+          { id: 'zocdoc', label: 'Zocdoc', src: '/images/promo/competitors/zocdoc.png' },
+          { id: 'healthgrades', label: 'Healthgrades', src: '/images/promo/competitors/healthgrades.png' },
+          { id: 'google', label: 'Google', src: '/images/promo/competitors/google.png' },
+          { id: 'solv', label: 'Solv', src: '/images/promo/competitors/solv.png' },
+        ],
+        // Practice-controlled endpoint across assistants / open web — not their model.
+        reach: [false, false, false, false, false, true],
+      },
+      {
+        name: 'Provider search infrastructure',
+        competitors: [
+          { id: 'kyruus', label: 'Kyruus Health', src: '/images/promo/competitors/kyruus.png' },
+        ],
+        reach: [false, false, false, false, false, false],
+      },
+      {
+        name: 'EHR-native gateways',
+        competitors: [
+          { id: 'mychart', label: 'Epic MyChart', src: '/images/promo/competitors/mychart.png' },
+          { id: 'oracle', label: 'Oracle Health', src: '/images/promo/competitors/oracle.png' },
+          { id: 'athenahealth', label: 'athenahealth', src: '/images/promo/competitors/athenahealth.png' },
+        ],
+        reach: [false, false, false, false, false, true],
+      },
+      {
+        name: 'Patient engagement platforms',
+        competitors: [
+          { id: 'luma', label: 'Luma Health', src: '/images/promo/competitors/luma.png' },
+          { id: 'artera', label: 'Artera', src: '/images/promo/competitors/artera.png' },
+          { id: 'phreesia', label: 'Phreesia', src: '/images/promo/competitors/phreesia.png' },
+        ],
+        reach: [false, false, false, false, false, true],
+      },
+      {
+        name: 'AI voice patient interface',
+        competitors: [
+          { id: 'assort', label: 'Assort Health', src: '/images/promo/competitors/assort.png' },
+        ],
+        reach: [false, false, false, false, false, false],
+      },
+      {
+        name: 'AI assistant search, discover & message',
+        competitors: [
+          { id: 'aiweb', label: 'AIWEB', src: '/images/promo/aiweb-call-mark.png' },
+        ],
+        reach: [true, true, true, true, true, true],
+      },
+    ],
+    objection: {
+      question: 'Why wouldn’t Zocdoc, Epic, or Google simply add this feature?',
+      observations: [
+        {
+          label: 'Google — Discovery',
+          text: 'Strong at helping users find information and services, primarily inside Google’s ecosystem — including growing agentic search and actions.',
+        },
+        {
+          label: 'Zocdoc - Browser directory',
+          text: 'Connects patients with providers for appointments, reminders, and patient communications. Core model: find and book care.',
+        },
+        {
+          label: 'Epic — Patient relationships',
+          text: 'MyChart supports discovery, scheduling, and communication inside participating organizations. Strength: EHR-integrated relationships.',
+        },
+      ],
+    },
   },
   {
-    id: 'field',
-    section: 'The Field',
-    title: 'The field',
-    body: [
-      'Zocdoc — a distributed booking channel. $35–$110 per new patient; now inside Gemini and Amazon Health AI. Closed deals, booked slots.',
-      'EliseAI, Hyro, Assort — AI employees for the practice’s own front desk.',
-      'Phreesia, NexHealth, Luma, Klara, Artera — depth on channels practices own.',
-      'None of them sells the practice an open line into every assistant — a conversation the practice owns, for a flat subscription.',
-      'That endpoint is unbuilt. It is what AIWEB is.',
+    id: 'whynow',
+    section: 'Why Now?',
+    title: 'When was the last time you looked for a doctor?',
+    subhead: 'Did you search Google, ask a friend, or ask AI?',
+    stat: {
+      value: '47%',
+      text: 'of surveyed U.S. patients have used AI to research or find a healthcare provider.',
+      trend: 'Up from 31% in 2025.',
+    },
+    photo: {
+      src: '/corporate/aiweb-why-now-patient-phone.png',
+      alt: 'A patient at home researches care on a smartphone.',
+    },
+    close: 'Patients are changing how they find care. Healthcare communication needs to catch up.',
+    source: {
+      label: 'Source: rater8, 2026 Patient Choice Report (n=992).',
+      href: 'https://rater8.com/2026-patient-choice-report/',
+    },
+  },
+  {
+    id: 'market',
+    section: 'Market',
+    title: 'Market',
+    lede: 'A flat subscription for the practice’s line into every AI assistant — not a per-lead tax on patients.',
+    layers: [
+      {
+        tier: 'TAM',
+        value: '$48B',
+        label: 'US patient acquisition & digital front door',
+        detail:
+          'What healthcare organizations spend to be found and contacted — search, listings, engagement platforms, and call centers.',
+      },
+      {
+        tier: 'SAM',
+        value: '$6.2B',
+        label: 'Independent dental, vision & specialty',
+        detail:
+          'Practices that buy discovery and front-desk tools without an enterprise EHR-owned channel into AI assistants.',
+      },
+      {
+        tier: 'SOM',
+        value: '$2B',
+        label: 'Beachhead ARR at Business ARPU',
+        detail:
+          '~333,000 US practices × $500/mo × 12 = $2B ARR — the first wave AIWEB for Health can reach as patients start care in chat.',
+      },
     ],
+    note: 'Start where the front door is still owned by the practice. Expand as VoAI becomes how patients ask who to call.',
   },
   {
     id: 'model',
-    section: 'Business Model',
-    title: 'Business model',
-    body: [
-      'Free to list. Free to message. The mailbox is the product.',
-      'Seller $19.99/mo · Pro $49/mo · Business $500/mo.',
-      'Metered AI work on top: drafting replies, preparing quotes, keeping the listing accurate across AI models.',
-      'Healthcare follows the same shape — practice subscriptions, multi-location groups, later enterprise navigation agreements.',
-      'We do not sell patients as leads. The practice owns its relationships.',
+    section: 'Revenue Model',
+    title: 'Revenue model',
+    lede: 'Businesses pay to publish calling cards and be discovered across AI assistants and the web.',
+    plans: [
+      {
+        id: 'free',
+        name: 'Free',
+        price: '$0',
+        audience: 'Public access to',
+        audienceLogo: {
+          src: '/images/promo/aiweb-logo-black.png',
+          alt: 'aiweb',
+        },
+        recommended: false,
+        features: [
+          'Anyone can use AIWEB Call or tell their AI agent to search AIWEB.',
+          'Patients and customers can discover listings and send a message.',
+          'No cost to contact businesses.',
+          'Peer-to-Peer communication',
+        ],
+      },
+      {
+        id: 'individual',
+        name: 'Individual',
+        price: '$100/mo',
+        audience: 'For small business individuals',
+        recommended: false,
+        features: [
+          'Publish a calling card.',
+          'Be discoverable on AIWEB.',
+          'Receive messages through AIWEB Mail.',
+          'Best for solo operators and small local businesses.',
+        ],
+      },
+      {
+        id: 'business',
+        name: 'Business',
+        price: '$500/mo',
+        audience: 'For agencies or teams that work for the practice',
+        recommended: true,
+        features: [
+          'Built for healthcare practice teams, marketing agencies, and managed service partners.',
+          'Publish practice calling cards.',
+          'Centralize inbound messages from AI assistants and the web.',
+          'Best for practices averaging $2M+ ARR.',
+        ],
+      },
     ],
+    note: 'AIWEB is free for discovery and outreach. Businesses pay to publish verified calling cards so they can be discovered and contacted.',
   },
   {
     id: 'roadmap',
-    section: 'Boundaries & Roadmap',
-    title: 'Boundaries & roadmap',
-    lede: 'Said plainly: AIWEB is not a HIPAA channel today. No clinical pilot yet. No certifications claimed.',
-    steps: [
-      'Pilot the front door with 3–5 partner practices; measure inquiries, response time, and booked-visit conversion.',
-      'Spec the HIPAA-ready tier with compliance guidance: data boundaries, business associate agreements, audit, retention.',
-      'Convert pilots into the first paying healthcare customers.',
+    section: 'Roadmap',
+    title: 'From working network to trusted healthcare adoption',
+    lede: 'Build the network, verify practices, establish trust controls, then scale.',
+    phases: [
+      {
+        id: 'prove',
+        when: 'NOW · 2026',
+        number: '01',
+        title: 'Prove VoAI',
+        focus: 'Network + security',
+        status: 'Live product / fixes in progress',
+        current: true,
+        points: [
+          'Find, Call, receipt & Mail',
+          'Close critical access, MCP abuse and secrets gaps',
+        ],
+      },
+      {
+        id: 'verify',
+        when: 'NEXT · Q4 2026',
+        number: '02',
+        title: 'Verify the directory',
+        focus: 'San Antonio launch',
+        status: 'Planned',
+        current: false,
+        points: [
+          'Review and verify healthcare practices',
+          'Publish owner-approved calling cards; define PHI restrictions',
+        ],
+      },
+      {
+        id: 'validate',
+        when: '2027 · PILOT',
+        number: '03',
+        title: 'Validate healthcare',
+        focus: 'Nonclinical inquiries only',
+        status: 'Target',
+        current: false,
+        points: [
+          '3–5 administrative practice pilots',
+          'Test $100 Individual / $500 Business pricing',
+        ],
+      },
+      {
+        id: 'scale',
+        when: '2027+ · EXPAND',
+        number: '04',
+        title: 'Scale the network',
+        focus: 'Metro-by-metro',
+        status: 'Long-term goal',
+        current: false,
+        points: [
+          'Expand verified practice coverage',
+          'Pursue SOC 2 audit; HIPAA track only if funded and required',
+        ],
+      },
     ],
-    note: 'Later: compliant clinical handoffs, payer navigation, provider groups.',
+    trustGates: {
+      label: 'Trust gates',
+      path: [
+        'Security + privacy controls',
+        'SOC 2 Type I / II readiness + independent audit',
+        'HIPAA-capable track before any PHI',
+      ],
+      disclaimer:
+        'No SOC 2 attestation or HIPAA compliance is claimed; HIPAA depends on a separate legal, technical and funding decision.',
+    },
   },
   {
-    id: 'prosper',
-    section: 'Why Prosper',
-    title: 'Why Prosper',
-    body: [
-      'Five teams. Healthcare partners who can validate a pilot’s scope.',
-      'Birmingham — the founder is Mobile-born; Alabama is home ground.',
-      'By Premiere Night: live practice pilots, a compliance architecture a health system can review, and the first paying healthcare customers on a network that already works.',
-    ],
-    close: {
-      company: PROSPER_META.company,
-      site: PROSPER_META.site,
-      founder: `${PROSPER_META.founder}, ${PROSPER_META.founderRole}`,
+    id: 'contact',
+    section: 'Contact',
+    title: 'Contact',
+    logo: {
+      src: '/images/promo/aiweb-logo-black.png',
+      alt: 'aiweb',
     },
+    company: PROSPER_META.company,
+    site: PROSPER_META.site,
+    email: 'support@theaiwebcompany.com',
+    founder: `${PROSPER_META.founder}, ${PROSPER_META.founderRole}`,
+    socials: [
+      {
+        id: 'x',
+        label: 'X',
+        handle: '@theaiwebcompany',
+        href: 'https://x.com/theaiwebcompany',
+      },
+      {
+        id: 'linkedin',
+        label: 'LinkedIn',
+        handle: 'The AI Web Company',
+        href: 'https://www.linkedin.com/company/the-ai-web-company',
+      },
+      {
+        id: 'instagram',
+        label: 'Instagram',
+        handle: '@theaiwebcompany',
+        href: 'https://www.instagram.com/theaiwebcompany',
+      },
+      {
+        id: 'youtube',
+        label: 'YouTube',
+        handle: '@theaiwebcompany',
+        href: 'https://www.youtube.com/@theaiwebcompany',
+      },
+    ],
   },
 ] as const;
 

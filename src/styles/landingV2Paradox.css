@@ -471,13 +471,23 @@
   color: var(--px-ink);
 }
 
+.lv2p-hero-lead {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  max-width: 64rem;
+  margin: 0 auto;
+}
+
 .lv2p-hero-mailbox {
   display: block;
   width: auto;
   max-width: min(92vw, 27rem);
   max-height: min(76vh, 36rem);
   height: auto;
-  margin: 0 auto 1rem;
+  margin: 0;
   object-fit: contain;
 }
 
@@ -507,8 +517,7 @@
   column-gap: 0;
   row-gap: 0.08em;
   max-width: 22rem;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0;
   font-size: clamp(1.45rem, 5.4vw, 2.4rem);
   line-height: 1.12;
   letter-spacing: -0.04em;
@@ -2109,6 +2118,33 @@
 }
 
 @media (min-width: 900px) {
+  .lv2p-hero-lead {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(1.5rem, 3vw, 2.75rem);
+    text-align: left;
+  }
+
+  .lv2p-hero-mailbox {
+    flex: 0 1 auto;
+    max-width: min(42vw, 22rem);
+    max-height: min(70vh, 32rem);
+  }
+
+  .lv2p-hero-dm {
+    flex: 1 1 16rem;
+    max-width: 22rem;
+    justify-content: flex-start;
+    text-align: left;
+    font-size: clamp(1.85rem, 3.2vw, 2.75rem);
+  }
+
+  .lv2p-hero-dm-rotator {
+    justify-items: start;
+    text-align: left;
+  }
+
   .lv2p-nav-links {
     display: flex;
     flex: 1;

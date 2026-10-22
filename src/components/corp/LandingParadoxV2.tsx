@@ -859,17 +859,19 @@ export function LandingParadoxV2({ page = 'home' }: { page?: LandingPage }) {
     <div className="lv2p">
       <WelcomeCloudCarousel />
       <section id="hero" className="lv2p-hero">
-        <img
-          className="lv2p-hero-mailbox lv2p-hero-mailbox--for-dark"
-          src="/images/promo/aiweb-mailbox-lightmode.png"
-          alt="AIWEB Mail inbox with direct messages from ChatGPT, Claude, Gemini, Grok, and the web."
-        />
-        <img
-          className="lv2p-hero-mailbox lv2p-hero-mailbox--for-light"
-          src="/images/promo/aiweb-mailbox-darkmode.png"
-          alt="AIWEB Mail inbox with direct messages from ChatGPT, Claude, Gemini, Grok, and the web."
-        />
-        <HeroDmHeadline />
+        <div className="lv2p-hero-lead">
+          <img
+            className="lv2p-hero-mailbox lv2p-hero-mailbox--for-dark"
+            src="/images/promo/aiweb-mailbox-lightmode.png"
+            alt="AIWEB Mail inbox with direct messages from ChatGPT, Claude, Gemini, Grok, and the web."
+          />
+          <img
+            className="lv2p-hero-mailbox lv2p-hero-mailbox--for-light"
+            src="/images/promo/aiweb-mailbox-darkmode.png"
+            alt="AIWEB Mail inbox with direct messages from ChatGPT, Claude, Gemini, Grok, and the web."
+          />
+          <HeroDmHeadline />
+        </div>
         <HeroHowItWorks />
         <HeroStory />
       </section>

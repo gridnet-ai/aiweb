@@ -1,9 +1,7 @@
 import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react';
-import { Link } from 'react-router-dom';
 import { DEFAULT_PAGE_TITLE } from '@/lib/siteSeo';
 import {
   PROSPER_DECK_SLIDES,
-  PROSPER_META,
   PROSPER_PRODUCT_LOOP,
 } from '@/pitchdeck/prosperContent';
 import '@/pages/pitchdeck.css';
@@ -134,6 +132,178 @@ function FounderHighlightIcon({ kind }: { kind: string }) {
   }
 }
 
+function JourneyStepIcon({ kind }: { kind: string }) {
+  switch (kind) {
+    case 'browser':
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden>
+          <rect
+            x="3"
+            y="4"
+            width="18"
+            height="16"
+            rx="2.5"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.7"
+          />
+          <path d="M3 8.5h18" fill="none" stroke="currentColor" strokeWidth="1.7" />
+          <circle cx="6.2" cy="6.25" r="0.7" fill="currentColor" />
+          <circle cx="8.4" cy="6.25" r="0.7" fill="currentColor" />
+          <circle cx="10.6" cy="6.25" r="0.7" fill="currentColor" />
+          <path
+            d="M8 13.5h8M8 16.2h5"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+          />
+        </svg>
+      );
+    case 'reviews':
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden>
+          <path
+            fill="currentColor"
+            d="M4 5.5A1.5 1.5 0 0 1 5.5 4H16a1.5 1.5 0 0 1 1.5 1.5V12A1.5 1.5 0 0 1 16 13.5h-5.2L7.5 16.2a.6.6 0 0 1-1-.5V13.5H5.5A1.5 1.5 0 0 1 4 12V5.5z"
+            opacity="0.18"
+          />
+          <path
+            fill="#f5b400"
+            d="m7.2 9.1.95-2.05.95 2.05 2.25.2-1.7 1.45.55 2.2-2.05-1.2-2.05 1.2.55-2.2-1.7-1.45z"
+          />
+          <path
+            fill="#f5b400"
+            d="m13.1 9.1.8-1.75.8 1.75 1.9.17-1.45 1.22.47 1.85-1.72-1-1.72 1 .47-1.85-1.45-1.22z"
+          />
+        </svg>
+      );
+    case 'phone':
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden>
+          <path
+            fill="#1f9d55"
+            d="M7.2 3.8c.5-.5 1.3-.5 1.8 0l1.7 1.7c.45.45.5 1.2.1 1.7L9.5 9.1c.7 1.4 1.9 2.6 3.4 3.4l1.9-1.3c.5-.4 1.25-.35 1.7.1l1.7 1.7c.5.5.5 1.3 0 1.8l-1.1 1.1c-.55.55-1.3.8-2.05.7-2.5-.35-4.9-1.7-6.85-3.65S4.85 9.15 4.5 6.65c-.1-.75.15-1.5.7-2.05z"
+          />
+        </svg>
+      );
+    case 'sparkles':
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden>
+          <path
+            fill="currentColor"
+            d="M6.5 4.5h11A1.5 1.5 0 0 1 19 6v12a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 5 18V6a1.5 1.5 0 0 1 1.5-1.5z"
+            opacity="0.14"
+          />
+          <path
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.6"
+            strokeLinecap="round"
+            d="M8 9h6.5M8 12.2h8M8 15.4h5"
+          />
+          <path
+            fill="currentColor"
+            d="m17.2 5.2.55 1.35 1.35.55-1.35.55-.55 1.35-.55-1.35-1.35-.55 1.35-.55z"
+          />
+        </svg>
+      );
+    case 'pin':
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden>
+          <path
+            fill="currentColor"
+            d="M12 3.5a5 5 0 0 1 5 5c0 3.4-3.4 7.3-4.6 8.55a.6.6 0 0 1-.8 0C10.4 15.8 7 11.9 7 8.5a5 5 0 0 1 5-5zm0 3.2a1.8 1.8 0 1 0 0 3.6 1.8 1.8 0 0 0 0-3.6z"
+          />
+          <path
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            d="M16.5 17.5H20M16.5 20H19"
+          />
+        </svg>
+      );
+    case 'chat':
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden>
+          <path
+            fill="currentColor"
+            d="M4 5.8A1.8 1.8 0 0 1 5.8 4H13a1.8 1.8 0 0 1 1.8 1.8v5.2A1.8 1.8 0 0 1 13 12.8H9.4L6.7 15a.55.55 0 0 1-.9-.45v-1.75H5.8A1.8 1.8 0 0 1 4 11V5.8z"
+            opacity="0.35"
+          />
+          <path
+            fill="currentColor"
+            d="M10.2 9.8A1.8 1.8 0 0 1 12 8h6.2A1.8 1.8 0 0 1 20 9.8v5.4a1.8 1.8 0 0 1-1.8 1.8h-1.2v1.55a.55.55 0 0 1-.9.45l-2.5-2H12a1.8 1.8 0 0 1-1.8-1.8V9.8z"
+          />
+        </svg>
+      );
+    case 'chart':
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden>
+          <path
+            fill="currentColor"
+            d="M5 18h2.2V10H5v8zm5.4 0H12.6V6h-2.2v12zm5.4 0H18V12h-2.2v6zM4 20h16v1.6H4z"
+          />
+        </svg>
+      );
+    default:
+      return null;
+  }
+}
+
+function JourneyFlowArrow() {
+  return (
+    <span className="prosper-sta-arrow" aria-hidden>
+      <span className="prosper-sta-arrow-line" />
+      <span className="prosper-sta-arrow-head" />
+    </span>
+  );
+}
+
+function ContactSocialIcon({ kind }: { kind: string }) {
+  switch (kind) {
+    case 'x':
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden>
+          <path
+            fill="currentColor"
+            d="M13.92 10.68 20.1 3.5h-1.46l-5.36 6.23L8.98 3.5H3.5l6.48 9.44L3.5 20.5h1.46l5.67-6.59 4.53 6.59H20.5l-6.58-9.82zm-2.01 2.33-.66-.94L5.48 4.6h2.25l4.22 6.04.66.94 5.49 7.86h-2.25l-4.69-6.43z"
+          />
+        </svg>
+      );
+    case 'linkedin':
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden>
+          <path
+            fill="currentColor"
+            d="M6.94 8.5H4.1V19.9h2.84V8.5zM5.52 4.1a1.65 1.65 0 1 0 0 3.3 1.65 1.65 0 0 0 0-3.3zM19.9 19.9h-2.83v-5.54c0-1.32-.02-3.02-1.84-3.02-1.84 0-2.12 1.44-2.12 2.92v5.64H10.28V8.5h2.72v1.56h.04c.38-.72 1.3-1.48 2.68-1.48 2.86 0 3.39 1.88 3.39 4.33V19.9z"
+          />
+        </svg>
+      );
+    case 'instagram':
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden>
+          <path
+            fill="currentColor"
+            d="M12 7.4A4.6 4.6 0 1 0 16.6 12 4.6 4.6 0 0 0 12 7.4zm0 7.6A3 3 0 1 1 15 12a3 3 0 0 1-3 3zm5.84-7.78a1.08 1.08 0 1 1-1.08-1.08 1.08 1.08 0 0 1 1.08 1.08zM12 4.7c-1.98 0-2.22.01-3 .04a4.9 4.9 0 0 0-1.63.3 3.24 3.24 0 0 0-1.86 1.86 4.9 4.9 0 0 0-.3 1.63c-.03.78-.04 1.02-.04 3s.01 2.22.04 3a4.9 4.9 0 0 0 .3 1.63 3.24 3.24 0 0 0 1.86 1.86 4.9 4.9 0 0 0 1.63.3c.78.03 1.02.04 3 .04s2.22-.01 3-.04a4.9 4.9 0 0 0 1.63-.3 3.24 3.24 0 0 0 1.86-1.86 4.9 4.9 0 0 0 .3-1.63c.03-.78.04-1.02.04-3s-.01-2.22-.04-3a4.9 4.9 0 0 0-.3-1.63 3.24 3.24 0 0 0-1.86-1.86 4.9 4.9 0 0 0-1.63-.3c-.78-.03-1.02-.04-3-.04zm0-1.6c2.02 0 2.27.01 3.06.04a6.5 6.5 0 0 1 2.15.4 4.84 4.84 0 0 1 2.77 2.77 6.5 6.5 0 0 1 .4 2.15c.03.79.04 1.04.04 3.06s-.01 2.27-.04 3.06a6.5 6.5 0 0 1-.4 2.15 4.84 4.84 0 0 1-2.77 2.77 6.5 6.5 0 0 1-2.15.4c-.79.03-1.04.04-3.06.04s-2.27-.01-3.06-.04a6.5 6.5 0 0 1-2.15-.4 4.84 4.84 0 0 1-2.77-2.77 6.5 6.5 0 0 1-.4-2.15C4.71 14.27 4.7 14.02 4.7 12s.01-2.27.04-3.06a6.5 6.5 0 0 1 .4-2.15A4.84 4.84 0 0 1 7.91 4.02a6.5 6.5 0 0 1 2.15-.4C10.85 3.59 11.1 3.58 13.12 3.58z"
+          />
+        </svg>
+      );
+    case 'youtube':
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden>
+          <path
+            fill="currentColor"
+            d="M22.5 7.7a3.1 3.1 0 0 0-2.18-2.2C18.5 5 12 5 12 5s-6.5 0-8.32.5A3.1 3.1 0 0 0 1.5 7.7 32.4 32.4 0 0 0 1 12a32.4 32.4 0 0 0 .5 4.3 3.1 3.1 0 0 0 2.18 2.2C5.5 19 12 19 12 19s6.5 0 8.32-.5a3.1 3.1 0 0 0 2.18-2.2A32.4 32.4 0 0 0 23 12a32.4 32.4 0 0 0-.5-4.3zM10.2 15.1V8.9L15.5 12l-5.3 3.1z"
+          />
+        </svg>
+      );
+    default:
+      return null;
+  }
+}
+
 const SLIDES: Slide[] = PROSPER_DECK_SLIDES.map((slide) => {
   if (slide.id === 'cover' && 'loop' in slide) {
     return {
@@ -173,7 +343,12 @@ const SLIDES: Slide[] = PROSPER_DECK_SLIDES.map((slide) => {
     };
   }
 
-  if (slide.id === 'founder' && 'portrait' in slide && 'highlights' in slide) {
+  if (
+    slide.id === 'founder' &&
+    'portrait' in slide &&
+    'highlights' in slide &&
+    'employers' in slide
+  ) {
     return {
       id: slide.id,
       section: slide.section,
@@ -208,9 +383,15 @@ const SLIDES: Slide[] = PROSPER_DECK_SLIDES.map((slide) => {
               <p>{slide.quote.text}</p>
               <footer>— {slide.quote.by}</footer>
             </blockquote>
-            <ul className="prosper-founder-tags">
-              {slide.tags.map((tag) => (
-                <li key={tag}>{tag}</li>
+            <ul className="prosper-founder-tags" aria-label="Places worked and programs">
+              {slide.employers.map((employer) => (
+                <li
+                  key={employer.id}
+                  className={`prosper-founder-tag prosper-founder-tag--${employer.id}`}
+                  title={employer.label}
+                >
+                  <img src={employer.src} alt={employer.label} />
+                </li>
               ))}
             </ul>
           </div>
@@ -234,7 +415,14 @@ const SLIDES: Slide[] = PROSPER_DECK_SLIDES.map((slide) => {
               {slide.summaryStat.value}
             </p>
             <p className="prosper-summary prosper-summary--stat">
-              <span className="prosper-summary-text">{slide.summaryStat.text}</span>
+              <span className="prosper-summary-text prosper-summary-text--desktop">
+                {slide.summaryStat.text}
+              </span>
+              {'textMobile' in slide.summaryStat && slide.summaryStat.textMobile ? (
+                <span className="prosper-summary-text prosper-summary-text--mobile">
+                  {slide.summaryStat.textMobile}
+                </span>
+              ) : null}
             </p>
           </div>
           <div className="prosper-problem-gallery">
@@ -272,14 +460,10 @@ const SLIDES: Slide[] = PROSPER_DECK_SLIDES.map((slide) => {
           <div className="prosper-product-copy">
             <h1 className="prosper-title">{slide.title}</h1>
             <p className="prosper-lede">{slide.lede}</p>
-            {'points' in slide && slide.points?.length ? (
-              <ul className="prosper-points">
-                {slide.points.map((point) => (
-                  <li key={point.label}>
-                    <strong>{point.label}</strong> — {point.text}
-                  </li>
-                ))}
-              </ul>
+            {'mascot' in slide && slide.mascot ? (
+              <figure className="prosper-product-mascot">
+                <img src={slide.mascot.src} alt={slide.mascot.alt} />
+              </figure>
             ) : null}
             {'noteIcon' in slide && slide.noteIcon ? (
               <div className="prosper-product-compat">
@@ -315,54 +499,506 @@ const SLIDES: Slide[] = PROSPER_DECK_SLIDES.map((slide) => {
     };
   }
 
-  if (slide.id === 'roadmap' && 'steps' in slide) {
+  if (
+    slide.id === 'howitworks' &&
+    'old' in slide &&
+    'ai' in slide &&
+    'shift' in slide &&
+    'summary' in slide
+  ) {
     return {
       id: slide.id,
       section: slide.section,
       render: () => (
-        <SlideShell title={slide.title}>
-          <p className="prosper-lede">{slide.lede}</p>
-          <ol className="prosper-steps">
-            {slide.steps.map((step, i) => (
-              <li key={step}>
-                <span className="prosper-step-num">{i + 1}</span>
-                <span>{step}</span>
-              </li>
-            ))}
-          </ol>
-          <p className="prosper-note">{slide.note}</p>
-        </SlideShell>
+        <div className="pd-stack prosper-slide prosper-slide--howitworks">
+          <header className="prosper-sta-head">
+            <h1 className="prosper-title">{slide.title}</h1>
+            <p className="prosper-lede prosper-sta-lede">{slide.lede}</p>
+          </header>
+
+          <div className="prosper-sta-stage" aria-label="From search to chat">
+            <article className="prosper-sta-card prosper-sta-card--old">
+              <header className="prosper-sta-card-head">
+                <h2 className="prosper-sta-card-title">{slide.old.title}</h2>
+                <p className="prosper-sta-card-subtitle">{slide.old.subtitle}</p>
+              </header>
+
+              <div className="prosper-sta-search" aria-label={`Search: ${slide.old.search}`}>
+                <span className="prosper-sta-search-icon" aria-hidden>
+                  <svg viewBox="0 0 24 24">
+                    <circle
+                      cx="10.5"
+                      cy="10.5"
+                      r="5.5"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.8"
+                    />
+                    <path
+                      d="m14.8 14.8 4 4"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.8"
+                      strokeLinecap="round"
+                    />
+                  </svg>
+                </span>
+                <span className="prosper-sta-search-text">{slide.old.search}</span>
+                <span className="prosper-sta-search-mic" aria-hidden>
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      fill="currentColor"
+                      d="M12 3.5a2.7 2.7 0 0 1 2.7 2.7v5.1a2.7 2.7 0 0 1-5.4 0V6.2A2.7 2.7 0 0 1 12 3.5zm-5 8.3a.9.9 0 0 1 1.8 0 3.2 3.2 0 0 0 6.4 0 .9.9 0 1 1 1.8 0 5 5 0 0 1-4.1 4.9v1.8H14a.9.9 0 1 1 0 1.8h-4a.9.9 0 1 1 0-1.8h1.1v-1.8A5 5 0 0 1 7 11.8z"
+                    />
+                  </svg>
+                </span>
+              </div>
+
+              <ol className="prosper-sta-steps" aria-label={slide.old.steps.map((s) => s.text).join(' to ')}>
+                {slide.old.steps.map((step) => (
+                  <li key={step.id}>
+                    <JourneyFlowArrow />
+                    <div className="prosper-sta-step">
+                      <span className={`prosper-sta-step-icon prosper-sta-step-icon--${step.icon}`}>
+                        <JourneyStepIcon kind={step.icon} />
+                      </span>
+                      <span className="prosper-sta-step-text">{step.text}</span>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </article>
+
+            <div className="prosper-sta-shift" aria-hidden>
+              <p className="prosper-sta-shift-label">{slide.shift}</p>
+              <span className="prosper-sta-shift-arrow" />
+            </div>
+
+            <article className="prosper-sta-card prosper-sta-card--ai">
+              <header className="prosper-sta-card-head prosper-sta-card-head--ai">
+                <div>
+                  <h2 className="prosper-sta-card-title">{slide.ai.title}</h2>
+                  <p className="prosper-sta-card-subtitle">{slide.ai.subtitle}</p>
+                </div>
+                <ul className="prosper-sta-assistants" aria-label="AI assistants">
+                  {slide.ai.assistants.map((assistant) => (
+                    <li key={assistant.id}>
+                      <img src={assistant.src} alt={assistant.label} />
+                      <span>{assistant.label}</span>
+                    </li>
+                  ))}
+                </ul>
+              </header>
+
+              <div className="prosper-sta-chat">
+                <span className="prosper-sta-chat-avatar" aria-hidden>
+                  <svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="8" r="3.2" fill="currentColor" />
+                    <path
+                      fill="currentColor"
+                      d="M5.5 18.8c.7-3.1 3.2-4.8 6.5-4.8s5.8 1.7 6.5 4.8a.9.9 0 0 1-.9 1.2H6.4a.9.9 0 0 1-.9-1.2z"
+                    />
+                  </svg>
+                </span>
+                <p className="prosper-sta-chat-bubble">“{slide.ai.query}”</p>
+              </div>
+
+              <ol className="prosper-sta-steps" aria-label={slide.ai.steps.map((s) => s.text).join(' to ')}>
+                {slide.ai.steps.map((step) => (
+                  <li key={step.id}>
+                    <JourneyFlowArrow />
+                    <div className="prosper-sta-step prosper-sta-step--ai">
+                      <span className={`prosper-sta-step-icon prosper-sta-step-icon--${step.icon}`}>
+                        <JourneyStepIcon kind={step.icon} />
+                      </span>
+                      <span className="prosper-sta-step-text">{step.text}</span>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </article>
+          </div>
+
+          <aside className="prosper-sta-summary">
+            <span className="prosper-sta-summary-icon" aria-hidden>
+              <JourneyStepIcon kind="chart" />
+            </span>
+            <p>
+              {slide.summary.before}
+              <strong>{slide.summary.emphasis}</strong>
+            </p>
+          </aside>
+        </div>
       ),
     };
   }
 
-  if (slide.id === 'prosper' && 'close' in slide) {
+  if (
+    slide.id === 'competition' &&
+    'categories' in slide &&
+    'channels' in slide &&
+    'objection' in slide
+  ) {
     return {
       id: slide.id,
       section: slide.section,
       render: () => (
-        <SlideShell title={slide.title}>
-          {slide.body.map((paragraph) => (
-            <p key={paragraph} className="prosper-body">
-              {paragraph}
-            </p>
-          ))}
-          <div className="prosper-close">
-            <p>{slide.close.company}</p>
-            <p>
-              <a href={`https://${slide.close.site}`}>{slide.close.site}</a>
-            </p>
-            <p>{slide.close.founder}</p>
+        <div className="pd-stack prosper-slide prosper-slide--competition">
+          <header className="prosper-competition-head">
+            <h1 className="prosper-title">{slide.title}</h1>
+          </header>
+
+          <div className="prosper-competition-table" role="table" aria-label="Competitive landscape">
+            <div className="prosper-competition-row prosper-competition-row--head" role="row">
+              <span role="columnheader">Category</span>
+              <span role="columnheader">Major competitors</span>
+              <div
+                className="prosper-competition-channels"
+                role="columnheader"
+                aria-label={slide.channels.map((channel) => channel.label).join(', ')}
+              >
+                {slide.channels.map((channel) => (
+                  <span key={channel.id} className="prosper-competition-channel" title={channel.label}>
+                    <img src={channel.src} alt={channel.label} />
+                  </span>
+                ))}
+              </div>
+            </div>
+            {slide.categories.map((category) => (
+              <div key={category.name} className="prosper-competition-row" role="row">
+                <span className="prosper-competition-category" role="cell">
+                  {category.name}
+                </span>
+                <ul className="prosper-competition-logos" role="cell">
+                  {category.competitors.map((competitor) => (
+                    <li key={competitor.id}>
+                      <img src={competitor.src} alt="" />
+                      <span>{competitor.label}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div
+                  className="prosper-competition-marks"
+                  role="cell"
+                  aria-label={`${category.name} channel coverage`}
+                >
+                  {slide.channels.map((channel, index) => {
+                    const covered = category.reach[index] === true;
+                    return (
+                      <span
+                        key={channel.id}
+                        className={
+                          covered
+                            ? 'prosper-competition-mark prosper-competition-mark--yes'
+                            : 'prosper-competition-mark prosper-competition-mark--no'
+                        }
+                        title={`${channel.label}: ${covered ? 'Yes' : 'No'}`}
+                        aria-label={`${channel.label}: ${covered ? 'Yes' : 'No'}`}
+                      >
+                        {covered ? '✓' : '✕'}
+                      </span>
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
           </div>
-          <div className="prosper-cover-links">
-            <Link className="prosper-link" to="/executivesummary">
-              Executive summary
-            </Link>
-            <a className="prosper-link" href={PROSPER_META.summaryPdf}>
-              Summary PDF
+
+          <section className="prosper-competition-objection" aria-label="Investor question">
+            <h2 className="prosper-competition-question">{slide.objection.question}</h2>
+            <div className="prosper-competition-observations">
+              {slide.objection.observations.map((item) => (
+                <article key={item.label}>
+                  <h3>{item.label}</h3>
+                  <p>{item.text}</p>
+                </article>
+              ))}
+            </div>
+          </section>
+        </div>
+      ),
+    };
+  }
+
+  if (slide.id === 'whynow' && 'stat' in slide && 'photo' in slide) {
+    return {
+      id: slide.id,
+      section: slide.section,
+      render: () => (
+        <div className="pd-stack prosper-slide prosper-slide--whynow">
+          <header className="prosper-whynow-head">
+            <h1 className="prosper-whynow-title">{slide.title}</h1>
+            <p className="prosper-whynow-subhead">{slide.subhead}</p>
+          </header>
+
+          <div className="prosper-whynow-main">
+            <div className="prosper-whynow-stat">
+              <p className="prosper-whynow-value">{slide.stat.value}</p>
+              <p className="prosper-whynow-stat-text">{slide.stat.text}</p>
+              <p className="prosper-whynow-trend">{slide.stat.trend}</p>
+            </div>
+            <figure className="prosper-whynow-photo">
+              <img src={slide.photo.src} alt={slide.photo.alt} />
+            </figure>
+          </div>
+
+          <footer className="prosper-whynow-foot">
+            <p className="prosper-whynow-close">{slide.close}</p>
+            <p className="prosper-whynow-source">
+              <a href={slide.source.href} target="_blank" rel="noopener noreferrer">
+                {slide.source.label}
+              </a>
+            </p>
+          </footer>
+        </div>
+      ),
+    };
+  }
+
+  if (slide.id === 'market' && 'layers' in slide && 'lede' in slide && 'note' in slide) {
+    return {
+      id: slide.id,
+      section: slide.section,
+      render: () => (
+        <div className="pd-stack prosper-slide prosper-slide--market">
+          <header className="prosper-market-head">
+            <h1 className="prosper-title">{slide.title}</h1>
+            <p className="prosper-lede prosper-market-lede">{slide.lede}</p>
+          </header>
+
+          <div className="prosper-market-stage">
+            <div className="prosper-market-rings" aria-hidden>
+              <div className="prosper-market-ring prosper-market-ring--tam">
+                <span>TAM</span>
+              </div>
+              <div className="prosper-market-ring prosper-market-ring--sam">
+                <span>SAM</span>
+              </div>
+              <div className="prosper-market-ring prosper-market-ring--som">
+                <span>SOM</span>
+              </div>
+            </div>
+
+            <ol className="prosper-market-layers" aria-label="TAM, SAM, and SOM">
+              {slide.layers.map((layer) => (
+                <li
+                  key={layer.tier}
+                  className={`prosper-market-layer prosper-market-layer--${layer.tier.toLowerCase()}`}
+                >
+                  <p className="prosper-market-tier">{layer.tier}</p>
+                  <p className="prosper-market-value">{layer.value}</p>
+                  <p className="prosper-market-label">{layer.label}</p>
+                  <p className="prosper-market-detail">{layer.detail}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+
+          <p className="prosper-market-note">{slide.note}</p>
+        </div>
+      ),
+    };
+  }
+
+  if (slide.id === 'model' && 'plans' in slide && 'lede' in slide && 'note' in slide) {
+    return {
+      id: slide.id,
+      section: slide.section,
+      render: () => (
+        <div className="pd-stack prosper-slide prosper-slide--revenue">
+          <header className="prosper-revenue-head">
+            <h1 className="prosper-title">{slide.title}</h1>
+            <p className="prosper-lede prosper-revenue-lede">{slide.lede}</p>
+          </header>
+
+          <div className="prosper-revenue-plans" aria-label="Revenue plans">
+            {slide.plans.map((plan) => (
+              <article
+                key={plan.id}
+                className={
+                  plan.recommended
+                    ? 'prosper-revenue-plan prosper-revenue-plan--recommended'
+                    : 'prosper-revenue-plan'
+                }
+              >
+                {plan.recommended ? (
+                  <span className="prosper-revenue-badge">Recommended</span>
+                ) : null}
+                <header className="prosper-revenue-plan-head">
+                  <h2 className="prosper-revenue-plan-name">
+                    {plan.name}{' '}
+                    <span className="prosper-revenue-plan-price">{plan.price}</span>
+                  </h2>
+                  <p className="prosper-revenue-plan-audience">
+                    <span>{plan.audience}</span>
+                    {'audienceLogo' in plan && plan.audienceLogo ? (
+                      <img
+                        className="prosper-revenue-plan-audience-logo"
+                        src={plan.audienceLogo.src}
+                        alt={plan.audienceLogo.alt}
+                      />
+                    ) : null}
+                  </p>
+                </header>
+                <ul className="prosper-revenue-features">
+                  {plan.features.map((feature) => (
+                    <li key={feature}>
+                      <span className="prosper-revenue-check" aria-hidden>
+                        ✓
+                      </span>
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+
+          <aside className="prosper-revenue-note">
+            <span className="prosper-revenue-note-icon" aria-hidden>
+              <svg viewBox="0 0 24 24">
+                <path
+                  fill="currentColor"
+                  d="M12 3.2c2.4 3.1 4.6 4.4 7.2 5.2-2.6.8-4.8 2.1-7.2 5.2-2.4-3.1-4.6-4.4-7.2-5.2 2.6-.8 4.8-2.1 7.2-5.2z"
+                />
+                <path
+                  fill="currentColor"
+                  d="M12 13.4c1.4 1.8 2.7 2.5 4.2 3-1.5.5-2.8 1.2-4.2 3-1.4-1.8-2.7-2.5-4.2-3 1.5-.5 2.8-1.2 4.2-3z"
+                  opacity="0.55"
+                />
+              </svg>
+            </span>
+            <p>{slide.note}</p>
+          </aside>
+        </div>
+      ),
+    };
+  }
+
+  if (slide.id === 'roadmap' && 'phases' in slide && 'trustGates' in slide) {
+    return {
+      id: slide.id,
+      section: slide.section,
+      render: () => (
+        <div className="pd-stack prosper-slide prosper-slide--roadmap">
+          <header className="prosper-roadmap-head">
+            <h1 className="prosper-title">{slide.title}</h1>
+            <p className="prosper-lede prosper-roadmap-lede">{slide.lede}</p>
+          </header>
+
+          <div className="prosper-roadmap-body">
+            <ol className="prosper-roadmap-timeline" aria-label="Roadmap timeline">
+              {slide.phases.map((phase) => (
+                <li
+                  key={phase.id}
+                  className={
+                    phase.current
+                      ? 'prosper-roadmap-node prosper-roadmap-node--current'
+                      : 'prosper-roadmap-node'
+                  }
+                >
+                  <span className="prosper-roadmap-dot" aria-hidden />
+                  <span className="prosper-roadmap-when">{phase.when}</span>
+                </li>
+              ))}
+            </ol>
+
+            <ol className="prosper-roadmap-phases" aria-label="Roadmap phases">
+              {slide.phases.map((phase) => (
+                <li
+                  key={phase.id}
+                  className={
+                    phase.current
+                      ? 'prosper-roadmap-phase prosper-roadmap-phase--current'
+                      : 'prosper-roadmap-phase'
+                  }
+                >
+                  <p className="prosper-roadmap-number">{phase.number}</p>
+                  <h2 className="prosper-roadmap-phase-title">{phase.title}</h2>
+                  <p className="prosper-roadmap-focus">{phase.focus}</p>
+                  <ul className="prosper-roadmap-points">
+                    {phase.points.map((point) => (
+                      <li key={point}>{point}</li>
+                    ))}
+                  </ul>
+                  <p className="prosper-roadmap-status">{phase.status}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+
+          <aside className="prosper-roadmap-gates" aria-label={slide.trustGates.label}>
+            <p className="prosper-roadmap-gates-label">{slide.trustGates.label}</p>
+            <p className="prosper-roadmap-gates-path">
+              {slide.trustGates.path.map((step, index) => (
+                <span key={step}>
+                  {index > 0 ? (
+                    <span className="prosper-roadmap-gates-arrow" aria-hidden>
+                      →
+                    </span>
+                  ) : null}
+                  <strong>{step}</strong>
+                </span>
+              ))}
+            </p>
+            <p className="prosper-roadmap-gates-note">{slide.trustGates.disclaimer}</p>
+          </aside>
+        </div>
+      ),
+    };
+  }
+
+  if (slide.id === 'contact' && 'socials' in slide && 'logo' in slide) {
+    return {
+      id: slide.id,
+      section: slide.section,
+      render: () => (
+        <div className="pd-stack prosper-slide prosper-slide--contact">
+          <header className="prosper-contact-brand">
+            <img
+              className="prosper-contact-logo"
+              src={slide.logo.src}
+              alt={slide.logo.alt}
+            />
+            <p className="prosper-contact-company">{slide.company}</p>
+            <p className="prosper-contact-founder">{slide.founder}</p>
+          </header>
+
+          <div className="prosper-contact-channels">
+            <a
+              className="prosper-contact-link"
+              href={`https://${slide.site}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {slide.site}
+            </a>
+            <a className="prosper-contact-link" href={`mailto:${slide.email}`}>
+              {slide.email}
             </a>
           </div>
-        </SlideShell>
+
+          <ul className="prosper-contact-socials" aria-label="Social media">
+            {slide.socials.map((social) => (
+              <li key={social.id}>
+                <a
+                  className="prosper-contact-social"
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="prosper-contact-social-icon" aria-hidden>
+                    <ContactSocialIcon kind={social.id} />
+                  </span>
+                  <span className="prosper-contact-social-meta">
+                    <span className="prosper-contact-social-label">{social.label}</span>
+                    <span className="prosper-contact-social-handle">{social.handle}</span>
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
       ),
     };
   }

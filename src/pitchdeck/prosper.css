@@ -40,6 +40,22 @@
   height: auto;
 }
 
+.prosper-product-mascot {
+  margin: 0.35rem 0 0.15rem;
+  width: min(100%, 16rem);
+  justify-self: start;
+}
+
+.prosper-product-mascot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: min(28vh, 14rem);
+  object-fit: contain;
+  object-position: right center;
+  mix-blend-mode: multiply;
+}
+
 .prosper-product-visual--story {
   width: 100%;
   min-width: 0;
@@ -406,21 +422,64 @@
 .prosper-founder-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.35rem;
-  margin: 0.25rem 0 0;
+  align-items: center;
+  gap: 0.45rem 0.55rem;
+  margin: 0.35rem 0 0;
   padding: 0;
   list-style: none;
 }
 
-.prosper-founder-tags li {
+.prosper-founder-tag {
+  display: grid;
+  place-items: center;
   margin: 0;
-  padding: 0.28rem 0.6rem;
-  border-radius: 999px;
-  background: rgba(31, 111, 235, 0.1);
-  color: var(--founder-ink);
-  font-size: 0.66rem;
-  font-weight: 700;
-  letter-spacing: -0.01em;
+  width: auto;
+  min-width: 2.4rem;
+  height: 2.4rem;
+  padding: 0.3rem 0.4rem;
+  border: 1px solid rgba(11, 11, 12, 0.08);
+  border-radius: 0.65rem;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+  overflow: hidden;
+}
+
+.prosper-founder-tag img {
+  display: block;
+  width: auto;
+  max-width: 4.25rem;
+  height: 1.7rem;
+  object-fit: contain;
+  object-position: center;
+}
+
+.prosper-founder-tag--army,
+.prosper-founder-tag--founder-institute,
+.prosper-founder-tag--va {
+  padding: 0.22rem;
+}
+
+.prosper-founder-tag--army img,
+.prosper-founder-tag--founder-institute img {
+  width: 1.85rem;
+  max-width: none;
+  height: 1.85rem;
+}
+
+.prosper-founder-tag--va img {
+  width: 2.35rem;
+  max-width: none;
+  height: 1.85rem;
+}
+
+.prosper-founder-tag--7eleven img {
+  height: 1.85rem;
+  max-width: 2.1rem;
+}
+
+.prosper-founder-tag--papa-johns img {
+  height: 1.75rem;
+  max-width: 2.35rem;
 }
 
 @media (min-width: 820px) {
@@ -444,6 +503,431 @@
 
   .prosper-product-visual img {
     width: min(100%, 22rem);
+  }
+}
+
+/* How it works — Old Way vs Voice over AI */
+.prosper-root #pd-howitworks {
+  --journey-blue: #0866ff;
+  --sta-surface: #f3f5f8;
+  justify-content: flex-start;
+  padding-top: clamp(0.85rem, 2vh, 1.35rem);
+  padding-left: clamp(0.5rem, 1.5vw, 1rem);
+  padding-right: clamp(0.5rem, 1.5vw, 1rem);
+  padding-bottom: calc(4.75rem + env(safe-area-inset-bottom, 0px));
+  overflow: hidden;
+  background:
+    radial-gradient(120% 80% at 50% 0%, #fff 0%, var(--sta-surface) 55%, #e8edf3 100%);
+}
+
+.prosper-root #pd-howitworks .pd-panel-inner {
+  width: 100%;
+  max-width: none;
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: 100%;
+  align-items: stretch;
+  justify-content: flex-start;
+  padding: 0;
+  overflow: hidden;
+}
+
+.prosper-slide--howitworks {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.65rem, 1.6vh, 1rem);
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  min-width: 0;
+  container-type: inline-size;
+  container-name: prosper-sta;
+}
+
+.prosper-sta-head {
+  flex: 0 0 auto;
+  display: grid;
+  gap: 0.2rem;
+  text-align: center;
+  justify-items: center;
+}
+
+.prosper-root #pd-howitworks .prosper-title {
+  margin: 0;
+  font-family: var(--pd-display, Merriweather, Georgia, serif);
+  font-size: clamp(1.7rem, 3.4vw, 2.35rem);
+  letter-spacing: -0.03em;
+}
+
+.prosper-root #pd-howitworks .prosper-lede.prosper-sta-lede {
+  margin: 0;
+  max-width: none;
+  font-size: clamp(0.92rem, 1.45vw, 1.05rem);
+  font-weight: 550;
+  line-height: 1.3;
+  color: var(--pd-mute, #5f5e5a);
+}
+
+.prosper-sta-stage {
+  position: relative;
+  flex: 1 1 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: clamp(0.55rem, 1.5vw, 1rem);
+  align-items: stretch;
+  min-height: 0;
+}
+
+.prosper-sta-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  min-width: 0;
+  min-height: 0;
+  padding: clamp(0.85rem, 1.8vw, 1.2rem);
+  border: 1px solid rgba(11, 11, 12, 0.08);
+  border-radius: 1.15rem;
+  background: #fff;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06);
+}
+
+.prosper-sta-card-head {
+  display: grid;
+  gap: 0.1rem;
+}
+
+.prosper-sta-card-head--ai {
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 0.65rem;
+}
+
+.prosper-sta-card-title {
+  margin: 0;
+  font-family: var(--pd-display, Merriweather, Georgia, serif);
+  font-size: clamp(1.2rem, 2.1vw, 1.55rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--pd-ink, #0b0b0c);
+}
+
+.prosper-sta-card-subtitle {
+  margin: 0;
+  font-size: 0.82rem;
+  font-weight: 550;
+  color: var(--pd-mute, #5f5e5a);
+}
+
+.prosper-sta-assistants {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.28rem;
+  max-width: 12.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.prosper-sta-assistants li {
+  display: grid;
+  place-items: center;
+  width: 1.55rem;
+  height: 1.55rem;
+  padding: 0;
+  border: 1px solid rgba(11, 11, 12, 0.1);
+  border-radius: 0.45rem;
+  background: #fff;
+}
+
+.prosper-sta-assistants span {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.prosper-sta-assistants img {
+  width: 0.95rem;
+  height: 0.95rem;
+  object-fit: contain;
+}
+
+.prosper-sta-search {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.55rem;
+  min-height: 2.7rem;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid rgba(11, 11, 12, 0.12);
+  border-radius: 999px;
+  background: #f8fafc;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.prosper-sta-search-icon,
+.prosper-sta-search-mic {
+  display: grid;
+  place-items: center;
+  width: 1.15rem;
+  height: 1.15rem;
+  color: #64748b;
+}
+
+.prosper-sta-search-icon svg,
+.prosper-sta-search-mic svg,
+.prosper-sta-step-icon svg,
+.prosper-sta-chat-avatar svg,
+.prosper-sta-summary-icon svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.prosper-sta-search-text {
+  min-width: 0;
+  font-size: clamp(0.85rem, 1.35vw, 0.98rem);
+  font-weight: 650;
+  letter-spacing: -0.015em;
+  color: var(--pd-ink, #0b0b0c);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.prosper-sta-chat {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.55rem;
+  align-items: start;
+}
+
+.prosper-sta-chat-avatar {
+  display: grid;
+  place-items: center;
+  width: 2.15rem;
+  height: 2.15rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--journey-blue, #0866ff) 14%, #fff);
+  color: var(--journey-blue, #0866ff);
+}
+
+.prosper-sta-chat-bubble {
+  margin: 0;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid color-mix(in srgb, var(--journey-blue, #0866ff) 18%, transparent);
+  border-radius: 0.95rem;
+  background: color-mix(in srgb, var(--journey-blue, #0866ff) 7%, #fff);
+  font-size: clamp(0.78rem, 1.2vw, 0.9rem);
+  font-weight: 550;
+  line-height: 1.35;
+  color: var(--pd-ink, #0b0b0c);
+  text-wrap: pretty;
+}
+
+.prosper-sta-steps {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 0.15rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  min-height: 0;
+}
+
+.prosper-sta-steps li {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  margin: 0;
+}
+
+.prosper-sta-arrow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: center;
+  width: 1px;
+  height: 0.85rem;
+  margin: 0.1rem 0;
+}
+
+.prosper-sta-arrow-line {
+  flex: 1 1 auto;
+  width: 1.5px;
+  background: color-mix(in srgb, var(--pd-ink, #0b0b0c) 22%, transparent);
+}
+
+.prosper-sta-card--ai .prosper-sta-arrow-line {
+  background: color-mix(in srgb, var(--journey-blue, #0866ff) 45%, transparent);
+}
+
+.prosper-sta-arrow-head {
+  width: 0;
+  height: 0;
+  border-left: 0.28rem solid transparent;
+  border-right: 0.28rem solid transparent;
+  border-top: 0.36rem solid color-mix(in srgb, var(--pd-ink, #0b0b0c) 22%, transparent);
+}
+
+.prosper-sta-card--ai .prosper-sta-arrow-head {
+  border-top-color: color-mix(in srgb, var(--journey-blue, #0866ff) 45%, transparent);
+}
+
+.prosper-sta-step {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 0.7rem;
+  min-height: 3rem;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid rgba(11, 11, 12, 0.08);
+  border-radius: 0.85rem;
+  background: #f8fafc;
+}
+
+.prosper-sta-step--ai {
+  border-color: color-mix(in srgb, var(--journey-blue, #0866ff) 16%, transparent);
+  background: color-mix(in srgb, var(--journey-blue, #0866ff) 5%, #fff);
+}
+
+.prosper-sta-step-icon {
+  display: grid;
+  place-items: center;
+  width: 1.85rem;
+  height: 1.85rem;
+  color: var(--journey-blue, #0866ff);
+}
+
+.prosper-sta-step-text {
+  font-size: clamp(0.86rem, 1.3vw, 0.98rem);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--pd-ink, #0b0b0c);
+}
+
+.prosper-sta-shift {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  width: clamp(3.5rem, 7vw, 5rem);
+  align-self: center;
+}
+
+.prosper-sta-shift-label {
+  margin: 0;
+  max-width: 5.5rem;
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  line-height: 1.25;
+  text-align: center;
+  text-transform: uppercase;
+  color: #64748b;
+}
+
+.prosper-sta-shift-arrow {
+  position: relative;
+  display: block;
+  width: 2.6rem;
+  height: 0.72rem;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--journey-blue, #0866ff) 45%, #fff),
+    var(--journey-blue, #0866ff)
+  );
+}
+
+.prosper-sta-shift-arrow::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -0.28rem;
+  width: 0;
+  height: 0;
+  border-top: 0.55rem solid transparent;
+  border-bottom: 0.55rem solid transparent;
+  border-left: 0.7rem solid var(--journey-blue, #0866ff);
+  transform: translateY(-50%);
+}
+
+.prosper-sta-summary {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  padding: 0.9rem clamp(1rem, 2cqi, 1.75rem);
+  border: 1px solid color-mix(in srgb, var(--journey-blue, #0866ff) 18%, transparent);
+  border-radius: 0.9rem;
+  background: color-mix(in srgb, var(--journey-blue, #0866ff) 8%, #fff);
+  overflow: visible;
+}
+
+.prosper-sta-summary-icon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 1.55rem;
+  height: 1.55rem;
+  color: var(--journey-blue, #0866ff);
+}
+
+.prosper-sta-summary p {
+  margin: 0;
+  flex: 0 1 auto;
+  min-width: 0;
+  font-size: min(0.9rem, max(0.64rem, calc((100cqi - 5.75rem) / 76)));
+  font-weight: 550;
+  line-height: 1.35;
+  color: #334155;
+  white-space: nowrap;
+  text-wrap: nowrap;
+  overflow: visible;
+}
+
+.prosper-sta-summary strong {
+  font-weight: 800;
+  color: var(--journey-blue, #0866ff);
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  .prosper-sta-stage {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+
+  .prosper-sta-shift {
+    flex-direction: row;
+    width: auto;
+    gap: 0.75rem;
+  }
+
+  .prosper-sta-shift-label {
+    max-width: none;
+    text-align: left;
+  }
+
+  .prosper-sta-card-head--ai {
+    grid-template-columns: 1fr;
+  }
+
+  .prosper-sta-assistants {
+    justify-content: flex-start;
   }
 }
 
@@ -512,7 +996,7 @@
   height: min(58vh, calc(100dvh - 11rem), 30rem);
   max-height: min(58vh, calc(100dvh - 11rem), 30rem);
   width: auto;
-  max-width: none;
+  max-width: 100%;
 }
 
 .prosper-root #pd-solution {
@@ -543,6 +1027,8 @@
   max-height: min(72vh, calc(100dvh - 8rem), 38rem);
   object-fit: cover;
   object-position: center right;
+  border-top-left-radius: 0.85rem;
+  border-bottom-left-radius: 0.85rem;
 }
 
 /* Founder: fit one viewport — no inner scrollbar. */
@@ -828,6 +1314,10 @@
   line-height: 1.4;
   color: var(--pd-ink, #0b0b0c);
   text-wrap: pretty;
+}
+
+.prosper-summary-text--mobile {
+  display: none;
 }
 
 .prosper-assistant {
@@ -1262,6 +1752,1270 @@ html.prosper-exec-html body {
   text-underline-offset: 0.18em;
 }
 
+/* Why Now */
+.prosper-root #pd-whynow {
+  --whynow-blue: #0866ff;
+  justify-content: flex-start;
+  padding-top: clamp(1rem, 2.2vh, 1.5rem);
+  padding-bottom: calc(4.75rem + env(safe-area-inset-bottom, 0px));
+  overflow: hidden;
+}
+
+.prosper-root #pd-whynow .pd-panel-inner {
+  width: min(100%, 72rem);
+  flex: 1 1 auto;
+  min-height: 0;
+  align-items: stretch;
+  justify-content: flex-start;
+  padding: 0;
+  overflow: hidden;
+}
+
+.prosper-slide--whynow {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.75rem, 2vh, 1.25rem);
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+
+.prosper-whynow-head {
+  flex: 0 0 auto;
+  padding-bottom: 0.65rem;
+  border-bottom: 1px solid rgba(11, 11, 12, 0.12);
+}
+
+.prosper-whynow-title {
+  margin: 0;
+  max-width: 38rem;
+  font-family: var(--pd-display, Merriweather, Georgia, serif);
+  font-size: clamp(1.85rem, 3.8vw, 2.65rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.12;
+  color: var(--pd-ink, #0b0b0c);
+  text-wrap: balance;
+}
+
+.prosper-whynow-subhead {
+  margin: 0.55rem 0 0;
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
+  font-weight: 550;
+  font-style: italic;
+  letter-spacing: -0.015em;
+  line-height: 1.35;
+  color: var(--pd-mute, #5f5e5a);
+}
+
+.prosper-whynow-main {
+  flex: 1 1 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: clamp(1rem, 3vw, 2.25rem);
+  align-items: center;
+  min-height: 0;
+}
+
+.prosper-whynow-stat {
+  display: grid;
+  gap: 0.55rem;
+  align-content: center;
+  min-width: 0;
+}
+
+.prosper-whynow-value {
+  margin: 0;
+  font-size: clamp(4.5rem, 12vw, 7.5rem);
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  line-height: 0.9;
+  color: var(--whynow-blue, #0866ff);
+}
+
+.prosper-whynow-stat-text {
+  margin: 0;
+  max-width: 22rem;
+  font-size: clamp(1rem, 1.9vw, 1.25rem);
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  line-height: 1.35;
+  color: var(--pd-ink, #0b0b0c);
+  text-wrap: pretty;
+}
+
+.prosper-whynow-trend {
+  margin: 0.15rem 0 0;
+  font-size: clamp(0.85rem, 1.3vw, 0.98rem);
+  font-weight: 500;
+  font-style: italic;
+  color: var(--pd-mute, #5f5e5a);
+}
+
+.prosper-whynow-photo {
+  margin: 0;
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+  max-height: min(48vh, 22rem);
+  border-radius: 0.85rem;
+  overflow: hidden;
+  justify-self: stretch;
+}
+
+.prosper-whynow-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.prosper-whynow-foot {
+  flex: 0 0 auto;
+  display: grid;
+  gap: 0.45rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(11, 11, 12, 0.12);
+}
+
+.prosper-whynow-close {
+  margin: 0;
+  max-width: none;
+  width: max-content;
+  font-size: clamp(1.05rem, 2vw, 1.3rem);
+  font-weight: 750;
+  letter-spacing: -0.025em;
+  line-height: 1.3;
+  color: var(--pd-ink, #0b0b0c);
+  white-space: nowrap;
+  text-wrap: nowrap;
+}
+
+.prosper-whynow-source {
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: 550;
+  color: var(--pd-mute, #5f5e5a);
+}
+
+.prosper-whynow-source a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.12em;
+}
+
+@media (max-width: 820px) {
+  .prosper-whynow-main {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+
+  .prosper-whynow-photo {
+    max-height: min(32vh, 14rem);
+    order: -1;
+  }
+
+  .prosper-whynow-value {
+    font-size: clamp(3.5rem, 18vw, 5rem);
+  }
+}
+
+/* Competitive landscape */
+.prosper-root #pd-competition {
+  --competition-blue: #0866ff;
+  justify-content: center;
+  padding-top: clamp(0.85rem, 1.8vh, 1.25rem);
+  padding-bottom: calc(4.75rem + env(safe-area-inset-bottom, 0px));
+  overflow: hidden;
+}
+
+.prosper-root #pd-competition .pd-panel-inner {
+  width: min(100%, 72rem);
+  flex: 0 1 auto;
+  min-height: 0;
+  max-height: 100%;
+  align-items: stretch;
+  justify-content: center;
+  padding: 0;
+  overflow: hidden;
+}
+
+.prosper-slide--competition {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.75rem, 2vh, 1.25rem);
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+  min-height: 0;
+  justify-content: center;
+}
+
+.prosper-competition-head {
+  flex: 0 0 auto;
+}
+
+.prosper-root #pd-competition .prosper-title {
+  margin: 0;
+  font-size: clamp(1.4rem, 2.6vw, 1.75rem);
+}
+
+.prosper-competition-table {
+  display: grid;
+  gap: 0;
+  flex: 0 1 auto;
+  min-height: 0;
+  border-top: 1px solid rgba(11, 11, 12, 0.12);
+}
+
+.prosper-competition-row {
+  display: grid;
+  grid-template-columns: minmax(8.5rem, 0.95fr) minmax(0, 1.2fr) minmax(11rem, 1.15fr);
+  gap: 0.4rem 0.75rem;
+  align-items: center;
+  padding: 0.28rem 0;
+  border-bottom: 1px solid rgba(11, 11, 12, 0.1);
+}
+
+.prosper-competition-row--head {
+  padding-top: 0.1rem;
+  padding-bottom: 0.22rem;
+  border-bottom-color: rgba(11, 11, 12, 0.18);
+}
+
+.prosper-competition-row--head > span {
+  font-size: 0.64rem;
+  font-weight: 750;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--pd-mute, #5f5e5a);
+}
+
+.prosper-competition-category {
+  font-size: clamp(0.72rem, 1.15vw, 0.84rem);
+  font-weight: 750;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--pd-ink, #0b0b0c);
+}
+
+.prosper-competition-channels,
+.prosper-competition-marks {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  align-items: center;
+  justify-items: center;
+  gap: 0.15rem;
+  width: 100%;
+  min-width: 0;
+}
+
+.prosper-competition-channel {
+  display: grid;
+  place-items: center;
+  width: 1.45rem;
+  height: 1.45rem;
+}
+
+.prosper-competition-channel img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.prosper-competition-mark {
+  display: grid;
+  place-items: center;
+  width: 1.45rem;
+  height: 1.45rem;
+  font-size: 0.95rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.prosper-competition-mark--yes {
+  color: #0b8f4d;
+}
+
+.prosper-competition-mark--no {
+  color: #c8202f;
+}
+
+.prosper-competition-logos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 0.55rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.prosper-competition-logos li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.28rem;
+  margin: 0;
+  min-width: 0;
+}
+
+.prosper-competition-logos img {
+  display: block;
+  width: 1.05rem;
+  height: 1.05rem;
+  object-fit: contain;
+  flex: 0 0 auto;
+}
+
+.prosper-competition-logos span {
+  font-size: clamp(0.68rem, 1.05vw, 0.78rem);
+  font-weight: 650;
+  letter-spacing: -0.015em;
+  color: var(--pd-ink, #0b0b0c);
+  white-space: nowrap;
+}
+
+.prosper-competition-objection {
+  display: grid;
+  gap: 0.4rem;
+  flex: 0 0 auto;
+  min-height: 0;
+  margin-top: 0;
+  padding-top: 0.35rem;
+}
+
+.prosper-competition-question {
+  margin: 0;
+  font-size: clamp(0.88rem, 1.5vw, 1.05rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  color: var(--pd-ink, #0b0b0c);
+  text-wrap: balance;
+}
+
+.prosper-competition-observations {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.45rem 0.75rem;
+}
+
+.prosper-competition-observations article {
+  min-width: 0;
+}
+
+.prosper-competition-observations h3 {
+  margin: 0 0 0.12rem;
+  font-size: 0.72rem;
+  font-weight: 750;
+  letter-spacing: -0.015em;
+  color: var(--pd-ink, #0b0b0c);
+}
+
+.prosper-competition-observations p {
+  margin: 0;
+  font-size: clamp(0.66rem, 0.95vw, 0.76rem);
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--pd-mute, #5f5e5a);
+  text-wrap: pretty;
+}
+
+.prosper-competition-conclusion {
+  display: grid;
+  gap: 0.2rem;
+  padding-top: 0.4rem;
+  border-top: 2px solid var(--competition-blue, #0866ff);
+}
+
+.prosper-competition-conclusion-title {
+  margin: 0;
+  font-size: clamp(0.86rem, 1.35vw, 1rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--competition-blue, #0866ff);
+}
+
+.prosper-competition-conclusion-body {
+  margin: 0;
+  max-width: 58rem;
+  font-size: clamp(0.74rem, 1.1vw, 0.86rem);
+  font-weight: 550;
+  line-height: 1.3;
+  color: var(--pd-ink, #0b0b0c);
+  text-wrap: pretty;
+}
+
+.prosper-competition-punchline {
+  margin: 0.05rem 0 0;
+  font-size: clamp(0.78rem, 1.2vw, 0.9rem);
+  font-weight: 750;
+  letter-spacing: -0.02em;
+  color: var(--pd-ink, #0b0b0c);
+}
+
+@media (max-width: 820px) {
+  .prosper-competition-row {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+    padding: 0.55rem 0;
+  }
+
+  .prosper-competition-row--head {
+    display: none;
+  }
+
+  .prosper-competition-observations {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Market — TAM / SAM / SOM */
+.prosper-root #pd-market {
+  --market-blue: #0866ff;
+  justify-content: center;
+  padding-top: clamp(0.85rem, 2vh, 1.35rem);
+  padding-bottom: calc(4.75rem + env(safe-area-inset-bottom, 0px));
+  overflow: hidden;
+}
+
+.prosper-root #pd-market .pd-panel-inner {
+  width: min(100%, 74rem);
+  flex: 0 1 auto;
+  min-height: 0;
+  max-height: 100%;
+  align-items: stretch;
+  justify-content: center;
+  padding: 0;
+  overflow: hidden;
+}
+
+.prosper-slide--market {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.75rem, 2vh, 1.15rem);
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+  min-height: 0;
+}
+
+.prosper-market-head {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.prosper-root #pd-market .prosper-title {
+  margin: 0;
+  font-family: var(--pd-display, Merriweather, Georgia, serif);
+  font-size: clamp(1.7rem, 3.2vw, 2.3rem);
+  letter-spacing: -0.03em;
+}
+
+.prosper-root #pd-market .prosper-lede.prosper-market-lede {
+  margin: 0;
+  max-width: none;
+  width: max-content;
+  font-size: clamp(0.92rem, 1.45vw, 1.05rem);
+  font-weight: 550;
+  line-height: 1.35;
+  color: var(--pd-mute, #5f5e5a);
+  white-space: nowrap;
+  text-wrap: nowrap;
+}
+
+.prosper-market-stage {
+  display: grid;
+  grid-template-columns: minmax(14rem, 0.85fr) minmax(0, 1.25fr);
+  gap: clamp(1rem, 3vw, 2rem);
+  align-items: center;
+  min-height: 0;
+}
+
+.prosper-market-rings {
+  position: relative;
+  aspect-ratio: 1;
+  width: min(100%, 20rem);
+  justify-self: center;
+}
+
+.prosper-market-ring {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1.5px solid color-mix(in srgb, var(--market-blue, #0866ff) 28%, transparent);
+  background: color-mix(in srgb, var(--market-blue, #0866ff) 5%, #fff);
+}
+
+.prosper-market-ring span {
+  position: absolute;
+  top: 0.55rem;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--market-blue, #0866ff);
+}
+
+.prosper-market-ring--tam {
+  inset: 0;
+}
+
+.prosper-market-ring--sam {
+  inset: 16%;
+  background: color-mix(in srgb, var(--market-blue, #0866ff) 10%, #fff);
+  border-color: color-mix(in srgb, var(--market-blue, #0866ff) 40%, transparent);
+}
+
+.prosper-market-ring--som {
+  inset: 34%;
+  background: color-mix(in srgb, var(--market-blue, #0866ff) 18%, #fff);
+  border-color: var(--market-blue, #0866ff);
+}
+
+.prosper-market-ring--som span {
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.78rem;
+}
+
+.prosper-market-layers {
+  display: grid;
+  gap: 0.65rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  min-width: 0;
+}
+
+.prosper-market-layer {
+  display: grid;
+  grid-template-columns: 3.2rem minmax(0, 1fr);
+  grid-template-areas:
+    'tier value'
+    'tier label'
+    'tier detail';
+  column-gap: 0.75rem;
+  row-gap: 0.12rem;
+  margin: 0;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid rgba(11, 11, 12, 0.1);
+  border-radius: 0.85rem;
+  background: #fff;
+}
+
+.prosper-market-layer--tam {
+  border-color: color-mix(in srgb, var(--market-blue, #0866ff) 16%, transparent);
+  background: color-mix(in srgb, var(--market-blue, #0866ff) 3%, #fff);
+}
+
+.prosper-market-layer--sam {
+  border-color: color-mix(in srgb, var(--market-blue, #0866ff) 28%, transparent);
+  background: color-mix(in srgb, var(--market-blue, #0866ff) 6%, #fff);
+}
+
+.prosper-market-layer--som {
+  border-color: color-mix(in srgb, var(--market-blue, #0866ff) 45%, transparent);
+  background: color-mix(in srgb, var(--market-blue, #0866ff) 10%, #fff);
+  box-shadow: 0 8px 22px color-mix(in srgb, var(--market-blue, #0866ff) 10%, transparent);
+}
+
+.prosper-market-tier {
+  grid-area: tier;
+  align-self: start;
+  margin: 0.15rem 0 0;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--market-blue, #0866ff);
+}
+
+.prosper-market-value {
+  grid-area: value;
+  margin: 0;
+  font-family: var(--pd-display, Merriweather, Georgia, serif);
+  font-size: clamp(1.45rem, 2.6vw, 1.85rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  color: var(--pd-ink, #0b0b0c);
+}
+
+.prosper-market-label {
+  grid-area: label;
+  margin: 0;
+  font-size: clamp(0.82rem, 1.2vw, 0.92rem);
+  font-weight: 750;
+  letter-spacing: -0.015em;
+  color: var(--pd-ink, #0b0b0c);
+}
+
+.prosper-market-detail {
+  grid-area: detail;
+  margin: 0.15rem 0 0;
+  font-size: clamp(0.74rem, 1.05vw, 0.84rem);
+  font-weight: 550;
+  line-height: 1.35;
+  color: var(--pd-mute, #5f5e5a);
+  text-wrap: pretty;
+}
+
+.prosper-market-note {
+  margin: 0;
+  padding-top: 0.35rem;
+  border-top: 1px solid rgba(11, 11, 12, 0.1);
+  font-size: clamp(0.84rem, 1.25vw, 0.95rem);
+  font-weight: 650;
+  line-height: 1.35;
+  color: var(--pd-ink, #0b0b0c);
+  text-wrap: pretty;
+}
+
+@media (max-width: 820px) {
+  .prosper-market-stage {
+    grid-template-columns: 1fr;
+  }
+
+  .prosper-market-rings {
+    width: min(100%, 14rem);
+  }
+}
+
+/* Roadmap */
+.prosper-root #pd-roadmap {
+  --roadmap-blue: #0866ff;
+  justify-content: flex-start;
+  padding-top: clamp(0.75rem, 1.8vh, 1.2rem);
+  padding-bottom: calc(4.75rem + env(safe-area-inset-bottom, 0px));
+  overflow: hidden;
+}
+
+.prosper-root #pd-roadmap .pd-panel-inner {
+  width: min(100%, 74rem);
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: 100%;
+  align-items: stretch;
+  justify-content: flex-start;
+  padding: 0;
+  overflow: hidden;
+}
+
+.prosper-slide--roadmap {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.65rem, 1.6vh, 1rem);
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  min-height: 0;
+}
+
+.prosper-roadmap-head {
+  display: grid;
+  gap: 0.25rem;
+  flex: 0 0 auto;
+}
+
+.prosper-roadmap-body {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(1rem, 2.8vh, 1.65rem);
+  min-height: 0;
+  padding: clamp(0.5rem, 1.8vh, 1.1rem) 0;
+}
+
+.prosper-root #pd-roadmap .prosper-title {
+  margin: 0;
+  font-family: var(--pd-display, Merriweather, Georgia, serif);
+  font-size: clamp(1.45rem, 2.8vw, 1.95rem);
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.prosper-root #pd-roadmap .prosper-lede.prosper-roadmap-lede {
+  margin: 0;
+  max-width: none;
+  width: max-content;
+  font-size: clamp(0.88rem, 1.35vw, 1rem);
+  font-weight: 550;
+  line-height: 1.3;
+  color: var(--pd-mute, #5f5e5a);
+  white-space: nowrap;
+}
+
+.prosper-roadmap-timeline {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0.55rem 0 0;
+  list-style: none;
+  flex: 0 0 auto;
+}
+
+.prosper-roadmap-timeline::before {
+  content: '';
+  position: absolute;
+  top: 0.95rem;
+  left: 8%;
+  right: 8%;
+  height: 2px;
+  background: color-mix(in srgb, var(--roadmap-blue, #0866ff) 35%, transparent);
+}
+
+.prosper-roadmap-node {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 0.35rem;
+  margin: 0;
+  z-index: 1;
+}
+
+.prosper-roadmap-dot {
+  width: 0.85rem;
+  height: 0.85rem;
+  border-radius: 999px;
+  border: 2px solid var(--roadmap-blue, #0866ff);
+  background: #fff;
+}
+
+.prosper-roadmap-node--current .prosper-roadmap-dot {
+  background: var(--roadmap-blue, #0866ff);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--roadmap-blue, #0866ff) 16%, transparent);
+}
+
+.prosper-roadmap-when {
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--pd-mute, #5f5e5a);
+}
+
+.prosper-roadmap-node--current .prosper-roadmap-when {
+  color: var(--roadmap-blue, #0866ff);
+}
+
+.prosper-roadmap-phases {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.65rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  flex: 0 0 auto;
+  min-height: 0;
+}
+
+.prosper-roadmap-phase {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 0;
+  padding: 0.8rem 0.75rem 0.7rem;
+  border: 1px solid rgba(11, 11, 12, 0.1);
+  border-radius: 0.9rem;
+  background: #fff;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.04);
+}
+
+.prosper-roadmap-phase--current {
+  border-color: color-mix(in srgb, var(--roadmap-blue, #0866ff) 40%, transparent);
+  background: color-mix(in srgb, var(--roadmap-blue, #0866ff) 6%, #fff);
+}
+
+.prosper-roadmap-number {
+  margin: 0;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: var(--roadmap-blue, #0866ff);
+}
+
+.prosper-roadmap-phase-title {
+  margin: 0;
+  font-size: clamp(0.92rem, 1.35vw, 1.05rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--pd-ink, #0b0b0c);
+}
+
+.prosper-roadmap-focus {
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 550;
+  color: var(--pd-mute, #5f5e5a);
+}
+
+.prosper-roadmap-points {
+  display: grid;
+  gap: 0.3rem;
+  margin: 0.15rem 0 0;
+  padding: 0;
+  list-style: none;
+  flex: 1 1 auto;
+}
+
+.prosper-roadmap-points li {
+  position: relative;
+  margin: 0;
+  padding-left: 0.8rem;
+  font-size: clamp(0.72rem, 1.05vw, 0.8rem);
+  font-weight: 550;
+  line-height: 1.3;
+  color: var(--pd-ink, #0b0b0c);
+  text-wrap: pretty;
+}
+
+.prosper-roadmap-points li::before {
+  content: '';
+  position: absolute;
+  top: 0.45rem;
+  left: 0;
+  width: 0.28rem;
+  height: 0.28rem;
+  border-radius: 999px;
+  background: var(--roadmap-blue, #0866ff);
+}
+
+.prosper-roadmap-status {
+  margin: 0.35rem 0 0;
+  padding-top: 0.45rem;
+  border-top: 1px solid rgba(11, 11, 12, 0.08);
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--roadmap-blue, #0866ff);
+}
+
+.prosper-roadmap-gates {
+  display: grid;
+  gap: 0.3rem;
+  flex: 0 0 auto;
+  margin-top: auto;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid color-mix(in srgb, var(--roadmap-blue, #0866ff) 18%, transparent);
+  border-radius: 0.85rem;
+  background: color-mix(in srgb, var(--roadmap-blue, #0866ff) 7%, #fff);
+}
+
+.prosper-roadmap-gates-label {
+  margin: 0;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--roadmap-blue, #0866ff);
+}
+
+.prosper-roadmap-gates-path {
+  margin: 0;
+  font-size: clamp(0.78rem, 1.15vw, 0.9rem);
+  font-weight: 550;
+  line-height: 1.35;
+  color: var(--pd-ink, #0b0b0c);
+  text-wrap: pretty;
+}
+
+.prosper-roadmap-gates-path strong {
+  font-weight: 750;
+}
+
+.prosper-roadmap-gates-arrow {
+  margin: 0 0.35rem;
+  color: var(--roadmap-blue, #0866ff);
+  font-weight: 800;
+}
+
+.prosper-roadmap-gates-note {
+  margin: 0;
+  font-size: clamp(0.68rem, 0.95vw, 0.76rem);
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--pd-mute, #5f5e5a);
+  text-wrap: pretty;
+}
+
+@media (max-width: 900px) {
+  .prosper-roadmap-timeline,
+  .prosper-roadmap-phases {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .prosper-root #pd-roadmap .prosper-lede.prosper-roadmap-lede {
+    white-space: normal;
+    width: auto;
+  }
+}
+
+/* Contact */
+.prosper-root #pd-contact {
+  --contact-blue: #0866ff;
+  justify-content: center;
+  padding-top: clamp(0.85rem, 2vh, 1.35rem);
+  padding-bottom: calc(4.75rem + env(safe-area-inset-bottom, 0px));
+  overflow: hidden;
+}
+
+.prosper-root #pd-contact .pd-panel-inner {
+  width: min(100%, 48rem);
+  flex: 0 1 auto;
+  min-height: 0;
+  max-height: 100%;
+  align-items: stretch;
+  justify-content: center;
+  padding: 0;
+  overflow: hidden;
+}
+
+.prosper-slide--contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(1rem, 2.5vh, 1.5rem);
+  width: 100%;
+  text-align: center;
+}
+
+.prosper-contact-brand {
+  display: grid;
+  justify-items: center;
+  gap: 0.45rem;
+}
+
+.prosper-contact-logo {
+  display: block;
+  width: auto;
+  height: clamp(2.4rem, 5vw, 3.2rem);
+  margin-bottom: 0.35rem;
+}
+
+.prosper-contact-company {
+  margin: 0;
+  font-family: var(--pd-display, Merriweather, Georgia, serif);
+  font-size: clamp(1.35rem, 2.6vw, 1.75rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--pd-ink, #0b0b0c);
+}
+
+.prosper-contact-founder {
+  margin: 0;
+  font-size: clamp(0.9rem, 1.35vw, 1.02rem);
+  font-weight: 550;
+  color: var(--pd-mute, #5f5e5a);
+}
+
+.prosper-contact-channels {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.prosper-contact-link {
+  color: var(--contact-blue, #0866ff);
+  font-size: clamp(1rem, 1.6vw, 1.15rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+
+.prosper-contact-link:hover {
+  text-decoration: underline;
+}
+
+.prosper-contact-socials {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem;
+  width: min(100%, 34rem);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.prosper-contact-social {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 0.65rem;
+  min-height: 3.25rem;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid rgba(11, 11, 12, 0.1);
+  border-radius: 0.85rem;
+  background: #fff;
+  color: inherit;
+  text-align: left;
+  text-decoration: none;
+  transition: border-color 140ms ease, box-shadow 140ms ease;
+}
+
+.prosper-contact-social:hover {
+  border-color: color-mix(in srgb, var(--contact-blue, #0866ff) 35%, transparent);
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
+}
+
+.prosper-contact-social-icon {
+  display: grid;
+  place-items: center;
+  width: 1.55rem;
+  height: 1.55rem;
+  color: var(--pd-ink, #0b0b0c);
+}
+
+.prosper-contact-social-icon svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.prosper-contact-social-meta {
+  display: grid;
+  gap: 0.05rem;
+  min-width: 0;
+}
+
+.prosper-contact-social-label {
+  font-size: 0.68rem;
+  font-weight: 750;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--pd-mute, #5f5e5a);
+}
+
+.prosper-contact-social-handle {
+  font-size: clamp(0.86rem, 1.25vw, 0.95rem);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--pd-ink, #0b0b0c);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 560px) {
+  .prosper-contact-socials {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Revenue model */
+.prosper-root #pd-model {
+  --revenue-blue: #0866ff;
+  --revenue-note: #e7f6ea;
+  justify-content: center;
+  padding-top: clamp(0.85rem, 2vh, 1.35rem);
+  padding-bottom: calc(4.75rem + env(safe-area-inset-bottom, 0px));
+  overflow: hidden;
+}
+
+.prosper-root #pd-model .pd-panel-inner {
+  width: min(100%, 74rem);
+  flex: 0 1 auto;
+  min-height: 0;
+  max-height: 100%;
+  align-items: stretch;
+  justify-content: center;
+  padding: 0;
+  overflow: hidden;
+}
+
+.prosper-slide--revenue {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.75rem, 2vh, 1.15rem);
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+  min-height: 0;
+}
+
+.prosper-revenue-head {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.prosper-root #pd-model .prosper-title {
+  margin: 0;
+  font-family: var(--pd-display, Merriweather, Georgia, serif);
+  font-size: clamp(1.7rem, 3.2vw, 2.3rem);
+  letter-spacing: -0.03em;
+}
+
+.prosper-root #pd-model .prosper-lede.prosper-revenue-lede {
+  margin: 0;
+  max-width: none;
+  width: max-content;
+  font-size: clamp(0.92rem, 1.45vw, 1.05rem);
+  font-weight: 550;
+  line-height: 1.35;
+  color: var(--pd-mute, #5f5e5a);
+  white-space: nowrap;
+  text-wrap: nowrap;
+}
+
+.prosper-revenue-plans {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(0.65rem, 1.5vw, 1rem);
+  align-items: stretch;
+  min-height: 0;
+}
+
+.prosper-revenue-plan {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  min-width: 0;
+  padding: clamp(0.9rem, 1.8vw, 1.2rem);
+  border: 1px solid rgba(11, 11, 12, 0.1);
+  border-radius: 1rem;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+}
+
+.prosper-revenue-plan--recommended {
+  border-color: color-mix(in srgb, var(--revenue-blue, #0866ff) 55%, transparent);
+  box-shadow: 0 10px 28px color-mix(in srgb, var(--revenue-blue, #0866ff) 12%, transparent);
+}
+
+.prosper-revenue-badge {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  padding: 0.22rem 0.55rem;
+  border-radius: 999px;
+  background: var(--revenue-blue, #0866ff);
+  color: #fff;
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.prosper-revenue-plan-head {
+  display: grid;
+  gap: 0.2rem;
+  padding-right: 5.5rem;
+}
+
+.prosper-revenue-plan:not(.prosper-revenue-plan--recommended) .prosper-revenue-plan-head {
+  padding-right: 0;
+}
+
+.prosper-revenue-plan-name {
+  margin: 0;
+  font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  color: var(--pd-ink, #0b0b0c);
+}
+
+.prosper-revenue-plan-price {
+  color: var(--revenue-blue, #0866ff);
+  font-weight: 800;
+}
+
+.prosper-revenue-plan-audience {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0;
+  font-size: clamp(0.78rem, 1.15vw, 0.88rem);
+  font-weight: 550;
+  line-height: 1.3;
+  color: var(--pd-mute, #5f5e5a);
+  text-wrap: pretty;
+}
+
+.prosper-revenue-plan-audience-logo {
+  display: block;
+  width: auto;
+  height: 0.95rem;
+}
+
+.prosper-revenue-features {
+  display: grid;
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.prosper-revenue-features li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.45rem;
+  align-items: start;
+  margin: 0;
+  font-size: clamp(0.76rem, 1.1vw, 0.86rem);
+  font-weight: 550;
+  line-height: 1.35;
+  color: var(--pd-ink, #0b0b0c);
+  text-wrap: pretty;
+}
+
+.prosper-revenue-check {
+  color: var(--revenue-blue, #0866ff);
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.prosper-revenue-note {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.8rem 1rem;
+  border: 1px solid color-mix(in srgb, #1f9d55 18%, transparent);
+  border-radius: 0.85rem;
+  background: var(--revenue-note, #e7f6ea);
+}
+
+.prosper-revenue-note-icon {
+  display: grid;
+  place-items: center;
+  width: 1.45rem;
+  height: 1.45rem;
+  color: #1f9d55;
+}
+
+.prosper-revenue-note-icon svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.prosper-revenue-note p {
+  margin: 0;
+  font-size: clamp(0.78rem, 1.15vw, 0.9rem);
+  font-weight: 550;
+  line-height: 1.35;
+  color: #1f4d2f;
+  text-wrap: pretty;
+}
+
+@media (max-width: 900px) {
+  .prosper-revenue-plans {
+    grid-template-columns: 1fr;
+  }
+}
+
 .prosper-exec-main {
   width: min(100%, 42rem);
   margin: 0 auto;
@@ -1308,4 +3062,778 @@ html.prosper-exec-html body {
 
 .prosper-exec-foot a {
   color: inherit;
+}
+
+/* —— Vertical mobile (Prosper deck) —— */
+@media (max-width: 820px) {
+  .prosper-root .pd-panel {
+    justify-content: flex-start;
+    padding: 0.85rem 0.85rem calc(4.35rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .prosper-root .pd-panel-inner {
+    width: 100%;
+    max-width: none;
+    flex: 1 1 auto;
+    min-height: 0;
+    align-items: stretch;
+    justify-content: flex-start;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .prosper-root #pd-cover .pd-panel-inner,
+  .prosper-root #pd-founder .pd-panel-inner,
+  .prosper-root #pd-problem .pd-panel-inner,
+  .prosper-root #pd-product .pd-panel-inner,
+  .prosper-root #pd-solution .pd-panel-inner,
+  .prosper-root #pd-howitworks .pd-panel-inner,
+  .prosper-root #pd-competition .pd-panel-inner,
+  .prosper-root #pd-whynow .pd-panel-inner,
+  .prosper-root #pd-market .pd-panel-inner,
+  .prosper-root #pd-model .pd-panel-inner,
+  .prosper-root #pd-roadmap .pd-panel-inner,
+  .prosper-root #pd-contact .pd-panel-inner {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .prosper-slide,
+  .prosper-cover,
+  .prosper-slide--product,
+  .prosper-slide--problem,
+  .prosper-slide--founder,
+  .prosper-slide--howitworks,
+  .prosper-slide--competition,
+  .prosper-slide--whynow,
+  .prosper-slide--market,
+  .prosper-slide--revenue,
+  .prosper-slide--roadmap,
+  .prosper-slide--contact {
+    height: auto;
+    min-height: 0;
+    max-height: none;
+  }
+
+  /* Cover */
+  .prosper-cover {
+    --prosper-cover-band: 0.35rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 0.85rem;
+    padding-bottom: 0.25rem;
+  }
+
+  .prosper-cover-brand,
+  .prosper-cover-phones {
+    position: static;
+    top: auto;
+    left: auto;
+    right: auto;
+    width: 100%;
+    max-width: none;
+    max-height: none;
+  }
+
+  .prosper-cover-lockup {
+    flex-wrap: wrap;
+    gap: 0.4rem 0.55rem;
+  }
+
+  .prosper-cover-wordmark {
+    width: min(9.5rem, 52vw);
+  }
+
+  .prosper-cover-accent {
+    font-size: clamp(1.45rem, 7vw, 1.85rem);
+  }
+
+  .prosper-cover-tagline {
+    max-width: none;
+    font-size: clamp(0.98rem, 4.2vw, 1.15rem);
+  }
+
+  .prosper-cover-phones--loop {
+    padding-right: 0;
+    justify-content: center;
+  }
+
+  .prosper-cover-phones--loop .prosper-product-loop-forward {
+    grid-template-columns: minmax(0, 1fr) minmax(1.5rem, 0.28fr) minmax(0, 1fr);
+    column-gap: 0.35rem;
+  }
+
+  .prosper-cover-phones--loop .prosper-product-shot--send img,
+  .prosper-cover-phones--loop .prosper-product-shot--receive img {
+    height: min(34vh, 13.5rem);
+    max-height: min(34vh, 13.5rem);
+  }
+
+  .prosper-cover-foot {
+    margin-top: 0.25rem;
+  }
+
+  .prosper-cover-partners {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 0.65rem 1rem;
+  }
+
+  /* Founder / Problem / Product / Solution */
+  .prosper-slide--founder,
+  .prosper-slide--problem,
+  .prosper-slide--product {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+
+  .prosper-root #pd-founder .prosper-founder-portrait {
+    width: min(100%, 16rem);
+    max-height: min(38vh, 16rem);
+    margin: 0 auto;
+  }
+
+  .prosper-root #pd-founder .prosper-founder-copy {
+    overflow: visible;
+  }
+
+  .prosper-founder-highlights {
+    gap: 0.55rem;
+  }
+
+  .prosper-root #pd-problem .prosper-split-copy {
+    height: auto;
+    justify-content: flex-start;
+  }
+
+  .prosper-summary-text--desktop {
+    display: none;
+  }
+
+  .prosper-summary-text--mobile {
+    display: inline;
+    font-size: clamp(1.05rem, 4.8vw, 1.25rem);
+    line-height: 1.35;
+  }
+
+  .prosper-root #pd-problem .prosper-gallery-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.45rem;
+  }
+
+  .prosper-root #pd-product .prosper-slide--product,
+  .prosper-root #pd-solution .prosper-slide--product {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: stretch;
+    align-content: stretch;
+    height: auto;
+    max-height: none;
+  }
+
+  .prosper-root #pd-product .prosper-product-copy,
+  .prosper-root #pd-solution .prosper-product-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-width: 0;
+    width: 100%;
+  }
+
+  .prosper-root #pd-product .prosper-title,
+  .prosper-root #pd-solution .prosper-title {
+    margin: 0;
+    font-size: clamp(1.4rem, 6.5vw, 1.75rem);
+  }
+
+  .prosper-root #pd-product .prosper-lede,
+  .prosper-root #pd-solution .prosper-lede {
+    margin: 0;
+    font-size: clamp(0.9rem, 3.8vw, 1.02rem);
+    line-height: 1.35;
+    text-wrap: pretty;
+  }
+
+  .prosper-root #pd-product .prosper-product-mascot {
+    width: min(100%, 9.5rem);
+    margin: 0.15rem 0;
+  }
+
+  .prosper-root #pd-product .prosper-product-mascot img {
+    max-height: 5.5rem;
+  }
+
+  .prosper-root #pd-product .prosper-product-compat,
+  .prosper-root #pd-solution .prosper-product-compat {
+    margin-top: 0.25rem;
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  .prosper-root #pd-product .prosper-note--plugin,
+  .prosper-root #pd-solution .prosper-note--plugin {
+    display: flex;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    gap: 0.55rem;
+    padding: 0.5rem 0.65rem;
+    border-radius: 0.85rem;
+    white-space: normal;
+  }
+
+  .prosper-root #pd-product .prosper-note--plugin > span,
+  .prosper-root #pd-solution .prosper-note--plugin > span {
+    flex: 1 1 auto;
+    min-width: 0;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    text-wrap: pretty;
+    font-size: clamp(0.78rem, 3.4vw, 0.88rem);
+    line-height: 1.3;
+  }
+
+  .prosper-root #pd-product .prosper-note-plugin-icon,
+  .prosper-root #pd-solution .prosper-note-plugin-icon {
+    width: 1.55rem;
+    height: 1.55rem;
+  }
+
+  .prosper-root #pd-product .prosper-product-compat-also,
+  .prosper-root #pd-solution .prosper-product-compat-also {
+    width: 100%;
+  }
+
+  .prosper-root #pd-product .prosper-product-compat-also .prosper-assistant-row,
+  .prosper-root #pd-solution .prosper-product-compat-also .prosper-assistant-row {
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  .prosper-root #pd-product,
+  .prosper-root #pd-product .pd-panel-inner,
+  .prosper-root #pd-product .prosper-slide--product {
+    overflow-x: hidden;
+    max-width: 100%;
+  }
+
+  .prosper-root #pd-product .prosper-product-loop {
+    width: 100%;
+    max-width: 100%;
+    align-self: stretch;
+    margin-top: 0.15rem;
+    overflow: hidden;
+  }
+
+  .prosper-root #pd-product .prosper-product-loop-forward {
+    width: 100%;
+    max-width: 100%;
+    grid-template-columns: minmax(0, 1fr) minmax(0.85rem, 0.18fr) minmax(0, 1fr);
+    column-gap: 0.2rem;
+    row-gap: 0.3rem;
+  }
+
+  .prosper-root #pd-product .prosper-product-shot {
+    min-width: 0;
+    width: 100%;
+    justify-self: stretch;
+  }
+
+  .prosper-root #pd-product .prosper-product-shot--send img,
+  .prosper-root #pd-product .prosper-product-shot--receive img,
+  .prosper-root #pd-solution .prosper-product-shot--send img,
+  .prosper-root #pd-solution .prosper-product-shot--receive img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    max-height: min(28vh, 10.5rem);
+    object-fit: contain;
+    object-position: center top;
+  }
+
+  .prosper-root #pd-product .prosper-product-loop-label {
+    font-size: 0.58rem;
+  }
+
+  .prosper-root #pd-product .prosper-product-loop-arrow--extended {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .prosper-root #pd-solution {
+    padding-right: 0.85rem;
+  }
+
+  .prosper-root #pd-solution .pd-panel-inner {
+    padding-left: 0;
+  }
+
+  .prosper-root #pd-solution .prosper-product-copy {
+    order: 2;
+  }
+
+  .prosper-root #pd-solution .prosper-product-visual--story {
+    order: 1;
+    width: 100%;
+    max-width: none;
+    max-height: none;
+    align-self: stretch;
+    justify-self: stretch;
+    margin: 0;
+    border-radius: 0.85rem;
+    overflow: hidden;
+  }
+
+  .prosper-root #pd-solution .prosper-product-visual--story img {
+    width: 100%;
+    height: min(28vh, 11.5rem);
+    max-height: min(28vh, 11.5rem);
+    object-fit: cover;
+    object-position: center center;
+    border-radius: 0;
+  }
+
+  .prosper-product-loop-forward {
+    grid-template-columns: minmax(0, 1fr) minmax(1.35rem, 0.25fr) minmax(0, 1fr);
+    column-gap: 0.3rem;
+  }
+
+  /* How it works */
+  .prosper-root #pd-howitworks {
+    padding-left: 0.85rem;
+    padding-right: 0.85rem;
+  }
+
+  .prosper-slide--howitworks {
+    gap: 0.65rem;
+  }
+
+  .prosper-sta-head {
+    text-align: left;
+    justify-items: start;
+  }
+
+  .prosper-root #pd-howitworks .prosper-title {
+    font-size: clamp(1.35rem, 6.5vw, 1.7rem);
+  }
+
+  .prosper-root #pd-howitworks .prosper-lede.prosper-sta-lede,
+  .prosper-sta-summary p,
+  .prosper-sta-summary strong,
+  .prosper-root #pd-model .prosper-lede.prosper-revenue-lede,
+  .prosper-root #pd-market .prosper-lede.prosper-market-lede,
+  .prosper-root #pd-roadmap .prosper-lede.prosper-roadmap-lede,
+  .prosper-whynow-close {
+    white-space: normal;
+    text-wrap: pretty;
+    width: auto;
+    max-width: 100%;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .prosper-sta-summary {
+    overflow: hidden;
+  }
+
+  .prosper-sta-summary p {
+    flex: 1 1 auto;
+  }
+
+  .prosper-sta-stage {
+    grid-template-columns: 1fr;
+    gap: 0.7rem;
+  }
+
+  .prosper-sta-shift {
+    flex-direction: row;
+    width: auto;
+    align-self: center;
+    gap: 0.55rem;
+  }
+
+  .prosper-sta-shift-label {
+    font-size: 0.52rem;
+    max-width: 6.5rem;
+  }
+
+  .prosper-sta-card {
+    padding: 0.7rem;
+    gap: 0.5rem;
+  }
+
+  .prosper-sta-card-title {
+    font-size: 1.15rem;
+  }
+
+  .prosper-sta-search {
+    min-height: 2.35rem;
+    padding: 0.45rem 0.65rem;
+  }
+
+  .prosper-sta-search-text {
+    font-size: 0.82rem;
+  }
+
+  .prosper-sta-chat-bubble {
+    padding: 0.55rem 0.65rem;
+    font-size: 0.78rem;
+  }
+
+  .prosper-sta-step {
+    min-height: 2.55rem;
+    padding: 0.45rem 0.6rem;
+    gap: 0.55rem;
+  }
+
+  .prosper-sta-step-text {
+    font-size: 0.84rem;
+  }
+
+  .prosper-sta-assistants {
+    max-width: none;
+    justify-content: flex-start;
+  }
+
+  .prosper-sta-summary {
+    width: 100%;
+    padding: 0.65rem 0.7rem;
+    gap: 0.55rem;
+  }
+
+  .prosper-sta-summary p {
+    font-size: clamp(0.72rem, 3.4vw, 0.84rem);
+    line-height: 1.35;
+  }
+
+  /* Competition */
+  .prosper-slide--competition {
+    gap: 0.65rem;
+  }
+
+  .prosper-root #pd-competition .prosper-title {
+    font-size: clamp(1.25rem, 5.8vw, 1.55rem);
+  }
+
+  .prosper-competition-table {
+    gap: 0;
+  }
+
+  .prosper-competition-row {
+    grid-template-columns: 1fr;
+    gap: 0.3rem;
+    padding: 0.5rem 0;
+  }
+
+  .prosper-competition-row--head {
+    display: none;
+  }
+
+  .prosper-competition-category {
+    font-size: 0.8rem;
+  }
+
+  .prosper-competition-logos {
+    gap: 0.3rem 0.55rem;
+  }
+
+  .prosper-competition-logos span {
+    font-size: 0.72rem;
+    white-space: normal;
+  }
+
+  .prosper-competition-channels,
+  .prosper-competition-marks {
+    justify-content: space-between;
+    width: 100%;
+    max-width: none;
+  }
+
+  .prosper-competition-channel,
+  .prosper-competition-mark {
+    width: 1.25rem;
+    height: 1.25rem;
+    font-size: 0.82rem;
+  }
+
+  .prosper-competition-observations {
+    grid-template-columns: 1fr;
+    gap: 0.55rem;
+  }
+
+  .prosper-competition-question {
+    font-size: clamp(0.9rem, 4vw, 1.05rem);
+  }
+
+  .prosper-competition-observations p {
+    font-size: 0.74rem;
+  }
+
+  /* Why now */
+  .prosper-slide--whynow {
+    gap: 0.7rem;
+  }
+
+  .prosper-whynow-main {
+    grid-template-columns: 1fr;
+    gap: 0.7rem;
+  }
+
+  .prosper-whynow-photo {
+    max-height: min(24vh, 10.5rem);
+    order: -1;
+    border-radius: 0.85rem;
+    overflow: hidden;
+  }
+
+  .prosper-whynow-title {
+    font-size: clamp(1.25rem, 5.8vw, 1.55rem);
+  }
+
+  .prosper-whynow-value {
+    font-size: clamp(2.8rem, 14vw, 3.8rem);
+  }
+
+  .prosper-whynow-stat-text,
+  .prosper-whynow-close {
+    font-size: clamp(0.9rem, 3.8vw, 1.05rem);
+  }
+
+  /* Market */
+  .prosper-slide--market {
+    gap: 0.65rem;
+  }
+
+  .prosper-market-stage {
+    grid-template-columns: 1fr;
+    gap: 0.65rem;
+  }
+
+  .prosper-market-rings {
+    display: none;
+  }
+
+  .prosper-market-layers {
+    gap: 0.5rem;
+  }
+
+  .prosper-market-layer {
+    grid-template-columns: 2.4rem minmax(0, 1fr);
+    padding: 0.55rem 0.65rem;
+  }
+
+  .prosper-market-value {
+    font-size: clamp(1.25rem, 5.5vw, 1.5rem);
+  }
+
+  .prosper-market-label {
+    font-size: 0.84rem;
+  }
+
+  .prosper-market-detail {
+    font-size: 0.74rem;
+  }
+
+  .prosper-market-note {
+    font-size: 0.82rem;
+  }
+
+  /* Revenue */
+  .prosper-slide--revenue {
+    gap: 0.65rem;
+  }
+
+  .prosper-revenue-plans {
+    grid-template-columns: 1fr;
+    gap: 0.65rem;
+  }
+
+  .prosper-revenue-plan {
+    padding: 0.8rem;
+  }
+
+  .prosper-revenue-plan-head {
+    padding-right: 0;
+  }
+
+  .prosper-revenue-plan--recommended .prosper-revenue-plan-head {
+    padding-right: 5.25rem;
+  }
+
+  .prosper-revenue-plan-name {
+    font-size: 1.1rem;
+  }
+
+  .prosper-revenue-features li {
+    font-size: 0.8rem;
+  }
+
+  .prosper-revenue-note {
+    align-items: start;
+    padding: 0.7rem 0.8rem;
+  }
+
+  .prosper-revenue-note p {
+    font-size: 0.8rem;
+  }
+
+  /* Roadmap */
+  .prosper-slide--roadmap {
+    gap: 0.55rem;
+  }
+
+  .prosper-root #pd-roadmap .prosper-title {
+    font-size: clamp(1.2rem, 5.4vw, 1.5rem);
+  }
+
+  .prosper-roadmap-body {
+    flex: 0 0 auto;
+    justify-content: flex-start;
+    gap: 0.7rem;
+    padding: 0.2rem 0;
+  }
+
+  .prosper-roadmap-timeline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 0.35rem;
+    padding-top: 0;
+  }
+
+  .prosper-roadmap-timeline::before {
+    display: none;
+  }
+
+  .prosper-roadmap-node {
+    flex: 1 1 calc(50% - 0.35rem);
+  }
+
+  .prosper-roadmap-when {
+    font-size: 0.56rem;
+  }
+
+  .prosper-roadmap-phases {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .prosper-roadmap-phase {
+    min-height: 0;
+    padding: 0.7rem;
+  }
+
+  .prosper-roadmap-phase-title {
+    font-size: 0.98rem;
+  }
+
+  .prosper-roadmap-points li {
+    font-size: 0.76rem;
+  }
+
+  .prosper-roadmap-gates {
+    margin-top: 0.25rem;
+    padding: 0.65rem 0.75rem;
+  }
+
+  .prosper-roadmap-gates-path {
+    font-size: 0.74rem;
+  }
+
+  .prosper-roadmap-gates-note {
+    font-size: 0.68rem;
+  }
+
+  /* Contact */
+  .prosper-contact-socials {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+
+  .prosper-contact-logo {
+    height: 2.2rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .prosper-root .pd-panel {
+    padding: 0.7rem 0.7rem calc(4.2rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .prosper-root #pd-product .prosper-note--plugin,
+  .prosper-root #pd-solution .prosper-note--plugin {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .prosper-root #pd-product .prosper-product-loop-forward {
+    grid-template-columns: minmax(0, 1fr) minmax(0.7rem, 0.16fr) minmax(0, 1fr);
+    column-gap: 0.15rem;
+  }
+
+  .prosper-root #pd-product .prosper-product-shot--send img,
+  .prosper-root #pd-product .prosper-product-shot--receive img {
+    max-height: min(26vh, 9.5rem);
+  }
+
+  .prosper-sta-summary strong {
+    white-space: normal;
+  }
+
+  .prosper-cover-phones--loop .prosper-product-loop-forward {
+    grid-template-columns: minmax(0, 1fr) minmax(1.1rem, 0.22fr) minmax(0, 1fr);
+    column-gap: 0.25rem;
+  }
+
+  .prosper-cover-phones--loop .prosper-product-shot--send img,
+  .prosper-cover-phones--loop .prosper-product-shot--receive img {
+    height: min(36vh, 14rem);
+    max-height: min(36vh, 14rem);
+  }
+
+  .prosper-roadmap-timeline {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.45rem 0.35rem;
+    padding-top: 0;
+  }
+
+  .prosper-roadmap-timeline::before {
+    display: none;
+  }
+
+  .prosper-roadmap-node {
+    flex: 1 1 calc(50% - 0.35rem);
+  }
+
+  .prosper-roadmap-phases {
+    grid-template-columns: 1fr;
+  }
+
+  .prosper-market-rings {
+    display: none;
+  }
+
+  .prosper-sta-chat {
+    grid-template-columns: 1fr;
+  }
+
+  .prosper-sta-chat-avatar {
+    display: none;
+  }
+
+  .prosper-competition-channels,
+  .prosper-competition-marks {
+    max-width: none;
+  }
 }
