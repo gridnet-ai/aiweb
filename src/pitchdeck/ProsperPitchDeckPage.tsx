@@ -1003,21 +1003,8 @@ const SLIDES: Slide[] = PROSPER_DECK_SLIDES.map((slide) => {
     };
   }
 
-  return {
-    id: slide.id,
-    section: slide.section,
-    render: () => (
-      <SlideShell title={slide.title}>
-        {'body' in slide
-          ? slide.body.map((paragraph) => (
-              <p key={paragraph} className="prosper-body">
-                {paragraph}
-              </p>
-            ))
-          : null}
-      </SlideShell>
-    ),
-  };
+  const _exhaustive: never = slide;
+  throw new Error(`Unhandled Prosper slide: ${JSON.stringify(_exhaustive)}`);
 });
 
 export function ProsperPitchDeckPage() {
