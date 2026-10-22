@@ -14,34 +14,113 @@ export const PROSPER_DECK_SLIDES = [
   {
     id: 'cover',
     section: 'Cover',
-    kicker: PROSPER_META.program,
-    title: 'AIWEB',
-    lede: 'the communications network for AI assistants.',
-    sub: "Healthcare's digital front door.",
-    byline: `${PROSPER_META.founder} — ${PROSPER_META.founderRole}`,
-  },
-  {
-    id: 'problem',
-    section: 'The Problem',
-    title: 'The problem',
-    body: [
-      'Patients now start their search for care inside AI assistants — asking Chat GPT, Claude, and Gemini who to see and how to reach them.',
-      'Practices cannot be reached there. They guess instead: agency retainers, listings managed channel by channel, phone tag, web forms, and insurance directories so stale the industry calls them ghost networks.',
-      'Administrative bottlenecks are where patient access goes to die.',
+    tagline: 'The phone and phone book for AI assistants',
+    phones: {
+      src: '/corporate/aiweb-cover-phones.png',
+      alt: 'Send from Chat GPT — find care. Receive in AIWEB Mail.',
+    },
+    partners: [
+      {
+        id: 'google',
+        label: 'Google for Startups',
+        src: '/images/promo/google-for-startups.png',
+      },
+      {
+        id: 'fi',
+        label: 'Founder Institute',
+        src: '/images/promo/founder-institute.png',
+      },
     ],
   },
   {
     id: 'founder',
     section: 'The Founder',
-    title: 'The founder',
+    title: 'Founder',
+    eyebrow: 'The AIWEB Company',
+    lede: 'Military communications → IT Guy → Healthcare IT SMB → AI Startup Founder → Government HIT consultant → Launching the new global communication system Voice over AI',
+    name: 'La Terrance D. French “Terry”',
+    role: 'Founder & CEO',
+    company: 'The AIWEB Company',
+    portrait: {
+      src: '/corporate/terry-french.jpg',
+      alt: 'La Terrance “Terry” French speaking at a podium.',
+      note: 'Speaking at UTSA School of Data Science Scooter Lab (2026)',
+    },
+    highlights: [
+      {
+        icon: 'tech',
+        text: '20+ years in information technology, communications, and digital infrastructure.',
+      },
+      {
+        icon: 'military',
+        text: 'Former U.S. Army Signal Corps soldier (25U), with roots in communications systems during the rise of VoIP.',
+      },
+      {
+        icon: 'health',
+        text: 'Built healthcare IT and federal contracting experience, including work connected to the VA healthcare environment in San Antonio.',
+      },
+      {
+        icon: 'venture',
+        text: 'Founder and operator across multiple technology and digital ventures.',
+      },
+      {
+        icon: 'build',
+        text: 'Currently building AIWEB and Voice over AI (VoAI): communications infrastructure for businesses, people, and AI assistants.',
+      },
+    ],
+    quote: {
+      text: 'This is how I save the world.',
+      by: 'Terry French, Founder & CEO',
+    },
+    tags: [
+      'Military Communications',
+      'Healthcare IT',
+      'AI Infrastructure',
+      'Founder Institute grad 2025',
+    ],
+  },
+  {
+    id: 'problem',
+    section: 'The Problem',
+    title: 'The problem',
+    lead: 'People now start their search for care inside AI assistants',
+    leadBut: 'But…',
+    assistants: [
+      { id: 'chatgpt', label: 'Chat GPT', src: '/images/demo/workers/chatgpt.png' },
+      { id: 'claude', label: 'Claude', src: '/images/promo/claude-mark.png' },
+      { id: 'gemini', label: 'Gemini', src: '/images/promo/gemini-mark.png' },
+      { id: 'grok', label: 'Grok', src: '/images/demo/workers/grok.png' },
+      { id: 'muse', label: 'Muse', src: '/images/promo/muse-mark.png' },
+    ],
     body: [
-      'One hospital. Four roles. All at the Audie L. Murphy VA Hospital, San Antonio.',
-      'Biology, pre-med track — healthcare was the first direction.',
-      '2016–2017 — Patient Escort, Nursing Services: the human front door.',
-      '1,200+ hours — volunteer, same hospital.',
-      '2017–2020 — Founder, Seibertronics: healthcare IT, federal contract, same hospital.',
-      'U.S. Army Signal Corps (25U). Twenty years in IT.',
-      'He has worked the access problem on foot. Now he is building it in software.',
+      'Medical practices do not have a reliable way to connect to this new patient behavior.',
+    ],
+    summary: 'The person to patient value chain is broken.',
+    bodyIcon: {
+      src: '/images/promo/healthcare-mark.png',
+      alt: 'Medical practices — heartbeat, caduceus, and stethoscope.',
+    },
+    images: [
+      {
+        src: '/corporate/aiweb-patient-ai-search.png',
+        alt: 'A patient searches for care on a phone, the way care discovery starts inside AI assistants.',
+        label: 'Looking up care',
+      },
+      {
+        src: '/corporate/aiweb-patient-cold-phone.webp',
+        alt: 'A person with a cold checks their phone for health answers before calling a practice.',
+        label: 'Feeling sick',
+      },
+      {
+        src: '/corporate/aiweb-patient-parent-thermometer-crop.webp',
+        alt: 'A parent checks a thermometer for a crying child, then turns to a phone for the next step.',
+        label: 'Caring for family',
+      },
+      {
+        src: '/corporate/aiweb-patient-meds-phone.jpg',
+        alt: 'A patient compares prescription bottles with information on a phone.',
+        label: 'Checking medicine',
+      },
     ],
   },
   {
@@ -64,9 +143,17 @@ export const PROSPER_DECK_SLIDES = [
       },
     ],
     note: 'Live today: AIWEB Call is an accepted plugin on Chat GPT.',
-    image: {
-      src: '/corporate/aiweb-healthcare-find-austin.jpg',
-      alt: 'Chat GPT shows AIWEB healthcare matches for Find a dentist near me in Austin, TX, with Call on each practice card.',
+    loop: {
+      send: {
+        label: 'Send',
+        src: '/corporate/aiweb-healthcare-find-austin-cut.png',
+        alt: 'Chat GPT shows AIWEB healthcare matches for Find a dentist near me in Austin, TX, with Call on each practice card.',
+      },
+      receive: {
+        label: 'Receive',
+        src: '/corporate/aiweb-mailbox-darkmode.png',
+        alt: 'AIWEB Mail inbox receiving direct messages from Chat GPT, Claude, Gemini, Grok, Muse, and the web.',
+      },
     },
   },
   {

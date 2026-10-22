@@ -16,13 +16,16 @@
   text-align: left;
 }
 
-.prosper-slide--product {
+.prosper-slide--product,
+.prosper-slide--problem,
+.prosper-slide--founder {
   display: grid;
   gap: 1.5rem;
-  align-items: center;
+  align-items: start;
 }
 
-.prosper-product-copy {
+.prosper-product-copy,
+.prosper-split-copy {
   min-width: 0;
 }
 
@@ -37,15 +40,608 @@
   height: auto;
 }
 
+.prosper-product-loop {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.55rem;
+  min-width: 0;
+  width: 100%;
+}
+
+.prosper-product-loop-forward {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(2.75rem, 0.4fr) minmax(0, 1fr);
+  align-items: center;
+  column-gap: 0.65rem;
+  row-gap: 0.55rem;
+}
+
+.prosper-product-loop-forward > .prosper-product-loop-label {
+  justify-self: center;
+}
+
+.prosper-product-loop-gutter {
+  display: block;
+  width: 100%;
+  min-height: 1px;
+}
+
+.prosper-product-shot {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  min-width: 0;
+}
+
+.prosper-product-loop-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.22rem 0.7rem;
+  border-radius: 999px;
+  background: #1f6feb;
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 750;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.prosper-product-shot img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: min(42vh, 22rem);
+  object-fit: contain;
+  object-position: center center;
+  background: transparent;
+}
+
+.prosper-product-shot--receive {
+  overflow: visible;
+}
+
+.prosper-product-shot--receive img {
+  max-height: min(46vh, 24rem);
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.prosper-product-loop-arrow {
+  align-self: center;
+  font-size: 1.45rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #1f6feb;
+}
+
+.prosper-product-loop-arrow--extended {
+  display: flex;
+  align-items: center;
+  align-self: center;
+  justify-self: stretch;
+  width: 100%;
+  min-width: 2.75rem;
+  height: 1.1rem;
+  color: #1f6feb;
+}
+
+.prosper-product-loop-arrow--extended::before {
+  content: '';
+  flex: 1 1 auto;
+  height: 2px;
+  background: currentColor;
+  border-radius: 999px;
+}
+
+.prosper-product-loop-arrow--extended::after {
+  content: '';
+  width: 0;
+  height: 0;
+  border-top: 0.34rem solid transparent;
+  border-bottom: 0.34rem solid transparent;
+  border-left: 0.55rem solid currentColor;
+  margin-left: -1px;
+  flex: 0 0 auto;
+}
+
+
+.prosper-problem-gallery {
+  min-width: 0;
+  min-height: 0;
+}
+
+.prosper-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.prosper-gallery-grid li {
+  margin: 0;
+  min-width: 0;
+  min-height: 0;
+}
+
+.prosper-gallery-grid figure {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-height: 0;
+  height: 100%;
+}
+
+.prosper-gallery-grid img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 0.75rem;
+  background: rgba(11, 11, 12, 0.04);
+}
+
+.prosper-gallery-grid figcaption {
+  font-size: 0.78rem;
+  font-weight: 550;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  color: var(--pd-mute, #5f5e5a);
+}
+
+.prosper-slide--founder {
+  --founder-ink: #102a43;
+  --founder-accent: #1f6feb;
+  --founder-soft: #e8f1ff;
+  --founder-mute: #5b6b7c;
+}
+
+.prosper-founder-portrait {
+  margin: 0;
+  width: min(100%, 20rem);
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.prosper-founder-portrait img {
+  display: block;
+  width: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
+  height: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 0.85rem;
+  background: rgba(16, 42, 67, 0.06);
+}
+
+.prosper-founder-note {
+  margin: 0;
+  flex: 0 0 auto;
+  font-size: 0.68rem;
+  font-weight: 550;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  color: var(--founder-mute);
+  text-wrap: pretty;
+}
+
+.prosper-founder-copy {
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 0.45rem;
+}
+
+.prosper-founder-eyebrow {
+  margin: 0;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--founder-accent);
+}
+
+.prosper-founder-title {
+  margin: 0;
+  font-family: var(--pd-sans, 'Segoe UI', sans-serif);
+  font-size: clamp(1.85rem, 3.8vw, 2.55rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--founder-ink);
+}
+
+.prosper-founder-lede {
+  margin: 0.2rem 0 0;
+  font-size: clamp(0.84rem, 1.5vw, 0.95rem);
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--founder-mute);
+  text-wrap: pretty;
+}
+
+.prosper-founder-identity {
+  margin-top: 0.35rem;
+}
+
+.prosper-founder-name {
+  margin: 0;
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--founder-ink);
+}
+
+.prosper-founder-role {
+  margin: 0.1rem 0 0;
+  font-size: 0.7rem;
+  font-weight: 750;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--founder-accent);
+}
+
+.prosper-founder-company {
+  margin: 0.08rem 0 0;
+  font-size: 0.66rem;
+  font-weight: 650;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--founder-mute);
+}
+
+.prosper-founder-highlights {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0.35rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.prosper-founder-highlight {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.5rem;
+  align-items: start;
+  margin: 0;
+}
+
+.prosper-founder-highlight-icon {
+  display: grid;
+  place-items: center;
+  width: 1.4rem;
+  height: 1.4rem;
+  border-radius: 999px;
+  background: var(--founder-soft);
+  color: var(--founder-accent);
+  flex-shrink: 0;
+}
+
+.prosper-founder-highlight-icon svg {
+  width: 0.82rem;
+  height: 0.82rem;
+}
+
+.prosper-founder-highlight p {
+  margin: 0;
+  font-size: clamp(0.78rem, 1.25vw, 0.88rem);
+  font-weight: 550;
+  line-height: 1.28;
+  color: var(--founder-ink);
+  text-wrap: pretty;
+}
+
+.prosper-founder-quote {
+  margin: 0.35rem 0 0;
+  padding: 0.55rem 0.75rem 0.55rem 0.85rem;
+  border-left: 3px solid var(--founder-accent);
+  border-radius: 0 0.55rem 0.55rem 0;
+  background: var(--founder-soft);
+}
+
+.prosper-founder-quote p {
+  margin: 0;
+  font-size: clamp(0.82rem, 1.35vw, 0.92rem);
+  font-weight: 600;
+  font-style: italic;
+  line-height: 1.3;
+  color: var(--founder-ink);
+  text-wrap: pretty;
+}
+
+.prosper-founder-quote footer {
+  margin-top: 0.3rem;
+  font-size: 0.66rem;
+  font-weight: 700;
+  font-style: normal;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--founder-accent);
+}
+
+.prosper-founder-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0.25rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.prosper-founder-tags li {
+  margin: 0;
+  padding: 0.28rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(31, 111, 235, 0.1);
+  color: var(--founder-ink);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
 @media (min-width: 820px) {
   .prosper-slide--product {
-    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.85fr);
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.15fr);
     gap: 2rem;
+    align-items: center;
+  }
+
+  .prosper-slide--problem {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: 2rem;
+    align-items: stretch;
+  }
+
+  .prosper-slide--founder {
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.25fr);
+    gap: 1.5rem;
+    align-items: stretch;
   }
 
   .prosper-product-visual img {
     width: min(100%, 22rem);
   }
+}
+
+/* Product: fill the stage; Send/Receive loop must fit above chrome. */
+.prosper-root #pd-product {
+  justify-content: flex-start;
+  padding-top: clamp(1.25rem, 2.8vh, 2rem);
+  padding-bottom: calc(5rem + env(safe-area-inset-bottom, 0px));
+  overflow: hidden;
+}
+
+.prosper-root #pd-product .pd-panel-inner {
+  width: min(100%, 72rem);
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: 100%;
+  align-items: stretch;
+  justify-content: flex-start;
+  padding: 0;
+  overflow: hidden;
+}
+
+.prosper-root #pd-product .prosper-slide--product {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  max-height: 100%;
+  align-content: center;
+  align-items: center;
+}
+
+.prosper-root #pd-product .prosper-lede,
+.prosper-root #pd-product .prosper-note {
+  max-width: none;
+}
+
+.prosper-root #pd-product .prosper-product-loop {
+  justify-content: center;
+  align-self: center;
+  min-height: 0;
+  max-height: 100%;
+  overflow: visible;
+}
+
+.prosper-root #pd-product .prosper-product-loop-forward {
+  min-height: 0;
+  align-items: center;
+}
+
+.prosper-root #pd-product .prosper-product-shot {
+  align-self: center;
+  min-height: 0;
+  overflow: visible;
+}
+
+.prosper-root #pd-product .prosper-product-shot--send img,
+.prosper-root #pd-product .prosper-product-shot--receive img {
+  height: min(58vh, calc(100dvh - 11rem), 30rem);
+  max-height: min(58vh, calc(100dvh - 11rem), 30rem);
+  width: auto;
+  max-width: none;
+}
+
+/* Founder: fit one viewport — no inner scrollbar. */
+.prosper-root #pd-founder {
+  justify-content: flex-start;
+  padding-top: clamp(1.15rem, 2.4vh, 1.75rem);
+  padding-bottom: calc(4.25rem + env(safe-area-inset-bottom, 0px));
+  overflow: hidden;
+}
+
+.prosper-root #pd-founder .pd-panel-inner {
+  width: min(100%, 72rem);
+  flex: 1 1 auto;
+  min-height: 0;
+  align-items: stretch;
+  justify-content: flex-start;
+  padding: 0;
+  overflow: hidden;
+}
+
+.prosper-root #pd-founder .prosper-slide--founder {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  align-content: stretch;
+}
+
+.prosper-root #pd-founder .prosper-founder-portrait {
+  width: min(100%, 22rem);
+  max-height: 100%;
+  justify-self: start;
+}
+
+.prosper-root #pd-founder .prosper-founder-copy {
+  overflow: hidden;
+}
+
+/* Fill the panel down to the chrome; grow the 2×2 into the free space. */
+.prosper-root #pd-problem {
+  justify-content: flex-start;
+  padding-top: clamp(1.5rem, 3vh, 2.25rem);
+  padding-bottom: calc(4.1rem + env(safe-area-inset-bottom, 0px));
+  overflow: hidden;
+}
+
+.prosper-root #pd-problem .pd-panel-inner {
+  width: min(100%, 58rem);
+  flex: 1 1 auto;
+  min-height: 0;
+  align-items: stretch;
+  justify-content: flex-start;
+  padding: 0;
+  overflow: hidden;
+}
+
+.prosper-root #pd-problem .prosper-slide--problem {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+
+.prosper-root #pd-problem .prosper-split-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.85rem;
+  min-height: 0;
+}
+
+.prosper-root #pd-problem .prosper-practices {
+  margin-top: 0.25rem;
+}
+
+.prosper-root #pd-problem .prosper-title {
+  margin-bottom: 0.75rem;
+  overflow: visible;
+  padding-top: 0.08em;
+}
+
+.prosper-root #pd-problem .prosper-body-icon {
+  width: min(100%, 6.5rem);
+}
+
+.prosper-root #pd-problem .prosper-problem-gallery {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  gap: 0.75rem;
+  min-height: 0;
+  height: 100%;
+}
+
+.prosper-root #pd-problem .prosper-gallery-stage {
+  position: relative;
+  flex: 0 1 auto;
+  width: 100%;
+  max-height: min(100%, 28rem);
+  min-height: 0;
+}
+
+.prosper-root #pd-problem .prosper-gallery-grid {
+  width: 100%;
+  height: auto;
+  max-height: min(58vh, 26rem);
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 0.55rem;
+  min-height: 0;
+  aspect-ratio: 1 / 1.08;
+}
+
+.prosper-root #pd-problem .prosper-gallery-grid li {
+  display: flex;
+  min-height: 0;
+}
+
+.prosper-root #pd-problem .prosper-gallery-grid figure {
+  width: 100%;
+}
+
+.prosper-root #pd-problem .prosper-gallery-grid img {
+  flex: 1 1 auto;
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  min-height: 0;
+  height: auto;
+  max-height: 100%;
+  object-fit: cover;
+}
+
+.prosper-root #pd-problem .prosper-gallery-logos {
+  position: absolute;
+  left: 50%;
+  bottom: 1.45rem;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  width: max-content;
+  max-width: calc(100% - 1rem);
+  padding: 0.4rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 8px 28px rgba(11, 11, 12, 0.14);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.prosper-root #pd-problem .prosper-gallery-logos .prosper-assistant-row {
+  margin: 0;
+  gap: 0.5rem;
+}
+
+.prosper-root #pd-problem .prosper-disconnect {
+  flex: 0 0 auto;
+  width: min(100%, 14rem);
+  margin: 0 auto;
+}
+
+.prosper-root #pd-problem .prosper-problem-gallery > .prosper-body-icon {
+  display: block;
+  width: min(100%, 5.5rem);
+  margin: 0 auto;
 }
 
 .prosper-kicker {
@@ -78,6 +674,100 @@
   line-height: 1.5;
   color: var(--pd-ink, #0b0b0c);
   text-wrap: pretty;
+}
+
+.prosper-body--lead {
+  margin-bottom: 0.35rem;
+}
+
+.prosper-body--but {
+  margin: 0 0 0.85rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.prosper-assistant-row {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 0.65rem;
+  margin: 0 0 0.55rem;
+  padding: 0;
+  list-style: none;
+}
+
+.prosper-disconnect {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  width: min(100%, 14rem);
+  margin: 0.15rem 0 0.85rem;
+}
+
+.prosper-disconnect-rail {
+  flex: 1 1 auto;
+  height: 0;
+  border-top: 1.5px dashed color-mix(in srgb, var(--pd-ink, #0b0b0c) 38%, transparent);
+}
+
+.prosper-disconnect-break {
+  display: block;
+  flex: 0 0 auto;
+  width: 1.85rem;
+  height: 1.85rem;
+  object-fit: contain;
+}
+
+.prosper-practices {
+  display: grid;
+  gap: 0.45rem;
+  justify-items: start;
+}
+
+.prosper-body--practices {
+  margin-bottom: 0;
+}
+
+.prosper-summary {
+  margin: 1.35rem 0 0;
+  width: max-content;
+  max-width: 100%;
+  padding: 0.85rem 1rem;
+  border: 1.5px solid color-mix(in srgb, var(--pd-ink, #0b0b0c) 22%, transparent);
+  border-radius: 0.65rem;
+  background: rgba(11, 11, 12, 0.03);
+  font-size: clamp(0.98rem, 2vw, 1.08rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.35;
+  color: var(--pd-ink, #0b0b0c);
+  white-space: nowrap;
+}
+
+.prosper-assistant {
+  display: grid;
+  place-items: center;
+  margin: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.72rem;
+  overflow: hidden;
+  background: transparent;
+}
+
+.prosper-assistant-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.prosper-body-icon {
+  display: block;
+  width: min(100%, 7.5rem);
+  height: auto;
+  margin: 0.35rem 0 0;
+  overflow: visible;
 }
 
 .prosper-note {
@@ -123,48 +813,198 @@
 }
 
 .prosper-cover {
-  text-align: center;
+  --prosper-cover-band: clamp(5.5rem, 16vh, 8.5rem);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-end;
+  gap: clamp(0.65rem, 1.6vh, 1rem);
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  text-align: left;
 }
 
-.prosper-cover-logo {
+.prosper-cover-brand {
+  position: absolute;
+  top: var(--prosper-cover-band);
+  left: 0;
+  z-index: 1;
+  max-width: min(28rem, 48%);
+}
+
+.prosper-cover-lockup {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 0.7rem;
+}
+
+.prosper-cover-wordmark {
   display: block;
-  width: min(7.5rem, 34vw);
+  flex: 0 0 auto;
+  width: min(12.5rem, 42vw);
   height: auto;
-  margin: 0 auto 1.4rem;
 }
 
-.prosper-cover-title {
-  margin: 0;
+.prosper-cover-accent {
+  flex: 0 0 auto;
   font-family: var(--pd-display, Merriweather, Georgia, serif);
-  font-size: clamp(3rem, 12vw, 5.5rem);
+  font-size: clamp(1.15rem, 2.6vw, 1.45rem);
   font-weight: 700;
-  letter-spacing: -0.045em;
-  line-height: 0.95;
+  font-style: italic;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: #c8202f;
+  white-space: nowrap;
+}
+
+.prosper-cover-tagline {
+  margin: 0.55rem 0 0;
+  max-width: 18rem;
+  font-family: var(--pd-sans, 'Segoe UI', sans-serif);
+  font-size: clamp(1.05rem, 2.4vw, 1.35rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.25;
   color: var(--pd-ink, #0b0b0c);
+  text-wrap: pretty;
 }
 
-.prosper-cover-lede {
-  margin: 0.85rem auto 0;
-  max-width: 22rem;
-  font-size: clamp(1.15rem, 3.4vw, 1.45rem);
-  font-weight: 550;
-  line-height: 1.3;
-  color: var(--pd-ink, #0b0b0c);
-  text-wrap: balance;
+.prosper-cover-phones {
+  position: absolute;
+  top: var(--prosper-cover-band);
+  right: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  margin: 0;
+  width: min(70%, 44rem);
+  max-height: calc(100% - var(--prosper-cover-band) - 5.5rem);
 }
 
-.prosper-cover-sub {
-  margin: 0.7rem auto 0;
-  font-size: clamp(1rem, 2.8vw, 1.2rem);
-  font-weight: 600;
-  color: var(--pd-mute, #5f5e5a);
+.prosper-cover-phones-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: min(58vh, 34rem);
+  margin: 0;
+  object-fit: contain;
+  object-position: right top;
 }
 
-.prosper-cover-byline {
-  margin: 1.5rem auto 0;
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: var(--pd-mute, #5f5e5a);
+.prosper-cover-foot {
+  position: relative;
+  z-index: 1;
+  flex: 0 0 auto;
+  display: grid;
+  gap: 0.55rem;
+  justify-items: start;
+  padding-bottom: 0.15rem;
+}
+
+.prosper-cover-partners {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.1rem 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.prosper-cover-partner {
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.prosper-cover-partner img {
+  display: block;
+  width: auto;
+  height: 2.4rem;
+  object-fit: contain;
+}
+
+.prosper-cover-partner--google img {
+  height: 1.375rem;
+  width: auto;
+  max-width: min(8rem, 28vw);
+}
+
+.prosper-cover-partner--google .prosper-cover-partner-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+
+.prosper-cover-partner--fi img {
+  height: 2.75rem;
+}
+
+.prosper-cover-partner-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #3a3a3a;
+  line-height: 1.15;
+  max-width: 5.5rem;
+}
+
+.prosper-root #pd-cover {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: clamp(1.25rem, 3vh, 2rem);
+  padding-right: 0;
+  padding-bottom: 0;
+  overflow: hidden;
+  background: #fff;
+}
+
+.prosper-root #pd-cover .pd-panel-inner {
+  width: 100%;
+  max-width: none;
+  flex: 1 1 auto;
+  min-height: 0;
+  align-items: stretch;
+  justify-content: stretch;
+  padding: 0 0 0 clamp(1.25rem, 4vw, 2.5rem);
+  overflow: hidden;
+}
+
+.prosper-root #pd-cover .prosper-cover-brand,
+.prosper-root #pd-cover .prosper-cover-foot {
+  padding-right: clamp(1.25rem, 4vw, 2.5rem);
+}
+
+.prosper-root #pd-cover .pd-chrome {
+  position: relative;
+  flex: 0 0 auto;
+  bottom: auto;
+  margin-top: auto;
+  border-top: 1px solid rgba(11, 11, 12, 0.08);
+}
+
+.prosper-root #pd-cover .pd-counter--cover {
+  min-width: 3.5rem;
+}
+
+.prosper-root .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .prosper-cover-links {
