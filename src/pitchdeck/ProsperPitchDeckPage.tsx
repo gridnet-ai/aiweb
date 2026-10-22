@@ -1,7 +1,11 @@
 import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { DEFAULT_PAGE_TITLE } from '@/lib/siteSeo';
-import { PROSPER_DECK_SLIDES, PROSPER_META } from '@/pitchdeck/prosperContent';
+import {
+  PROSPER_DECK_SLIDES,
+  PROSPER_META,
+  PROSPER_PRODUCT_LOOP,
+} from '@/pitchdeck/prosperContent';
 import '@/pages/pitchdeck.css';
 import '@/pitchdeck/prosper.css';
 
@@ -12,6 +16,8 @@ type Slide = {
   section: string;
   render: () => ReactNode;
 };
+
+type ProductLoopData = typeof PROSPER_PRODUCT_LOOP;
 
 function SlideShell({
   kicker,
@@ -47,6 +53,34 @@ function AssistantLogoRow({
         </li>
       ))}
     </ul>
+  );
+}
+
+function ProductLoop({ loop }: { loop: ProductLoopData }) {
+  return (
+    <div className="prosper-product-loop" aria-label="Send and receive">
+      <div className="prosper-product-loop-forward">
+        <span className="prosper-product-loop-label">{loop.send.label}</span>
+        <span
+          className="prosper-product-loop-arrow prosper-product-loop-arrow--extended"
+          aria-hidden
+        />
+        <span className="prosper-product-loop-label">{loop.receive.label}</span>
+        <figure className="prosper-product-shot prosper-product-shot--send">
+          <img src={loop.send.src} alt={loop.send.alt} />
+        </figure>
+        <span className="prosper-product-loop-gutter" aria-hidden />
+        <figure className="prosper-product-shot prosper-product-shot--receive">
+          <img src={loop.receive.src} alt={loop.receive.alt} />
+        </figure>
+        <span className="prosper-product-loop-label">{loop.receive.label}</span>
+        <span
+          className="prosper-product-loop-arrow prosper-product-loop-arrow--extended prosper-product-loop-arrow--back"
+          aria-hidden
+        />
+        <span className="prosper-product-loop-label">{loop.send.label}</span>
+      </div>
+    </div>
   );
 }
 
@@ -101,7 +135,7 @@ function FounderHighlightIcon({ kind }: { kind: string }) {
 }
 
 const SLIDES: Slide[] = PROSPER_DECK_SLIDES.map((slide) => {
-  if (slide.id === 'cover' && 'phones' in slide) {
+  if (slide.id === 'cover' && 'loop' in slide) {
     return {
       id: slide.id,
       section: slide.section,
@@ -118,9 +152,9 @@ const SLIDES: Slide[] = PROSPER_DECK_SLIDES.map((slide) => {
             </div>
             <p className="prosper-cover-tagline">{slide.tagline}</p>
           </div>
-          <figure className="prosper-cover-phones">
-            <img className="prosper-cover-phones-img" src={slide.phones.src} alt={slide.phones.alt} />
-          </figure>
+          <div className="prosper-cover-phones prosper-cover-phones--loop">
+            <ProductLoop loop={slide.loop} />
+          </div>
           <div className="prosper-cover-foot">
             <ul className="prosper-cover-partners">
               {slide.partners.map((partner) => (
@@ -284,39 +318,7 @@ const SLIDES: Slide[] = PROSPER_DECK_SLIDES.map((slide) => {
               <p className="prosper-note">{slide.note}</p>
             )}
           </div>
-          {'loop' in slide && slide.loop ? (
-            <div className="prosper-product-loop" aria-label="Send and receive">
-              <div className="prosper-product-loop-forward">
-                <span className="prosper-product-loop-label">
-                  {slide.loop.send.label}
-                </span>
-                <span
-                  className="prosper-product-loop-arrow prosper-product-loop-arrow--extended"
-                  aria-hidden
-                />
-                <span className="prosper-product-loop-label">
-                  {slide.loop.receive.label}
-                </span>
-                <figure className="prosper-product-shot prosper-product-shot--send">
-                  <img src={slide.loop.send.src} alt={slide.loop.send.alt} />
-                </figure>
-                <span className="prosper-product-loop-gutter" aria-hidden />
-                <figure className="prosper-product-shot prosper-product-shot--receive">
-                  <img src={slide.loop.receive.src} alt={slide.loop.receive.alt} />
-                </figure>
-                <span className="prosper-product-loop-label">
-                  {slide.loop.receive.label}
-                </span>
-                <span
-                  className="prosper-product-loop-arrow prosper-product-loop-arrow--extended prosper-product-loop-arrow--back"
-                  aria-hidden
-                />
-                <span className="prosper-product-loop-label">
-                  {slide.loop.send.label}
-                </span>
-              </div>
-            </div>
-          ) : null}
+          {'loop' in slide && slide.loop ? <ProductLoop loop={slide.loop} /> : null}
         </div>
       ),
     };

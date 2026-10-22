@@ -10,15 +10,25 @@ export const PROSPER_META = {
   summaryPdf: '/corporate/AIWEB-Executive-Summary-Prosper-DRAFT-2026-10-20.pdf',
 } as const;
 
+export const PROSPER_PRODUCT_LOOP = {
+  send: {
+    label: 'Send',
+    src: '/corporate/aiweb-healthcare-find-austin-cut.png',
+    alt: 'Chat GPT shows AIWEB healthcare matches for Find a dentist near me in Austin, TX, with Call on each practice card.',
+  },
+  receive: {
+    label: 'Receive',
+    src: '/corporate/aiweb-mailbox-iphone-mockup.png',
+    alt: 'AIWEB Mail on iPhone — unified inbox of direct messages from ChatGPT, Claude, Gemini, Grok, Muse, and the web.',
+  },
+} as const;
+
 export const PROSPER_DECK_SLIDES = [
   {
     id: 'cover',
     section: 'Cover',
     tagline: 'The phone and phone book for AI assistants',
-    phones: {
-      src: '/corporate/aiweb-cover-phones.png',
-      alt: 'Send from Chat GPT — find care. Receive in AIWEB Mail.',
-    },
+    loop: PROSPER_PRODUCT_LOOP,
     partners: [
       {
         id: 'google',
@@ -154,18 +164,7 @@ export const PROSPER_DECK_SLIDES = [
       { id: 'grok', label: 'Grok', src: '/images/demo/workers/grok.png' },
       { id: 'muse', label: 'Muse', src: '/images/promo/muse-mark.png' },
     ],
-    loop: {
-      send: {
-        label: 'Send',
-        src: '/corporate/aiweb-healthcare-find-austin-cut.png',
-        alt: 'Chat GPT shows AIWEB healthcare matches for Find a dentist near me in Austin, TX, with Call on each practice card.',
-      },
-      receive: {
-        label: 'Receive',
-        src: '/corporate/aiweb-mailbox-iphone-mockup.png',
-        alt: 'AIWEB Mail on iPhone — unified inbox of direct messages from ChatGPT, Claude, Gemini, Grok, Muse, and the web.',
-      },
-    },
+    loop: PROSPER_PRODUCT_LOOP,
   },
   {
     id: 'proof',
