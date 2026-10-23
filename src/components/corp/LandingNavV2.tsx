@@ -1,14 +1,13 @@
 import { useEffect, useId, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { Link, useLocation } from 'react-router-dom';
-import { PRODUCT_URLS } from '@/lib/aiWebCompanyBrand';
 import { MAIL_SITE_URL, PLUGIN_PATH } from '@/lib/corpSiteRoutes';
 
 export const AGENCY_PILOT_HREF =
   'mailto:support@theaiwebcompany.com?subject=Agency%20pilot%20application';
 
-/** Unsigned visitors land on the AIWEB OS welcome screen, which opens sign-in. */
-export const OS_LOGIN_HREF = PRODUCT_URLS.aiWebOs;
+/** Unsigned visitors land on the AIWEB Mail app, which opens sign-in. */
+export const OS_LOGIN_HREF = MAIL_SITE_URL;
 
 export const CHATGPT_AIWEB_PLUGIN_HREF =
   'https://chatgpt.com/plugins/plugin_asdk_app_6a8e85029ad08191b8cd1435be85f221?q=call';
