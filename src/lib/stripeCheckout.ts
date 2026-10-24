@@ -1,5 +1,5 @@
 import { PRODUCT_URLS } from '@/lib/aiWebCompanyBrand';
-import { MAIL_SITE_URL } from '@/lib/corpSiteRoutes';
+import { MAIL_SITE_URL, PHONE_CHECKOUT_URL } from '@/lib/corpSiteRoutes';
 import type { CheckoutPlanId } from '@/lib/pricingPlans';
 
 function aiwebOsOrigin(): string {
@@ -12,7 +12,7 @@ function aiwebOsOrigin(): string {
 export type BillingInterval = 'monthly' | 'annual';
 
 /** Mail-hosted public offers. Monthly only. The mail host owns Launch and Stripe. */
-const MAIL_CHECKOUT_PLANS = ['business_500', 'seller'] as const;
+const MAIL_CHECKOUT_PLANS = ['phone', 'business_500', 'seller'] as const;
 type MailCheckoutPlanId = (typeof MAIL_CHECKOUT_PLANS)[number];
 
 function isMailCheckoutPlan(planId: CheckoutPlanId): planId is MailCheckoutPlanId {
@@ -20,11 +20,17 @@ function isMailCheckoutPlan(planId: CheckoutPlanId): planId is MailCheckoutPlanI
 }
 
 function mailCheckoutUrl(planId: MailCheckoutPlanId): string {
+  if (planId === 'phone') return PHONE_CHECKOUT_URL;
   const url = new URL(MAIL_SITE_URL);
   url.searchParams.set('checkout', planId);
   url.searchParams.set('from', 'company');
   url.searchParams.set('interval', 'monthly');
   return url.toString();
+}
+
+/** AIWEB Phone — Mail-armed checkout (price_1UUCOd… / aiweb_phone_monthly). */
+export function phoneCheckoutUrl(): string {
+  return PHONE_CHECKOUT_URL;
 }
 
 /** Plus, Business, Agency, and Agency Pro stay on AIWEB OS. */

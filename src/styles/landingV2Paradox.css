@@ -587,6 +587,14 @@
   color: var(--px-mute);
 }
 
+.lv2p-hero-how-mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  color: var(--px-ink);
+  white-space: nowrap;
+}
+
 .lv2p-hero-story {
   display: flex;
   flex-direction: column;
@@ -1994,6 +2002,19 @@
   background: transparent;
   object-fit: contain;
   object-position: left center;
+}
+
+.lv2p-close .seller-feature-compatible-row img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  border-radius: 0;
+  background: transparent;
+  object-fit: contain;
+  object-position: center;
 }
 
 .lv2p-close img.lv2p-close-logo {

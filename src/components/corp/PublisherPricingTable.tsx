@@ -13,6 +13,7 @@ const FEATURE_ROWS: { label: string; values: Record<PricingPlanId, Cell> }[] = [
   {
     label: 'Price',
     values: {
+      phone: '$4.99',
       business_500: '$500',
       seller: '$19.99',
       plus: '$19.99',
@@ -25,6 +26,7 @@ const FEATURE_ROWS: { label: string; values: Record<PricingPlanId, Cell> }[] = [
   {
     label: 'AI work hour ( aiWh )',
     values: {
+      phone: '—',
       business_500: '—',
       seller: '—',
       plus: '500',
@@ -37,6 +39,7 @@ const FEATURE_ROWS: { label: string; values: Record<PricingPlanId, Cell> }[] = [
   {
     label: 'Pages',
     values: {
+      phone: '1',
       business_500: 'Unlimited',
       seller: 'Unlimited',
       plus: 'Unlimited',
@@ -49,6 +52,7 @@ const FEATURE_ROWS: { label: string; values: Record<PricingPlanId, Cell> }[] = [
   {
     label: 'Projects',
     values: {
+      phone: '—',
       business_500: 'Unlimited',
       seller: 'Unlimited',
       plus: 'Unlimited',
@@ -60,31 +64,94 @@ const FEATURE_ROWS: { label: string; values: Record<PricingPlanId, Cell> }[] = [
   },
   {
     label: 'AIWEB OS Agent',
-    values: { business_500: 'dash', seller: 'dash', plus: 'check', business: 'check', agency: 'check', agency_pro: 'check', enterprise: 'check' },
+    values: {
+      phone: 'dash',
+      business_500: 'dash',
+      seller: 'dash',
+      plus: 'check',
+      business: 'check',
+      agency: 'check',
+      agency_pro: 'check',
+      enterprise: 'check',
+    },
   },
   {
     label: 'AI Check',
-    values: { business_500: 'dash', seller: 'dash', plus: 'check', business: 'check', agency: 'check', agency_pro: 'check', enterprise: 'check' },
+    values: {
+      phone: 'dash',
+      business_500: 'dash',
+      seller: 'dash',
+      plus: 'check',
+      business: 'check',
+      agency: 'check',
+      agency_pro: 'check',
+      enterprise: 'check',
+    },
   },
   {
     label: 'Get Quote / AIWEB Actions',
-    values: { business_500: 'dash', seller: 'dash', plus: 'check', business: 'check', agency: 'check', agency_pro: 'check', enterprise: 'check' },
+    values: {
+      phone: 'dash',
+      business_500: 'dash',
+      seller: 'dash',
+      plus: 'check',
+      business: 'check',
+      agency: 'check',
+      agency_pro: 'check',
+      enterprise: 'check',
+    },
   },
   {
     label: 'Project organization',
-    values: { business_500: 'dash', seller: 'dash', plus: 'Basic', business: 'Basic', agency: 'check', agency_pro: 'check', enterprise: 'check' },
+    values: {
+      phone: 'dash',
+      business_500: 'dash',
+      seller: 'dash',
+      plus: 'Basic',
+      business: 'Basic',
+      agency: 'check',
+      agency_pro: 'check',
+      enterprise: 'check',
+    },
   },
   {
     label: 'Client reporting',
-    values: { business_500: 'dash', seller: 'dash', plus: 'dash', business: 'dash', agency: 'check', agency_pro: 'check', enterprise: 'check' },
+    values: {
+      phone: 'dash',
+      business_500: 'dash',
+      seller: 'dash',
+      plus: 'dash',
+      business: 'dash',
+      agency: 'check',
+      agency_pro: 'check',
+      enterprise: 'check',
+    },
   },
   {
     label: 'Team permissions',
-    values: { business_500: 'dash', seller: 'dash', plus: 'dash', business: 'dash', agency: 'Basic', agency_pro: 'Advanced', enterprise: 'Custom' },
+    values: {
+      phone: 'dash',
+      business_500: 'dash',
+      seller: 'dash',
+      plus: 'dash',
+      business: 'dash',
+      agency: 'Basic',
+      agency_pro: 'Advanced',
+      enterprise: 'Custom',
+    },
   },
   {
     label: 'API / integrations',
-    values: { business_500: 'dash', seller: 'dash', plus: 'dash', business: 'dash', agency: 'dash', agency_pro: 'check', enterprise: 'check' },
+    values: {
+      phone: 'dash',
+      business_500: 'dash',
+      seller: 'dash',
+      plus: 'dash',
+      business: 'dash',
+      agency: 'dash',
+      agency_pro: 'check',
+      enterprise: 'check',
+    },
   },
 ];
 
@@ -108,6 +175,22 @@ function CellValue({ value }: { value: Cell }) {
   }
   return <span className="text-[13px] font-semibold text-marketing-ink sm:text-[14px]">{value}</span>;
 }
+
+const PHONE_FEATURES = [
+  'IRL Number (IRL-###-###-###-###)',
+  'Unlimited calls',
+  'Unlimited Calls user to user',
+  'Unlimited AIWEB Page + Mail box',
+] as const;
+
+const PHONE_COMPATIBLE = [
+  { id: 'chatgpt', label: 'Chat GPT', src: '/images/promo/chatgpt-mark.png' },
+  { id: 'claude', label: 'Claude', src: '/images/promo/claude-mark.png' },
+  { id: 'gemini', label: 'Gemini', src: '/images/promo/gemini-mark.png' },
+  { id: 'grok', label: 'Grok', src: '/images/demo/workers/grok.png' },
+  { id: 'muse', label: 'Muse', src: '/images/promo/muse-mark.png' },
+  { id: 'web', label: 'Internet', src: '/images/promo/web-mark.svg' },
+] as const;
 
 const SELLER_FEATURES = [
   'Instant publish to Chat GPT',
@@ -142,6 +225,14 @@ const AGENCY_FEATURES = [
 const SALES_MAILTO = 'mailto:sales@theaiwebcompany.com';
 
 const OFFER_CARDS = {
+  phone: {
+    price: '$4.99',
+    lede: 'Your number on the AIWEB.',
+    features: PHONE_FEATURES,
+    compatible: PHONE_COMPATIBLE,
+    cta: 'Get AIWEB Phone',
+    sales: false,
+  },
   business_500: {
     price: '$500',
     lede: 'For businesses ready for more calls.',
@@ -180,7 +271,11 @@ const OFFER_CARDS = {
 } as const;
 
 const VISIBLE_PLANS = PRICING_PLANS.filter(
-  (plan) => plan.id !== 'agency_pro' && plan.id !== 'seller' && plan.id !== 'business_500',
+  (plan) =>
+    plan.id !== 'agency_pro' &&
+    plan.id !== 'seller' &&
+    plan.id !== 'business_500' &&
+    plan.id !== 'phone',
 );
 
 const BEST_PLAN_ID: PricingPlanId = 'business';
@@ -205,6 +300,7 @@ function displayPrice(planId: PricingPlanId, billing: BillingInterval): { amount
 }
 
 const PLAN_TITLES: Record<PricingPlanId, string> = {
+  phone: 'Phone',
   business_500: 'Business',
   seller: 'Seller',
   plus: 'Seller',
@@ -279,13 +375,18 @@ function PlanCta({
     );
   }
   if (!isCheckoutPlanId(planId)) return null;
+  const phoneCta = planId === 'phone';
   return (
     <button
       type="button"
       disabled={busy !== null}
       onClick={() => onSelect(planId)}
       data-checkout={planId}
-      className={`${CTA_CLASS} bg-white text-marketing-ink hover:bg-marketing-ink hover:text-white`}
+      className={
+        phoneCta
+          ? `${CTA_CLASS} seller-plan-cta--phone`
+          : `${CTA_CLASS} bg-white text-marketing-ink hover:bg-marketing-ink hover:text-white`
+      }
     >
       {busy === planId ? 'Redirecting…' : label ?? (planId === 'plus' ? 'Get Plus' : 'Subscribe')}
     </button>
@@ -319,12 +420,16 @@ export function PublisherPricingTable({
     .map((id) => PRICING_PLANS.find((plan) => plan.id === id))
     .filter((plan): plan is (typeof PRICING_PLANS)[number] => Boolean(plan));
   const singleOffer = plans.length === 1;
+  const offerOnly = plans.every((plan) => plan.id in OFFER_CARDS);
 
   const onSelect = async (planId: CheckoutPlanId) => {
     setError(null);
     setBusy(planId);
     try {
-      await startCheckout(planId, planId === 'seller' || planId === 'business_500' ? 'monthly' : billing);
+      await startCheckout(
+        planId,
+        planId === 'phone' || planId === 'seller' || planId === 'business_500' ? 'monthly' : billing,
+      );
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Checkout failed. Try again.');
       setBusy(null);
@@ -344,7 +449,7 @@ export function PublisherPricingTable({
         </>
       ) : null}
 
-      {singleOffer ? null : (
+      {singleOffer || offerOnly ? null : (
         <div className="billing-toggle">
           <div className="billing-toggle-track" role="group" aria-label="Billing period">
             <button
@@ -366,8 +471,16 @@ export function PublisherPricingTable({
         </div>
       )}
 
-      {/* One plan per block. A single offer stays on desktop too. */}
-      <div className={singleOffer ? 'mx-auto mt-3 max-w-[28rem]' : 'mt-3 space-y-3 md:hidden'}>
+      {/* Offer cards: single centered, or a responsive grid when every plan has a card. */}
+      <div
+        className={
+          singleOffer
+            ? 'mx-auto mt-3 max-w-[28rem]'
+            : offerOnly
+              ? 'mt-3 grid gap-3 sm:grid-cols-2'
+              : 'mt-3 grid gap-3 sm:grid-cols-2 md:hidden'
+        }
+      >
         {plans.map((plan) => {
           const priced = displayPrice(plan.id, billing);
           const offer = plan.id in OFFER_CARDS ? OFFER_CARDS[plan.id as keyof typeof OFFER_CARDS] : null;
@@ -375,8 +488,9 @@ export function PublisherPricingTable({
             return (
               <section
                 key={plan.id}
+                id={plan.id === 'phone' ? 'phone' : undefined}
                 data-plan-id={plan.id}
-                className={`seller-plan scroll-mt-24${plan.id === BEST_PLAN_ID ? ' seller-plan--best' : ''}`}
+                className={`seller-plan scroll-mt-24${plan.id === BEST_PLAN_ID ? ' seller-plan--best' : ''}${plan.id === 'phone' ? ' seller-plan--phone' : ''}`}
                 aria-labelledby={`plan-${plan.id}-name`}
               >
                 {plan.id === BEST_PLAN_ID ? <p className="seller-plan-best">Best choice</p> : null}
@@ -400,7 +514,22 @@ export function PublisherPricingTable({
                       {feature}
                     </li>
                   ))}
+                  {'compatible' in offer && offer.compatible ? (
+                    <li className="seller-feature-card seller-feature-card--compatible">
+                      <span className="seller-feature-compatible-label">Compatible</span>
+                      <ul className="seller-feature-compatible-row" aria-label="Compatible AI assistants">
+                        {offer.compatible.map((assistant) => (
+                          <li key={assistant.id}>
+                            <img src={assistant.src} alt={assistant.label} title={assistant.label} />
+                          </li>
+                        ))}
+                      </ul>
+                    </li>
+                  ) : null}
                 </ul>
+                {'note' in offer && offer.note ? (
+                  <p className="mt-1.5 text-[11px] font-medium leading-snug text-marketing-muted2">{offer.note}</p>
+                ) : null}
                 <div className="mt-2.5">
                   <PlanCta
                     planId={plan.id}
@@ -441,8 +570,8 @@ export function PublisherPricingTable({
         })}
       </div>
 
-      {/* Desktop: comparison matrix */}
-      {singleOffer ? null : (
+      {/* Desktop: comparison matrix (skipped when every plan is an offer card). */}
+      {singleOffer || offerOnly ? null : (
       <div className="mt-10 hidden overflow-x-auto md:block">
         <table className="w-full border-collapse text-left">
           <thead>

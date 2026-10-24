@@ -3,6 +3,11 @@ export const OS_PATH = '/os';
 export const MAIL_PATH = '/mail';
 /** Public mailbox setup. www.mail.theaiwebcompany.com should redirect here. */
 export const MAIL_SITE_URL = 'https://mail.theaiwebcompany.com';
+/** Consumer AIWEB Phone host — number issued after payment. */
+export const PHONE_SITE_URL = 'https://phone.theaiwebcompany.com';
+/** Mail-armed Phone checkout (same Stripe price as Phone host). */
+export const PHONE_CHECKOUT_URL =
+  'https://mail.theaiwebcompany.com/?checkout=phone&from=company&interval=monthly';
 export const PRICING_PATH = '/pricing';
 export const PLUGINS_PATH = '/plugins';
 export const PLUGIN_PATH = '/plugin';

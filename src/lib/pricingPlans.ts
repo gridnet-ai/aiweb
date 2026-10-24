@@ -1,4 +1,5 @@
 export type PricingPlanId =
+  | 'phone'
   | 'business_500'
   | 'seller'
   | 'plus'
@@ -18,9 +19,11 @@ export type PricingPlan = {
 
 /**
  * Same AI Web Company Stripe catalog OS uses
- * (plus / business / agency / agency_pro).
+ * (plus / business / agency / agency_pro), plus Mail-hosted Phone / Seller.
+ * Phone Stripe price lives on Mail/Phone host — corp only links out.
  */
 export const PRICING_PLANS: PricingPlan[] = [
+  { id: 'phone', name: 'Phone', amountCents: 499, annualCents: null },
   { id: 'business_500', name: 'Business', amountCents: 50000, annualCents: null },
   { id: 'seller', name: 'Seller', amountCents: 1999, annualCents: null },
   { id: 'plus', name: 'Plus', amountCents: 1999, annualCents: 19190 },
@@ -30,7 +33,15 @@ export const PRICING_PLANS: PricingPlan[] = [
   { id: 'enterprise', name: 'Enterprise', amountCents: null, annualCents: null },
 ];
 
-export const CHECKOUT_PLAN_IDS = ['business_500', 'seller', 'plus', 'business', 'agency', 'agency_pro'] as const;
+export const CHECKOUT_PLAN_IDS = [
+  'phone',
+  'business_500',
+  'seller',
+  'plus',
+  'business',
+  'agency',
+  'agency_pro',
+] as const;
 export type CheckoutPlanId = (typeof CHECKOUT_PLAN_IDS)[number];
 
 export function isCheckoutPlanId(id: string): id is CheckoutPlanId {

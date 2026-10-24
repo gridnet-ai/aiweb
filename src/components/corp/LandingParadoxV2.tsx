@@ -21,7 +21,7 @@ import {
 import { CHATGPT_AIWEB_PLUGIN_HREF } from '@/components/corp/LandingNavV2';
 import { businessCheckoutUrl } from '@/lib/stripeCheckout';
 import { PublisherPricingTable } from '@/components/corp/PublisherPricingTable';
-import { MAIL_SITE_URL, PRIVACY_PATH, TERMS_PATH, OS_PATH } from '@/lib/corpSiteRoutes';
+import { PRIVACY_PATH, TERMS_PATH, OS_PATH } from '@/lib/corpSiteRoutes';
 import { SITE_ORIGIN } from '@/lib/aiWebCompanyBrand';
 import { AIWEB_CALL_FAQS } from '@/lib/siteSeo';
 import { WelcomeCloudCarousel } from '@/components/WelcomeCloudCarousel';
@@ -66,13 +66,15 @@ function HeroHowItWorks() {
     <div className="lv2p-hero-how">
       <img
         className="lv2p-hero-how-mark"
-        src="/images/promo/aiweb-mail-bear-lockup.png"
-        alt="Mail"
+        src="/images/promo/aiweb-phone-bear-lockup.png"
+        alt="AIWEB Phone"
       />
       <h2 className="lv2p-hero-how-title">How it works</h2>
       <p className="lv2p-hero-how-body">
-        With AIWEB Mail, lead generation is on autopilot — incoming from anyone using frontier AI
-        assistants or the world wide web, 24/7.
+        Just prompt your AI assistant <span className="lv2p-hero-how-mono">@AIWEB</span> and the 12
+        digit number <span className="lv2p-hero-how-mono">IRL-000-000-000-000</span>
+        <br />
+        example <span className="lv2p-hero-how-mono">@AIWEB IRL-123-456-789-000</span>
       </p>
     </div>
   );
@@ -184,25 +186,22 @@ function HeroStory({ pitch = true }: { pitch?: boolean }) {
               <span className="lv2p-step-icon" aria-hidden>
                 <Mail strokeWidth={1.75} />
               </span>
-              Start your AIWEB Mailbox.
+              Get our AIWEB Phone number
             </li>
             <li>
               <span className="lv2p-step-icon" aria-hidden>
                 <Phone strokeWidth={1.75} />
               </span>
-              Get a call from ChatGPT users.
+              Get a call from AI Assistant users
             </li>
             <li>
               <span className="lv2p-step-icon" aria-hidden>
                 <Send strokeWidth={1.75} />
               </span>
-              Answer questions and send quotes.
+              Answer questions, send quotes and more!
             </li>
           </ol>
         </div>
-        <a className="lv2p-pill lv2p-hero-reach-cta" href="#seller">
-          List your business
-        </a>
       </div>
         </>
       ) : null}
@@ -216,19 +215,11 @@ function HeroMail({ full = true }: { full?: boolean }) {
       <WelcomeCloudCarousel />
       <img
         className="lv2p-hero-mail-mark"
-        src="/images/promo/aiweb-mail-bear-lockup.png"
-        alt="Mail"
+        src="/images/promo/aiweb-phone-bear-lockup.png"
+        alt="AIWEB Phone"
       />
       <h2>Get on the AIWEB</h2>
-      {full ? (
-        <>
-          <img src={HERO_MAIL.src} alt={HERO_MAIL.alt} />
-          <a className="lv2p-pill lv2p-hero-mail-start" href={MAIL_SITE_URL}>
-            Start
-            <img className="lv2p-mail-icon" src="/images/promo/aiweb-mail-lockup-black.png" alt="Mail" />
-          </a>
-        </>
-      ) : null}
+      {full ? <img src={HERO_MAIL.src} alt={HERO_MAIL.alt} /> : null}
     </figure>
   );
 }
@@ -509,12 +500,8 @@ function StartSection() {
         src="/images/promo/aiweb-seller-logo.png?v=3"
         alt="SELLER"
       />
-      <h2>
-        <img className="lv2p-start-mark" src="/images/promo/chatgpt-mark.png" alt="" />
-        Plugin live on Chat GPT!
-      </h2>
       <div className="lv2p-pricing">
-        <PublisherPricingTable showHeading={false} planIds={['business_500']} />
+        <PublisherPricingTable showHeading={false} planIds={['phone']} />
       </div>
     </section>
   );
