@@ -527,9 +527,6 @@ export function PublisherPricingTable({
                     </li>
                   ) : null}
                 </ul>
-                {'note' in offer && offer.note ? (
-                  <p className="mt-1.5 text-[11px] font-medium leading-snug text-marketing-muted2">{offer.note}</p>
-                ) : null}
                 <div className="mt-2.5">
                   <PlanCta
                     planId={plan.id}
