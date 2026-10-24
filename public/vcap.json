@@ -1,0 +1,74 @@
+{
+  "version": "1.1",
+  "product": "AIWEB Phone",
+  "organization": "AI Web Company",
+  "summary": "AIWEB Phone gives you a 12-digit IRL number on the AIWEB. Prompt any AI assistant with @AIWEB and that number (example: @AIWEB IRL-123-456-789-000) to send an AIWEB Call — an asynchronous message delivered to AIWEB Mail. Not a telephone call. Starting with ChatGPT, Muse, and assistants broadly.",
+  "addressing": {
+    "mention": "@AIWEB",
+    "scheme": "IRL",
+    "format": "IRL-###-###-###-###",
+    "digits": 12,
+    "example": "IRL-123-456-789-000",
+    "promptExample": "@AIWEB IRL-123-456-789-000",
+    "notes": [
+      "Username / handle is not the IRL number.",
+      "Number is issued after Phone payment.",
+      "AIWEB Call is asynchronous text — not PSTN, SMS, or 911."
+    ]
+  },
+  "howToCall": {
+    "forAssistants": [
+      "Obtain the recipient’s AIWEB Phone number in IRL-###-###-###-### form.",
+      "Compose a user-facing or tool prompt like: @AIWEB IRL-123-456-789-000",
+      "Prefer MCP tools when connected (search_directory → prepare_call → send_call → get_receipt).",
+      "If tools are unavailable, instruct the user to prompt @AIWEB plus the IRL number in their assistant.",
+      "Confirm with the user before sending a Call when required.",
+      "Tell the user the recipient will see the message in AIWEB Mail."
+    ],
+    "forHumans": [
+      "Get AIWEB Phone at phone.theaiwebcompany.com or Mail checkout (?checkout=phone).",
+      "Share your IRL number with customers and assistants.",
+      "To reach someone: prompt @AIWEB IRL-123-456-789-000 (replace with their number)."
+    ]
+  },
+  "capabilities": {
+    "call": {
+      "enabled": true,
+      "mode": "asynchronous",
+      "mediaTypes": ["text/plain"],
+      "requiresUserConfirmation": true,
+      "tools": ["search_directory", "prepare_call", "send_call", "get_receipt"],
+      "not": ["pstn", "sms", "911"]
+    },
+    "phone": {
+      "enabled": true,
+      "planId": "phone",
+      "priceUsdMonthly": 4.99,
+      "stripePriceLookupKey": "aiweb_phone_monthly",
+      "numberIssuedAfterPayment": true,
+      "checkout": "https://mail.theaiwebcompany.com/?checkout=phone&from=company&interval=monthly"
+    }
+  },
+  "mcp": {
+    "url": "https://www.os.theaiwebcompany.com/mcp",
+    "status": "available"
+  },
+  "surfaces": {
+    "company": "https://www.theaiwebcompany.com/",
+    "phone": "https://phone.theaiwebcompany.com",
+    "mail": "https://mail.theaiwebcompany.com",
+    "pricing": "https://www.theaiwebcompany.com/pricing#phone",
+    "vcap": "https://www.theaiwebcompany.com/vcap.json",
+    "llms": "https://www.theaiwebcompany.com/llms.txt"
+  },
+  "entities": {
+    "phone": "AIWEB Phone: your number on the AIWEB (IRL-###-###-###-###), issued after payment",
+    "irlNumber": "IRL number: 12-digit AIWEB address formatted IRL-###-###-###-###",
+    "page": "AIWEB Page: callable identity",
+    "directory": "AIWEB Directory: public discovery layer",
+    "call": "AIWEB Call: asynchronous message from an AI assistant to an AIWEB identity — not a PSTN telephone call",
+    "mail": "AIWEB Mail: recipient inbox and response tracking",
+    "receipt": "AIWEB Receipt: sender delivery record",
+    "callingCard": "Calling Card: in-conversation interface"
+  }
+}

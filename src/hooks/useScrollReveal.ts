@@ -1,13 +1,21 @@
 import { useEffect } from 'react';
 import { SITE_ORIGIN } from '@/lib/aiWebCompanyBrand';
 import {
+  AIWEB_IRL_EXAMPLE,
+  AIWEB_IRL_FORMAT,
+  AIWEB_PROMPT_EXAMPLE,
+  AIWEB_VCAP,
+  AIWEB_VCAP_PATH,
+  AIWEB_VCAP_URL,
   DEFAULT_ROBOTS,
   OG_IMAGE_ALT,
   OG_IMAGE_HEIGHT,
   OG_IMAGE_URL,
   OG_IMAGE_WIDTH,
+  SITE_CANONICAL_DESCRIPTION,
   SITE_NAME,
 } from '@/lib/siteSeo';
+import { AIWEB_MCP_URL } from '@/lib/whitepaperMachine';
 
 export function useScrollReveal(selector = '.marketing-reveal'): void {
   useEffect(() => {
@@ -128,4 +136,73 @@ export function useJsonLd(data: Record<string, unknown> | Record<string, unknown
       script.remove();
     };
   }, [serialized]);
+}
+
+/**
+ * Inject complete VCAP + AEO meta so first-time assistants learn Phone addressing
+ * (@AIWEB + IRL-###-###-###-###) without inventing PSTN semantics. MCP stays the live tool surface.
+ */
+export function useAiwebVcap(): void {
+  useEffect(() => {
+    const nodes: HTMLElement[] = [];
+
+    const addMeta = (name: string, content: string) => {
+      const el = document.createElement('meta');
+      el.setAttribute('name', name);
+      el.setAttribute('content', content);
+      el.setAttribute('data-aiweb-home-vcap', '1');
+      document.head.appendChild(el);
+      nodes.push(el);
+    };
+
+    const addLink = (attrs: Record<string, string>) => {
+      const el = document.createElement('link');
+      el.setAttribute('data-aiweb-home-vcap', '1');
+      for (const [k, v] of Object.entries(attrs)) el.setAttribute(k, v);
+      document.head.appendChild(el);
+      nodes.push(el);
+    };
+
+    addMeta('aiweb:product', 'AIWEB Phone');
+    addMeta('aiweb:summary', SITE_CANONICAL_DESCRIPTION);
+    addMeta('aiweb:addressing', `${AIWEB_IRL_FORMAT}; mention @AIWEB; example ${AIWEB_PROMPT_EXAMPLE}`);
+    addMeta('aiweb:irl-format', AIWEB_IRL_FORMAT);
+    addMeta('aiweb:irl-example', AIWEB_IRL_EXAMPLE);
+    addMeta('aiweb:prompt-example', AIWEB_PROMPT_EXAMPLE);
+    addMeta('aiweb:mcp', AIWEB_MCP_URL);
+    addMeta('aiweb:vcap', AIWEB_VCAP_URL);
+
+    addLink({
+      rel: 'alternate',
+      type: 'application/json',
+      href: AIWEB_VCAP_PATH,
+      title: 'AIWEB VCAP',
+    });
+    addLink({
+      rel: 'alternate',
+      type: 'application/json',
+      href: AIWEB_MCP_URL,
+      title: 'AIWEB MCP',
+    });
+    addLink({
+      rel: 'alternate',
+      type: 'text/plain',
+      href: '/llms.txt',
+      title: 'llms.txt',
+    });
+    addLink({ rel: 'describedby', href: AIWEB_VCAP_PATH });
+
+    const vcapScript = document.createElement('script');
+    vcapScript.type = 'application/json';
+    vcapScript.id = 'aiweb-vcap';
+    vcapScript.setAttribute('data-aiweb-home-vcap', '1');
+    vcapScript.textContent = JSON.stringify(AIWEB_VCAP);
+    document.head.appendChild(vcapScript);
+    nodes.push(vcapScript);
+
+    return () => {
+      nodes.forEach((n) => n.remove());
+      document.head.querySelectorAll('[data-aiweb-home-vcap="1"]').forEach((n) => n.remove());
+    };
+  }, []);
 }

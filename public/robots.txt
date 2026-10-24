@@ -3,6 +3,8 @@ Allow: /
 Allow: /plugins
 Allow: /album
 Allow: /moa
+Allow: /llms.txt
+Allow: /vcap.json
 Allow: /whitepaper
 Allow: /whitepaper/llms.txt
 Allow: /whitepaper/json.ld

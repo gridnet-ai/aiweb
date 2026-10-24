@@ -87,12 +87,26 @@ function sectionHref(hash: string, page: LandingPage) {
 const PHONE_BOOK_HREF = 'https://os.theaiwebcompany.com/call';
 
 const ENTITY_FAQS = [
-  { question: 'AIWEB Page', answer: 'A callable identity.' },
-  { question: 'AIWEB Directory', answer: 'The public discovery layer.' },
-  { question: 'AIWEB Call', answer: 'The DM for ChatGPT. It is an asynchronous message from chat.' },
-  { question: 'AIWEB Mail', answer: 'Recipient inbox and response tracking.' },
+  {
+    question: 'AIWEB Phone',
+    answer:
+      'Your number on the AIWEB. A 12-digit IRL address (IRL-###-###-###-###) issued after payment — not a carrier telephone number.',
+  },
+  {
+    question: 'IRL number',
+    answer:
+      'Twelve digits in four groups: IRL-###-###-###-###. Example IRL-123-456-789-000. Share it so assistants can address a Call with @AIWEB plus that number.',
+  },
+  { question: 'AIWEB Page', answer: 'A callable identity on the AIWEB.' },
+  { question: 'AIWEB Directory', answer: 'The public discovery layer agents and humans can search.' },
+  {
+    question: 'AIWEB Call',
+    answer:
+      'An asynchronous message from an AI assistant to an AIWEB identity — the DM for AI assistants. Not a PSTN telephone call.',
+  },
+  { question: 'AIWEB Mail', answer: 'Recipient inbox and response tracking for inbound Calls.' },
   { question: 'AIWEB Receipt', answer: 'The sender’s delivery record.' },
-  { question: 'Calling Card', answer: 'The in-conversation interface.' },
+  { question: 'Calling Card', answer: 'The in-conversation interface for a Call.' },
 ] as const;
 
 const HERO_STORY = [
@@ -800,8 +814,10 @@ function FaqSection() {
         <details className="lv2p-faq-item">
           <summary>What is the agent tool sequence?</summary>
           <p>
-            <code>search_directory</code> → <code>prepare_call</code> → <code>send_call</code> →{' '}
-            <code>get_receipt</code>. Call mode is asynchronous text with user confirmation.
+            When MCP is connected: <code>search_directory</code> → <code>prepare_call</code> →{' '}
+            <code>send_call</code> → <code>get_receipt</code>. Call mode is asynchronous text with
+            user confirmation. Without tools, prompt <code>@AIWEB IRL-###-###-###-###</code> (example{' '}
+            <code>@AIWEB IRL-123-456-789-000</code>). Full VCAP: <code>/vcap.json</code>.
           </p>
         </details>
       </div>
