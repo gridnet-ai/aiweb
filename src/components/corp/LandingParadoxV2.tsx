@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import {
+  ArrowRight,
   ArrowUp,
   ChevronLeft,
   ChevronRight,
@@ -12,6 +13,7 @@ import {
   Network,
   Package,
   Phone,
+  Play,
   Scale,
   Send,
   Shield,
@@ -31,12 +33,20 @@ type LandingPage = 'home' | 'os' | 'plugin';
 const LEAD_TARGETS = ['Chat GPT', 'Muse', 'Claude', 'Grok', 'Anthropic', 'Internet'] as const;
 
 const PHONE_HERO_ASSISTANTS = [
-  { id: 'chatgpt', label: 'Chat GPT', src: '/images/promo/chatgpt-mark.png' },
+  {
+    id: 'chatgpt',
+    label: 'Chat GPT',
+    src: '/images/promo/assistants-on-dark/chatgpt-mark-white.svg',
+  },
   { id: 'claude', label: 'Claude', src: '/images/promo/claude-mark.png' },
   { id: 'gemini', label: 'Gemini', src: '/images/promo/gemini-mark.png' },
-  { id: 'grok', label: 'Grok', src: '/images/demo/workers/grok.png' },
+  {
+    id: 'grok',
+    label: 'Grok',
+    src: '/images/promo/assistants-on-dark/grok-mark-white.png',
+  },
   { id: 'muse', label: 'Muse', src: '/images/promo/muse-mark.png' },
-  { id: 'web', label: 'Internet', src: '/images/promo/web-mark.svg' },
+  { id: 'web', label: 'Internet', src: '/images/promo/assistants-on-dark/web-mark-white.svg' },
 ] as const;
 
 function HeroDmHeadline() {
@@ -80,11 +90,13 @@ function HeroPhoneBrand() {
           src="/images/promo/aiweb-phone-bear-lockup.png"
           alt="AIWEB Phone"
         />
-        <p className="lv2p-hero-phone-line">Your number on the AIWEB</p>
-        <a className="lv2p-hero-phone-example" href={PHONE_CHECKOUT_URL}>
-          <span className="lv2p-hero-phone-example-label">Example number</span>
-          <span className="lv2p-hero-phone-example-num">{AIWEB_IRL_EXAMPLE}</span>
-        </a>
+        <h1 className="lv2p-hero-phone-title">
+          Your direct business line for{' '}
+          <span className="lv2p-hero-phone-title-accent">AI assistants.</span>
+        </h1>
+        <p className="lv2p-hero-phone-sub">
+          Help ChatGPT, Claude, Gemini, Grok, Muse, and the web connect directly to your business.
+        </p>
         <ul className="lv2p-hero-phone-assistants" aria-label="Works with AI assistants and the internet">
           {PHONE_HERO_ASSISTANTS.map((assistant) => (
             <li key={assistant.id}>
@@ -93,7 +105,46 @@ function HeroPhoneBrand() {
             </li>
           ))}
         </ul>
+        <div className="lv2p-hero-phone-example">
+          <span className="lv2p-hero-phone-example-label">Example number</span>
+          <span className="lv2p-hero-phone-example-num">{AIWEB_IRL_EXAMPLE}</span>
+        </div>
+        <div className="lv2p-hero-phone-ctas">
+          <a className="lv2p-hero-phone-cta lv2p-hero-phone-cta--primary" href={PHONE_CHECKOUT_URL}>
+            <Phone aria-hidden strokeWidth={2.2} />
+            <span>Get your number</span>
+            <ArrowRight aria-hidden strokeWidth={2.2} />
+          </a>
+          <a className="lv2p-hero-phone-cta lv2p-hero-phone-cta--secondary" href="#phone-steps">
+            <Play aria-hidden strokeWidth={2.2} />
+            <span>See how it works</span>
+          </a>
+        </div>
       </div>
+      <ol
+        id="phone-steps"
+        className="lv2p-hero-phone-steps"
+        aria-label="How to Call with AIWEB Phone"
+      >
+        <li className="lv2p-hero-phone-step">
+          <p className="lv2p-hero-phone-step-label">Step 1</p>
+          <h2 className="lv2p-hero-phone-step-title">Give customers your AI phone number</h2>
+          <img
+            className="lv2p-hero-phone-step-img"
+            src="/images/promo/aiweb-phone-step-1-compose.png"
+            alt="Step 1: In ChatGPT, attach AIWEB Call and type an IRL number like IRL-123-456-789-000."
+          />
+        </li>
+        <li className="lv2p-hero-phone-step">
+          <p className="lv2p-hero-phone-step-label">Step 2</p>
+          <h2 className="lv2p-hero-phone-step-title">AI looks it up and connects the Call.</h2>
+          <img
+            className="lv2p-hero-phone-step-img"
+            src="/images/promo/aiweb-phone-step-2-match.png"
+            alt="Step 2: AIWEB Call looks up IRL-123-456-789-000 and shows Taco Fiesta Catering with a Call button."
+          />
+        </li>
+      </ol>
     </div>
   );
 }

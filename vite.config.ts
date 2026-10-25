@@ -12,6 +12,9 @@ export default defineConfig({
   server: {
     port: 5173,
     host: true,
+    watch: {
+      ignored: ['**/tmp/**', '**/session-backup/**'],
+    },
     proxy: {
       '/api': {
         target: 'http://localhost:8787',
