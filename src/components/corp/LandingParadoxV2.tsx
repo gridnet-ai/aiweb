@@ -21,9 +21,9 @@ import {
 import { CHATGPT_AIWEB_PLUGIN_HREF } from '@/components/corp/LandingNavV2';
 import { businessCheckoutUrl } from '@/lib/stripeCheckout';
 import { PublisherPricingTable } from '@/components/corp/PublisherPricingTable';
-import { PRIVACY_PATH, TERMS_PATH, OS_PATH } from '@/lib/corpSiteRoutes';
+import { PRIVACY_PATH, TERMS_PATH, OS_PATH, PHONE_CHECKOUT_URL } from '@/lib/corpSiteRoutes';
 import { SITE_ORIGIN } from '@/lib/aiWebCompanyBrand';
-import { AIWEB_CALL_FAQS } from '@/lib/siteSeo';
+import { AIWEB_CALL_FAQS, AIWEB_IRL_EXAMPLE } from '@/lib/siteSeo';
 import { WelcomeCloudCarousel } from '@/components/WelcomeCloudCarousel';
 
 type LandingPage = 'home' | 'os' | 'plugin';
@@ -61,14 +61,29 @@ function HeroDmHeadline() {
   );
 }
 
+function HeroPhoneBrand() {
+  return (
+    <div className="lv2p-hero-phone">
+      <WelcomeCloudCarousel className="lv2p-hero-phone-clouds" />
+      <div className="lv2p-hero-phone-stage">
+        <img
+          className="lv2p-hero-phone-mark"
+          src="/images/promo/aiweb-phone-bear-lockup.png"
+          alt="AIWEB Phone"
+        />
+        <p className="lv2p-hero-phone-line">Your number on the AIWEB</p>
+        <a className="lv2p-hero-phone-example" href={PHONE_CHECKOUT_URL}>
+          <span className="lv2p-hero-phone-example-label">Example number</span>
+          <span className="lv2p-hero-phone-example-num">{AIWEB_IRL_EXAMPLE}</span>
+        </a>
+      </div>
+    </div>
+  );
+}
+
 function HeroHowItWorks() {
   return (
     <div className="lv2p-hero-how">
-      <img
-        className="lv2p-hero-how-mark"
-        src="/images/promo/aiweb-phone-bear-lockup.png"
-        alt="AIWEB Phone"
-      />
       <h2 className="lv2p-hero-how-title">How it works</h2>
       <p className="lv2p-hero-how-body">
         Just prompt your AI assistant <span className="lv2p-hero-how-mono">@AIWEB</span> and the 12
@@ -860,20 +875,23 @@ export function LandingParadoxV2({ page = 'home' }: { page?: LandingPage }) {
 
   return (
     <div className="lv2p">
-      <WelcomeCloudCarousel />
       <section id="hero" className="lv2p-hero">
+        <HeroPhoneBrand />
         <div className="lv2p-hero-lead">
-          <img
-            className="lv2p-hero-mailbox lv2p-hero-mailbox--for-dark"
-            src="/images/promo/aiweb-mailbox-lightmode.png"
-            alt="AIWEB Mail inbox with direct messages from ChatGPT, Claude, Gemini, Grok, and the web."
-          />
-          <img
-            className="lv2p-hero-mailbox lv2p-hero-mailbox--for-light"
-            src="/images/promo/aiweb-mailbox-darkmode.png"
-            alt="AIWEB Mail inbox with direct messages from ChatGPT, Claude, Gemini, Grok, and the web."
-          />
-          <HeroDmHeadline />
+          <WelcomeCloudCarousel className="lv2p-hero-lead-clouds" />
+          <div className="lv2p-hero-lead-body">
+            <img
+              className="lv2p-hero-mailbox lv2p-hero-mailbox--for-dark"
+              src="/images/promo/aiweb-mailbox-lightmode.png"
+              alt="AIWEB Mail inbox with direct messages from ChatGPT, Claude, Gemini, Grok, and the web."
+            />
+            <img
+              className="lv2p-hero-mailbox lv2p-hero-mailbox--for-light"
+              src="/images/promo/aiweb-mailbox-darkmode.png"
+              alt="AIWEB Mail inbox with direct messages from ChatGPT, Claude, Gemini, Grok, and the web."
+            />
+            <HeroDmHeadline />
+          </div>
         </div>
         <HeroHowItWorks />
         <HeroStory />
