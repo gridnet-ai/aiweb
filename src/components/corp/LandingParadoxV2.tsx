@@ -95,11 +95,16 @@ function HeroPhoneBrand() {
           <span className="lv2p-hero-phone-title-accent">AI assistants.</span>
         </h1>
         <p className="lv2p-hero-phone-sub">
-          Help ChatGPT, Claude, Gemini, Grok, Muse, and the web connect directly to your business.
+          Connect ChatGPT, Claude, Gemini, Grok, Muse, and the web directly to your business.
         </p>
         <ul className="lv2p-hero-phone-assistants" aria-label="Works with AI assistants and the internet">
           {PHONE_HERO_ASSISTANTS.map((assistant) => (
-            <li key={assistant.id}>
+            <li
+              key={assistant.id}
+              className={
+                assistant.id === 'web' ? 'lv2p-hero-phone-assistants-item--web' : undefined
+              }
+            >
               <img src={assistant.src} alt="" />
               <span className="sr-only">{assistant.label}</span>
             </li>
