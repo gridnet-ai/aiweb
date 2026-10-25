@@ -177,7 +177,7 @@ function CellValue({ value }: { value: Cell }) {
 }
 
 const PHONE_FEATURES = [
-  'IRL Number (IRL-###-###-###-###)',
+  'AI Number (AI-###-###-###-###)',
   'Unlimited calls',
   'Unlimited Calls user to user',
   'Unlimited AIWEB Page + Mail box',

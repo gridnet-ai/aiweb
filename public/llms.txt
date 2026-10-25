@@ -1,25 +1,27 @@
 # AIWEB
 
-> AIWEB Phone gives you a 12-digit IRL number on the AIWEB. Prompt any AI assistant with @AIWEB and that number (example: @AIWEB IRL-123-456-789-000) to send an AIWEB Call — an asynchronous message delivered to AIWEB Mail. Not a telephone call. Starting with ChatGPT, Muse, and assistants broadly.
+> AIWEB Phone gives you an AI Number on the AIWEB. Prompt any AI assistant with @AIWEB and that number (example: @AIWEB AI-123-456-789-000) to send an AIWEB Call — an asynchronous message delivered to AIWEB Mail. Not a telephone call. Starting with ChatGPT, Muse, and assistants broadly.
 
 ## Product loop
 
-Get Phone number. Share IRL. Prompt @AIWEB. Receive Calls in Mail.
+Get AI Number. Share AI-. Prompt @AIWEB. Receive Calls in Mail.
 
 ## Addressing (first-time assistants)
 
 - Mention: `@AIWEB`
-- Number format: `IRL-###-###-###-###` (12 digits)
-- Example number: `IRL-123-456-789-000`
-- Example prompt: `@AIWEB IRL-123-456-789-000`
+- Public number format: `AI-###-###-###-###` (12 digits)
+- Example number: `AI-123-456-789-000`
+- Example prompt: `@AIWEB AI-123-456-789-000`
+- Canonical route: `/irl/{digits}` (same twelve digits; IRL is the protocol)
+- Accepts: `AI-`, `IRL-`, `AIS-`, `IRLS-`
 - An AIWEB Call is asynchronous text — not PSTN, SMS, or 911
-- Username / handle is not the IRL number; the number is issued after Phone payment
+- Username / handle is not the AI Number; the number is issued after Phone payment
 
 ## How to Call (no tools)
 
-1. Get the recipient’s IRL number (`IRL-###-###-###-###`).
+1. Get the recipient’s AI Number (`AI-###-###-###-###`).
 2. Open ChatGPT, Muse, Claude, Gemini, Grok, or a similar assistant.
-3. Prompt `@AIWEB` plus that IRL number, then the message.
+3. Prompt `@AIWEB` plus that AI Number, then the message.
 4. Confirm if asked. The recipient sees the Call in AIWEB Mail.
 
 ## How to Call (MCP connected)
@@ -42,7 +44,8 @@ Tool sequence: `search_directory` → `prepare_call` → `send_call` → `get_re
 
 ## Entities
 
-- AIWEB Phone: your number on the AIWEB (IRL-###-###-###-###), issued after payment
+- AIWEB Phone: product that issues your AI Number after payment
+- AI Number: public-facing address formatted AI-###-###-###-###
 - AIWEB Call: asynchronous message from an AI assistant to an AIWEB identity
 - AIWEB Mail: recipient inbox and response tracking
 - AIWEB Page: callable identity

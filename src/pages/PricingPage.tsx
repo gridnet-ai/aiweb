@@ -9,7 +9,7 @@ export function PricingPage() {
   useMarketingPageSeo({
     title: 'Pricing · AIWEB',
     description:
-      'AIWEB Phone is $4.99 a month. Get an IRL-###-###-###-### number. Others reach you by prompting @AIWEB plus your number — Calls land in AIWEB Mail.',
+      'AIWEB Phone is $4.99 a month. Get an AI-###-###-###-### number. Others reach you by prompting @AIWEB plus your number — Calls land in AIWEB Mail.',
     canonicalPath: '/pricing',
   });
 

@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { SITE_ORIGIN } from '@/lib/aiWebCompanyBrand';
 import {
-  AIWEB_IRL_EXAMPLE,
-  AIWEB_IRL_FORMAT,
+  AIWEB_AI_NUMBER_EXAMPLE,
+  AIWEB_AI_NUMBER_FORMAT,
   AIWEB_PROMPT_EXAMPLE,
   AIWEB_VCAP,
   AIWEB_VCAP_PATH,
@@ -140,7 +140,7 @@ export function useJsonLd(data: Record<string, unknown> | Record<string, unknown
 
 /**
  * Inject complete VCAP + AEO meta so first-time assistants learn Phone addressing
- * (@AIWEB + IRL-###-###-###-###) without inventing PSTN semantics. MCP stays the live tool surface.
+ * (@AIWEB + AI-###-###-###-###) without inventing PSTN semantics. MCP stays the live tool surface.
  */
 export function useAiwebVcap(): void {
   useEffect(() => {
@@ -165,9 +165,12 @@ export function useAiwebVcap(): void {
 
     addMeta('aiweb:product', 'AIWEB Phone');
     addMeta('aiweb:summary', SITE_CANONICAL_DESCRIPTION);
-    addMeta('aiweb:addressing', `${AIWEB_IRL_FORMAT}; mention @AIWEB; example ${AIWEB_PROMPT_EXAMPLE}`);
-    addMeta('aiweb:irl-format', AIWEB_IRL_FORMAT);
-    addMeta('aiweb:irl-example', AIWEB_IRL_EXAMPLE);
+    addMeta(
+      'aiweb:addressing',
+      `${AIWEB_AI_NUMBER_FORMAT}; mention @AIWEB; example ${AIWEB_PROMPT_EXAMPLE}; canonical /irl/{digits}`,
+    );
+    addMeta('aiweb:number-format', AIWEB_AI_NUMBER_FORMAT);
+    addMeta('aiweb:number-example', AIWEB_AI_NUMBER_EXAMPLE);
     addMeta('aiweb:prompt-example', AIWEB_PROMPT_EXAMPLE);
     addMeta('aiweb:mcp', AIWEB_MCP_URL);
     addMeta('aiweb:vcap', AIWEB_VCAP_URL);

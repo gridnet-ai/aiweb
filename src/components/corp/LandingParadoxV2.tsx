@@ -25,7 +25,7 @@ import { businessCheckoutUrl } from '@/lib/stripeCheckout';
 import { PublisherPricingTable } from '@/components/corp/PublisherPricingTable';
 import { PRIVACY_PATH, TERMS_PATH, OS_PATH, PHONE_CHECKOUT_URL } from '@/lib/corpSiteRoutes';
 import { SITE_ORIGIN } from '@/lib/aiWebCompanyBrand';
-import { AIWEB_CALL_FAQS, AIWEB_IRL_EXAMPLE } from '@/lib/siteSeo';
+import { AIWEB_AI_NUMBER_EXAMPLE, AIWEB_CALL_FAQS } from '@/lib/siteSeo';
 import { WelcomeCloudCarousel } from '@/components/WelcomeCloudCarousel';
 
 type LandingPage = 'home' | 'os' | 'plugin';
@@ -107,7 +107,7 @@ function HeroPhoneBrand() {
         </ul>
         <div className="lv2p-hero-phone-example">
           <span className="lv2p-hero-phone-example-label">Example number</span>
-          <span className="lv2p-hero-phone-example-num">{AIWEB_IRL_EXAMPLE}</span>
+          <span className="lv2p-hero-phone-example-num">{AIWEB_AI_NUMBER_EXAMPLE}</span>
         </div>
         <div className="lv2p-hero-phone-ctas">
           <a className="lv2p-hero-phone-cta lv2p-hero-phone-cta--primary" href={PHONE_CHECKOUT_URL}>
@@ -132,7 +132,7 @@ function HeroPhoneBrand() {
           <img
             className="lv2p-hero-phone-step-img"
             src="/images/promo/aiweb-phone-step-1-compose.png"
-            alt="Step 1: In ChatGPT, attach AIWEB Call and type an IRL number like IRL-123-456-789-000."
+            alt="Step 1: In ChatGPT, attach AIWEB Call and type an AI Number like AI-123-456-789-000."
           />
         </li>
         <li className="lv2p-hero-phone-step">
@@ -141,7 +141,7 @@ function HeroPhoneBrand() {
           <img
             className="lv2p-hero-phone-step-img"
             src="/images/promo/aiweb-phone-step-2-match.png"
-            alt="Step 2: AIWEB Call looks up IRL-123-456-789-000 and shows Taco Fiesta Catering with a Call button."
+            alt="Step 2: AIWEB Call looks up AI-123-456-789-000 and shows Taco Fiesta Catering with a Call button."
           />
         </li>
       </ol>
@@ -155,9 +155,9 @@ function HeroHowItWorks() {
       <h2 className="lv2p-hero-how-title">How it works</h2>
       <p className="lv2p-hero-how-body">
         Just prompt your AI assistant <span className="lv2p-hero-how-mono">@AIWEB</span> and the 12
-        digit number <span className="lv2p-hero-how-mono">IRL-000-000-000-000</span>
+        digit number <span className="lv2p-hero-how-mono">AI-000-000-000-000</span>
         <br />
-        example <span className="lv2p-hero-how-mono">@AIWEB IRL-123-456-789-000</span>
+        example <span className="lv2p-hero-how-mono">@AIWEB AI-123-456-789-000</span>
       </p>
     </div>
   );
@@ -173,12 +173,12 @@ const ENTITY_FAQS = [
   {
     question: 'AIWEB Phone',
     answer:
-      'Your number on the AIWEB. A 12-digit IRL address (IRL-###-###-###-###) issued after payment — not a carrier telephone number.',
+      'Your number on the AIWEB. A 12-digit AI Number (AI-###-###-###-###) issued after payment — not a carrier telephone number.',
   },
   {
-    question: 'IRL number',
+    question: 'AI Number',
     answer:
-      'Twelve digits in four groups: IRL-###-###-###-###. Example IRL-123-456-789-000. Share it so assistants can address a Call with @AIWEB plus that number.',
+      'Twelve digits in four groups: AI-###-###-###-###. Example AI-123-456-789-000. Share it so assistants can address a Call with @AIWEB plus that number.',
   },
   { question: 'AIWEB Page', answer: 'A callable identity on the AIWEB.' },
   { question: 'AIWEB Directory', answer: 'The public discovery layer agents and humans can search.' },
@@ -899,8 +899,8 @@ function FaqSection() {
           <p>
             When MCP is connected: <code>search_directory</code> → <code>prepare_call</code> →{' '}
             <code>send_call</code> → <code>get_receipt</code>. Call mode is asynchronous text with
-            user confirmation. Without tools, prompt <code>@AIWEB IRL-###-###-###-###</code> (example{' '}
-            <code>@AIWEB IRL-123-456-789-000</code>). Full VCAP: <code>/vcap.json</code>.
+            user confirmation. Without tools, prompt <code>@AIWEB AI-###-###-###-###</code> (example{' '}
+            <code>@AIWEB AI-123-456-789-000</code>). Full VCAP: <code>/vcap.json</code>.
           </p>
         </details>
       </div>

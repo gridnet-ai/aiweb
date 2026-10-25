@@ -11,28 +11,36 @@ export const SITE_ICON_PATH = '/icons/favicon-cloud.png';
 
 export const SITE_NAME = AI_WEB_COMPANY_BRAND.name;
 
-/** Example IRL number shown in SEO / AEO copy (not a live assigned number). */
-export const AIWEB_IRL_EXAMPLE = 'IRL-123-456-789-000';
-export const AIWEB_IRL_FORMAT = 'IRL-###-###-###-###';
-export const AIWEB_PROMPT_EXAMPLE = `@AIWEB ${AIWEB_IRL_EXAMPLE}`;
+/**
+ * Public-facing AI Number (vanity). Digits map to the same identity as /irl/{digits}.
+ * Not a live assigned number — for SEO / AEO / hero examples only.
+ */
+export const AIWEB_AI_NUMBER_EXAMPLE = 'AI-123-456-789-000';
+export const AIWEB_AI_NUMBER_FORMAT = 'AI-###-###-###-###';
+export const AIWEB_PROMPT_EXAMPLE = `@AIWEB ${AIWEB_AI_NUMBER_EXAMPLE}`;
+
+/** @deprecated Use AIWEB_AI_NUMBER_EXAMPLE — alias during AI- vanity transition. */
+export const AIWEB_IRL_EXAMPLE = AIWEB_AI_NUMBER_EXAMPLE;
+/** @deprecated Use AIWEB_AI_NUMBER_FORMAT — alias during AI- vanity transition. */
+export const AIWEB_IRL_FORMAT = AIWEB_AI_NUMBER_FORMAT;
 
 /**
  * Canonical GEO description — use everywhere (site, ChatGPT listing, docs).
  * Explains Phone + Call so traditional search and first-time assistants understand the network.
  */
 export const SITE_CANONICAL_DESCRIPTION =
-  'AIWEB Phone gives you a 12-digit IRL number on the AIWEB. Prompt any AI assistant with @AIWEB and that number (example: @AIWEB IRL-123-456-789-000) to send an AIWEB Call — an asynchronous message delivered to AIWEB Mail. Not a telephone call. Starting with ChatGPT, Muse, and assistants broadly.';
+  'AIWEB Phone gives you an AI Number on the AIWEB. Prompt any AI assistant with @AIWEB and that number (example: @AIWEB AI-123-456-789-000) to send an AIWEB Call — an asynchronous message delivered to AIWEB Mail. Not a telephone call. Starting with ChatGPT, Muse, and assistants broadly.';
 
 /** Homepage / default title */
-export const SITE_TAGLINE = 'AIWEB Phone | Your number on the AIWEB';
+export const SITE_TAGLINE = 'AIWEB Phone | Your AI phone number';
 
 /** Homepage meta description */
 export const SITE_SUBHEADLINE =
-  'Get an AIWEB Phone number (IRL-###-###-###-###). Just prompt your AI assistant @AIWEB plus the number — example @AIWEB IRL-123-456-789-000 — to Call someone. They answer in AIWEB Mail.';
+  'Get your AI phone number (AI-###-###-###-###). Just prompt your AI assistant @AIWEB plus the number — example @AIWEB AI-123-456-789-000 — to Call someone. They answer in AIWEB Mail.';
 
 /** Website positioning — product loop */
 export const SITE_PRODUCT_LOOP =
-  'Get Phone number. Share IRL. Prompt @AIWEB. Receive Calls in Mail.';
+  'Get AI Number. Share AI-. Prompt @AIWEB. Receive Calls in Mail.';
 
 export const DEFAULT_PAGE_TITLE = SITE_TAGLINE;
 
@@ -41,10 +49,11 @@ export const DEFAULT_PAGE_DESCRIPTION = SITE_SUBHEADLINE;
 export const DEFAULT_KEYWORDS = [
   'AIWEB',
   'AIWEB Phone',
+  'AI Number',
+  'AI phone number',
   'AIWEB Call',
   'AIWEB Mail',
-  'IRL number',
-  'IRL-###-###-###-###',
+  'AI-###-###-###-###',
   '@AIWEB',
   'prompt AIWEB',
   'Call from ChatGPT',
@@ -67,8 +76,9 @@ export const DEFAULT_ROBOTS =
 
 /** GEO entity definitions — keep consistent across surfaces. */
 export const AIWEB_ENTITIES = {
-  phone: 'AIWEB Phone: your number on the AIWEB (IRL-###-###-###-###), issued after payment',
-  irlNumber: 'IRL number: 12-digit AIWEB address formatted IRL-###-###-###-###',
+  phone: 'AIWEB Phone: product that issues your AI Number after payment',
+  aiNumber: 'AI Number: public-facing 12-digit address formatted AI-###-###-###-###',
+  irl: 'IRL: underlying routing address (/irl/{digits}); AI- is the customer-facing vanity prefix for the same digits',
   page: 'AIWEB Page: callable identity',
   directory: 'AIWEB Directory: public discovery layer',
   call: 'AIWEB Call: asynchronous message from an AI assistant to an AIWEB identity — not a PSTN telephone call',
@@ -85,11 +95,11 @@ export const AIWEB_CALL_FAQS = [
   {
     question: 'What is AIWEB Phone?',
     answer:
-      'AIWEB Phone is your number on the AIWEB. After payment you receive a 12-digit IRL number formatted IRL-###-###-###-###. Share that number so people and AI assistants can reach you. It is not a carrier telephone number and does not provide SMS or 911.',
+      'AIWEB Phone is your number on the AIWEB. After payment you receive an AI Number formatted AI-###-###-###-###. Share that number so people and AI assistants can reach you. It is not a carrier telephone number and does not provide SMS or 911.',
   },
   {
     question: 'How do I Call someone on AIWEB for the first time?',
-    answer: `Open your AI assistant (ChatGPT, Muse, Claude, Gemini, Grok, or similar). Prompt with @AIWEB followed by their IRL number. Example: ${AIWEB_PROMPT_EXAMPLE}. The assistant sends an AIWEB Call — an asynchronous text message — and the recipient receives it in AIWEB Mail.`,
+    answer: `Open your AI assistant (ChatGPT, Muse, Claude, Gemini, Grok, or similar). Prompt with @AIWEB followed by their AI Number. Example: ${AIWEB_PROMPT_EXAMPLE}. The assistant sends an AIWEB Call — an asynchronous text message — and the recipient receives it in AIWEB Mail.`,
   },
   {
     question: 'What is an AIWEB Call?',
@@ -99,21 +109,21 @@ export const AIWEB_CALL_FAQS = [
   {
     question: 'Is AIWEB Call a telephone call?',
     answer:
-      'No. Callers do not dial a phone number on the public telephone network. They prompt an AI assistant with @AIWEB and the recipient’s IRL number. The recipient gets the message in AIWEB Mail.',
+      'No. Callers do not dial a phone number on the public telephone network. They prompt an AI assistant with @AIWEB and the recipient’s AI Number. The recipient gets the message in AIWEB Mail.',
   },
   {
-    question: 'What does an IRL number look like?',
-    answer: `An AIWEB Phone number uses twelve digits in four groups: ${AIWEB_IRL_FORMAT}. Example: ${AIWEB_IRL_EXAMPLE}. The green check on a username is not the same as this IRL number.`,
+    question: 'What does an AI Number look like?',
+    answer: `An AIWEB Phone number uses twelve digits in four groups: ${AIWEB_AI_NUMBER_FORMAT}. Example: ${AIWEB_AI_NUMBER_EXAMPLE}. The green check on a username is not the same as this AI Number.`,
   },
   {
     question: 'How do I get an AIWEB Phone number?',
     answer:
-      'Subscribe to AIWEB Phone ($4.99/month) from the company site or Mail checkout. Your IRL number is issued after payment — not when you only reserve a username.',
+      'Subscribe to AIWEB Phone ($4.99/month) from the company site or Mail checkout. Your AI Number is issued after payment — not when you only reserve a username.',
   },
   {
     question: 'Where is AIWEB Call available?',
     answer:
-      'We’re starting with ChatGPT and Muse and building toward AI assistants broadly. The same @AIWEB + IRL prompt pattern is the human-readable way to address a Call when tools are available.',
+      'We’re starting with ChatGPT and Muse and building toward AI assistants broadly. The same @AIWEB + AI Number prompt pattern is the human-readable way to address a Call when tools are available.',
   },
   {
     question: 'Do I need an email address or carrier plan?',
@@ -125,37 +135,44 @@ export const AIWEB_CALL_FAQS = [
 /**
  * VCAP capability contract advertised to agents (callable identity + Phone addressing).
  * MCP remains the live tool surface; this document teaches first-time agents the addressing model.
+ * Public vanity: AI-###. Canonical route: /irl/{digits}.
  */
 export const AIWEB_VCAP = {
-  version: '1.1',
+  version: '1.2',
   product: 'AIWEB Phone',
   organization: SITE_NAME,
   summary: SITE_CANONICAL_DESCRIPTION,
   addressing: {
     mention: '@AIWEB',
-    scheme: 'IRL',
-    format: AIWEB_IRL_FORMAT,
-    digits: 12,
-    example: AIWEB_IRL_EXAMPLE,
+    publicScheme: 'AI',
+    publicFormat: AIWEB_AI_NUMBER_FORMAT,
+    publicExample: AIWEB_AI_NUMBER_EXAMPLE,
     promptExample: AIWEB_PROMPT_EXAMPLE,
+    protocolScheme: 'IRL',
+    canonicalPath: '/irl/{digits}',
+    digits: 12,
+    accepts: ['AI-', 'IRL-', 'AIS-', 'IRLS-'],
     notes: [
-      'Username / handle is not the IRL number.',
+      'AI- is the customer-facing AI Number (vanity).',
+      'IRL / /irl/{digits} is the underlying routing address for the same twelve digits.',
+      'Username / handle is not the AI Number.',
       'Number is issued after Phone payment.',
       'AIWEB Call is asynchronous text — not PSTN, SMS, or 911.',
     ],
   },
   howToCall: {
     forAssistants: [
-      'Obtain the recipient’s AIWEB Phone number in IRL-###-###-###-### form.',
+      'Obtain the recipient’s AI Number in AI-###-###-###-### form.',
       `Compose a user-facing or tool prompt like: ${AIWEB_PROMPT_EXAMPLE}`,
+      'Normalize AI- / IRL- prefixes to twelve digits; resolve via /irl/{digits}.',
       'Prefer MCP tools when connected (search_directory → prepare_call → send_call → get_receipt).',
-      'If tools are unavailable, instruct the user to prompt @AIWEB plus the IRL number in their assistant.',
+      'If tools are unavailable, instruct the user to prompt @AIWEB plus the AI Number in their assistant.',
       'Confirm with the user before sending a Call when required.',
       'Tell the user the recipient will see the message in AIWEB Mail.',
     ],
     forHumans: [
       'Get AIWEB Phone at phone.theaiwebcompany.com or Mail checkout (?checkout=phone).',
-      'Share your IRL number with customers and assistants.',
+      'Share your AI Number with customers and assistants.',
       `To reach someone: prompt ${AIWEB_PROMPT_EXAMPLE} (replace with their number).`,
     ],
   },
@@ -243,14 +260,14 @@ export function softwareApplicationJsonLd() {
     '@type': 'SoftwareApplication',
     '@id': `${SITE_ORIGIN}/#aiweb-phone`,
     name: 'AIWEB Phone',
-    alternateName: ['AIWEB Call', 'AIWEB Mail'],
+    alternateName: ['AI Number', 'AIWEB Call', 'AIWEB Mail'],
     applicationCategory: 'BusinessApplication',
     operatingSystem: 'Web',
     url: `${SITE_ORIGIN}/`,
     description: SITE_CANONICAL_DESCRIPTION,
     featureList: [
-      'IRL phone number on the AIWEB',
-      'Call via @AIWEB + IRL number from AI assistants',
+      'AI Number on the AIWEB',
+      'Call via @AIWEB + AI Number from AI assistants',
       'AIWEB Mail inbox for inbound Calls',
       'Compatible with ChatGPT, Muse, Claude, Gemini, Grok, and the web',
     ],
@@ -262,7 +279,7 @@ export function softwareApplicationJsonLd() {
       billingDuration: 'P1M',
       url: `${SITE_ORIGIN}/pricing#phone`,
       description:
-        'Monthly AIWEB Phone subscription. IRL number issued after payment. Lookup key aiweb_phone_monthly.',
+        'Monthly AIWEB Phone subscription. AI Number issued after payment. Lookup key aiweb_phone_monthly.',
     },
     creator: { '@id': `${SITE_ORIGIN}/#organization` },
   };
@@ -276,7 +293,7 @@ export function howToCallJsonLd() {
     '@id': `${SITE_ORIGIN}/#howto-call`,
     name: 'How to Call someone on AIWEB Phone',
     description:
-      'Send an AIWEB Call by prompting an AI assistant with @AIWEB and a 12-digit IRL number. The recipient receives the message in AIWEB Mail.',
+      'Send an AIWEB Call by prompting an AI assistant with @AIWEB and an AI Number. The recipient receives the message in AIWEB Mail.',
     totalTime: 'PT1M',
     tool: [
       { '@type': 'HowToTool', name: 'AI assistant (ChatGPT, Muse, Claude, Gemini, Grok, or similar)' },
@@ -286,8 +303,8 @@ export function howToCallJsonLd() {
       {
         '@type': 'HowToStep',
         position: 1,
-        name: 'Get the recipient’s IRL number',
-        text: `Use their AIWEB Phone number in the form ${AIWEB_IRL_FORMAT} (example ${AIWEB_IRL_EXAMPLE}).`,
+        name: 'Get the recipient’s AI Number',
+        text: `Use their AIWEB Phone number in the form ${AIWEB_AI_NUMBER_FORMAT} (example ${AIWEB_AI_NUMBER_EXAMPLE}).`,
       },
       {
         '@type': 'HowToStep',
@@ -299,7 +316,7 @@ export function howToCallJsonLd() {
         '@type': 'HowToStep',
         position: 3,
         name: 'Prompt @AIWEB with the number',
-        text: `Type ${AIWEB_PROMPT_EXAMPLE} (replace with the real IRL number), then your message.`,
+        text: `Type ${AIWEB_PROMPT_EXAMPLE} (replace with the real AI Number), then your message.`,
       },
       {
         '@type': 'HowToStep',
