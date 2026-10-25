@@ -91,11 +91,12 @@ function HeroPhoneBrand() {
           alt="AIWEB Phone"
         />
         <h1 className="lv2p-hero-phone-title">
-          Your direct business line for{' '}
+          Your direct business line for customers using{' '}
           <span className="lv2p-hero-phone-title-accent">AI assistants.</span>
         </h1>
         <p className="lv2p-hero-phone-sub">
-          Connect ChatGPT, Claude, Gemini, Grok, Muse, and the web directly to your business.
+          Make it easy for customers on ChatGPT, Claude, Gemini, Grok, Muse, and the web to connect
+          directly to your business.
         </p>
         <ul className="lv2p-hero-phone-assistants" aria-label="Works with AI assistants and the internet">
           {PHONE_HERO_ASSISTANTS.map((assistant) => (
