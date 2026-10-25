@@ -30,6 +30,15 @@ type LandingPage = 'home' | 'os' | 'plugin';
 
 const LEAD_TARGETS = ['Chat GPT', 'Muse', 'Claude', 'Grok', 'Anthropic', 'Internet'] as const;
 
+const PHONE_HERO_ASSISTANTS = [
+  { id: 'chatgpt', label: 'Chat GPT', src: '/images/promo/chatgpt-mark.png' },
+  { id: 'claude', label: 'Claude', src: '/images/promo/claude-mark.png' },
+  { id: 'gemini', label: 'Gemini', src: '/images/promo/gemini-mark.png' },
+  { id: 'grok', label: 'Grok', src: '/images/demo/workers/grok.png' },
+  { id: 'muse', label: 'Muse', src: '/images/promo/muse-mark.png' },
+  { id: 'web', label: 'Internet', src: '/images/promo/web-mark.svg' },
+] as const;
+
 function HeroDmHeadline() {
   const [index, setIndex] = useState(0);
 
@@ -76,6 +85,14 @@ function HeroPhoneBrand() {
           <span className="lv2p-hero-phone-example-label">Example number</span>
           <span className="lv2p-hero-phone-example-num">{AIWEB_IRL_EXAMPLE}</span>
         </a>
+        <ul className="lv2p-hero-phone-assistants" aria-label="Works with AI assistants and the internet">
+          {PHONE_HERO_ASSISTANTS.map((assistant) => (
+            <li key={assistant.id}>
+              <img src={assistant.src} alt="" />
+              <span className="sr-only">{assistant.label}</span>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );
