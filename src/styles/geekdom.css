@@ -536,6 +536,15 @@
   text-align: center;
 }
 
+.geekdom-cta-sponsor {
+  margin: 0 0 1rem;
+  font-size: 0.82rem;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+}
+
 .geekdom-cta-card {
   margin: 0 auto 1.5rem;
   width: min(100%, 22rem);

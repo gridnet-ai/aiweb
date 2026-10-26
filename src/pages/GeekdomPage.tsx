@@ -259,9 +259,10 @@ export function GeekdomPage() {
 
       <aside className="geekdom-cta" aria-label="AIWEB Phone">
         <div className="geekdom-cta-inner">
+          <p className="geekdom-cta-sponsor">This page is sponsored by</p>
           <figure className="geekdom-cta-card">
             <img
-              src="/images/geekdom/aiweb-phone-example-card.jpg?v=3"
+              src="/images/geekdom/aiweb-phone-example-card.jpg"
               alt="Example AIWEB Phone listing — Taco Fiesta Catering with AI Number AI-123-456-789-000"
               width={720}
               height={1280}
