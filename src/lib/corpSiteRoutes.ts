@@ -11,6 +11,7 @@ export const PHONE_CHECKOUT_URL =
 export const PRICING_PATH = '/pricing';
 export const PLUGINS_PATH = '/plugins';
 export const PLUGIN_PATH = '/plugin';
+export const GEEKDOM_PATH = '/geekdom';
 export const ALBUM_PATH = '/album';
 /** Former marketing home (CorpHero + mission / team / products). */
 export const OVERVIEW_PATH = '/overview';

@@ -2,6 +2,7 @@ import { useEffect, type ReactNode } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { AI_WEB_COMPANY_BRAND, PRODUCT_URLS } from '@/lib/aiWebCompanyBrand';
 import {
+  GEEKDOM_PATH,
   HOME_PATH,
   OS_PATH,
   PLUGIN_PATH,
@@ -28,8 +29,10 @@ export function CorpPublicSiteLayout({ children }: CorpPublicSiteLayoutProps) {
     pathname === '/v2' ||
     pathname === '/archive' ||
     pathname === OS_PATH ||
-    pathname === PLUGIN_PATH;
-  const isDarkHome = pathname === HOME_PATH || pathname === PLUGIN_PATH;
+    pathname === PLUGIN_PATH ||
+    pathname === GEEKDOM_PATH;
+  const isDarkHome =
+    pathname === HOME_PATH || pathname === PLUGIN_PATH || pathname === GEEKDOM_PATH;
 
   useEffect(() => {
     document.documentElement.classList.remove('dark');

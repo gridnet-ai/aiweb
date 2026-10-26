@@ -10,6 +10,7 @@ import {
   Home,
   Landmark,
   Mail,
+  Megaphone,
   Network,
   Package,
   Phone,
@@ -18,6 +19,7 @@ import {
   Send,
   Shield,
   Truck,
+  UtensilsCrossed,
   type LucideIcon,
 } from 'lucide-react';
 import { CHATGPT_AIWEB_PLUGIN_HREF } from '@/components/corp/LandingNavV2';
@@ -48,6 +50,28 @@ const PHONE_HERO_ASSISTANTS = [
   { id: 'muse', label: 'Muse', src: '/images/promo/muse-mark.png' },
   { id: 'web', label: 'Internet', src: '/images/promo/assistants-on-dark/web-mark-white.svg' },
 ] as const;
+
+function HeroLeadInboxTitle() {
+  return (
+    <h2 className="lv2p-hero-phone-title lv2p-hero-lead-title">
+      <span className="lv2p-hero-lead-title-line">
+        Your inbox when customers call you from{' '}
+        <span className="lv2p-hero-lead-title-marks" aria-label="AI assistants and the web">
+          {PHONE_HERO_ASSISTANTS.map((assistant) => (
+            <img
+              key={assistant.id}
+              className={
+                assistant.id === 'web' ? 'lv2p-hero-lead-title-mark--web' : undefined
+              }
+              src={assistant.src}
+              alt=""
+            />
+          ))}
+        </span>
+      </span>
+    </h2>
+  );
+}
 
 function HeroDmHeadline() {
   const [index, setIndex] = useState(0);
@@ -165,6 +189,16 @@ function HeroHowItWorks() {
         <br />
         example <span className="lv2p-hero-how-mono">@AIWEB AI-123-456-789-000</span>
       </p>
+      <figure className="lv2p-hero-how-visual">
+        <img
+          src="/images/promo/aiweb-customer-phone.jpg"
+          alt="Customer using their phone to reach a business through an AI assistant"
+          width={1200}
+          height={900}
+          loading="lazy"
+          decoding="async"
+        />
+      </figure>
     </div>
   );
 }
@@ -223,6 +257,8 @@ const INDUSTRY_ICONS: readonly { label: string; Icon: LucideIcon }[] = [
   { label: 'Legal', Icon: Scale },
   { label: 'Supply Chain', Icon: Package },
   { label: 'Real Estate', Icon: Home },
+  { label: 'Restaurant', Icon: UtensilsCrossed },
+  { label: 'Marketing', Icon: Megaphone },
 ] as const;
 
 function IndustrySearchGrid() {
@@ -255,6 +291,7 @@ function HeroStory({ pitch = true }: { pitch?: boolean }) {
             36%
           </span>
         </h2>
+        <HeroHowItWorks />
         <p className="lv2p-hero-story-follow">
           We provide the phone and phone book to AI assistants.
         </p>
@@ -932,7 +969,6 @@ export function LandingParadoxV2({ page = 'home' }: { page?: LandingPage }) {
       <div className="lv2p">
         <section id="hero" className="lv2p-hero">
           <HeroDmHeadline />
-          <HeroHowItWorks />
           <HeroStory pitch={false} />
         </section>
         <section id="call" className="lv2p-call">
@@ -953,6 +989,7 @@ export function LandingParadoxV2({ page = 'home' }: { page?: LandingPage }) {
         <HeroPhoneBrand />
         <div className="lv2p-hero-lead">
           <WelcomeCloudCarousel className="lv2p-hero-lead-clouds" />
+          <HeroLeadInboxTitle />
           <div className="lv2p-hero-lead-body">
             <img
               className="lv2p-hero-mailbox lv2p-hero-mailbox--for-dark"
@@ -967,7 +1004,6 @@ export function LandingParadoxV2({ page = 'home' }: { page?: LandingPage }) {
             <HeroDmHeadline />
           </div>
         </div>
-        <HeroHowItWorks />
         <HeroStory />
       </section>
 
