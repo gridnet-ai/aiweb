@@ -51,6 +51,49 @@ const PHONE_HERO_ASSISTANTS = [
   { id: 'web', label: 'Internet', src: '/images/promo/assistants-on-dark/web-mark-white.svg' },
 ] as const;
 
+const PHONE_LISTING_CARDS = [
+  {
+    id: 'taco-fiesta',
+    src: '/images/promo/phone-listings/taco-fiesta-catering.jpg',
+    label: 'Taco Fiesta Catering',
+  },
+  {
+    id: 'hill-country-law',
+    src: '/images/promo/phone-listings/hill-country-law.jpg',
+    label: 'Hill Country Law Group',
+  },
+  {
+    id: 'austin-health',
+    src: '/images/promo/phone-listings/austin-health-clinic.jpg',
+    label: 'Austin Family Health Clinic',
+  },
+  {
+    id: 'bluebonnet-cpa',
+    src: '/images/promo/phone-listings/bluebonnet-cpa.jpg',
+    label: 'Bluebonnet CPA & Advisory',
+  },
+  {
+    id: 'capital-city-plumbing',
+    src: '/images/promo/phone-listings/capital-city-plumbing.jpg',
+    label: 'Capital City Plumbing',
+  },
+  {
+    id: 'longhorn-electric',
+    src: '/images/promo/phone-listings/longhorn-electric.jpg',
+    label: 'Longhorn Electric Services',
+  },
+  {
+    id: 'green-horizon',
+    src: '/images/promo/phone-listings/green-horizon-lawncare.jpg',
+    label: 'Green Horizon Lawncare',
+  },
+  {
+    id: 'hill-country-catering',
+    src: '/images/promo/phone-listings/hill-country-catering.jpg',
+    label: 'Hill Country Catering Co.',
+  },
+] as const;
+
 function HeroLeadInboxTitle() {
   return (
     <h2 className="lv2p-hero-phone-title lv2p-hero-lead-title">
@@ -104,6 +147,83 @@ function HeroDmHeadline() {
   );
 }
 
+function PhoneListingCarousel() {
+  const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  useEffect(() => {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (reduce.matches || paused) return;
+    const timer = window.setInterval(() => {
+      setIndex((current) => (current + 1) % PHONE_LISTING_CARDS.length);
+    }, 3200);
+    return () => window.clearInterval(timer);
+  }, [paused]);
+
+  const active = PHONE_LISTING_CARDS[index];
+
+  return (
+    <div
+      className="lv2p-hero-phone-example"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onFocusCapture={() => setPaused(true)}
+      onBlurCapture={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+          setPaused(false);
+        }
+      }}
+    >
+      <div
+        className="lv2p-hero-phone-example-viewport"
+        role="region"
+        aria-roledescription="carousel"
+        aria-label="Example AIWEB Phone listings"
+      >
+        {PHONE_LISTING_CARDS.map((card, cardIndex) => (
+          <figure
+            key={card.id}
+            className={[
+              'lv2p-hero-phone-example-slide',
+              cardIndex === index ? 'lv2p-hero-phone-example-slide--active' : '',
+            ].join(' ')}
+            aria-hidden={cardIndex !== index}
+          >
+            <img
+              className="lv2p-hero-phone-example-card"
+              src={card.src}
+              alt={`Example AIWEB Phone listing — ${card.label}`}
+              width={819}
+              height={1024}
+              decoding="async"
+              loading={cardIndex === 0 ? 'eager' : 'lazy'}
+            />
+          </figure>
+        ))}
+      </div>
+      <p className="sr-only" aria-live="polite">
+        Showing {active.label}
+      </p>
+      <div className="lv2p-hero-phone-example-dots" role="tablist" aria-label="Listing examples">
+        {PHONE_LISTING_CARDS.map((card, cardIndex) => (
+          <button
+            key={card.id}
+            type="button"
+            role="tab"
+            aria-selected={cardIndex === index}
+            aria-label={`Show ${card.label}`}
+            className={[
+              'lv2p-hero-phone-example-dot',
+              cardIndex === index ? 'lv2p-hero-phone-example-dot--active' : '',
+            ].join(' ')}
+            onClick={() => setIndex(cardIndex)}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function HeroPhoneBrand() {
   return (
     <div className="lv2p-hero-phone">
@@ -135,16 +255,7 @@ function HeroPhoneBrand() {
             </li>
           ))}
         </ul>
-        <figure className="lv2p-hero-phone-example">
-          <img
-            className="lv2p-hero-phone-example-card"
-            src="/images/geekdom/aiweb-phone-example-card.jpg"
-            alt={`Example AIWEB Phone listing — Taco Fiesta Catering with AI Number ${AIWEB_AI_NUMBER_EXAMPLE}`}
-            width={720}
-            height={1280}
-            decoding="async"
-          />
-        </figure>
+        <PhoneListingCarousel />
         <div className="lv2p-hero-phone-ctas">
           <a className="lv2p-hero-phone-cta lv2p-hero-phone-cta--primary" href={PHONE_CHECKOUT_URL}>
             <Phone aria-hidden strokeWidth={2.2} />

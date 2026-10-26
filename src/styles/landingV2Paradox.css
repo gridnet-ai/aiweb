@@ -555,16 +555,76 @@
 }
 
 .lv2p-hero-phone-example {
-  display: block;
-  width: min(100%, 18rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.7rem;
+  width: min(100%, 17.5rem);
   margin: 0.55rem auto 0;
+}
+
+.lv2p-hero-phone-example-viewport {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  max-height: 22.5rem;
   overflow: hidden;
+}
+
+.lv2p-hero-phone-example-slide {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  transition: opacity 420ms ease;
+  pointer-events: none;
+}
+
+.lv2p-hero-phone-example-slide--active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lv2p-hero-phone-example-slide {
+    transition: none;
+  }
 }
 
 .lv2p-hero-phone-example-card {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: contain;
+  object-position: top center;
+}
+
+.lv2p-hero-phone-example-dots {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+.lv2p-hero-phone-example-dot {
+  width: 0.45rem;
+  height: 0.45rem;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.28);
+  cursor: pointer;
+  transition: background 160ms ease, transform 160ms ease;
+}
+
+.lv2p-hero-phone-example-dot--active {
+  background: #fff;
+  transform: scale(1.2);
+}
+
+.lv2p-hero-phone-example-dot:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
 }
 
 .lv2p-hero-phone-assistants {
@@ -2532,7 +2592,11 @@
   }
 
   .lv2p-hero-phone-example {
-    width: min(100%, 20rem);
+    width: min(100%, 18.5rem);
+  }
+
+  .lv2p-hero-phone-example-viewport {
+    max-height: 23.5rem;
   }
 
   .lv2p-hero-phone-assistants {
