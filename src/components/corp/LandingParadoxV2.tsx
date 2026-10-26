@@ -135,10 +135,16 @@ function HeroPhoneBrand() {
             </li>
           ))}
         </ul>
-        <div className="lv2p-hero-phone-example">
-          <span className="lv2p-hero-phone-example-label">Example number</span>
-          <span className="lv2p-hero-phone-example-num">{AIWEB_AI_NUMBER_EXAMPLE}</span>
-        </div>
+        <figure className="lv2p-hero-phone-example">
+          <img
+            className="lv2p-hero-phone-example-card"
+            src="/images/geekdom/aiweb-phone-example-card.jpg"
+            alt={`Example AIWEB Phone listing — Taco Fiesta Catering with AI Number ${AIWEB_AI_NUMBER_EXAMPLE}`}
+            width={720}
+            height={1280}
+            decoding="async"
+          />
+        </figure>
         <div className="lv2p-hero-phone-ctas">
           <a className="lv2p-hero-phone-cta lv2p-hero-phone-cta--primary" href={PHONE_CHECKOUT_URL}>
             <Phone aria-hidden strokeWidth={2.2} />

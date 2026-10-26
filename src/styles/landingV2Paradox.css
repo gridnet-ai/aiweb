@@ -555,33 +555,16 @@
 }
 
 .lv2p-hero-phone-example {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.3rem;
-  margin-top: 0.35rem;
-  color: #ffffff;
+  display: block;
+  width: min(100%, 18rem);
+  margin: 0.55rem auto 0;
+  overflow: hidden;
 }
 
-.lv2p-hero-phone-example-label {
-  font-size: clamp(0.95rem, 2.6vw, 1.1rem);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  line-height: 1.15;
-  color: rgba(255, 255, 255, 0.88);
-}
-
-.lv2p-hero-phone-example-num {
-  font-family: 'Nunito Sans', 'Source Sans 3', system-ui, sans-serif;
-  font-size: clamp(1.55rem, 6.5vw, 2.35rem);
-  font-weight: 800;
-  font-variation-settings: 'wght' 800, 'opsz' 12;
-  letter-spacing: -0.05em;
-  line-height: 0.95;
-  white-space: nowrap;
-  color: #ffffff;
-  -webkit-text-stroke: 0.03em currentColor;
-  paint-order: stroke fill;
+.lv2p-hero-phone-example-card {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .lv2p-hero-phone-assistants {
@@ -2548,8 +2531,8 @@
     height: 3.15rem;
   }
 
-  .lv2p-hero-phone-example-num {
-    font-size: clamp(1.85rem, 3vw, 2.55rem);
+  .lv2p-hero-phone-example {
+    width: min(100%, 20rem);
   }
 
   .lv2p-hero-phone-assistants {
