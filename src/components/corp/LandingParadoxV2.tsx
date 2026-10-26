@@ -92,6 +92,46 @@ const PHONE_LISTING_CARDS = [
     src: '/images/promo/phone-listings/hill-country-catering.jpg',
     label: 'Hill Country Catering Co.',
   },
+  {
+    id: 'austin-river-tours',
+    src: '/images/promo/phone-listings/austin-river-tours.jpg',
+    label: 'Austin River Tours',
+  },
+  {
+    id: 'vinyl-vault',
+    src: '/images/promo/phone-listings/vinyl-vault.jpg',
+    label: 'Vinyl Vault Records',
+  },
+  {
+    id: 'riverdale-university',
+    src: '/images/promo/phone-listings/riverdale-university.jpg',
+    label: 'Riverdale University',
+  },
+  {
+    id: 'thread-and-co',
+    src: '/images/promo/phone-listings/thread-and-co.jpg',
+    label: 'Thread & Co Boutique',
+  },
+  {
+    id: 'pedal-works',
+    src: '/images/promo/phone-listings/pedal-works.jpg',
+    label: 'Pedal Works Bike Shop',
+  },
+  {
+    id: 'austin-parks',
+    src: '/images/promo/phone-listings/austin-parks.jpg',
+    label: 'Austin Parks',
+  },
+  {
+    id: 'morgan-lee-art',
+    src: '/images/promo/phone-listings/morgan-lee-art.jpg',
+    label: 'Morgan Lee Fine Art',
+  },
+  {
+    id: 'lumen-creative',
+    src: '/images/promo/phone-listings/lumen-creative.jpg',
+    label: 'Lumen Creative Studio',
+  },
 ] as const;
 
 function HeroLeadInboxTitle() {
