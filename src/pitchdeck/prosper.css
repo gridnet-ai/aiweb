@@ -132,16 +132,120 @@
   background: transparent;
 }
 
-.prosper-product-shot--receive {
+.prosper-product-shot--send {
+  /* Figure width = phone only so SEND/RECEIVE labels center on the phone.
+     Patient cluster is parked to the left outside that box. */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: auto;
+  max-width: 100%;
+  min-width: 0;
+  padding: 0;
+  justify-self: center;
   overflow: visible;
 }
 
-.prosper-product-shot--receive img {
-  max-height: min(46vh, 24rem);
+.prosper-product-shot--send .prosper-product-shot-sides {
+  position: absolute;
+  top: 50%;
+  right: calc(100% + clamp(0.75rem, 1.6vw, 1.25rem));
+  transform: translateY(-50%);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.45rem;
+  width: min(11.5rem, 34vw);
+  pointer-events: none;
+}
+
+.prosper-product-shot--send .prosper-product-shot-side {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  height: auto;
+  max-height: none;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 0.7rem;
+  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.14);
+}
+
+.prosper-product-shot--send .prosper-product-shot-side:nth-child(1) {
+  transform: rotate(-3deg);
+}
+
+.prosper-product-shot--send .prosper-product-shot-side:nth-child(2) {
+  transform: rotate(2.5deg);
+}
+
+.prosper-product-shot--send .prosper-product-shot-side:nth-child(3) {
+  transform: rotate(2deg);
+}
+
+.prosper-product-shot--send .prosper-product-shot-side:nth-child(4) {
+  transform: rotate(-2deg);
+}
+
+.prosper-product-shot--send .prosper-product-shot-fg {
+  position: relative;
+  z-index: 1;
+  display: block;
+  margin: 0;
+  width: auto;
+  max-width: none;
+  height: auto;
+}
+
+.prosper-product-shot--receive {
+  /* Figure width = phone only so labels center on the phone.
+     Clinic card peeks to the right outside that box. */
+  position: relative;
+  overflow: visible;
+  isolation: isolate;
+  box-sizing: border-box;
   width: auto;
   max-width: 100%;
+  min-width: 0;
+  padding: 0;
+  justify-self: center;
+  align-items: center;
+}
+
+.prosper-product-shot--receive img {
+  max-height: min(58vh, 30rem);
+  width: auto;
+  max-width: none;
   height: auto;
   object-fit: contain;
+}
+
+.prosper-product-shot--receive .prosper-product-shot-backdrop {
+  position: absolute;
+  z-index: 0;
+  top: 0.2rem;
+  left: calc(100% + 0.55rem);
+  right: auto;
+  width: min(28.21rem, 87%);
+  max-width: 30.03rem;
+  max-height: min(100vh, 54.6rem);
+  height: auto;
+  object-fit: contain;
+  object-position: top center;
+  pointer-events: none;
+  border-radius: 0.95rem;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.2);
+  transform: rotate(1.5deg);
+  transform-origin: top left;
+}
+
+.prosper-product-shot--receive .prosper-product-shot-fg {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  max-width: 100%;
 }
 
 .prosper-product-loop-arrow {
@@ -940,6 +1044,17 @@
   overflow: hidden;
 }
 
+.prosper-root #pd-product {
+  /* Full-bleed stage — edge padding lives on the slide, not a capped inner. */
+  padding-top: clamp(0.65rem, 1.5vh, 1.15rem);
+  padding-left: 0;
+  padding-right: 0;
+  /* visible + hidden collapses to auto in CSS; keep both visible so the card isn’t clipped. */
+  overflow: visible;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
 .prosper-root #pd-product .pd-panel-inner,
 .prosper-root #pd-solution .pd-panel-inner {
   width: min(100%, 72rem);
@@ -952,6 +1067,20 @@
   overflow: hidden;
 }
 
+.prosper-root #pd-product .pd-panel-inner {
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  min-height: 0;
+  margin: 0;
+  padding: 0 clamp(1.25rem, 3vw, 2rem) 0 clamp(1.25rem, 4vw, 2.5rem);
+  box-sizing: border-box;
+  /* Avoid clipping the receive clinic card / drop shadow. */
+  overflow: visible;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
 .prosper-root #pd-product .prosper-slide--product,
 .prosper-root #pd-solution .prosper-slide--product {
   width: 100%;
@@ -960,6 +1089,133 @@
   max-height: 100%;
   align-content: center;
   align-items: center;
+}
+
+.prosper-root #pd-product .prosper-slide--product {
+  width: 100%;
+  max-width: none;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  column-gap: clamp(1.25rem, 3vw, 2.5rem);
+  row-gap: clamp(0.55rem, 1.6vh, 1rem);
+  align-content: stretch;
+  align-items: start;
+  justify-content: start;
+  padding-top: clamp(0.35rem, 1.2vh, 0.85rem);
+  /* Clear the absolute footer chrome. */
+  padding-bottom: 0.35rem;
+}
+
+.prosper-root #pd-product .prosper-title--product {
+  grid-column: 2;
+  grid-row: 1;
+  align-self: start;
+  justify-self: end;
+  display: grid;
+  gap: 0.2rem;
+  margin: 0;
+  text-align: right;
+  font-size: clamp(1.45rem, 3.2vw, 2.15rem);
+  line-height: 1.15;
+}
+
+.prosper-root #pd-product .prosper-title-product-line {
+  display: block;
+}
+
+.prosper-root #pd-product .prosper-title-product-sub {
+  display: block;
+  font-family: var(--pd-mono, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace);
+  font-size: clamp(1.35rem, 3vw, 2rem);
+  font-weight: 750;
+  letter-spacing: 0.02em;
+  color: var(--pd-ink, #0b0b0c);
+}
+
+.prosper-root #pd-product .prosper-product-copy {
+  grid-column: 1;
+  grid-row: 1;
+  align-self: start;
+  justify-self: start;
+}
+
+.prosper-root #pd-product .prosper-product-mascot {
+  margin: 0.2rem 0 0.35rem;
+}
+
+.prosper-root #pd-product .prosper-lede {
+  margin-top: 0.15rem;
+}
+
+.prosper-root #pd-product .prosper-product-loop {
+  /* Centered under the top copy; compat sits in the bottom row. */
+  grid-column: 1 / -1;
+  grid-row: 2;
+  justify-self: center;
+  align-self: center;
+  width: min(100%, 64rem);
+  max-width: 100%;
+  margin: 0;
+  padding-left: clamp(0.5rem, 2vw, 1.5rem);
+  box-sizing: border-box;
+  justify-content: center;
+}
+
+.prosper-root #pd-product .prosper-product-compat {
+  grid-column: 1 / -1;
+  grid-row: 3;
+  align-self: end;
+  justify-self: stretch;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.85rem, 2vw, 1.5rem);
+  margin: 0;
+  padding: 0.15rem 0 0;
+  justify-items: unset;
+}
+
+.prosper-root #pd-product .prosper-product-compat-also {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 0.65rem;
+  justify-items: unset;
+}
+
+.prosper-root #pd-product .prosper-product-compat-label {
+  white-space: nowrap;
+}
+
+.prosper-root #pd-product .prosper-product-compat .prosper-note--plugin {
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
+/* Solution keeps a two-column copy | stage layout. */
+.prosper-product-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.85rem;
+  min-width: 0;
+  min-height: 0;
+}
+
+.prosper-root #pd-solution .prosper-product-compat {
+  align-self: end;
+  margin-top: 0;
+  justify-items: end;
+  gap: 0.45rem;
+}
+
+.prosper-root #pd-solution .prosper-product-compat-also {
+  justify-items: end;
 }
 
 .prosper-root #pd-product .prosper-lede,
@@ -978,10 +1234,39 @@
   overflow: visible;
 }
 
+.prosper-root #pd-solution .prosper-product-loop {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
 .prosper-root #pd-product .prosper-product-loop-forward,
 .prosper-root #pd-solution .prosper-product-loop-forward {
   min-height: 0;
   align-items: center;
+}
+
+.prosper-root #pd-product .prosper-product-loop-forward {
+  /* Balanced columns so SEND/RECEIVE pills center over each phone. */
+  grid-template-columns: minmax(0, 1fr) minmax(2.75rem, 0.35fr) minmax(0, 1fr);
+  overflow: visible;
+  /* Room for patient cluster (left) + larger calling card (right). */
+  padding-left: clamp(7.5rem, 16vw, 13rem);
+  padding-right: clamp(12.5rem, 26vw, 24rem);
+  box-sizing: border-box;
+}
+
+.prosper-root #pd-product .prosper-product-loop-forward > .prosper-product-loop-label {
+  justify-self: center;
+}
+
+.prosper-root #pd-product .prosper-product-shot--send,
+.prosper-root #pd-product .prosper-product-shot--receive {
+  justify-self: center;
+}
+
+.prosper-root #pd-product .prosper-product-shot--send .prosper-product-shot-sides {
+  width: min(12.25rem, 28vw);
+  gap: 0.5rem;
 }
 
 .prosper-root #pd-product .prosper-product-shot,
@@ -991,13 +1276,25 @@
   overflow: visible;
 }
 
-.prosper-root #pd-product .prosper-product-shot--send img,
-.prosper-root #pd-product .prosper-product-shot--receive img {
-  height: min(58vh, calc(100dvh - 11rem), 30rem);
-  max-height: min(58vh, calc(100dvh - 11rem), 30rem);
-  width: auto;
-  max-width: 100%;
+.prosper-root #pd-product .prosper-product-shot--receive {
+  overflow: visible;
 }
+
+.prosper-root #pd-product .prosper-product-shot--receive .prosper-product-shot-backdrop {
+  width: min(30.03rem, 94%);
+  max-width: 31.85rem;
+  max-height: min(100vh, 58.24rem);
+}
+
+.prosper-root #pd-product .prosper-product-shot--send .prosper-product-shot-fg,
+.prosper-root #pd-product .prosper-product-shot--receive .prosper-product-shot-fg {
+  /* Match Send and Receive phone scale. */
+  height: min(58vh, calc(100dvh - 12rem), 30rem);
+  max-height: min(58vh, calc(100dvh - 12rem), 30rem);
+  width: auto;
+  max-width: none;
+}
+
 
 .prosper-root #pd-solution {
   padding-right: 0;
@@ -1010,15 +1307,58 @@
 }
 
 .prosper-root #pd-solution .prosper-slide--product {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.15fr);
+  grid-template-rows: auto minmax(0, 1fr) auto;
   column-gap: clamp(1.25rem, 3vw, 2.5rem);
+  row-gap: 0.75rem;
+  align-items: start;
+}
+
+.prosper-root #pd-solution .prosper-title--product {
+  grid-column: 1;
+  grid-row: 1;
+  align-self: start;
+  justify-self: start;
+  margin: 0;
+}
+
+.prosper-root #pd-solution .prosper-product-copy {
+  grid-column: 1;
+  grid-row: 2;
+  align-self: start;
 }
 
 .prosper-root #pd-solution .prosper-product-visual--story {
+  grid-column: 2;
+  grid-row: 1 / 3;
   justify-self: end;
   align-self: stretch;
   width: min(100%, 40rem);
   max-height: 100%;
   margin: 0;
+}
+
+.prosper-root #pd-solution .prosper-product-compat {
+  grid-column: 1 / -1;
+  grid-row: 3;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.85rem, 2vw, 1.5rem);
+  justify-self: stretch;
+  align-self: end;
+}
+
+.prosper-root #pd-solution .prosper-product-compat-also {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 0.65rem;
+  justify-items: unset;
 }
 
 .prosper-root #pd-solution .prosper-product-visual--story img {
@@ -1533,12 +1873,24 @@
   max-width: 36rem;
 }
 
-.prosper-cover-phones--loop .prosper-product-shot--send img,
-.prosper-cover-phones--loop .prosper-product-shot--receive img {
+.prosper-cover-phones--loop .prosper-product-shot--send .prosper-product-shot-fg,
+.prosper-cover-phones--loop .prosper-product-shot--receive .prosper-product-shot-fg {
   height: min(48vh, calc(100dvh - 14rem), 26rem);
   max-height: min(48vh, calc(100dvh - 14rem), 26rem);
   width: auto;
   max-width: none;
+}
+
+.prosper-cover-phones--loop .prosper-product-shot--send .prosper-product-shot-sides {
+  width: min(8.5rem, 22vw);
+  gap: 0.35rem;
+}
+
+.prosper-cover-phones--loop .prosper-product-shot--receive .prosper-product-shot-backdrop {
+  left: calc(100% + 0.25rem);
+  right: auto;
+  width: min(9rem, 40%);
+  max-height: min(42vh, 20rem);
 }
 
 .prosper-cover-foot {
@@ -2909,11 +3261,11 @@ html.prosper-exec-html body {
 .prosper-revenue-plan-head {
   display: grid;
   gap: 0.2rem;
-  padding-right: 5.5rem;
+  padding-right: 0;
 }
 
-.prosper-revenue-plan:not(.prosper-revenue-plan--recommended) .prosper-revenue-plan-head {
-  padding-right: 0;
+.prosper-revenue-plan--badged .prosper-revenue-plan-head {
+  padding-right: 5.5rem;
 }
 
 .prosper-revenue-plan-name {
@@ -3167,10 +3519,27 @@ html.prosper-exec-html body {
     column-gap: 0.35rem;
   }
 
-  .prosper-cover-phones--loop .prosper-product-shot--send img,
-  .prosper-cover-phones--loop .prosper-product-shot--receive img {
+  .prosper-cover-phones--loop .prosper-product-shot--send .prosper-product-shot-fg,
+  .prosper-cover-phones--loop .prosper-product-shot--receive .prosper-product-shot-fg {
     height: min(34vh, 13.5rem);
     max-height: min(34vh, 13.5rem);
+  }
+
+  .prosper-cover-phones--loop .prosper-product-loop-forward {
+    padding-left: clamp(4.5rem, 20vw, 7rem);
+  }
+
+  .prosper-cover-phones--loop .prosper-product-shot--send .prosper-product-shot-sides {
+    width: min(5.75rem, 26vw);
+    gap: 0.28rem;
+  }
+
+  .prosper-cover-phones--loop .prosper-product-shot--receive .prosper-product-shot-backdrop {
+    top: 0.1rem;
+    left: calc(100% + 0.15rem);
+    right: auto;
+    width: min(5.75rem, 40%);
+    max-height: min(28vh, 10rem);
   }
 
   .prosper-cover-foot {
@@ -3269,11 +3638,53 @@ html.prosper-exec-html body {
     max-height: 5.5rem;
   }
 
+  .prosper-root #pd-product .prosper-slide--product,
+  .prosper-root #pd-solution .prosper-slide--product {
+    display: flex;
+    flex-direction: column;
+    grid-template-columns: none;
+    grid-template-rows: none;
+  }
+
+  .prosper-root #pd-product .prosper-product-loop {
+    width: 100%;
+    justify-self: stretch;
+    align-self: stretch;
+  }
+
+  .prosper-root #pd-product .prosper-title--product {
+    order: 1;
+    text-align: left;
+    justify-self: start;
+    width: 100%;
+  }
+
+  .prosper-root #pd-product .prosper-product-copy,
+  .prosper-root #pd-solution .prosper-product-copy {
+    order: 2;
+  }
+
+  .prosper-root #pd-product .prosper-product-loop,
+  .prosper-root #pd-solution .prosper-product-visual--story {
+    order: 3;
+  }
+
   .prosper-root #pd-product .prosper-product-compat,
   .prosper-root #pd-solution .prosper-product-compat {
-    margin-top: 0.25rem;
-    gap: 0.5rem;
+    order: 4;
+    margin-top: 0.35rem;
+    gap: 0.55rem;
     width: 100%;
+    align-self: stretch;
+    justify-self: stretch;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  .prosper-root #pd-product .prosper-product-compat-also,
+  .prosper-root #pd-solution .prosper-product-compat-also {
+    justify-items: start;
+    flex-wrap: wrap;
   }
 
   .prosper-root #pd-product .prosper-note--plugin,
@@ -3348,10 +3759,10 @@ html.prosper-exec-html body {
     justify-self: stretch;
   }
 
-  .prosper-root #pd-product .prosper-product-shot--send img,
-  .prosper-root #pd-product .prosper-product-shot--receive img,
-  .prosper-root #pd-solution .prosper-product-shot--send img,
-  .prosper-root #pd-solution .prosper-product-shot--receive img {
+  .prosper-root #pd-product .prosper-product-shot--send .prosper-product-shot-fg,
+  .prosper-root #pd-product .prosper-product-shot--receive .prosper-product-shot-fg,
+  .prosper-root #pd-solution .prosper-product-shot--send .prosper-product-shot-fg,
+  .prosper-root #pd-solution .prosper-product-shot--receive .prosper-product-shot-fg {
     display: block;
     width: 100%;
     height: auto;
@@ -3359,6 +3770,35 @@ html.prosper-exec-html body {
     max-height: min(28vh, 10.5rem);
     object-fit: contain;
     object-position: center top;
+  }
+
+  .prosper-root #pd-product .prosper-product-loop-forward {
+    padding-left: clamp(5rem, 22vw, 7.5rem);
+  }
+
+  .prosper-root #pd-product .prosper-product-shot--send .prosper-product-shot-sides {
+    width: min(5.85rem, 28vw);
+    gap: 0.28rem;
+  }
+
+  .prosper-root #pd-product .prosper-product-shot--send .prosper-product-shot-side {
+    border-radius: 0.45rem;
+  }
+
+  .prosper-root #pd-product .prosper-product-loop-forward {
+    padding-right: clamp(3.5rem, 14vw, 5.5rem);
+  }
+
+  .prosper-root #pd-product .prosper-product-shot--receive .prosper-product-shot-backdrop,
+  .prosper-root #pd-solution .prosper-product-shot--receive .prosper-product-shot-backdrop {
+    top: 0.15rem;
+    left: calc(100% + 0.2rem);
+    right: auto;
+    width: min(7.25rem, 46%);
+    max-height: min(30vh, 12rem);
+    border-radius: 0.55rem;
+    transform: rotate(1.5deg);
+    transform-origin: top left;
   }
 
   .prosper-root #pd-product .prosper-product-loop-label {
@@ -3666,7 +4106,7 @@ html.prosper-exec-html body {
     padding-right: 0;
   }
 
-  .prosper-revenue-plan--recommended .prosper-revenue-plan-head {
+  .prosper-revenue-plan--badged .prosper-revenue-plan-head {
     padding-right: 5.25rem;
   }
 
@@ -3780,9 +4220,25 @@ html.prosper-exec-html body {
     column-gap: 0.15rem;
   }
 
-  .prosper-root #pd-product .prosper-product-shot--send img,
-  .prosper-root #pd-product .prosper-product-shot--receive img {
+  .prosper-root #pd-product .prosper-product-shot--send .prosper-product-shot-fg,
+  .prosper-root #pd-product .prosper-product-shot--receive .prosper-product-shot-fg {
     max-height: min(26vh, 9.5rem);
+  }
+
+  .prosper-root #pd-product .prosper-product-loop-forward {
+    padding-left: clamp(4.25rem, 20vw, 6.25rem);
+  }
+
+  .prosper-root #pd-product .prosper-product-shot--send .prosper-product-shot-sides {
+    width: min(5.1rem, 26vw);
+    gap: 0.22rem;
+  }
+
+  .prosper-root #pd-product .prosper-product-shot--receive .prosper-product-shot-backdrop {
+    left: calc(100% + 0.1rem);
+    right: auto;
+    width: min(4.75rem, 36%);
+    max-height: min(22vh, 8rem);
   }
 
   .prosper-sta-summary strong {
@@ -3794,10 +4250,22 @@ html.prosper-exec-html body {
     column-gap: 0.25rem;
   }
 
-  .prosper-cover-phones--loop .prosper-product-shot--send img,
-  .prosper-cover-phones--loop .prosper-product-shot--receive img {
+  .prosper-cover-phones--loop .prosper-product-shot--send .prosper-product-shot-fg,
+  .prosper-cover-phones--loop .prosper-product-shot--receive .prosper-product-shot-fg {
     height: min(36vh, 14rem);
     max-height: min(36vh, 14rem);
+  }
+
+  .prosper-cover-phones--loop .prosper-product-shot--send .prosper-product-shot-sides {
+    width: min(5.5rem, 24vw);
+    gap: 0.25rem;
+  }
+
+  .prosper-cover-phones--loop .prosper-product-shot--receive .prosper-product-shot-backdrop {
+    left: calc(100% + 0.15rem);
+    right: auto;
+    width: min(5.5rem, 38%);
+    max-height: min(30vh, 10.5rem);
   }
 
   .prosper-roadmap-timeline {

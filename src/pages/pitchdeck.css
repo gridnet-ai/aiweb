@@ -544,7 +544,11 @@ html.pd-html body::-webkit-scrollbar,
   align-items: flex-start;
 }
 
-#pd-product.pd-panel--fit .pd-panel-inner,
+#pd-product.pd-panel--fit .pd-panel-inner {
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
 #pd-solution.pd-panel--fit .pd-panel-inner {
   justify-content: center;
   align-items: center;

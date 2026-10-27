@@ -65,11 +65,39 @@ function ProductLoop({ loop }: { loop: ProductLoopData }) {
         />
         <span className="prosper-product-loop-label">{loop.receive.label}</span>
         <figure className="prosper-product-shot prosper-product-shot--send">
-          <img src={loop.send.src} alt={loop.send.alt} />
+          {'sides' in loop.send && loop.send.sides?.length ? (
+            <div className="prosper-product-shot-sides" aria-hidden>
+              {loop.send.sides.map((side) => (
+                <img
+                  key={side.src}
+                  className="prosper-product-shot-side"
+                  src={side.src}
+                  alt=""
+                />
+              ))}
+            </div>
+          ) : null}
+          <img
+            className="prosper-product-shot-fg"
+            src={loop.send.src}
+            alt={loop.send.alt}
+          />
         </figure>
         <span className="prosper-product-loop-gutter" aria-hidden />
         <figure className="prosper-product-shot prosper-product-shot--receive">
-          <img src={loop.receive.src} alt={loop.receive.alt} />
+          {'backdrop' in loop.receive && loop.receive.backdrop ? (
+            <img
+              className="prosper-product-shot-backdrop"
+              src={loop.receive.backdrop.src}
+              alt=""
+              aria-hidden
+            />
+          ) : null}
+          <img
+            className="prosper-product-shot-fg"
+            src={loop.receive.src}
+            alt={loop.receive.alt}
+          />
         </figure>
         <span className="prosper-product-loop-label">{loop.receive.label}</span>
         <span
@@ -457,35 +485,22 @@ const SLIDES: Slide[] = PROSPER_DECK_SLIDES.map((slide) => {
       section: slide.section,
       render: () => (
         <div className="pd-stack prosper-slide prosper-slide--product">
+          <h1 className="prosper-title prosper-title--product">
+            <span className="prosper-title-product-line">{slide.title}</span>
+            {'titleSub' in slide && slide.titleSub ? (
+              <span className="prosper-title-product-sub">{slide.titleSub}</span>
+            ) : null}
+          </h1>
           <div className="prosper-product-copy">
-            <h1 className="prosper-title">{slide.title}</h1>
-            <p className="prosper-lede">{slide.lede}</p>
             {'mascot' in slide && slide.mascot ? (
               <figure className="prosper-product-mascot">
                 <img src={slide.mascot.src} alt={slide.mascot.alt} />
               </figure>
             ) : null}
-            {'noteIcon' in slide && slide.noteIcon ? (
-              <div className="prosper-product-compat">
-                <p className="prosper-note prosper-note--plugin">
-                  <img
-                    className="prosper-note-plugin-icon"
-                    src={slide.noteIcon.src}
-                    alt=""
-                    aria-hidden
-                  />
-                  <span>{slide.note}</span>
-                </p>
-                {'compatible' in slide && slide.compatible?.length ? (
-                  <div className="prosper-product-compat-also">
-                    <p className="prosper-product-compat-label">Also compatible with</p>
-                    <AssistantLogoRow assistants={slide.compatible} />
-                  </div>
-                ) : null}
-              </div>
-            ) : (
+            <p className="prosper-lede">{slide.lede}</p>
+            {!('noteIcon' in slide && slide.noteIcon) ? (
               <p className="prosper-note">{slide.note}</p>
-            )}
+            ) : null}
           </div>
           {'visual' in slide && slide.visual ? (
             <figure className="prosper-product-visual prosper-product-visual--story">
@@ -493,6 +508,25 @@ const SLIDES: Slide[] = PROSPER_DECK_SLIDES.map((slide) => {
             </figure>
           ) : 'loop' in slide && slide.loop ? (
             <ProductLoop loop={slide.loop} />
+          ) : null}
+          {'noteIcon' in slide && slide.noteIcon ? (
+            <div className="prosper-product-compat">
+              <p className="prosper-note prosper-note--plugin">
+                <img
+                  className="prosper-note-plugin-icon"
+                  src={slide.noteIcon.src}
+                  alt=""
+                  aria-hidden
+                />
+                <span>{slide.note}</span>
+              </p>
+              {'compatible' in slide && slide.compatible?.length ? (
+                <div className="prosper-product-compat-also">
+                  <p className="prosper-product-compat-label">Also compatible with</p>
+                  <AssistantLogoRow assistants={slide.compatible} />
+                </div>
+              ) : null}
+            </div>
           ) : null}
         </div>
       ),
@@ -812,17 +846,26 @@ const SLIDES: Slide[] = PROSPER_DECK_SLIDES.map((slide) => {
           </header>
 
           <div className="prosper-revenue-plans" aria-label="Revenue plans">
-            {slide.plans.map((plan) => (
+            {slide.plans.map((plan) => {
+              const badge =
+                'badge' in plan && plan.badge
+                  ? plan.badge
+                  : plan.recommended
+                    ? 'Recommended'
+                    : null;
+              return (
               <article
                 key={plan.id}
-                className={
-                  plan.recommended
-                    ? 'prosper-revenue-plan prosper-revenue-plan--recommended'
-                    : 'prosper-revenue-plan'
-                }
+                className={[
+                  'prosper-revenue-plan',
+                  plan.recommended ? 'prosper-revenue-plan--recommended' : '',
+                  badge ? 'prosper-revenue-plan--badged' : '',
+                ]
+                  .filter(Boolean)
+                  .join(' ')}
               >
-                {plan.recommended ? (
-                  <span className="prosper-revenue-badge">Recommended</span>
+                {badge ? (
+                  <span className="prosper-revenue-badge">{badge}</span>
                 ) : null}
                 <header className="prosper-revenue-plan-head">
                   <h2 className="prosper-revenue-plan-name">
@@ -851,7 +894,8 @@ const SLIDES: Slide[] = PROSPER_DECK_SLIDES.map((slide) => {
                   ))}
                 </ul>
               </article>
-            ))}
+              );
+            })}
           </div>
 
           <aside className="prosper-revenue-note">

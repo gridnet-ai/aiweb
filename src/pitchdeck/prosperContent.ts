@@ -15,11 +15,33 @@ export const PROSPER_PRODUCT_LOOP = {
     label: 'Send',
     src: '/corporate/aiweb-healthcare-find-austin-cut.png',
     alt: 'Chat GPT shows AIWEB healthcare matches for Find a dentist near me in Austin, TX, with Call on each practice card.',
+    sides: [
+      {
+        src: '/corporate/aiweb-patient-phone-stock.jpg',
+        alt: 'Patient holding prescription bottles while checking their phone.',
+      },
+      {
+        src: '/corporate/aiweb-patient-winter-phone.webp',
+        alt: 'Patient with a cold looking at their phone.',
+      },
+      {
+        src: '/corporate/aiweb-patient-elder-phone.png',
+        alt: 'Older patient reading a message on their phone.',
+      },
+      {
+        src: '/corporate/aiweb-patient-parent-thermometer.png',
+        alt: 'Parent checking a child’s temperature at home.',
+      },
+    ],
   },
   receive: {
     label: 'Receive',
     src: '/corporate/aiweb-mailbox-iphone-mockup.png',
     alt: 'AIWEB Mail on iPhone — unified inbox of direct messages from ChatGPT, Claude, Gemini, Grok, Muse, and the web.',
+    backdrop: {
+      src: '/corporate/austin-family-health-clinic-card.jpg',
+      alt: 'Austin Family Health Clinic calling card on AIWEB.',
+    },
   },
 } as const;
 
@@ -198,12 +220,13 @@ export const PROSPER_DECK_SLIDES = [
   {
     id: 'product',
     section: 'The Product',
-    title: 'The product',
-    lede: 'AIWEB is the native AI assistant communication network',
+    title: 'Example AI Phone Number',
+    titleSub: 'AI-123-456-789-000',
+    lede: 'The AI Phone number allows you to contact your healthcare provider from inside your personal AI assistant.',
     ...PROSPER_PRODUCT_SLIDE_BODY,
     mascot: {
-      src: '/corporate/aiweb-mail-relaxing-bear.png',
-      alt: 'AIWEB Mail bear, relaxing.',
+      src: '/corporate/aiweb-phone-relaxing-bear.png',
+      alt: 'AIWEB Phone bear, relaxing.',
     },
     loop: PROSPER_PRODUCT_LOOP,
   },
@@ -420,20 +443,17 @@ export const PROSPER_DECK_SLIDES = [
     lede: 'Businesses pay to publish calling cards and be discovered across AI assistants and the web.',
     plans: [
       {
-        id: 'free',
-        name: 'Free',
-        price: '$0',
-        audience: 'Public access to',
-        audienceLogo: {
-          src: '/images/promo/aiweb-logo-black.png',
-          alt: 'aiweb',
-        },
+        id: 'phone',
+        name: 'Phone',
+        price: '$4.99/mo',
+        audience: 'Your number on the AIWEB',
+        badge: 'Beta launch',
         recommended: false,
         features: [
-          'Anyone can use AIWEB Call or tell their AI agent to search AIWEB.',
-          'Patients and customers can discover listings and send a message.',
-          'No cost to contact businesses.',
-          'Peer-to-Peer communication',
+          'AI Number (AI-###-###-###-###)',
+          'Unlimited calls, user to user',
+          'Unlimited AIWEB Page + Mail box',
+          'Call or tell an AI agent to search AIWEB.',
         ],
       },
       {
@@ -463,7 +483,7 @@ export const PROSPER_DECK_SLIDES = [
         ],
       },
     ],
-    note: 'AIWEB is free for discovery and outreach. Businesses pay to publish verified calling cards so they can be discovered and contacted.',
+    note: 'AIWEB Phone is $4.99/mo at beta launch. Businesses pay to publish verified calling cards so they can be discovered and contacted.',
   },
   {
     id: 'roadmap',
