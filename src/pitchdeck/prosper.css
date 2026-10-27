@@ -613,15 +613,14 @@
 /* How it works — Old Way vs Voice over AI */
 .prosper-root #pd-howitworks {
   --journey-blue: #0866ff;
-  --sta-surface: #f3f5f8;
+  --sta-surface: #ffffff;
   justify-content: flex-start;
   padding-top: clamp(0.85rem, 2vh, 1.35rem);
   padding-left: clamp(0.5rem, 1.5vw, 1rem);
   padding-right: clamp(0.5rem, 1.5vw, 1rem);
   padding-bottom: calc(4.75rem + env(safe-area-inset-bottom, 0px));
   overflow: hidden;
-  background:
-    radial-gradient(120% 80% at 50% 0%, #fff 0%, var(--sta-surface) 55%, #e8edf3 100%);
+  background: #ffffff;
 }
 
 .prosper-root #pd-howitworks .pd-panel-inner {
@@ -669,6 +668,197 @@
   font-size: clamp(0.92rem, 1.45vw, 1.05rem);
   font-weight: 550;
   line-height: 1.3;
+  color: var(--pd-mute, #5f5e5a);
+}
+
+.prosper-slide--howitworks-chat {
+  gap: clamp(0.5rem, 1.4vh, 0.85rem);
+}
+
+.prosper-hiw-chat {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  gap: clamp(0.85rem, 2.2vh, 1.35rem);
+  width: 100%;
+  margin: 0 auto;
+  padding: 0.25rem 0 0.5rem;
+  overflow: hidden;
+}
+
+.prosper-hiw-main {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1.5rem, 5vw, 3.5rem);
+}
+
+.prosper-hiw-phone {
+  flex: 0 1 auto;
+  margin: 0;
+  display: grid;
+  place-items: center;
+  min-width: 0;
+}
+
+.prosper-hiw-phone img {
+  display: block;
+  width: min(100%, 22rem);
+  max-height: min(68vh, 34rem);
+  height: auto;
+  object-fit: contain;
+}
+
+.prosper-hiw-aside {
+  flex: 0 1 auto;
+  display: grid;
+  gap: clamp(0.85rem, 2vh, 1.25rem);
+  justify-items: start;
+  align-content: center;
+  min-width: 0;
+}
+
+.prosper-hiw-phone-example {
+  text-align: left;
+  max-width: none;
+  white-space: nowrap;
+}
+
+.prosper-hiw-phone-example .prosper-title-product-line {
+  white-space: nowrap;
+}
+
+.prosper-hiw-phone-example .prosper-phone-parts {
+  margin-left: 0;
+  justify-content: flex-start;
+}
+
+.prosper-hiw-calling-card {
+  margin: 0;
+  display: grid;
+  justify-items: start;
+  gap: 0.45rem;
+  padding: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  width: 100%;
+  max-width: 16rem;
+}
+
+.prosper-hiw-calling-card img {
+  display: block;
+  width: 100%;
+  max-height: min(38vh, 18rem);
+  height: auto;
+  object-fit: contain;
+  border-radius: 0.85rem;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.12);
+}
+
+.prosper-hiw-calling-card figcaption {
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #6b6b6b;
+}
+
+.prosper-hiw-flow {
+  flex: 0 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.35rem 0.2rem;
+  margin: 0;
+  padding: 0.35rem 0.5rem 0;
+  list-style: none;
+  max-width: 72rem;
+  margin-inline: auto;
+}
+
+.prosper-hiw-flow-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.35rem;
+  margin: 0;
+}
+
+.prosper-hiw-flow-arrow {
+  display: grid;
+  place-items: center;
+  min-height: 1.55rem;
+  padding-top: 0.05rem;
+  font-size: 1.35rem;
+  font-weight: 600;
+  line-height: 1;
+  color: color-mix(in srgb, var(--journey-blue, #0866ff) 70%, #5f5e5a);
+}
+
+.prosper-hiw-flow-step {
+  display: grid;
+  gap: 0.35rem;
+  justify-items: center;
+  text-align: center;
+  max-width: 11.5rem;
+}
+
+.prosper-hiw-flow-item:has(.prosper-hiw-flow-channels) .prosper-hiw-flow-step {
+  max-width: none;
+}
+
+.prosper-hiw-flow-label {
+  font-family: var(--pd-sans, system-ui, sans-serif);
+  font-size: clamp(0.78rem, 1.15vw, 0.9rem);
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  color: var(--pd-ink, #0b0b0c);
+  text-wrap: balance;
+}
+
+.prosper-hiw-flow-channels {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem 0.65rem;
+  white-space: nowrap;
+}
+
+.prosper-hiw-flow-channel {
+  display: grid;
+  justify-items: center;
+  gap: 0.12rem;
+  color: var(--journey-blue, #0866ff);
+}
+
+.prosper-hiw-flow-channel-icon {
+  display: grid;
+  place-items: center;
+  width: 1.35rem;
+  height: 1.35rem;
+}
+
+.prosper-hiw-flow-channel-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.prosper-hiw-flow-channel-label {
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   color: var(--pd-mute, #5f5e5a);
 }
 
@@ -1108,30 +1298,70 @@
   padding-bottom: 0.35rem;
 }
 
+.prosper-title--phone-example,
 .prosper-root #pd-product .prosper-title--product {
+  display: grid;
+  gap: 0.45rem;
+  margin: 0;
+  text-align: right;
+  font-size: clamp(1.35rem, 2.8vw, 1.85rem);
+  line-height: 1.15;
+}
+
+.prosper-root #pd-product .prosper-title--product-slot {
   grid-column: 2;
   grid-row: 1;
   align-self: start;
   justify-self: end;
+}
+
+.prosper-title-product-line {
+  display: block;
+}
+
+.prosper-phone-parts {
+  display: inline-flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: 0.35rem;
+  margin-left: auto;
+}
+
+.prosper-phone-part {
   display: grid;
-  gap: 0.2rem;
-  margin: 0;
-  text-align: right;
-  font-size: clamp(1.45rem, 3.2vw, 2.15rem);
-  line-height: 1.15;
+  gap: 0.15rem;
+  justify-items: center;
 }
 
-.prosper-root #pd-product .prosper-title-product-line {
-  display: block;
+.prosper-phone-part-label {
+  font-family: var(--pd-sans, system-ui, sans-serif);
+  font-size: 0.62rem;
+  font-weight: 750;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--pd-mute, #5f5e5a);
 }
 
-.prosper-root #pd-product .prosper-title-product-sub {
-  display: block;
+.prosper-phone-part-value {
   font-family: var(--pd-mono, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace);
-  font-size: clamp(1.35rem, 3vw, 2rem);
+  font-size: clamp(1.05rem, 2.4vw, 1.55rem);
   font-weight: 750;
   letter-spacing: 0.02em;
   color: var(--pd-ink, #0b0b0c);
+  white-space: nowrap;
+}
+
+.prosper-phone-part-value--area {
+  color: #0866ff;
+}
+
+.prosper-phone-sep {
+  align-self: flex-end;
+  padding-bottom: 0.12rem;
+  font-family: var(--pd-mono, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace);
+  font-size: clamp(1.05rem, 2.4vw, 1.55rem);
+  font-weight: 750;
+  color: var(--pd-mute, #5f5e5a);
 }
 
 .prosper-root #pd-product .prosper-product-copy {
@@ -3659,6 +3889,12 @@ html.prosper-exec-html body {
     width: 100%;
   }
 
+  .prosper-root #pd-product .prosper-phone-parts {
+    justify-content: flex-start;
+    margin-left: 0;
+    flex-wrap: wrap;
+  }
+
   .prosper-root #pd-product .prosper-product-copy,
   .prosper-root #pd-solution .prosper-product-copy {
     order: 2;
@@ -3865,6 +4101,62 @@ html.prosper-exec-html body {
 
   .prosper-root #pd-howitworks .prosper-title {
     font-size: clamp(1.35rem, 6.5vw, 1.7rem);
+  }
+
+  .prosper-hiw-chat {
+    width: 100%;
+    padding-inline: 0;
+  }
+
+  .prosper-hiw-main {
+    flex-direction: column;
+  }
+
+  .prosper-hiw-phone img {
+    width: min(100%, 16rem);
+    max-height: min(36vh, 20rem);
+  }
+
+  .prosper-hiw-aside {
+    flex-basis: auto;
+    width: 100%;
+    justify-items: center;
+  }
+
+  .prosper-hiw-flow {
+    gap: 0.45rem 0.15rem;
+    padding-top: 0.15rem;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    max-width: 100%;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .prosper-hiw-flow-step {
+    max-width: 9.5rem;
+  }
+
+  .prosper-hiw-flow-item:has(.prosper-hiw-flow-channels) .prosper-hiw-flow-step {
+    max-width: none;
+  }
+
+  .prosper-hiw-phone-example {
+    text-align: center;
+  }
+
+  .prosper-hiw-phone-example .prosper-phone-parts {
+    justify-content: center;
+    margin-inline: auto;
+  }
+
+  .prosper-hiw-calling-card {
+    justify-items: center;
+    max-width: 14rem;
+  }
+
+  .prosper-hiw-calling-card img {
+    max-height: min(28vh, 14rem);
   }
 
   .prosper-root #pd-howitworks .prosper-lede.prosper-sta-lede,

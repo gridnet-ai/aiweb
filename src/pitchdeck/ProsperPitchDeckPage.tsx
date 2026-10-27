@@ -4,6 +4,10 @@ import {
   PROSPER_DECK_SLIDES,
   PROSPER_PRODUCT_LOOP,
 } from '@/pitchdeck/prosperContent';
+import {
+  ProsperHowItWorksChat,
+  ProsperPhoneExampleTitle,
+} from '@/pitchdeck/ProsperHowItWorksChat';
 import '@/pages/pitchdeck.css';
 import '@/pitchdeck/prosper.css';
 
@@ -158,135 +162,6 @@ function FounderHighlightIcon({ kind }: { kind: string }) {
         </svg>
       );
   }
-}
-
-function JourneyStepIcon({ kind }: { kind: string }) {
-  switch (kind) {
-    case 'browser':
-      return (
-        <svg viewBox="0 0 24 24" aria-hidden>
-          <rect
-            x="3"
-            y="4"
-            width="18"
-            height="16"
-            rx="2.5"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.7"
-          />
-          <path d="M3 8.5h18" fill="none" stroke="currentColor" strokeWidth="1.7" />
-          <circle cx="6.2" cy="6.25" r="0.7" fill="currentColor" />
-          <circle cx="8.4" cy="6.25" r="0.7" fill="currentColor" />
-          <circle cx="10.6" cy="6.25" r="0.7" fill="currentColor" />
-          <path
-            d="M8 13.5h8M8 16.2h5"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-          />
-        </svg>
-      );
-    case 'reviews':
-      return (
-        <svg viewBox="0 0 24 24" aria-hidden>
-          <path
-            fill="currentColor"
-            d="M4 5.5A1.5 1.5 0 0 1 5.5 4H16a1.5 1.5 0 0 1 1.5 1.5V12A1.5 1.5 0 0 1 16 13.5h-5.2L7.5 16.2a.6.6 0 0 1-1-.5V13.5H5.5A1.5 1.5 0 0 1 4 12V5.5z"
-            opacity="0.18"
-          />
-          <path
-            fill="#f5b400"
-            d="m7.2 9.1.95-2.05.95 2.05 2.25.2-1.7 1.45.55 2.2-2.05-1.2-2.05 1.2.55-2.2-1.7-1.45z"
-          />
-          <path
-            fill="#f5b400"
-            d="m13.1 9.1.8-1.75.8 1.75 1.9.17-1.45 1.22.47 1.85-1.72-1-1.72 1 .47-1.85-1.45-1.22z"
-          />
-        </svg>
-      );
-    case 'phone':
-      return (
-        <svg viewBox="0 0 24 24" aria-hidden>
-          <path
-            fill="#1f9d55"
-            d="M7.2 3.8c.5-.5 1.3-.5 1.8 0l1.7 1.7c.45.45.5 1.2.1 1.7L9.5 9.1c.7 1.4 1.9 2.6 3.4 3.4l1.9-1.3c.5-.4 1.25-.35 1.7.1l1.7 1.7c.5.5.5 1.3 0 1.8l-1.1 1.1c-.55.55-1.3.8-2.05.7-2.5-.35-4.9-1.7-6.85-3.65S4.85 9.15 4.5 6.65c-.1-.75.15-1.5.7-2.05z"
-          />
-        </svg>
-      );
-    case 'sparkles':
-      return (
-        <svg viewBox="0 0 24 24" aria-hidden>
-          <path
-            fill="currentColor"
-            d="M6.5 4.5h11A1.5 1.5 0 0 1 19 6v12a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 5 18V6a1.5 1.5 0 0 1 1.5-1.5z"
-            opacity="0.14"
-          />
-          <path
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.6"
-            strokeLinecap="round"
-            d="M8 9h6.5M8 12.2h8M8 15.4h5"
-          />
-          <path
-            fill="currentColor"
-            d="m17.2 5.2.55 1.35 1.35.55-1.35.55-.55 1.35-.55-1.35-1.35-.55 1.35-.55z"
-          />
-        </svg>
-      );
-    case 'pin':
-      return (
-        <svg viewBox="0 0 24 24" aria-hidden>
-          <path
-            fill="currentColor"
-            d="M12 3.5a5 5 0 0 1 5 5c0 3.4-3.4 7.3-4.6 8.55a.6.6 0 0 1-.8 0C10.4 15.8 7 11.9 7 8.5a5 5 0 0 1 5-5zm0 3.2a1.8 1.8 0 1 0 0 3.6 1.8 1.8 0 0 0 0-3.6z"
-          />
-          <path
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            d="M16.5 17.5H20M16.5 20H19"
-          />
-        </svg>
-      );
-    case 'chat':
-      return (
-        <svg viewBox="0 0 24 24" aria-hidden>
-          <path
-            fill="currentColor"
-            d="M4 5.8A1.8 1.8 0 0 1 5.8 4H13a1.8 1.8 0 0 1 1.8 1.8v5.2A1.8 1.8 0 0 1 13 12.8H9.4L6.7 15a.55.55 0 0 1-.9-.45v-1.75H5.8A1.8 1.8 0 0 1 4 11V5.8z"
-            opacity="0.35"
-          />
-          <path
-            fill="currentColor"
-            d="M10.2 9.8A1.8 1.8 0 0 1 12 8h6.2A1.8 1.8 0 0 1 20 9.8v5.4a1.8 1.8 0 0 1-1.8 1.8h-1.2v1.55a.55.55 0 0 1-.9.45l-2.5-2H12a1.8 1.8 0 0 1-1.8-1.8V9.8z"
-          />
-        </svg>
-      );
-    case 'chart':
-      return (
-        <svg viewBox="0 0 24 24" aria-hidden>
-          <path
-            fill="currentColor"
-            d="M5 18h2.2V10H5v8zm5.4 0H12.6V6h-2.2v12zm5.4 0H18V12h-2.2v6zM4 20h16v1.6H4z"
-          />
-        </svg>
-      );
-    default:
-      return null;
-  }
-}
-
-function JourneyFlowArrow() {
-  return (
-    <span className="prosper-sta-arrow" aria-hidden>
-      <span className="prosper-sta-arrow-line" />
-      <span className="prosper-sta-arrow-head" />
-    </span>
-  );
 }
 
 function ContactSocialIcon({ kind }: { kind: string }) {
@@ -485,12 +360,20 @@ const SLIDES: Slide[] = PROSPER_DECK_SLIDES.map((slide) => {
       section: slide.section,
       render: () => (
         <div className="pd-stack prosper-slide prosper-slide--product">
-          <h1 className="prosper-title prosper-title--product">
-            <span className="prosper-title-product-line">{slide.title}</span>
-            {'titleSub' in slide && slide.titleSub ? (
-              <span className="prosper-title-product-sub">{slide.titleSub}</span>
-            ) : null}
-          </h1>
+          {'phoneParts' in slide && slide.phoneParts ? (
+            <ProsperPhoneExampleTitle
+              as="h1"
+              example={{
+                title: slide.title,
+                ...slide.phoneParts,
+              }}
+              className="prosper-title--product-slot"
+            />
+          ) : (
+            <h1 className="prosper-title prosper-title--product prosper-title--product-slot">
+              {slide.title}
+            </h1>
+          )}
           <div className="prosper-product-copy">
             {'mascot' in slide && slide.mascot ? (
               <figure className="prosper-product-mascot">
@@ -533,135 +416,16 @@ const SLIDES: Slide[] = PROSPER_DECK_SLIDES.map((slide) => {
     };
   }
 
-  if (
-    slide.id === 'howitworks' &&
-    'old' in slide &&
-    'ai' in slide &&
-    'shift' in slide &&
-    'summary' in slide
-  ) {
+  if (slide.id === 'howitworks' && 'chat' in slide) {
     return {
       id: slide.id,
       section: slide.section,
       render: () => (
-        <div className="pd-stack prosper-slide prosper-slide--howitworks">
+        <div className="pd-stack prosper-slide prosper-slide--howitworks prosper-slide--howitworks-chat">
           <header className="prosper-sta-head">
             <h1 className="prosper-title">{slide.title}</h1>
-            <p className="prosper-lede prosper-sta-lede">{slide.lede}</p>
           </header>
-
-          <div className="prosper-sta-stage" aria-label="From search to chat">
-            <article className="prosper-sta-card prosper-sta-card--old">
-              <header className="prosper-sta-card-head">
-                <h2 className="prosper-sta-card-title">{slide.old.title}</h2>
-                <p className="prosper-sta-card-subtitle">{slide.old.subtitle}</p>
-              </header>
-
-              <div className="prosper-sta-search" aria-label={`Search: ${slide.old.search}`}>
-                <span className="prosper-sta-search-icon" aria-hidden>
-                  <svg viewBox="0 0 24 24">
-                    <circle
-                      cx="10.5"
-                      cy="10.5"
-                      r="5.5"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.8"
-                    />
-                    <path
-                      d="m14.8 14.8 4 4"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.8"
-                      strokeLinecap="round"
-                    />
-                  </svg>
-                </span>
-                <span className="prosper-sta-search-text">{slide.old.search}</span>
-                <span className="prosper-sta-search-mic" aria-hidden>
-                  <svg viewBox="0 0 24 24">
-                    <path
-                      fill="currentColor"
-                      d="M12 3.5a2.7 2.7 0 0 1 2.7 2.7v5.1a2.7 2.7 0 0 1-5.4 0V6.2A2.7 2.7 0 0 1 12 3.5zm-5 8.3a.9.9 0 0 1 1.8 0 3.2 3.2 0 0 0 6.4 0 .9.9 0 1 1 1.8 0 5 5 0 0 1-4.1 4.9v1.8H14a.9.9 0 1 1 0 1.8h-4a.9.9 0 1 1 0-1.8h1.1v-1.8A5 5 0 0 1 7 11.8z"
-                    />
-                  </svg>
-                </span>
-              </div>
-
-              <ol className="prosper-sta-steps" aria-label={slide.old.steps.map((s) => s.text).join(' to ')}>
-                {slide.old.steps.map((step) => (
-                  <li key={step.id}>
-                    <JourneyFlowArrow />
-                    <div className="prosper-sta-step">
-                      <span className={`prosper-sta-step-icon prosper-sta-step-icon--${step.icon}`}>
-                        <JourneyStepIcon kind={step.icon} />
-                      </span>
-                      <span className="prosper-sta-step-text">{step.text}</span>
-                    </div>
-                  </li>
-                ))}
-              </ol>
-            </article>
-
-            <div className="prosper-sta-shift" aria-hidden>
-              <p className="prosper-sta-shift-label">{slide.shift}</p>
-              <span className="prosper-sta-shift-arrow" />
-            </div>
-
-            <article className="prosper-sta-card prosper-sta-card--ai">
-              <header className="prosper-sta-card-head prosper-sta-card-head--ai">
-                <div>
-                  <h2 className="prosper-sta-card-title">{slide.ai.title}</h2>
-                  <p className="prosper-sta-card-subtitle">{slide.ai.subtitle}</p>
-                </div>
-                <ul className="prosper-sta-assistants" aria-label="AI assistants">
-                  {slide.ai.assistants.map((assistant) => (
-                    <li key={assistant.id}>
-                      <img src={assistant.src} alt={assistant.label} />
-                      <span>{assistant.label}</span>
-                    </li>
-                  ))}
-                </ul>
-              </header>
-
-              <div className="prosper-sta-chat">
-                <span className="prosper-sta-chat-avatar" aria-hidden>
-                  <svg viewBox="0 0 24 24">
-                    <circle cx="12" cy="8" r="3.2" fill="currentColor" />
-                    <path
-                      fill="currentColor"
-                      d="M5.5 18.8c.7-3.1 3.2-4.8 6.5-4.8s5.8 1.7 6.5 4.8a.9.9 0 0 1-.9 1.2H6.4a.9.9 0 0 1-.9-1.2z"
-                    />
-                  </svg>
-                </span>
-                <p className="prosper-sta-chat-bubble">“{slide.ai.query}”</p>
-              </div>
-
-              <ol className="prosper-sta-steps" aria-label={slide.ai.steps.map((s) => s.text).join(' to ')}>
-                {slide.ai.steps.map((step) => (
-                  <li key={step.id}>
-                    <JourneyFlowArrow />
-                    <div className="prosper-sta-step prosper-sta-step--ai">
-                      <span className={`prosper-sta-step-icon prosper-sta-step-icon--${step.icon}`}>
-                        <JourneyStepIcon kind={step.icon} />
-                      </span>
-                      <span className="prosper-sta-step-text">{step.text}</span>
-                    </div>
-                  </li>
-                ))}
-              </ol>
-            </article>
-          </div>
-
-          <aside className="prosper-sta-summary">
-            <span className="prosper-sta-summary-icon" aria-hidden>
-              <JourneyStepIcon kind="chart" />
-            </span>
-            <p>
-              {slide.summary.before}
-              <strong>{slide.summary.emphasis}</strong>
-            </p>
-          </aside>
+          <ProsperHowItWorksChat chat={slide.chat} />
         </div>
       ),
     };

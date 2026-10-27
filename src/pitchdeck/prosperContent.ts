@@ -10,6 +10,14 @@ export const PROSPER_META = {
   summaryPdf: '/corporate/AIWEB-Executive-Summary-Prosper-DRAFT-2026-10-20.pdf',
 } as const;
 
+export const PROSPER_PHONE_EXAMPLE = {
+  title: 'Example AI Phone Number',
+  areaCodeLabel: 'Area code',
+  areaCode: 'AI',
+  numberLabel: 'Number',
+  number: '123-456-789-000',
+} as const;
+
 export const PROSPER_PRODUCT_LOOP = {
   send: {
     label: 'Send',
@@ -220,8 +228,13 @@ export const PROSPER_DECK_SLIDES = [
   {
     id: 'product',
     section: 'The Product',
-    title: 'Example AI Phone Number',
-    titleSub: 'AI-123-456-789-000',
+    title: PROSPER_PHONE_EXAMPLE.title,
+    phoneParts: {
+      areaCodeLabel: PROSPER_PHONE_EXAMPLE.areaCodeLabel,
+      areaCode: PROSPER_PHONE_EXAMPLE.areaCode,
+      numberLabel: PROSPER_PHONE_EXAMPLE.numberLabel,
+      number: PROSPER_PHONE_EXAMPLE.number,
+    },
     lede: 'The AI Phone number allows you to contact your healthcare provider from inside your personal AI assistant.',
     ...PROSPER_PRODUCT_SLIDE_BODY,
     mascot: {
@@ -233,74 +246,33 @@ export const PROSPER_DECK_SLIDES = [
   {
     id: 'howitworks',
     section: 'How it works',
-    title: 'From Search to Chat',
-    lede: 'How patients discover care is changing.',
-    shift: 'A SHIFT IN HOW PATIENTS FIND CARE',
-    summary: {
-      before:
-        'Patients are shifting from typing rigid keywords into search engines to ',
-      emphasis:
-        'chatting with AI assistants for direct, personalized care recommendations.',
-    },
-    old: {
-      title: 'Old Journey',
-      subtitle: 'Keyword search',
-      search: 'best cardiologist near me',
-      steps: [
-        { id: 'websites', icon: 'browser', text: 'Click 3 or more website directories' },
-        { id: 'reviews', icon: 'reviews', text: 'Read reviews' },
-        { id: 'call', icon: 'phone', text: 'Call clinic and try again.' },
-      ],
-    },
-    ai: {
-      title: 'AI Journey',
-      subtitle: 'Conversational discovery',
-      assistants: [
+    title: 'How patients Call',
+    chat: {
+      phone: {
+        src: '/corporate/aiweb-healthcare-find-austin-phone.jpg',
+        alt: 'ChatGPT on a phone showing AIWEB healthcare matches for Find a dentist near me in Austin, TX, with Call on each practice card.',
+      },
+      callingCard: {
+        src: '/corporate/austin-family-health-clinic-card.jpg',
+        alt: 'Austin Family Health Clinic Calling Card with AI-123-456-789-000.',
+        label: 'Calling Card',
+      },
+      phoneExample: PROSPER_PHONE_EXAMPLE,
+      flow: [
+        { id: 'chat', label: 'Patient chats with personal AI assistant' },
+        { id: 'cards', label: 'Calling cards appear in the answer' },
+        { id: 'select', label: 'Select' },
         {
-          id: 'chatgpt',
-          label: 'Chat GPT',
-          src: '/images/demo/workers/chatgpt.png',
+          id: 'call',
+          label: 'Call provider',
+          channels: [
+            { id: 'text', label: 'Text' },
+            { id: 'image', label: 'Image' },
+            { id: 'voice', label: 'Voice message' },
+            { id: 'video', label: 'Video' },
+          ],
         },
-        {
-          id: 'claude',
-          label: 'Claude',
-          src: '/images/promo/claude-mark.png',
-        },
-        {
-          id: 'gemini',
-          label: 'Gemini',
-          src: '/images/promo/gemini-mark.png',
-        },
-        {
-          id: 'grok',
-          label: 'Grok',
-          src: '/images/demo/workers/grok.png',
-        },
-        {
-          id: 'muse',
-          label: 'Muse',
-          src: '/images/promo/muse-mark.png',
-        },
-        {
-          id: 'web',
-          label: 'Web',
-          src: '/images/promo/web-mark.svg',
-        },
-      ],
-      query:
-        'My 8-year-old child’s adult teeth are coming in crowded. Should I see a dentist or an orthodontist, and who are the top three pediatric orthodontists in North Austin with short wait times?',
-      steps: [
-        { id: 'map', icon: 'sparkles', text: 'AI maps symptoms to specialty' },
-        {
-          id: 'recommend',
-          icon: 'pin',
-          text: 'AI recommends top providers by intent',
-        },
-        {
-          id: 'direct',
-          icon: 'chat',
-          text: 'Direct communication with the clinic',
-        },
+        { id: 'callback', label: 'Provider calls back' },
       ],
     },
   },
