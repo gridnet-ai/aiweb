@@ -73,7 +73,7 @@ export const PROSPER_DECK_SLIDES = [
   {
     id: 'cover',
     section: 'Cover',
-    tagline: 'The phone and phone book for AI assistants',
+    tagline: 'Patient-to-Provider direct messaging\ninside any personal AI Assistant.',
     loop: PROSPER_PRODUCT_LOOP,
     partners: [
       {
@@ -246,7 +246,7 @@ export const PROSPER_DECK_SLIDES = [
   {
     id: 'howitworks',
     section: 'How it works',
-    title: 'How patients Call',
+    title: 'Voice-Over-AI Technology (VoAI)',
     chat: {
       phone: {
         src: '/corporate/aiweb-healthcare-find-austin-phone.jpg',

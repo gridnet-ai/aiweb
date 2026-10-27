@@ -2069,58 +2069,84 @@
 
 .prosper-cover-tagline {
   margin: 0.55rem 0 0;
-  max-width: 18rem;
+  max-width: 26rem;
   font-family: var(--pd-sans, 'Segoe UI', sans-serif);
   font-size: clamp(1.05rem, 2.4vw, 1.35rem);
   font-weight: 700;
   letter-spacing: -0.03em;
   line-height: 1.25;
   color: var(--pd-ink, #0b0b0c);
-  text-wrap: pretty;
+  white-space: pre-line;
 }
 
 .prosper-cover-phones {
   position: absolute;
   top: var(--prosper-cover-band);
-  right: 0;
+  bottom: 5.75rem;
+  left: clamp(8.5rem, 18vw, 14rem);
+  right: clamp(1.25rem, 3.5vw, 2.75rem);
   display: flex;
-  align-items: flex-start;
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: flex-start;
   margin: 0;
-  width: min(70%, 44rem);
-  max-height: calc(100% - var(--prosper-cover-band) - 5.5rem);
+  width: auto;
+  max-width: none;
+  max-height: none;
+  overflow: visible;
 }
 
 .prosper-cover-phones--loop {
   align-items: center;
-  justify-content: center;
-  padding-right: clamp(0.75rem, 2vw, 1.5rem);
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+  padding-right: 0;
   overflow: visible;
 }
 
 .prosper-cover-phones--loop .prosper-product-loop {
   width: 100%;
-  max-width: 36rem;
+  max-width: none;
+  max-height: 100%;
+}
+
+.prosper-cover-phones--loop .prosper-product-loop-forward {
+  /* Keep patient cluster + calling card inside the panel (not clipped). */
+  grid-template-columns: max-content minmax(1.75rem, 2.5rem) max-content;
+  justify-content: flex-start;
+  column-gap: 0.45rem;
+  padding-left: clamp(11.5rem, 18vw, 16rem);
+  padding-right: clamp(14.5rem, 21vw, 20rem);
+  box-sizing: border-box;
+  overflow: visible;
+  align-items: center;
+}
+
+.prosper-cover-phones--loop .prosper-product-loop-arrow--extended {
+  min-width: 1.75rem;
 }
 
 .prosper-cover-phones--loop .prosper-product-shot--send .prosper-product-shot-fg,
 .prosper-cover-phones--loop .prosper-product-shot--receive .prosper-product-shot-fg {
-  height: min(48vh, calc(100dvh - 14rem), 26rem);
-  max-height: min(48vh, calc(100dvh - 14rem), 26rem);
+  height: min(67vh, calc(100dvh - 10rem), 36.6rem);
+  max-height: min(67vh, calc(100dvh - 10rem), 36.6rem);
   width: auto;
   max-width: none;
 }
 
 .prosper-cover-phones--loop .prosper-product-shot--send .prosper-product-shot-sides {
-  width: min(8.5rem, 22vw);
-  gap: 0.35rem;
+  width: min(15.9rem, 30vw);
+  gap: 0.55rem;
+  right: calc(100% + clamp(0.55rem, 1.2vw, 1rem));
 }
 
 .prosper-cover-phones--loop .prosper-product-shot--receive .prosper-product-shot-backdrop {
-  left: calc(100% + 0.25rem);
+  left: calc(100% + 0.35rem);
   right: auto;
-  width: min(9rem, 40%);
-  max-height: min(42vh, 20rem);
+  width: min(18rem, 78%);
+  max-width: 19.2rem;
+  max-height: min(67vh, 33.6rem);
 }
 
 .prosper-cover-foot {
@@ -3714,9 +3740,11 @@ html.prosper-exec-html body {
   .prosper-cover-phones {
     position: static;
     top: auto;
-    left: auto;
     right: auto;
+    bottom: auto;
+    left: auto;
     width: 100%;
+    height: auto;
     max-width: none;
     max-height: none;
   }
@@ -3739,6 +3767,13 @@ html.prosper-exec-html body {
     font-size: clamp(0.98rem, 4.2vw, 1.15rem);
   }
 
+  .prosper-cover-phones--loop,
+  .prosper-cover-phones--loop .prosper-product-loop,
+  .prosper-cover-phones--loop .prosper-product-loop-forward {
+    height: auto;
+    max-height: none;
+  }
+
   .prosper-cover-phones--loop {
     padding-right: 0;
     justify-content: center;
@@ -3747,6 +3782,8 @@ html.prosper-exec-html body {
   .prosper-cover-phones--loop .prosper-product-loop-forward {
     grid-template-columns: minmax(0, 1fr) minmax(1.5rem, 0.28fr) minmax(0, 1fr);
     column-gap: 0.35rem;
+    padding-left: clamp(5.5rem, 24vw, 8rem);
+    padding-right: clamp(6rem, 26vw, 9rem);
   }
 
   .prosper-cover-phones--loop .prosper-product-shot--send .prosper-product-shot-fg,
@@ -3755,21 +3792,18 @@ html.prosper-exec-html body {
     max-height: min(34vh, 13.5rem);
   }
 
-  .prosper-cover-phones--loop .prosper-product-loop-forward {
-    padding-left: clamp(4.5rem, 20vw, 7rem);
-  }
-
   .prosper-cover-phones--loop .prosper-product-shot--send .prosper-product-shot-sides {
-    width: min(5.75rem, 26vw);
-    gap: 0.28rem;
+    width: min(7.25rem, 30vw);
+    gap: 0.32rem;
   }
 
   .prosper-cover-phones--loop .prosper-product-shot--receive .prosper-product-shot-backdrop {
     top: 0.1rem;
     left: calc(100% + 0.15rem);
     right: auto;
-    width: min(5.75rem, 40%);
-    max-height: min(28vh, 10rem);
+    width: min(7.5rem, 48%);
+    max-width: 8.5rem;
+    max-height: min(30vh, 12rem);
   }
 
   .prosper-cover-foot {
@@ -4540,6 +4574,8 @@ html.prosper-exec-html body {
   .prosper-cover-phones--loop .prosper-product-loop-forward {
     grid-template-columns: minmax(0, 1fr) minmax(1.1rem, 0.22fr) minmax(0, 1fr);
     column-gap: 0.25rem;
+    padding-left: clamp(5rem, 22vw, 7.5rem);
+    padding-right: clamp(5.5rem, 24vw, 8rem);
   }
 
   .prosper-cover-phones--loop .prosper-product-shot--send .prosper-product-shot-fg,
@@ -4549,15 +4585,16 @@ html.prosper-exec-html body {
   }
 
   .prosper-cover-phones--loop .prosper-product-shot--send .prosper-product-shot-sides {
-    width: min(5.5rem, 24vw);
-    gap: 0.25rem;
+    width: min(6.75rem, 28vw);
+    gap: 0.28rem;
   }
 
   .prosper-cover-phones--loop .prosper-product-shot--receive .prosper-product-shot-backdrop {
     left: calc(100% + 0.15rem);
     right: auto;
-    width: min(5.5rem, 38%);
-    max-height: min(30vh, 10.5rem);
+    width: min(7rem, 44%);
+    max-width: 8rem;
+    max-height: min(32vh, 12rem);
   }
 
   .prosper-roadmap-timeline {
