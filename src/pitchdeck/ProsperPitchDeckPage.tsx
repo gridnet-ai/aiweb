@@ -874,13 +874,6 @@ const SLIDES: Slide[] = PROSPER_DECK_SLIDES.map((slide) => {
                   </h2>
                   <p className="prosper-revenue-plan-audience">
                     <span>{plan.audience}</span>
-                    {'audienceLogo' in plan && plan.audienceLogo ? (
-                      <img
-                        className="prosper-revenue-plan-audience-logo"
-                        src={plan.audienceLogo.src}
-                        alt={plan.audienceLogo.alt}
-                      />
-                    ) : null}
                   </p>
                 </header>
                 <ul className="prosper-revenue-features">
