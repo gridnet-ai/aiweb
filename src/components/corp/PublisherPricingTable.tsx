@@ -178,9 +178,10 @@ function CellValue({ value }: { value: Cell }) {
 
 const PHONE_FEATURES = [
   'AI Number (AI-###-###-###-###)',
-  'Unlimited calls',
-  'Unlimited Calls user to user',
-  'Unlimited AIWEB Page + Mail box',
+  'Unlimited Calls',
+  'Unlimited AIWEB Page',
+  'Unlimited Mailbox',
+  'Unlimited AIWEB Cloud',
 ] as const;
 
 const PHONE_COMPATIBLE = [
