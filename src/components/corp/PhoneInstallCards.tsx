@@ -1,5 +1,4 @@
-import { Link } from 'react-router-dom';
-import { PHONE_ANDROID_PATH, PHONE_IOS_PATH } from '@/lib/corpSiteRoutes';
+import { phoneInstallAppHref } from '@/lib/detectPhonePlatform';
 import {
   trackPhoneInstallEvent,
   type PhoneInstallPlatform,
@@ -13,7 +12,6 @@ type PhoneInstallCard = {
   preview: string;
   imageSrc: string;
   imageAlt: string;
-  to: string;
 };
 
 const CARDS: readonly PhoneInstallCard[] = [
@@ -25,7 +23,6 @@ const CARDS: readonly PhoneInstallCard[] = [
     preview: 'Share → Add to Home Screen → Open app → Sign up',
     imageSrc: '/images/promo/aiweb-phone-ios.png',
     imageAlt: 'iPhone showing the home screen, ready for AIWEB Phone as a web app.',
-    to: PHONE_IOS_PATH,
   },
   {
     id: 'android',
@@ -35,7 +32,6 @@ const CARDS: readonly PhoneInstallCard[] = [
     preview: 'Install app → Open from Home Screen → Sign up',
     imageSrc: '/images/promo/aiweb-phone-android.png',
     imageAlt: 'Android phone showing the home screen, ready for AIWEB Phone as a web app.',
-    to: PHONE_ANDROID_PATH,
   },
 ] as const;
 
@@ -56,14 +52,14 @@ export function PhoneInstallCards() {
       <div className="lv2p-phone-install-inner">
         <header className="lv2p-phone-install-head">
           <h2 id="lv2p-phone-install-heading">Install AIWEB Phone</h2>
-          <p>Choose your device. Same app, same AI number — install guide for your platform.</p>
+          <p>Choose your device. Same app, same AI number — install on the Phone host.</p>
         </header>
         <div className="lv2p-phone-install-grid">
           {CARDS.map((card) => (
-            <Link
+            <a
               key={card.id}
               className="lv2p-phone-install-card"
-              to={card.to}
+              href={phoneInstallAppHref(card.id)}
               data-platform={card.id}
               onClick={() => onCardClick(card.id)}
             >
@@ -82,7 +78,7 @@ export function PhoneInstallCards() {
                 <span className="lv2p-phone-install-card-support">{card.support}</span>
                 <span className="lv2p-phone-install-card-preview">{card.preview}</span>
               </span>
-            </Link>
+            </a>
           ))}
         </div>
       </div>

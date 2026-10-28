@@ -1,7 +1,10 @@
-import { PhonePlatformLanding } from '@/components/corp/PhonePlatformLanding';
+import { useEffect } from 'react';
+import { phoneInstallAppHref } from '@/lib/detectPhonePlatform';
+import { trackPhoneInstallEvent } from '@/lib/phoneInstallAnalytics';
 import { useMarketingPageSeo } from '@/hooks/useScrollReveal';
-import { PHONE_ANDROID_PATH, PHONE_IOS_PATH } from '@/lib/corpSiteRoutes';
+import { PHONE_IOS_PATH } from '@/lib/corpSiteRoutes';
 
+/** Send iOS install traffic to the Phone host — never install this company page. */
 export function PhoneIosPage() {
   useMarketingPageSeo({
     title: 'AIWEB Phone for iOS — Install from Safari',
@@ -11,29 +14,24 @@ export function PhoneIosPage() {
     image: '/images/promo/aiweb-phone-ios.png',
   });
 
+  useEffect(() => {
+    trackPhoneInstallEvent({
+      event: 'phone_install_guide_view',
+      platform: 'ios',
+    });
+    trackPhoneInstallEvent({
+      event: 'phone_install_open_app',
+      platform: 'ios',
+    });
+    window.location.replace(phoneInstallAppHref('ios'));
+  }, []);
+
   return (
-    <PhonePlatformLanding
-      content={{
-        platform: 'ios',
-        title: 'Install AIWEB Phone on iPhone',
-        subheadline: 'Add it to your Home Screen first. Sign up opens in the installed app.',
-        description:
-          'AIWEB Phone is a web app. Install it from Safari, then launch it from your Home Screen — that first launch is where you get your AI number.',
-        imageSrc: '/images/promo/aiweb-phone-ios.png',
-        imageAlt: 'iPhone ready for AIWEB Phone as a Home Screen web app.',
-        openInBrowserLabel: 'Open in Safari to install',
-        steps: [
-          'Tap Open in Safari to install (use Safari, not an in-app browser).',
-          'Tap the Share button.',
-          'Select Add to Home Screen.',
-          'Enable Open as Web App if shown, then Add.',
-          'Open AIWEB Phone from your Home Screen — signup is the first screen.',
-        ],
-        otherPlatform: {
-          label: 'Android install guide',
-          to: PHONE_ANDROID_PATH,
-        },
-      }}
-    />
+    <main className="phone-platform landing-v2" style={{ padding: '4rem 1.25rem', textAlign: 'center' }}>
+      <p>Opening AIWEB Phone to install…</p>
+      <p>
+        <a href={phoneInstallAppHref('ios')}>Continue to install</a>
+      </p>
+    </main>
   );
 }

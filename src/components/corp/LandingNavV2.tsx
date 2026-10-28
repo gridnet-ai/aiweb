@@ -1,18 +1,17 @@
 import { useEffect, useId, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { applyLandingTheme, useLandingTheme } from '@/hooks/useLandingTheme';
 import {
   GEEKDOM_PATH,
   HOME_PATH,
   MAIL_SITE_URL,
-  PHONE_ANDROID_PATH,
-  PHONE_IOS_PATH,
   PLUGIN_PATH,
 } from '@/lib/corpSiteRoutes';
 import {
   detectPhonePlatform,
   phoneDownloadTarget,
+  phoneInstallAppHref,
 } from '@/lib/detectPhonePlatform';
 import { trackPhoneInstallEvent } from '@/lib/phoneInstallAnalytics';
 
@@ -44,13 +43,11 @@ function NavAndroidIcon() {
 export function LandingNavV2() {
   const [open, setOpen] = useState(false);
   const location = useLocation();
-  const navigate = useNavigate();
   const drawerId = useId();
   const { isLight, toggle } = useLandingTheme();
   const [downloadHref, setDownloadHref] = useState(
     () => phoneDownloadTarget('other').href,
   );
-  const [downloadExternal, setDownloadExternal] = useState(true);
   const themeable =
     location.pathname === HOME_PATH ||
     location.pathname === PLUGIN_PATH ||
@@ -62,9 +59,7 @@ export function LandingNavV2() {
   }, [isLight, themeable]);
 
   useEffect(() => {
-    const target = phoneDownloadTarget(detectPhonePlatform());
-    setDownloadHref(target.href);
-    setDownloadExternal(target.external);
+    setDownloadHref(phoneDownloadTarget(detectPhonePlatform()).href);
   }, []);
 
   useEffect(() => {
@@ -108,14 +103,22 @@ export function LandingNavV2() {
           <img className="lv2p-nav-item-icon lv2p-nav-item-icon--cloud" src="/icons/aiweb-cloud.png?v=2" alt="" />
           Plugin
         </Link>
-        <Link className="lv2p-nav-item" to={PHONE_IOS_PATH} onClick={() => setOpen(false)}>
+        <a
+          className="lv2p-nav-item"
+          href={phoneInstallAppHref('ios')}
+          onClick={() => setOpen(false)}
+        >
           <NavAppleIcon />
           iOS
-        </Link>
-        <Link className="lv2p-nav-item" to={PHONE_ANDROID_PATH} onClick={() => setOpen(false)}>
+        </a>
+        <a
+          className="lv2p-nav-item"
+          href={phoneInstallAppHref('android')}
+          onClick={() => setOpen(false)}
+        >
           <NavAndroidIcon />
           Android
-        </Link>
+        </a>
         <a className="lv2p-nav-item" href={OS_LOGIN_HREF} target="_blank" rel="noopener noreferrer">
           <img className="lv2p-nav-item-icon lv2p-nav-item-icon--cloud" src="/icons/aiweb-cloud.png?v=2" alt="" />
           Log in
@@ -168,14 +171,14 @@ export function LandingNavV2() {
           <img className="lv2p-nav-item-icon lv2p-nav-item-icon--cloud" src="/icons/aiweb-cloud.png?v=2" alt="" />
           Plugin
         </Link>
-        <Link className="lv2p-nav-item" to={PHONE_IOS_PATH}>
+        <a className="lv2p-nav-item" href={phoneInstallAppHref('ios')}>
           <NavAppleIcon />
           iOS
-        </Link>
-        <Link className="lv2p-nav-item" to={PHONE_ANDROID_PATH}>
+        </a>
+        <a className="lv2p-nav-item" href={phoneInstallAppHref('android')}>
           <NavAndroidIcon />
           Android
-        </Link>
+        </a>
         <a className="lv2p-nav-item" href={OS_LOGIN_HREF} target="_blank" rel="noopener noreferrer">
           <img className="lv2p-nav-item-icon lv2p-nav-item-icon--cloud" src="/icons/aiweb-cloud.png?v=2" alt="" />
           Log in
@@ -185,9 +188,6 @@ export function LandingNavV2() {
         <a
           className="lv2p-nav-try"
           href={downloadHref}
-          {...(downloadExternal
-            ? { target: '_blank', rel: 'noopener noreferrer' }
-            : {})}
           aria-label="Download the app"
           onClick={(event) => {
             const target = phoneDownloadTarget(detectPhonePlatform());
@@ -195,17 +195,9 @@ export function LandingNavV2() {
               event: 'phone_install_download_click',
               platform: target.platform,
             });
+            // Same-tab to Phone host so Chrome/Safari install the real app, not this site.
             event.preventDefault();
-            if (target.external) {
-              window.open(target.href, '_blank', 'noopener,noreferrer');
-              return;
-            }
-            if (target.href.includes('#')) {
-              const [path, hash] = target.href.split('#');
-              navigate({ pathname: path || HOME_PATH, hash });
-              return;
-            }
-            navigate(target.href);
+            window.location.assign(target.href);
           }}
         >
           Download
