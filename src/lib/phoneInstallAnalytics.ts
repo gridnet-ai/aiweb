@@ -3,11 +3,12 @@ export type PhoneInstallPlatform = 'ios' | 'android';
 export type PhoneInstallAnalyticsEvent =
   | 'phone_install_card_click'
   | 'phone_install_guide_view'
-  | 'phone_install_open_app';
+  | 'phone_install_open_app'
+  | 'phone_install_download_click';
 
 export type PhoneInstallAnalyticsPayload = {
   event: PhoneInstallAnalyticsEvent;
-  platform: PhoneInstallPlatform;
+  platform: PhoneInstallPlatform | 'other';
 };
 
 type DataLayerWindow = Window & {

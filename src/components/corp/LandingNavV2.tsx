@@ -10,6 +10,11 @@ import {
   PHONE_IOS_PATH,
   PLUGIN_PATH,
 } from '@/lib/corpSiteRoutes';
+import {
+  detectPhonePlatform,
+  phoneDownloadHref,
+} from '@/lib/detectPhonePlatform';
+import { trackPhoneInstallEvent } from '@/lib/phoneInstallAnalytics';
 
 export const AGENCY_PILOT_HREF =
   'mailto:support@theaiwebcompany.com?subject=Agency%20pilot%20application';
@@ -41,6 +46,10 @@ export function LandingNavV2() {
   const location = useLocation();
   const drawerId = useId();
   const { isLight, toggle } = useLandingTheme();
+  const onHome = location.pathname === HOME_PATH;
+  const [downloadHref, setDownloadHref] = useState(() =>
+    phoneDownloadHref('other', { onHome }),
+  );
   const themeable =
     location.pathname === HOME_PATH ||
     location.pathname === PLUGIN_PATH ||
@@ -50,6 +59,10 @@ export function LandingNavV2() {
     if (!themeable) return;
     applyLandingTheme(isLight ? 'light' : 'dark');
   }, [isLight, themeable]);
+
+  useEffect(() => {
+    setDownloadHref(phoneDownloadHref(detectPhonePlatform(), { onHome }));
+  }, [onHome]);
 
   useEffect(() => {
     setOpen(false);
@@ -168,8 +181,18 @@ export function LandingNavV2() {
       <div className="lv2p-nav-actions">
         <a
           className="lv2p-nav-try"
-          href={location.pathname === HOME_PATH ? '#install' : `${HOME_PATH}#install`}
+          href={downloadHref}
           aria-label="Download the app"
+          {...(downloadHref.startsWith('http')
+            ? { target: '_blank', rel: 'noopener noreferrer' }
+            : {})}
+          onClick={() => {
+            const platform = detectPhonePlatform();
+            trackPhoneInstallEvent({
+              event: 'phone_install_download_click',
+              platform,
+            });
+          }}
         >
           Download
         </a>
