@@ -1694,9 +1694,18 @@ html:has(.marketing-home-chapters) {
 }
 
 .seller-plan--phone {
-  background:
-    linear-gradient(180deg, rgba(8, 102, 255, 0.06), transparent 42%),
-    #fff;
+  border: 2.5px solid #0b0b0c;
+  background: #fff;
+}
+
+.seller-plan--phone .seller-feature-card {
+  border: 2px solid #0b0b0c;
+  background: #fff;
+}
+
+.seller-plan--phone .seller-feature-compatible-row li {
+  border: 2px solid #0b0b0c;
+  background: #fff;
 }
 
 .seller-plan-best {
@@ -1825,6 +1834,32 @@ html:has(.marketing-home-chapters) {
   border: 0;
   background: linear-gradient(120deg, #a8d8ff 0%, #c8ebe0 55%, #d8f0e4 100%);
   color: #111;
+}
+
+.landing-v2--dark .lv2p-close .seller-plan--phone {
+  border: 2.5px solid #0b0b0c;
+  background: #fff;
+  color: #111;
+}
+
+.landing-v2--dark .lv2p-close .seller-plan--phone .text-marketing-ink {
+  color: #111;
+}
+
+.landing-v2--dark .lv2p-close .seller-plan--phone .text-marketing-muted,
+.landing-v2--dark .lv2p-close .seller-plan--phone .text-marketing-muted2 {
+  color: #425466;
+}
+
+.landing-v2--dark .lv2p-close .seller-plan--phone .seller-feature-card {
+  border: 2px solid #0b0b0c;
+  background: #fff;
+  color: #111;
+}
+
+.landing-v2--dark .lv2p-close .seller-plan--phone .seller-feature-compatible-row li {
+  border: 2px solid #0b0b0c;
+  background: #fff;
 }
 
 .landing-v2--dark .lv2p-close .seller-plan .text-marketing-ink {

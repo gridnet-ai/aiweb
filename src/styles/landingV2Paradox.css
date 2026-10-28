@@ -63,6 +63,7 @@
 }
 
 .lv2p-nav-item-icon {
+  display: block;
   width: 1.05rem;
   height: 1.05rem;
   object-fit: contain;
@@ -2083,7 +2084,7 @@
   align-items: center;
   justify-content: center;
   gap: 0.4rem;
-  margin: 0 0 2.75rem;
+  margin: 0 0 4.5rem;
   white-space: nowrap;
   font-size: clamp(1.02rem, 5vw, 2.4rem);
   font-weight: 650;
@@ -2661,7 +2662,7 @@
   max-width: 1080px;
   padding: 1.25rem 1rem 0.4rem;
   border-radius: 8px;
-  background: #fff;
+  background: transparent;
   color: #111;
   text-align: left;
   overflow-x: auto;
@@ -3068,7 +3069,7 @@
 }
 
 .landing-v2--dark .lv2p-close .lv2p-pricing {
-  background: #000;
+  background: transparent;
   color: #fff;
   --px-ink: #fff;
   --px-mute: #c8cdd4;
@@ -3251,7 +3252,7 @@
 }
 
 .landing-v2:not(.landing-v2--dark) .lv2p-close {
-  background: #f4f7f8;
+  background: #fff;
   color: #0b0b0c;
 }
 
@@ -3260,11 +3261,11 @@
 }
 
 .landing-v2:not(.landing-v2--dark) .lv2p-close .lv2p-pricing {
-  background: #fff;
+  background: transparent;
   color: #111;
   --px-ink: #111;
   --px-mute: #425466;
-  box-shadow: 0 12px 40px rgba(15, 23, 42, 0.08);
+  box-shadow: none;
 }
 
 .landing-v2:not(.landing-v2--dark) .lv2p-impact {
