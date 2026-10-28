@@ -149,13 +149,17 @@ function HeroLeadInboxTitle() {
         Your inbox when customers call you from{' '}
         <span className="lv2p-hero-lead-title-marks" aria-label="AI assistants and the web">
           {PHONE_HERO_ASSISTANTS.map((assistant) => {
-            const webClass =
-              assistant.id === 'web' ? 'lv2p-hero-lead-title-mark--web' : undefined;
+            const markClass = [
+              assistant.id === 'web' ? 'lv2p-hero-lead-title-mark--web' : '',
+              assistant.id === 'chatgpt' ? 'lv2p-hero-lead-title-mark--chatgpt' : '',
+            ]
+              .filter(Boolean)
+              .join(' ');
             if ('srcOnDark' in assistant && assistant.srcOnDark) {
               return (
                 <span
                   key={assistant.id}
-                  className={['lv2p-hero-lead-title-mark', webClass].filter(Boolean).join(' ')}
+                  className={['lv2p-hero-lead-title-mark', markClass].filter(Boolean).join(' ')}
                 >
                   <img className="lv2p-hero-phone-assistant--light" src={assistant.src} alt="" />
                   <img
@@ -167,7 +171,12 @@ function HeroLeadInboxTitle() {
               );
             }
             return (
-              <img key={assistant.id} className={webClass} src={assistant.src} alt="" />
+              <img
+                key={assistant.id}
+                className={markClass || undefined}
+                src={assistant.src}
+                alt=""
+              />
             );
           })}
         </span>
@@ -307,7 +316,12 @@ function HeroPhoneBrand() {
             <li
               key={assistant.id}
               className={
-                assistant.id === 'web' ? 'lv2p-hero-phone-assistants-item--web' : undefined
+                [
+                  assistant.id === 'web' ? 'lv2p-hero-phone-assistants-item--web' : '',
+                  assistant.id === 'chatgpt' ? 'lv2p-hero-phone-assistants-item--chatgpt' : '',
+                ]
+                  .filter(Boolean)
+                  .join(' ') || undefined
               }
             >
               {'srcOnDark' in assistant && assistant.srcOnDark ? (

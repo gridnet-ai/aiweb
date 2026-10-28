@@ -1119,16 +1119,18 @@
   vertical-align: middle;
 }
 
-.lv2p-hero-lead-title-marks img,
 .lv2p-hero-lead-title-mark {
-  display: inline-grid;
-  place-items: center;
+  display: inline-flex;
+  flex: 0 0 2.35rem;
+  align-items: center;
+  justify-content: center;
   width: 2.35rem;
   height: 2.35rem;
 }
 
 .lv2p-hero-lead-title-marks img {
   display: block;
+  flex: 0 0 2.35rem;
   width: 2.35rem;
   height: 2.35rem;
   object-fit: contain;
@@ -1136,14 +1138,40 @@
 }
 
 .lv2p-hero-lead-title-mark img {
-  width: 100%;
-  height: 100%;
+  flex: 0 0 2.35rem;
+  width: 2.35rem;
+  height: 2.35rem;
 }
 
 .lv2p-hero-lead-title-marks img.lv2p-hero-lead-title-mark--web,
 .lv2p-hero-lead-title-mark.lv2p-hero-lead-title-mark--web {
+  flex-basis: 2.65rem;
   width: 2.65rem;
   height: 2.65rem;
+}
+
+.lv2p-hero-lead-title-mark.lv2p-hero-lead-title-mark--web img {
+  flex-basis: 2.65rem;
+  width: 2.65rem;
+  height: 2.65rem;
+}
+
+/* Newer ChatGPT mark has more padding in-frame; bump to match sibling marks. */
+.lv2p-hero-lead-title-mark.lv2p-hero-lead-title-mark--chatgpt {
+  flex-basis: 2.7rem;
+  width: 2.7rem;
+  height: 2.7rem;
+}
+
+.lv2p-hero-lead-title-mark.lv2p-hero-lead-title-mark--chatgpt img {
+  flex-basis: 2.7rem;
+  width: 2.7rem;
+  height: 2.7rem;
+}
+
+.lv2p-hero-phone-assistants-item--chatgpt img {
+  width: 2.55rem;
+  height: 2.55rem;
 }
 
 .lv2p-hero-lead-body {
