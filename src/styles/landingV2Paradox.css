@@ -19,8 +19,8 @@
   justify-content: space-between;
   gap: 0.75rem;
   padding: 0.7rem 1rem;
-  background: #fff;
-  border-bottom: 1px solid var(--px-line);
+  background: transparent;
+  border-bottom: 1px solid transparent;
 }
 
 .lv2p-nav-brand {
@@ -2818,9 +2818,13 @@
 
 .landing-v2--dark,
 .landing-v2--dark .lv2p,
-.landing-v2--dark .lv2p-nav,
 .landing-v2--dark .lv2p-impact {
   background: #000;
+  color: #fff;
+}
+
+.landing-v2--dark .lv2p-nav {
+  background: transparent;
   color: #fff;
 }
 
@@ -3060,8 +3064,7 @@
 }
 
 .landing-v2:not(.landing-v2--dark) .lv2p-nav {
-  background: #fff;
-  border-bottom-color: rgba(11, 11, 12, 0.08);
+  background: transparent;
 }
 
 .welcome-cloud-carousel {
