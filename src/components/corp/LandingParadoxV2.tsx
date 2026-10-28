@@ -54,8 +54,8 @@ const PHONE_HERO_ASSISTANTS = [
   {
     id: 'web',
     label: 'Internet',
-    src: '/images/promo/web-mark.svg',
-    srcOnDark: '/images/promo/assistants-on-dark/web-mark-white.svg',
+    src: '/images/promo/web-mark.png',
+    srcOnDark: '/images/promo/assistants-on-dark/web-mark-white.png',
   },
 ] as const;
 

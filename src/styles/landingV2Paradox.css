@@ -747,8 +747,8 @@
 }
 
 .lv2p-hero-phone-assistants-item--web img {
-  width: 2.45rem;
-  height: 2.45rem;
+  width: 2.15rem;
+  height: 2.15rem;
 }
 
 .lv2p-hero-phone-assistants .sr-only {
@@ -1145,33 +1145,27 @@
 
 .lv2p-hero-lead-title-marks img.lv2p-hero-lead-title-mark--web,
 .lv2p-hero-lead-title-mark.lv2p-hero-lead-title-mark--web {
-  flex-basis: 2.65rem;
-  width: 2.65rem;
-  height: 2.65rem;
+  flex-basis: 2.35rem;
+  width: 2.35rem;
+  height: 2.35rem;
 }
 
 .lv2p-hero-lead-title-mark.lv2p-hero-lead-title-mark--web img {
-  flex-basis: 2.65rem;
-  width: 2.65rem;
-  height: 2.65rem;
+  flex-basis: 2.35rem;
+  width: 2.35rem;
+  height: 2.35rem;
 }
 
-/* Newer ChatGPT mark has more padding in-frame; bump to match sibling marks. */
-.lv2p-hero-lead-title-mark.lv2p-hero-lead-title-mark--chatgpt {
-  flex-basis: 2.7rem;
-  width: 2.7rem;
-  height: 2.7rem;
-}
-
+/* Slightly under sibling size so the bloom tips aren’t clipped. */
 .lv2p-hero-lead-title-mark.lv2p-hero-lead-title-mark--chatgpt img {
-  flex-basis: 2.7rem;
-  width: 2.7rem;
-  height: 2.7rem;
+  flex-basis: 2.15rem;
+  width: 2.15rem;
+  height: 2.15rem;
 }
 
 .lv2p-hero-phone-assistants-item--chatgpt img {
-  width: 2.55rem;
-  height: 2.55rem;
+  width: 2rem;
+  height: 2rem;
 }
 
 .lv2p-hero-lead-body {
@@ -2888,8 +2882,8 @@
   }
 
   .lv2p-hero-lead-title-marks img.lv2p-hero-lead-title-mark--web {
-    width: 3.15rem;
-    height: 3.15rem;
+    width: 2.85rem;
+    height: 2.85rem;
   }
 
   .lv2p-hero-phone-example {
@@ -2909,9 +2903,14 @@
     height: 2.45rem;
   }
 
+  .lv2p-hero-phone-assistants-item--chatgpt img {
+    width: 2.3rem;
+    height: 2.3rem;
+  }
+
   .lv2p-hero-phone-assistants-item--web img {
-    width: 2.75rem;
-    height: 2.75rem;
+    width: 2.45rem;
+    height: 2.45rem;
   }
 
   .lv2p-hero-phone-ctas {
