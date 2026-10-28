@@ -46,11 +46,22 @@
 }
 
 .phone-platform-title {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
   margin: 0;
   font-size: clamp(1.55rem, 5vw, 1.9rem);
   font-weight: 800;
   letter-spacing: -0.04em;
   line-height: 1.15;
+  text-wrap: balance;
+}
+
+.phone-platform-title-icon {
+  flex: 0 0 auto;
+  width: 1.15em;
+  height: 1.15em;
 }
 
 .phone-platform-sub {
