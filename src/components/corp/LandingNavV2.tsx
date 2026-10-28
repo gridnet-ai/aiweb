@@ -1,7 +1,14 @@
 import { useEffect, useId, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { Link, useLocation } from 'react-router-dom';
-import { MAIL_SITE_URL, PLUGIN_PATH } from '@/lib/corpSiteRoutes';
+import { applyLandingTheme, useLandingTheme } from '@/hooks/useLandingTheme';
+import {
+  GEEKDOM_PATH,
+  HOME_PATH,
+  MAIL_SITE_URL,
+  PHONE_SITE_URL,
+  PLUGIN_PATH,
+} from '@/lib/corpSiteRoutes';
 
 export const AGENCY_PILOT_HREF =
   'mailto:support@theaiwebcompany.com?subject=Agency%20pilot%20application';
@@ -16,6 +23,16 @@ export function LandingNavV2() {
   const [open, setOpen] = useState(false);
   const location = useLocation();
   const drawerId = useId();
+  const { isLight, toggle } = useLandingTheme();
+  const themeable =
+    location.pathname === HOME_PATH ||
+    location.pathname === PLUGIN_PATH ||
+    location.pathname === GEEKDOM_PATH;
+
+  useEffect(() => {
+    if (!themeable) return;
+    applyLandingTheme(isLight ? 'light' : 'dark');
+  }, [isLight, themeable]);
 
   useEffect(() => {
     setOpen(false);
@@ -36,7 +53,7 @@ export function LandingNavV2() {
   }, [open]);
 
   const menu = createPortal(
-    <div className={`lv2p-nav-overlay${open ? ' is-open' : ''}`}>
+    <div className={`lv2p-nav-overlay${open ? ' is-open' : ''}${isLight ? ' lv2p-nav-overlay--light' : ''}`}>
       <button
         type="button"
         className="lv2p-nav-backdrop"
@@ -44,7 +61,12 @@ export function LandingNavV2() {
         tabIndex={open ? 0 : -1}
         onClick={() => setOpen(false)}
       />
-      <nav id={drawerId} className="lv2p-nav-drawer" aria-label="Menu" aria-hidden={!open}>
+      <nav
+        id={drawerId}
+        className={`lv2p-nav-drawer${isLight ? ' lv2p-nav-drawer--light' : ''}`}
+        aria-label="Menu"
+        aria-hidden={!open}
+      >
         <a className="lv2p-nav-item" href={MAIL_SITE_URL}>
           <img className="lv2p-nav-item-icon lv2p-nav-item-icon--cloud" src="/icons/aiweb-cloud.png?v=2" alt="" />
           Mail
@@ -57,6 +79,26 @@ export function LandingNavV2() {
           <img className="lv2p-nav-item-icon lv2p-nav-item-icon--cloud" src="/icons/aiweb-cloud.png?v=2" alt="" />
           Log in
         </a>
+
+        {themeable ? (
+          <div className="lv2p-nav-theme">
+            <div className="lv2p-nav-theme-copy">
+              <span className="lv2p-nav-theme-label">Light mode</span>
+              <span className="lv2p-nav-theme-hint">{isLight ? 'On' : 'Off'}</span>
+            </div>
+            <button
+              type="button"
+              className={`lv2p-nav-theme-toggle${isLight ? ' is-on' : ''}`}
+              role="switch"
+              aria-checked={isLight}
+              aria-label="Light mode"
+              tabIndex={open ? 0 : -1}
+              onClick={toggle}
+            >
+              <span className="lv2p-nav-theme-knob" aria-hidden />
+            </button>
+          </div>
+        ) : null}
       </nav>
     </div>,
     document.body,
@@ -93,11 +135,12 @@ export function LandingNavV2() {
       <div className="lv2p-nav-actions">
         <a
           className="lv2p-nav-try"
-          href={MAIL_SITE_URL}
+          href={PHONE_SITE_URL}
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="Download the app"
         >
-          Try it
+          Download
         </a>
         <button
           type="button"

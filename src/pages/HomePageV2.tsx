@@ -1,5 +1,6 @@
 import { LandingNavV2 } from '@/components/corp/LandingNavV2';
 import { LandingParadoxV2 } from '@/components/corp/LandingParadoxV2';
+import { useLandingTheme } from '@/hooks/useLandingTheme';
 import {
   useAiwebVcap,
   useJsonLd,
@@ -18,6 +19,7 @@ import '@/styles/landingV2Paradox.css';
 
 /** Live homepage. The pre-Calling-Card version remains at `/archive`. Older homepage remains at `/classic`. */
 export function HomePageV2() {
+  const { isDark } = useLandingTheme();
   useScrollReveal();
   useMarketingPageSeo({
     title: DEFAULT_PAGE_TITLE,
@@ -31,7 +33,7 @@ export function HomePageV2() {
   useAiwebVcap();
 
   return (
-    <div className="landing-v2 landing-v2--dark">
+    <div className={`landing-v2${isDark ? ' landing-v2--dark' : ''}`}>
       <LandingNavV2 />
       <LandingParadoxV2 />
     </div>

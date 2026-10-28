@@ -220,6 +220,98 @@
   text-decoration: none;
 }
 
+.lv2p-nav-drawer:not(.lv2p-nav-drawer--light) .lv2p-nav-item-icon--cloud {
+  filter: invert(1);
+}
+
+.lv2p-nav-drawer--light {
+  background: #fff;
+  color: #111;
+}
+
+.lv2p-nav-drawer--light a {
+  border-bottom-color: rgba(17, 17, 17, 0.12);
+  color: #111;
+}
+
+.lv2p-nav-drawer--light .lv2p-nav-item-icon--cloud {
+  filter: none;
+}
+
+.lv2p-nav-theme {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: auto;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.lv2p-nav-drawer--light .lv2p-nav-theme {
+  border-top-color: rgba(17, 17, 17, 0.12);
+}
+
+.lv2p-nav-theme-copy {
+  display: grid;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.lv2p-nav-theme-label {
+  font-size: 1.05rem;
+  font-weight: 650;
+  letter-spacing: -0.03em;
+}
+
+.lv2p-nav-theme-hint {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.62;
+}
+
+.lv2p-nav-theme-toggle {
+  position: relative;
+  flex: 0 0 auto;
+  width: 3rem;
+  height: 1.7rem;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.lv2p-nav-drawer--light .lv2p-nav-theme-toggle {
+  border-color: rgba(17, 17, 17, 0.18);
+  background: rgba(17, 17, 17, 0.08);
+}
+
+.lv2p-nav-theme-toggle.is-on {
+  background: #2ad4e6;
+  border-color: #2ad4e6;
+}
+
+.lv2p-nav-theme-knob {
+  position: absolute;
+  top: 50%;
+  left: 0.18rem;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 999px;
+  background: #fff;
+  transform: translateY(-50%);
+  transition: transform 0.2s ease;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+}
+
+.lv2p-nav-theme-toggle.is-on .lv2p-nav-theme-knob {
+  transform: translate(1.2rem, -50%);
+}
+
 .lv2p-nav {
   z-index: 70;
 }
@@ -2861,9 +2953,115 @@
   padding-right: 1.15rem;
 }
 
-.lv2p .aiweb-cloud-icon,
-.lv2p .welcome-cloud-terminal {
+.landing-v2--dark .lv2p .aiweb-cloud-icon,
+.landing-v2--dark .lv2p .welcome-cloud-terminal {
   filter: invert(1);
+}
+
+/* —— Light mode (landing without .landing-v2--dark) —— */
+.landing-v2:not(.landing-v2--dark) .lv2p-hero-phone {
+  background: #f4f7f8;
+}
+
+.landing-v2:not(.landing-v2--dark) .lv2p-hero .lv2p-hero-phone-title,
+.landing-v2:not(.landing-v2--dark) .lv2p-hero .lv2p-hero-phone-step-title {
+  color: #0b0b0c;
+}
+
+.landing-v2:not(.landing-v2--dark) .lv2p-hero-phone-title-accent {
+  background: linear-gradient(105deg, #0aa7bc 0%, #0890c8 45%, #1f6feb 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.landing-v2:not(.landing-v2--dark) .lv2p-hero p.lv2p-hero-phone-sub {
+  color: #425466;
+}
+
+.landing-v2:not(.landing-v2--dark) .lv2p-hero-phone-mark {
+  filter: invert(1);
+}
+
+.landing-v2:not(.landing-v2--dark) .lv2p-hero-phone-assistant--dark {
+  display: none;
+}
+
+.landing-v2--dark .lv2p-hero-phone-assistant--light {
+  display: none;
+}
+
+.landing-v2:not(.landing-v2--dark) .lv2p-hero-phone-assistants-item--invert-light img {
+  filter: invert(1);
+}
+
+.landing-v2:not(.landing-v2--dark) .lv2p-hero-phone-example-card {
+  filter: drop-shadow(0 18px 36px rgba(15, 23, 42, 0.14));
+}
+
+.landing-v2:not(.landing-v2--dark) .lv2p-hero-phone-example-dot {
+  background: rgba(11, 11, 12, 0.22);
+}
+
+.landing-v2:not(.landing-v2--dark) .lv2p-hero-phone-example-dot--active {
+  background: #0b0b0c;
+}
+
+.landing-v2:not(.landing-v2--dark) .lv2p-hero-phone-example-dot:focus-visible {
+  outline-color: #0b0b0c;
+}
+
+.landing-v2:not(.landing-v2--dark) .lv2p-hero-phone-cta--secondary {
+  border-color: rgba(11, 11, 12, 0.18);
+  background: #fff;
+  color: #0b0b0c;
+  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.06);
+}
+
+.landing-v2:not(.landing-v2--dark) .lv2p-hero-phone-cta--secondary:hover {
+  border-color: rgba(11, 11, 12, 0.35);
+  background: #fff;
+}
+
+.landing-v2:not(.landing-v2--dark) .lv2p-promo {
+  background: #eef3f5;
+  color: #0b0b0c;
+  border-bottom: 1px solid rgba(11, 11, 12, 0.08);
+}
+
+.landing-v2:not(.landing-v2--dark) .lv2p-promo:hover {
+  background: #e7eef1;
+  color: #0b0b0c;
+}
+
+.landing-v2:not(.landing-v2--dark) .lv2p-promo-cta {
+  border-color: #0b0b0c;
+}
+
+.landing-v2:not(.landing-v2--dark) .lv2p-close {
+  background: #f4f7f8;
+  color: #0b0b0c;
+}
+
+.landing-v2:not(.landing-v2--dark) .lv2p-close-lede {
+  color: #425466;
+}
+
+.landing-v2:not(.landing-v2--dark) .lv2p-close .lv2p-pricing {
+  background: #fff;
+  color: #111;
+  --px-ink: #111;
+  --px-mute: #425466;
+  box-shadow: 0 12px 40px rgba(15, 23, 42, 0.08);
+}
+
+.landing-v2:not(.landing-v2--dark) .lv2p-impact {
+  background: #fff;
+}
+
+.landing-v2:not(.landing-v2--dark) .lv2p-nav {
+  background: #fff;
+  border-bottom-color: rgba(11, 11, 12, 0.08);
 }
 
 .welcome-cloud-carousel {

@@ -13,6 +13,7 @@ import {
   TERMS_PATH,
 } from '@/lib/corpSiteRoutes';
 import { AIWebLogo } from '@/components/welcome/AIWebLogo';
+import { applyLandingTheme, useLandingTheme } from '@/hooks/useLandingTheme';
 import '@/styles/marketing.css';
 import '@/styles/welcome.css';
 import '@/styles/index.css';
@@ -23,6 +24,7 @@ interface CorpPublicSiteLayoutProps {
 
 export function CorpPublicSiteLayout({ children }: CorpPublicSiteLayoutProps) {
   const { pathname } = useLocation();
+  const { theme, isDark } = useLandingTheme();
   const isClassicHome = pathname === '/classic';
   const isNewHome =
     pathname === HOME_PATH ||
@@ -31,13 +33,19 @@ export function CorpPublicSiteLayout({ children }: CorpPublicSiteLayoutProps) {
     pathname === OS_PATH ||
     pathname === PLUGIN_PATH ||
     pathname === GEEKDOM_PATH;
-  const isDarkHome =
+  const isThemeableHome =
     pathname === HOME_PATH || pathname === PLUGIN_PATH || pathname === GEEKDOM_PATH;
+  const isDarkHome = isThemeableHome ? isDark : false;
 
   useEffect(() => {
     document.documentElement.classList.remove('dark');
-    document.documentElement.style.colorScheme = isDarkHome ? 'dark' : 'light';
-  }, [isDarkHome]);
+    if (isThemeableHome) {
+      applyLandingTheme(theme);
+      return;
+    }
+    document.documentElement.style.colorScheme = 'light';
+    delete document.documentElement.dataset.landingTheme;
+  }, [isThemeableHome, theme]);
 
   return (
     <div

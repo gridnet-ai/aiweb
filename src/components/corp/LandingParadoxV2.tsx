@@ -38,7 +38,8 @@ const PHONE_HERO_ASSISTANTS = [
   {
     id: 'chatgpt',
     label: 'Chat GPT',
-    src: '/images/promo/assistants-on-dark/chatgpt-mark-white.svg',
+    src: '/images/promo/chatgpt-mark.png',
+    srcOnDark: '/images/promo/assistants-on-dark/chatgpt-mark-white.svg',
   },
   { id: 'claude', label: 'Claude', src: '/images/promo/claude-mark.png' },
   { id: 'gemini', label: 'Gemini', src: '/images/promo/gemini-mark.png' },
@@ -46,9 +47,15 @@ const PHONE_HERO_ASSISTANTS = [
     id: 'grok',
     label: 'Grok',
     src: '/images/promo/assistants-on-dark/grok-mark-white.png',
+    invertOnLight: true,
   },
   { id: 'muse', label: 'Muse', src: '/images/promo/muse-mark.png' },
-  { id: 'web', label: 'Internet', src: '/images/promo/assistants-on-dark/web-mark-white.svg' },
+  {
+    id: 'web',
+    label: 'Internet',
+    src: '/images/promo/web-mark.svg',
+    srcOnDark: '/images/promo/assistants-on-dark/web-mark-white.svg',
+  },
 ] as const;
 
 const PHONE_LISTING_CARDS = [
@@ -286,11 +293,23 @@ function HeroPhoneBrand() {
           {PHONE_HERO_ASSISTANTS.map((assistant) => (
             <li
               key={assistant.id}
-              className={
-                assistant.id === 'web' ? 'lv2p-hero-phone-assistants-item--web' : undefined
-              }
+              className={[
+                assistant.id === 'web' ? 'lv2p-hero-phone-assistants-item--web' : '',
+                'invertOnLight' in assistant && assistant.invertOnLight
+                  ? 'lv2p-hero-phone-assistants-item--invert-light'
+                  : '',
+              ]
+                .filter(Boolean)
+                .join(' ') || undefined}
             >
-              <img src={assistant.src} alt="" />
+              {'srcOnDark' in assistant && assistant.srcOnDark ? (
+                <>
+                  <img className="lv2p-hero-phone-assistant--light" src={assistant.src} alt="" />
+                  <img className="lv2p-hero-phone-assistant--dark" src={assistant.srcOnDark} alt="" />
+                </>
+              ) : (
+                <img src={assistant.src} alt="" />
+              )}
               <span className="sr-only">{assistant.label}</span>
             </li>
           ))}
