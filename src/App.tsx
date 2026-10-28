@@ -27,6 +27,8 @@ import { HomePageV2 } from '@/pages/HomePageV2';
 import { OsPage } from '@/pages/OsPage';
 import { PluginPage } from '@/pages/PluginPage';
 import { GeekdomPage } from '@/pages/GeekdomPage';
+import { PhoneAndroidPage } from '@/pages/PhoneAndroidPage';
+import { PhoneIosPage } from '@/pages/PhoneIosPage';
 
 export default function App() {
   const { pathname } = useLocation();
@@ -60,6 +62,8 @@ export default function App() {
         <Route path="/os" element={<OsPage />} />
         <Route path="/plugin" element={<PluginPage />} />
         <Route path="/geekdom" element={<GeekdomPage />} />
+        <Route path="/phone/ios" element={<PhoneIosPage />} />
+        <Route path="/phone/android" element={<PhoneAndroidPage />} />
         <Route path="/classic" element={<HomePage />} />
         <Route path="/v2" element={<Navigate to="/" replace />} />
         <Route path="/pricing" element={<PricingPage />} />

@@ -1,0 +1,215 @@
+.phone-platform {
+  min-height: 100%;
+  background: #f7f8fa;
+  color: #0b0b0c;
+}
+
+.phone-platform .lv2p-nav {
+  background: rgba(255, 255, 255, 0.86);
+  border-bottom: 1px solid rgba(11, 11, 12, 0.08);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.phone-platform-main {
+  display: flex;
+  justify-content: center;
+  padding: 1.5rem 1rem 3rem;
+}
+
+.phone-platform-card {
+  width: min(100%, 28rem);
+  margin: 0;
+  padding: 1.35rem 1.25rem 1.5rem;
+  border: 1px solid #d7dbe0;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 12px 36px rgba(15, 23, 42, 0.06);
+}
+
+.phone-platform-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0 0 0.75rem;
+  font-size: 0.78rem;
+  font-weight: 750;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #5f6770;
+}
+
+.phone-platform-cloud {
+  width: 1.15rem;
+  height: 1.15rem;
+  object-fit: contain;
+}
+
+.phone-platform-title {
+  margin: 0;
+  font-size: clamp(1.55rem, 5vw, 1.9rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.15;
+}
+
+.phone-platform-sub {
+  margin: 0.45rem 0 0;
+  font-size: 1.02rem;
+  font-weight: 550;
+  line-height: 1.4;
+  color: #425466;
+}
+
+.phone-platform-figure {
+  margin: 1.25rem 0 0;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #f4f4f5;
+}
+
+.phone-platform-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.phone-platform-desc {
+  margin: 1.15rem 0 0;
+  font-size: 0.98rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #2a2f36;
+}
+
+.phone-platform-meta {
+  display: grid;
+  gap: 0.7rem;
+  margin: 1.1rem 0 0;
+  padding: 0.9rem 0.95rem;
+  border-radius: 12px;
+  background: #f4f7f8;
+}
+
+.phone-platform-meta p {
+  display: grid;
+  gap: 0.15rem;
+  margin: 0;
+}
+
+.phone-platform-meta strong {
+  font-size: 0.78rem;
+  font-weight: 750;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #5f6770;
+}
+
+.phone-platform-meta span {
+  font-size: 0.92rem;
+  font-weight: 550;
+  line-height: 1.35;
+  color: #0b0b0c;
+}
+
+.phone-platform-install {
+  margin: 1.35rem 0 0;
+}
+
+.phone-platform-install h2 {
+  margin: 0 0 0.65rem;
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.phone-platform-install ol {
+  margin: 0;
+  padding: 0 0 0 1.2rem;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.phone-platform-install li {
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.4;
+  color: #2a2f36;
+}
+
+.phone-platform-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 3.1rem;
+  margin: 1.35rem 0 0;
+  padding: 0.85rem 1.1rem;
+  border-radius: 999px;
+  background: #0b0b0c;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.phone-platform-cta:hover {
+  background: #1a1a1a;
+  transform: translateY(-1px);
+}
+
+.phone-platform-cta:focus-visible {
+  outline: 2px solid #2ad4e6;
+  outline-offset: 3px;
+}
+
+.phone-platform-limits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.85rem;
+  margin: 0.95rem 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #6b7280;
+}
+
+.phone-platform-limits li {
+  position: relative;
+  padding-left: 0.75rem;
+}
+
+.phone-platform-limits li::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+}
+
+.phone-platform-switch {
+  margin: 1.1rem 0 0;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: #5f6770;
+}
+
+.phone-platform-switch a {
+  color: #0b0b0c;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+@media (min-width: 720px) {
+  .phone-platform-main {
+    padding: 2rem 1.25rem 3.5rem;
+  }
+
+  .phone-platform-card {
+    width: min(100%, 32rem);
+    padding: 1.6rem 1.5rem 1.7rem;
+  }
+}

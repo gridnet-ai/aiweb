@@ -5,6 +5,13 @@ export const MAIL_PATH = '/mail';
 export const MAIL_SITE_URL = 'https://mail.theaiwebcompany.com';
 /** Consumer AIWEB Phone host — number issued after payment. */
 export const PHONE_SITE_URL = 'https://phone.theaiwebcompany.com';
+/** Company-site platform onboarding pages (marketing → Phone host). */
+export const PHONE_IOS_PATH = '/phone/ios';
+export const PHONE_ANDROID_PATH = '/phone/android';
+/** @deprecated Use PHONE_IOS_PATH — company site hosts install guides. */
+export const PHONE_IOS_INSTALL_URL = PHONE_IOS_PATH;
+/** @deprecated Use PHONE_ANDROID_PATH — company site hosts install guides. */
+export const PHONE_ANDROID_INSTALL_URL = PHONE_ANDROID_PATH;
 /** Mail-armed Phone checkout (same Stripe price as Phone host). */
 export const PHONE_CHECKOUT_URL =
   'https://mail.theaiwebcompany.com/?checkout=phone&from=company&interval=monthly';

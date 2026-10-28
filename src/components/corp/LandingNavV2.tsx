@@ -6,7 +6,6 @@ import {
   GEEKDOM_PATH,
   HOME_PATH,
   MAIL_SITE_URL,
-  PHONE_SITE_URL,
   PLUGIN_PATH,
 } from '@/lib/corpSiteRoutes';
 
@@ -135,9 +134,7 @@ export function LandingNavV2() {
       <div className="lv2p-nav-actions">
         <a
           className="lv2p-nav-try"
-          href={PHONE_SITE_URL}
-          target="_blank"
-          rel="noopener noreferrer"
+          href={location.pathname === HOME_PATH ? '#install' : `${HOME_PATH}#install`}
           aria-label="Download the app"
         >
           Download

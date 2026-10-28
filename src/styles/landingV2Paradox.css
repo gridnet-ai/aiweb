@@ -899,6 +899,173 @@
   }
 }
 
+.lv2p-phone-install {
+  width: 100%;
+  margin: 0;
+  padding: 2.25rem 1.15rem 2.75rem;
+  background: #fff;
+  color: #0b0b0c;
+}
+
+.lv2p-phone-install-inner {
+  display: grid;
+  gap: 1.35rem;
+  width: min(100%, 52rem);
+  margin: 0 auto;
+}
+
+.lv2p-phone-install-head {
+  display: grid;
+  gap: 0.35rem;
+  text-align: left;
+}
+
+.lv2p-phone-install-head h2 {
+  margin: 0;
+  font-size: clamp(1.35rem, 4vw, 1.75rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.15;
+  color: #0b0b0c;
+}
+
+.lv2p-phone-install-head p {
+  margin: 0;
+  max-width: 36rem;
+  font-size: 0.98rem;
+  font-weight: 500;
+  line-height: 1.45;
+  color: #425466;
+}
+
+.lv2p-phone-install-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.lv2p-phone-install-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid #d7dbe0;
+  border-radius: 12px;
+  background: #fff;
+  color: inherit;
+  text-decoration: none;
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    transform 0.18s ease;
+}
+
+.lv2p-phone-install-card:hover {
+  border-color: #b8c0c7;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+  transform: translateY(-1px);
+}
+
+.lv2p-phone-install-card:focus-visible {
+  outline: 2px solid #2ad4e6;
+  outline-offset: 3px;
+}
+
+.lv2p-phone-install-card-media {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 269 / 202;
+  object-fit: contain;
+  object-position: center;
+  background: #f4f4f5;
+  border-radius: 11px 11px 0 0;
+}
+
+.lv2p-phone-install-card-body {
+  display: grid;
+  gap: 0.35rem;
+  flex: 1 1 auto;
+  padding: 1rem 1.05rem 1.15rem;
+  text-align: left;
+}
+
+.lv2p-phone-install-card-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  color: #0b0b0c;
+}
+
+.lv2p-phone-install-card-desc {
+  font-size: 0.92rem;
+  font-weight: 550;
+  line-height: 1.35;
+  color: #2a2f36;
+}
+
+.lv2p-phone-install-card-support {
+  font-size: 0.86rem;
+  font-weight: 500;
+  line-height: 1.4;
+  color: #5f6770;
+}
+
+.lv2p-phone-install-card-preview {
+  margin-top: 0.15rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+  color: #8a929b;
+}
+
+.landing-v2--dark .lv2p-phone-install {
+  background: #0b0b0c;
+}
+
+.landing-v2--dark .lv2p-phone-install-head h2,
+.landing-v2--dark .lv2p-phone-install-card-title {
+  color: #fff;
+}
+
+.landing-v2--dark .lv2p-phone-install-head p,
+.landing-v2--dark .lv2p-phone-install-card-desc {
+  color: #c8cdd4;
+}
+
+.landing-v2--dark .lv2p-phone-install-card {
+  background: #111;
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.landing-v2--dark .lv2p-phone-install-card:hover {
+  border-color: rgba(255, 255, 255, 0.32);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+}
+
+.landing-v2--dark .lv2p-phone-install-card-media {
+  background: #1a1a1a;
+}
+
+.landing-v2--dark .lv2p-phone-install-card-support {
+  color: #9aa3ad;
+}
+
+.landing-v2--dark .lv2p-phone-install-card-preview {
+  color: #7a848e;
+}
+
+@media (min-width: 720px) {
+  .lv2p-phone-install-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.15rem;
+  }
+}
+
 .lv2p-hero-lead {
   position: relative;
   display: flex;
@@ -952,6 +1119,14 @@
   vertical-align: middle;
 }
 
+.lv2p-hero-lead-title-marks img,
+.lv2p-hero-lead-title-mark {
+  display: inline-grid;
+  place-items: center;
+  width: 2.35rem;
+  height: 2.35rem;
+}
+
 .lv2p-hero-lead-title-marks img {
   display: block;
   width: 2.35rem;
@@ -960,7 +1135,13 @@
   object-position: center;
 }
 
-.lv2p-hero-lead-title-marks img.lv2p-hero-lead-title-mark--web {
+.lv2p-hero-lead-title-mark img {
+  width: 100%;
+  height: 100%;
+}
+
+.lv2p-hero-lead-title-marks img.lv2p-hero-lead-title-mark--web,
+.lv2p-hero-lead-title-mark.lv2p-hero-lead-title-mark--web {
   width: 2.65rem;
   height: 2.65rem;
 }

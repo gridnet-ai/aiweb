@@ -23,6 +23,7 @@ import {
   type LucideIcon,
 } from 'lucide-react';
 import { CHATGPT_AIWEB_PLUGIN_HREF } from '@/components/corp/LandingNavV2';
+import { PhoneInstallCards } from '@/components/corp/PhoneInstallCards';
 import { businessCheckoutUrl } from '@/lib/stripeCheckout';
 import { PublisherPricingTable } from '@/components/corp/PublisherPricingTable';
 import { PRIVACY_PATH, TERMS_PATH, OS_PATH, PHONE_CHECKOUT_URL } from '@/lib/corpSiteRoutes';
@@ -46,8 +47,8 @@ const PHONE_HERO_ASSISTANTS = [
   {
     id: 'grok',
     label: 'Grok',
-    src: '/images/promo/assistants-on-dark/grok-mark-white.png',
-    invertOnLight: true,
+    src: '/images/promo/grok-mark.png',
+    srcOnDark: '/images/promo/assistants-on-dark/grok-mark-white.png',
   },
   { id: 'muse', label: 'Muse', src: '/images/promo/muse-mark.png' },
   {
@@ -147,16 +148,28 @@ function HeroLeadInboxTitle() {
       <span className="lv2p-hero-lead-title-line">
         Your inbox when customers call you from{' '}
         <span className="lv2p-hero-lead-title-marks" aria-label="AI assistants and the web">
-          {PHONE_HERO_ASSISTANTS.map((assistant) => (
-            <img
-              key={assistant.id}
-              className={
-                assistant.id === 'web' ? 'lv2p-hero-lead-title-mark--web' : undefined
-              }
-              src={assistant.src}
-              alt=""
-            />
-          ))}
+          {PHONE_HERO_ASSISTANTS.map((assistant) => {
+            const webClass =
+              assistant.id === 'web' ? 'lv2p-hero-lead-title-mark--web' : undefined;
+            if ('srcOnDark' in assistant && assistant.srcOnDark) {
+              return (
+                <span
+                  key={assistant.id}
+                  className={['lv2p-hero-lead-title-mark', webClass].filter(Boolean).join(' ')}
+                >
+                  <img className="lv2p-hero-phone-assistant--light" src={assistant.src} alt="" />
+                  <img
+                    className="lv2p-hero-phone-assistant--dark"
+                    src={assistant.srcOnDark}
+                    alt=""
+                  />
+                </span>
+              );
+            }
+            return (
+              <img key={assistant.id} className={webClass} src={assistant.src} alt="" />
+            );
+          })}
         </span>
       </span>
     </h2>
@@ -293,14 +306,9 @@ function HeroPhoneBrand() {
           {PHONE_HERO_ASSISTANTS.map((assistant) => (
             <li
               key={assistant.id}
-              className={[
-                assistant.id === 'web' ? 'lv2p-hero-phone-assistants-item--web' : '',
-                'invertOnLight' in assistant && assistant.invertOnLight
-                  ? 'lv2p-hero-phone-assistants-item--invert-light'
-                  : '',
-              ]
-                .filter(Boolean)
-                .join(' ') || undefined}
+              className={
+                assistant.id === 'web' ? 'lv2p-hero-phone-assistants-item--web' : undefined
+              }
             >
               {'srcOnDark' in assistant && assistant.srcOnDark ? (
                 <>
@@ -321,9 +329,9 @@ function HeroPhoneBrand() {
             <span>Get your number</span>
             <ArrowRight aria-hidden strokeWidth={2.2} />
           </a>
-          <a className="lv2p-hero-phone-cta lv2p-hero-phone-cta--secondary" href="#phone-steps">
+          <a className="lv2p-hero-phone-cta lv2p-hero-phone-cta--secondary" href="#install">
             <Play aria-hidden strokeWidth={2.2} />
-            <span>See how it works</span>
+            <span>Install on your phone</span>
           </a>
         </div>
       </div>
@@ -1163,6 +1171,9 @@ export function LandingParadoxV2({ page = 'home' }: { page?: LandingPage }) {
     <div className="lv2p">
       <section id="hero" className="lv2p-hero">
         <HeroPhoneBrand />
+      </section>
+      <PhoneInstallCards />
+      <section className="lv2p-hero" aria-label="AIWEB Mail">
         <div className="lv2p-hero-lead">
           <WelcomeCloudCarousel className="lv2p-hero-lead-clouds" />
           <HeroLeadInboxTitle />
