@@ -1,6 +1,6 @@
 import { useEffect, useId, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { applyLandingTheme, useLandingTheme } from '@/hooks/useLandingTheme';
 import {
   GEEKDOM_PATH,
@@ -12,7 +12,7 @@ import {
 } from '@/lib/corpSiteRoutes';
 import {
   detectPhonePlatform,
-  phoneDownloadHref,
+  phoneDownloadTarget,
 } from '@/lib/detectPhonePlatform';
 import { trackPhoneInstallEvent } from '@/lib/phoneInstallAnalytics';
 
@@ -44,12 +44,13 @@ function NavAndroidIcon() {
 export function LandingNavV2() {
   const [open, setOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
   const drawerId = useId();
   const { isLight, toggle } = useLandingTheme();
-  const onHome = location.pathname === HOME_PATH;
-  const [downloadHref, setDownloadHref] = useState(() =>
-    phoneDownloadHref('other', { onHome }),
+  const [downloadHref, setDownloadHref] = useState(
+    () => phoneDownloadTarget('other').href,
   );
+  const [downloadExternal, setDownloadExternal] = useState(true);
   const themeable =
     location.pathname === HOME_PATH ||
     location.pathname === PLUGIN_PATH ||
@@ -61,8 +62,10 @@ export function LandingNavV2() {
   }, [isLight, themeable]);
 
   useEffect(() => {
-    setDownloadHref(phoneDownloadHref(detectPhonePlatform(), { onHome }));
-  }, [onHome]);
+    const target = phoneDownloadTarget(detectPhonePlatform());
+    setDownloadHref(target.href);
+    setDownloadExternal(target.external);
+  }, []);
 
   useEffect(() => {
     setOpen(false);
@@ -182,16 +185,27 @@ export function LandingNavV2() {
         <a
           className="lv2p-nav-try"
           href={downloadHref}
-          aria-label="Download the app"
-          {...(downloadHref.startsWith('http')
+          {...(downloadExternal
             ? { target: '_blank', rel: 'noopener noreferrer' }
             : {})}
-          onClick={() => {
-            const platform = detectPhonePlatform();
+          aria-label="Download the app"
+          onClick={(event) => {
+            const target = phoneDownloadTarget(detectPhonePlatform());
             trackPhoneInstallEvent({
               event: 'phone_install_download_click',
-              platform,
+              platform: target.platform,
             });
+            event.preventDefault();
+            if (target.external) {
+              window.open(target.href, '_blank', 'noopener,noreferrer');
+              return;
+            }
+            if (target.href.includes('#')) {
+              const [path, hash] = target.href.split('#');
+              navigate({ pathname: path || HOME_PATH, hash });
+              return;
+            }
+            navigate(target.href);
           }}
         >
           Download

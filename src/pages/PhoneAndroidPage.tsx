@@ -6,7 +6,7 @@ export function PhoneAndroidPage() {
   useMarketingPageSeo({
     title: 'AIWEB Phone for Android — Install from Chrome',
     description:
-      'Get an AI number that AI assistants can call. Install AIWEB Phone on Android from Chrome — $4.99/mo. Not a cellular carrier.',
+      'Install AIWEB Phone on Android from Chrome, then open it from your Home Screen to sign up. $4.99/mo. Not a cellular carrier.',
     canonicalPath: PHONE_ANDROID_PATH,
     image: '/images/promo/aiweb-phone-android.png',
   });
@@ -15,18 +15,18 @@ export function PhoneAndroidPage() {
     <PhonePlatformLanding
       content={{
         platform: 'android',
-        title: 'AIWEB Phone for Android',
-        subheadline: 'Your AI number, right on your Android phone.',
+        title: 'Install AIWEB Phone on Android',
+        subheadline: 'Install the app first. Sign up opens when you launch it from your Home Screen.',
         description:
-          'Get an AI number that AI assistants can call. Receive inquiries, manage conversations, and reply through AIWEB Mail.',
+          'AIWEB Phone is a web app. Install it from Chrome, then launch it from your Home Screen or app drawer — that first launch is where you get your AI number.',
         imageSrc: '/images/promo/aiweb-phone-android.png',
         imageAlt: 'Android phone ready for AIWEB Phone as an installed web app.',
+        openInBrowserLabel: 'Open in Chrome to install',
         steps: [
-          'Get AIWEB Phone and complete subscription.',
-          'Open phone.theaiwebcompany.com in Chrome.',
-          'Select Install app from the browser prompt or menu when available.',
-          'Confirm installation.',
-          'Open AIWEB from the Home Screen or launcher.',
+          'Tap Open in Chrome to install.',
+          'Use Install app / Add to Home screen from the browser prompt or Chrome menu.',
+          'Confirm the install.',
+          'Open AIWEB Phone from your Home Screen or app drawer — signup is the first screen.',
         ],
         otherPlatform: {
           label: 'iOS install guide',

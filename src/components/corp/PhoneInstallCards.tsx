@@ -20,9 +20,9 @@ const CARDS: readonly PhoneInstallCard[] = [
   {
     id: 'ios',
     title: 'AIWEB Phone for iOS',
-    description: 'Your AI number, right on your iPhone.',
+    description: 'Install on iPhone first. Sign up opens in the installed app.',
     support: 'Install from Safari. No App Store download required.',
-    preview: 'Share → Add to Home Screen → Open as Web App',
+    preview: 'Share → Add to Home Screen → Open app → Sign up',
     imageSrc: '/images/promo/aiweb-phone-ios.png',
     imageAlt: 'iPhone showing the home screen, ready for AIWEB Phone as a web app.',
     to: PHONE_IOS_PATH,
@@ -30,9 +30,9 @@ const CARDS: readonly PhoneInstallCard[] = [
   {
     id: 'android',
     title: 'AIWEB Phone for Android',
-    description: 'Your AI number, right on your Android phone.',
+    description: 'Install on Android first. Sign up opens in the installed app.',
     support: 'Install directly from Chrome. No Play Store download required.',
-    preview: 'Open in Chrome → Install AIWEB Phone',
+    preview: 'Install app → Open from Home Screen → Sign up',
     imageSrc: '/images/promo/aiweb-phone-android.png',
     imageAlt: 'Android phone showing the home screen, ready for AIWEB Phone as a web app.',
     to: PHONE_ANDROID_PATH,

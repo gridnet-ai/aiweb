@@ -6,7 +6,7 @@ export function PhoneIosPage() {
   useMarketingPageSeo({
     title: 'AIWEB Phone for iOS — Install from Safari',
     description:
-      'Get an AI number that AI assistants can call. Install AIWEB Phone on iPhone from Safari — $4.99/mo. Not a cellular carrier.',
+      'Install AIWEB Phone on iPhone from Safari, then open it from your Home Screen to sign up. $4.99/mo. Not a cellular carrier.',
     canonicalPath: PHONE_IOS_PATH,
     image: '/images/promo/aiweb-phone-ios.png',
   });
@@ -15,19 +15,19 @@ export function PhoneIosPage() {
     <PhonePlatformLanding
       content={{
         platform: 'ios',
-        title: 'AIWEB Phone for iOS',
-        subheadline: 'Your AI number, right on your iPhone.',
+        title: 'Install AIWEB Phone on iPhone',
+        subheadline: 'Add it to your Home Screen first. Sign up opens in the installed app.',
         description:
-          'Get an AI number that AI assistants can call. Receive inquiries, manage conversations, and reply through AIWEB Mail.',
+          'AIWEB Phone is a web app. Install it from Safari, then launch it from your Home Screen — that first launch is where you get your AI number.',
         imageSrc: '/images/promo/aiweb-phone-ios.png',
         imageAlt: 'iPhone ready for AIWEB Phone as a Home Screen web app.',
+        openInBrowserLabel: 'Open in Safari to install',
         steps: [
-          'Get AIWEB Phone and complete subscription.',
-          'Open phone.theaiwebcompany.com in Safari.',
-          'Tap Share.',
+          'Tap Open in Safari to install (use Safari, not an in-app browser).',
+          'Tap the Share button.',
           'Select Add to Home Screen.',
-          'Enable Open as Web App if presented.',
-          'Add and launch AIWEB from the Home Screen.',
+          'Enable Open as Web App if shown, then Add.',
+          'Open AIWEB Phone from your Home Screen — signup is the first screen.',
         ],
         otherPlatform: {
           label: 'Android install guide',

@@ -1,15 +1,12 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { LandingNavV2 } from '@/components/corp/LandingNavV2';
-import { HOME_PATH, PHONE_SITE_URL } from '@/lib/corpSiteRoutes';
+import { HOME_PATH } from '@/lib/corpSiteRoutes';
+import { phoneInstallAppHref } from '@/lib/detectPhonePlatform';
 import {
   trackPhoneInstallEvent,
   type PhoneInstallPlatform,
 } from '@/lib/phoneInstallAnalytics';
-import {
-  AIWEB_AI_NUMBER_EXAMPLE,
-  AIWEB_AI_NUMBER_FORMAT,
-} from '@/lib/siteSeo';
 import '@/styles/phonePlatformLanding.css';
 
 export type PhonePlatformLandingContent = {
@@ -19,7 +16,9 @@ export type PhonePlatformLandingContent = {
   description: string;
   imageSrc: string;
   imageAlt: string;
+  /** Ordered install-on-device steps (signup happens after first launch). */
   steps: readonly string[];
+  openInBrowserLabel: string;
   otherPlatform: {
     label: string;
     to: string;
@@ -27,6 +26,8 @@ export type PhonePlatformLandingContent = {
 };
 
 export function PhonePlatformLanding({ content }: { content: PhonePlatformLandingContent }) {
+  const installHref = phoneInstallAppHref(content.platform);
+
   useEffect(() => {
     trackPhoneInstallEvent({
       event: 'phone_install_guide_view',
@@ -41,7 +42,7 @@ export function PhonePlatformLanding({ content }: { content: PhonePlatformLandin
         <article className="phone-platform-card">
           <p className="phone-platform-eyebrow">
             <img src="/icons/aiweb-cloud.png?v=2" alt="" className="phone-platform-cloud" />
-            AIWEB Phone · $4.99/mo
+            AIWEB Phone · Install first
           </p>
           <h1 className="phone-platform-title">{content.title}</h1>
           <p className="phone-platform-sub">{content.subheadline}</p>
@@ -52,31 +53,24 @@ export function PhonePlatformLanding({ content }: { content: PhonePlatformLandin
 
           <p className="phone-platform-desc">{content.description}</p>
 
-          <div className="phone-platform-meta">
-            <p>
-              <strong>Public AI number</strong>
-              <span>
-                {AIWEB_AI_NUMBER_FORMAT} · example {AIWEB_AI_NUMBER_EXAMPLE}
-              </span>
-            </p>
-            <p>
-              <strong>How it works</strong>
-              <span>Call → Receipt → Mail — same app on every platform</span>
-            </p>
-          </div>
-
           <section className="phone-platform-install" aria-labelledby="phone-install-heading">
-            <h2 id="phone-install-heading">How to install</h2>
+            <h2 id="phone-install-heading">Install on this device</h2>
             <ol>
               {content.steps.map((step) => (
                 <li key={step}>{step}</li>
               ))}
             </ol>
+            <p className="phone-platform-install-note">
+              Sign up appears after you open AIWEB Phone from your Home Screen — not in the browser
+              tab.
+            </p>
           </section>
 
           <a
             className="phone-platform-cta"
-            href={PHONE_SITE_URL}
+            href={installHref}
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={() =>
               trackPhoneInstallEvent({
                 event: 'phone_install_open_app',
@@ -84,13 +78,13 @@ export function PhonePlatformLanding({ content }: { content: PhonePlatformLandin
               })
             }
           >
-            Get AIWEB Phone — $4.99/mo
+            {content.openInBrowserLabel}
           </a>
 
           <ul className="phone-platform-limits">
+            <li>Install the app before signing up</li>
             <li>Not a cellular carrier</li>
-            <li>No SMS</li>
-            <li>No emergency calling</li>
+            <li>No SMS · No emergency calling</li>
           </ul>
 
           <p className="phone-platform-switch">

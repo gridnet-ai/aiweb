@@ -131,6 +131,14 @@
   gap: 0.45rem;
 }
 
+.phone-platform-install-note {
+  margin: 0.85rem 0 0;
+  color: var(--px-mute, #425466);
+  font-size: 0.92rem;
+  font-weight: 550;
+  line-height: 1.45;
+}
+
 .phone-platform-install li {
   font-size: 0.95rem;
   font-weight: 500;
