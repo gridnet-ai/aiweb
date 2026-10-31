@@ -409,6 +409,14 @@ function HeroPhoneBrand() {
             alt="AIWEB Phone dialer in hand."
           />
         </span>
+        <div className="lv2p-hero-phone-lifestyle">
+          <p className="lv2p-hero-phone-dial-prefix">AI is the area code</p>
+          <img
+            className="lv2p-hero-phone-device lv2p-hero-phone-device--lifestyle"
+            src="/images/promo/aiweb-phone-lifestyle-cloud.jpg"
+            alt="Person outdoors on a phone with the AIWEB cloud mark above the screen."
+          />
+        </div>
         <PhoneListingCarousel />
         <div className="lv2p-hero-phone-ctas">
           <a className="lv2p-hero-phone-cta lv2p-hero-phone-cta--primary" href={PHONE_CHECKOUT_URL}>
