@@ -5,11 +5,11 @@
 
 .landing-v2 {
   --lv2-ink: #0b0b0c;
-  --lv2-cream: #eceae6;
+  --lv2-cream: #ffffff;
   --lv2-mute: #5c564e;
   --lv2-line: #d8d5cf;
-  --lv2-panel: #f4f1ec;
-  background: var(--lv2-cream);
+  --lv2-panel: #ffffff;
+  background: #ffffff;
   color: var(--lv2-ink);
 }
 

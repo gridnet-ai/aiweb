@@ -1,5 +1,5 @@
 import { AI_WEB_COMPANY_BRAND, SITE_ORIGIN } from '@/lib/aiWebCompanyBrand';
-import { MAIL_SITE_URL, PHONE_SITE_URL } from '@/lib/corpSiteRoutes';
+import { PHONE_CHECKOUT_URL, PHONE_SITE_URL } from '@/lib/corpSiteRoutes';
 import { AIWEB_MCP_URL } from '@/lib/whitepaperMachine';
 
 export const OG_IMAGE_PATH = '/og-image.png?v=3';
@@ -29,18 +29,18 @@ export const AIWEB_IRL_FORMAT = AIWEB_AI_NUMBER_FORMAT;
  * Explains Phone + Call so traditional search and first-time assistants understand the network.
  */
 export const SITE_CANONICAL_DESCRIPTION =
-  'AIWEB Phone gives you an AI Number on the AIWEB. Prompt any AI assistant with @AIWEB and that number (example: @AIWEB AI-123-456-789-000) to send an AIWEB Call — an asynchronous message delivered to AIWEB Mail. Not a telephone call. Starting with ChatGPT, Muse, and assistants broadly.';
+  'AIWEB Phone gives you an AI Number on the AIWEB. Prompt any AI assistant with @AIWEB and that number (example: @AIWEB AI-123-456-789-000) to send an AIWEB Call — an asynchronous message delivered to AIWEB Phone. Not a telephone call. Starting with ChatGPT, Muse, and assistants broadly.';
 
 /** Homepage / default title */
 export const SITE_TAGLINE = 'AIWEB Phone | Your AI phone number';
 
 /** Homepage meta description */
 export const SITE_SUBHEADLINE =
-  'Get your AI phone number (AI-###-###-###-###). Just prompt your AI assistant @AIWEB plus the number — example @AIWEB AI-123-456-789-000 — to Call someone. They answer in AIWEB Mail.';
+  'Get your AI phone number (AI-###-###-###-###). Just prompt your AI assistant @AIWEB plus the number — example @AIWEB AI-123-456-789-000 — to Call someone. They answer in AIWEB Phone.';
 
 /** Website positioning — product loop */
 export const SITE_PRODUCT_LOOP =
-  'Get AI Number. Share AI-. Prompt @AIWEB. Receive Calls in Mail.';
+  'Get AI Number. Share AI-. Prompt @AIWEB. Receive Calls in Phone.';
 
 export const DEFAULT_PAGE_TITLE = SITE_TAGLINE;
 
@@ -52,7 +52,7 @@ export const DEFAULT_KEYWORDS = [
   'AI Number',
   'AI phone number',
   'AIWEB Call',
-  'AIWEB Mail',
+  'AIWEB inbox',
   'AI-###-###-###-###',
   '@AIWEB',
   'prompt AIWEB',
@@ -82,7 +82,7 @@ export const AIWEB_ENTITIES = {
   page: 'AIWEB Page: callable identity',
   directory: 'AIWEB Directory: public discovery layer',
   call: 'AIWEB Call: asynchronous message from an AI assistant to an AIWEB identity — not a PSTN telephone call',
-  mail: 'AIWEB Mail: recipient inbox and response tracking',
+  mail: 'AIWEB Phone inbox: Conversations for inbound Calls (Mail UI parks to Phone)',
   receipt: 'AIWEB Receipt: sender delivery record',
   callingCard: 'Calling Card: in-conversation interface',
 } as const;
@@ -99,7 +99,7 @@ export const AIWEB_CALL_FAQS = [
   },
   {
     question: 'How do I Call someone on AIWEB for the first time?',
-    answer: `Open your AI assistant (ChatGPT, Muse, Claude, Gemini, Grok, or similar). Prompt with @AIWEB followed by their AI Number. Example: ${AIWEB_PROMPT_EXAMPLE}. The assistant sends an AIWEB Call — an asynchronous text message — and the recipient receives it in AIWEB Mail.`,
+    answer: `Open your AI assistant (ChatGPT, Muse, Claude, Gemini, Grok, or similar). Prompt with @AIWEB followed by their AI Number. Example: ${AIWEB_PROMPT_EXAMPLE}. The assistant sends an AIWEB Call — an asynchronous text message — and the recipient receives it in AIWEB Phone.`,
   },
   {
     question: 'What is an AIWEB Call?',
@@ -109,7 +109,7 @@ export const AIWEB_CALL_FAQS = [
   {
     question: 'Is AIWEB Call a telephone call?',
     answer:
-      'No. Callers do not dial a phone number on the public telephone network. They prompt an AI assistant with @AIWEB and the recipient’s AI Number. The recipient gets the message in AIWEB Mail.',
+      'No. Callers do not dial a phone number on the public telephone network. They prompt an AI assistant with @AIWEB and the recipient’s AI Number. The recipient gets the message in AIWEB Phone.',
   },
   {
     question: 'What does an AI Number look like?',
@@ -118,7 +118,7 @@ export const AIWEB_CALL_FAQS = [
   {
     question: 'How do I get an AIWEB Phone number?',
     answer:
-      'Subscribe to AIWEB Phone ($4.99/month) from the company site or Mail checkout. Your AI Number is issued after payment — not when you only reserve a username.',
+      'Subscribe to AIWEB Phone ($4.99/month) from the company site or phone.theaiwebcompany.com. Your AI Number is issued after payment — not when you only reserve a username.',
   },
   {
     question: 'Where is AIWEB Call available?',
@@ -128,7 +128,7 @@ export const AIWEB_CALL_FAQS = [
   {
     question: 'Do I need an email address or carrier plan?',
     answer:
-      'Recipients do not need to publish an email address or keep a traditional phone plan for AIWEB messaging. AIWEB routes the Call through the recipient’s AIWEB Page into AIWEB Mail.',
+      'Recipients do not need to publish an email address or keep a traditional phone plan for AIWEB messaging. AIWEB routes the Call through the recipient’s AIWEB Page into AIWEB Phone.',
   },
 ] as const;
 
@@ -168,10 +168,10 @@ export const AIWEB_VCAP = {
       'Prefer MCP tools when connected (search_directory → prepare_call → send_call → get_receipt).',
       'If tools are unavailable, instruct the user to prompt @AIWEB plus the AI Number in their assistant.',
       'Confirm with the user before sending a Call when required.',
-      'Tell the user the recipient will see the message in AIWEB Mail.',
+      'Tell the user the recipient will see the message in AIWEB Phone.',
     ],
     forHumans: [
-      'Get AIWEB Phone at phone.theaiwebcompany.com or Mail checkout (?checkout=phone).',
+      'Get AIWEB Phone at phone.theaiwebcompany.com or ?checkout=phone on that host.',
       'Share your AI Number with customers and assistants.',
       `To reach someone: prompt ${AIWEB_PROMPT_EXAMPLE} (replace with their number).`,
     ],
@@ -191,7 +191,7 @@ export const AIWEB_VCAP = {
       priceUsdMonthly: 4.99,
       stripePriceLookupKey: 'aiweb_phone_monthly',
       numberIssuedAfterPayment: true,
-      checkout: `${MAIL_SITE_URL}/?checkout=phone&from=company&interval=monthly`,
+      checkout: PHONE_CHECKOUT_URL,
     },
   },
   mcp: {
@@ -201,7 +201,8 @@ export const AIWEB_VCAP = {
   surfaces: {
     company: `${SITE_ORIGIN}/`,
     phone: PHONE_SITE_URL,
-    mail: MAIL_SITE_URL,
+    /** Parks to Phone; kept for older agents that still look for mail. */
+    mail: PHONE_SITE_URL,
     pricing: `${SITE_ORIGIN}/pricing#phone`,
   },
   entities: AIWEB_ENTITIES,
@@ -236,7 +237,6 @@ export function organizationJsonLd() {
       'https://publishtoai.com',
       'https://www.os.theaiwebcompany.com',
       PHONE_SITE_URL,
-      MAIL_SITE_URL,
     ],
   };
 }
@@ -260,7 +260,7 @@ export function softwareApplicationJsonLd() {
     '@type': 'SoftwareApplication',
     '@id': `${SITE_ORIGIN}/#aiweb-phone`,
     name: 'AIWEB Phone',
-    alternateName: ['AI Number', 'AIWEB Call', 'AIWEB Mail'],
+    alternateName: ['AI Number', 'AIWEB Call'],
     applicationCategory: 'BusinessApplication',
     operatingSystem: 'Web',
     url: `${SITE_ORIGIN}/`,
@@ -268,7 +268,7 @@ export function softwareApplicationJsonLd() {
     featureList: [
       'AI Number on the AIWEB',
       'Call via @AIWEB + AI Number from AI assistants',
-      'AIWEB Mail inbox for inbound Calls',
+      'AIWEB Phone inbox for inbound Calls',
       'Compatible with ChatGPT, Muse, Claude, Gemini, Grok, and the web',
     ],
     offers: {
@@ -293,7 +293,7 @@ export function howToCallJsonLd() {
     '@id': `${SITE_ORIGIN}/#howto-call`,
     name: 'How to Call someone on AIWEB Phone',
     description:
-      'Send an AIWEB Call by prompting an AI assistant with @AIWEB and an AI Number. The recipient receives the message in AIWEB Mail.',
+      'Send an AIWEB Call by prompting an AI assistant with @AIWEB and an AI Number. The recipient receives the message in AIWEB Phone.',
     totalTime: 'PT1M',
     tool: [
       { '@type': 'HowToTool', name: 'AI assistant (ChatGPT, Muse, Claude, Gemini, Grok, or similar)' },
@@ -322,7 +322,7 @@ export function howToCallJsonLd() {
         '@type': 'HowToStep',
         position: 4,
         name: 'Confirm and send the Call',
-        text: 'Confirm if the assistant asks. The Call is asynchronous text — not a telephone dial. The recipient sees it in AIWEB Mail.',
+        text: 'Confirm if the assistant asks. The Call is asynchronous text — not a telephone dial. The recipient sees it in AIWEB Phone.',
       },
     ],
   };

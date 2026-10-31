@@ -1,10 +1,7 @@
-import { useEffect } from 'react';
-import { phoneInstallAppHref } from '@/lib/detectPhonePlatform';
-import { trackPhoneInstallEvent } from '@/lib/phoneInstallAnalytics';
+import { PhonePlatformLanding } from '@/components/corp/PhonePlatformLanding';
 import { useMarketingPageSeo } from '@/hooks/useScrollReveal';
-import { PHONE_ANDROID_PATH } from '@/lib/corpSiteRoutes';
+import { PHONE_ANDROID_PATH, PHONE_IOS_PATH } from '@/lib/corpSiteRoutes';
 
-/** Send Android install traffic to the Phone host — never install this company page. */
 export function PhoneAndroidPage() {
   useMarketingPageSeo({
     title: 'AIWEB Phone for Android — Install from Chrome',
@@ -14,24 +11,28 @@ export function PhoneAndroidPage() {
     image: '/images/promo/aiweb-phone-android.png',
   });
 
-  useEffect(() => {
-    trackPhoneInstallEvent({
-      event: 'phone_install_guide_view',
-      platform: 'android',
-    });
-    trackPhoneInstallEvent({
-      event: 'phone_install_open_app',
-      platform: 'android',
-    });
-    window.location.replace(phoneInstallAppHref('android'));
-  }, []);
-
   return (
-    <main className="phone-platform landing-v2" style={{ padding: '4rem 1.25rem', textAlign: 'center' }}>
-      <p>Opening AIWEB Phone to install…</p>
-      <p>
-        <a href={phoneInstallAppHref('android')}>Continue to install</a>
-      </p>
-    </main>
+    <PhonePlatformLanding
+      content={{
+        platform: 'android',
+        title: 'Install AIWEB Phone on Android',
+        subheadline: 'Install the app first. Sign up / Log in opens when you launch it from your Home Screen.',
+        description:
+          'AIWEB Phone is a web app. Install it from Chrome, then launch it from your Home Screen or app drawer — that first launch shows the standard Sign up / Log in screen.',
+        imageSrc: '/images/promo/aiweb-phone-android.png',
+        imageAlt: 'Android phone ready for AIWEB Phone as an installed web app.',
+        openInBrowserLabel: 'Open in Chrome to install',
+        steps: [
+          'Tap Open in Chrome to install.',
+          'Use Install app / Add to Home screen from the browser prompt or Chrome menu.',
+          'Confirm the install.',
+          'Open AIWEB Phone from your Home Screen or app drawer — Sign up / Log in is the first screen.',
+        ],
+        otherPlatform: {
+          label: 'iOS install guide',
+          to: PHONE_IOS_PATH,
+        },
+      }}
+    />
   );
 }

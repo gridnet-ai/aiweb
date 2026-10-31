@@ -1,10 +1,15 @@
 export const HOME_PATH = '/';
 export const OS_PATH = '/os';
 export const MAIL_PATH = '/mail';
-/** Public mailbox setup. www.mail.theaiwebcompany.com should redirect here. */
-export const MAIL_SITE_URL = 'https://mail.theaiwebcompany.com';
-/** Consumer AIWEB Phone host — number issued after payment. */
+/** Canonical consumer product host (dialer, inbox, Calling Cards, checkout). */
 export const PHONE_SITE_URL = 'https://phone.theaiwebcompany.com';
+/**
+ * @deprecated Mail UI parks to Phone (301). Alias keeps old imports from regressing.
+ * Prefer PHONE_SITE_URL for new CTAs.
+ */
+export const MAIL_SITE_URL = PHONE_SITE_URL;
+/** Conversations / Calls inbox on Phone. */
+export const PHONE_INBOX_URL = `${PHONE_SITE_URL}/inbox`;
 /** Company-site platform onboarding pages (marketing → Phone host). */
 export const PHONE_IOS_PATH = '/phone/ios';
 export const PHONE_ANDROID_PATH = '/phone/android';
@@ -12,9 +17,10 @@ export const PHONE_ANDROID_PATH = '/phone/android';
 export const PHONE_IOS_INSTALL_URL = PHONE_IOS_PATH;
 /** @deprecated Use PHONE_ANDROID_PATH — company site hosts install guides. */
 export const PHONE_ANDROID_INSTALL_URL = PHONE_ANDROID_PATH;
-/** Mail-armed Phone checkout (same Stripe price as Phone host). */
-export const PHONE_CHECKOUT_URL =
-  'https://mail.theaiwebcompany.com/?checkout=phone&from=company&interval=monthly';
+/** Phone plan checkout — same query; host is Phone (legacy Mail URLs 301). */
+export const PHONE_CHECKOUT_URL = `${PHONE_SITE_URL}/?checkout=phone&from=company&interval=monthly`;
+/** Seller checkout on Phone host. */
+export const SELLER_CHECKOUT_URL = `${PHONE_SITE_URL}/?checkout=seller&from=company&interval=monthly`;
 export const PRICING_PATH = '/pricing';
 export const PLUGINS_PATH = '/plugins';
 export const PLUGIN_PATH = '/plugin';

@@ -2,20 +2,21 @@ import { useCallback, useSyncExternalStore } from 'react';
 
 export type LandingTheme = 'light' | 'dark';
 
-const STORAGE_KEY = 'aiweb-landing-theme';
+/** Bumped when product default flipped to light so prior auto-dark does not stick. */
+const STORAGE_KEY = 'aiweb-landing-theme-v2';
 
 let theme: LandingTheme = readStoredTheme();
 const listeners = new Set<() => void>();
 
 function readStoredTheme(): LandingTheme {
-  if (typeof window === 'undefined') return 'dark';
+  if (typeof window === 'undefined') return 'light';
   try {
     const stored = window.localStorage.getItem(STORAGE_KEY);
     if (stored === 'light' || stored === 'dark') return stored;
   } catch {
     /* ignore */
   }
-  return 'dark';
+  return 'light';
 }
 
 function subscribe(listener: () => void) {
@@ -63,9 +64,9 @@ export function toggleLandingTheme() {
   setLandingTheme(theme === 'dark' ? 'light' : 'dark');
 }
 
-/** Subscribe to landing light/dark preference (defaults to dark). */
+/** Subscribe to landing light/dark preference (defaults to light / white). */
 export function useLandingTheme() {
-  const current = useSyncExternalStore(subscribe, getLandingTheme, () => 'dark' as LandingTheme);
+  const current = useSyncExternalStore(subscribe, getLandingTheme, () => 'light' as LandingTheme);
 
   const setTheme = useCallback((next: LandingTheme) => {
     setLandingTheme(next);

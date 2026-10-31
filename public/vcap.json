@@ -2,7 +2,7 @@
   "version": "1.2",
   "product": "AIWEB Phone",
   "organization": "AI Web Company",
-  "summary": "AIWEB Phone gives you an AI Number on the AIWEB. Prompt any AI assistant with @AIWEB and that number (example: @AIWEB AI-123-456-789-000) to send an AIWEB Call — an asynchronous message delivered to AIWEB Mail. Not a telephone call. Starting with ChatGPT, Muse, and assistants broadly.",
+  "summary": "AIWEB Phone gives you an AI Number on the AIWEB. Prompt any AI assistant with @AIWEB and that number (example: @AIWEB AI-123-456-789-000) to send an AIWEB Call — an asynchronous message delivered to AIWEB Phone. Not a telephone call. Starting with ChatGPT, Muse, and assistants broadly.",
   "addressing": {
     "mention": "@AIWEB",
     "publicScheme": "AI",
@@ -29,10 +29,10 @@
       "Prefer MCP tools when connected (search_directory → prepare_call → send_call → get_receipt).",
       "If tools are unavailable, instruct the user to prompt @AIWEB plus the AI Number in their assistant.",
       "Confirm with the user before sending a Call when required.",
-      "Tell the user the recipient will see the message in AIWEB Mail."
+      "Tell the user the recipient will see the message in AIWEB Phone."
     ],
     "forHumans": [
-      "Get AIWEB Phone at phone.theaiwebcompany.com or Mail checkout (?checkout=phone).",
+      "Get AIWEB Phone at phone.theaiwebcompany.com or ?checkout=phone on that host.",
       "Share your AI Number with customers and assistants.",
       "To reach someone: prompt @AIWEB AI-123-456-789-000 (replace with their number)."
     ]
@@ -52,7 +52,7 @@
       "priceUsdMonthly": 4.99,
       "stripePriceLookupKey": "aiweb_phone_monthly",
       "numberIssuedAfterPayment": true,
-      "checkout": "https://mail.theaiwebcompany.com/?checkout=phone&from=company&interval=monthly"
+      "checkout": "https://phone.theaiwebcompany.com/?checkout=phone&from=company&interval=monthly"
     }
   },
   "mcp": {
@@ -62,7 +62,7 @@
   "surfaces": {
     "company": "https://www.theaiwebcompany.com/",
     "phone": "https://phone.theaiwebcompany.com",
-    "mail": "https://mail.theaiwebcompany.com",
+    "mail": "https://phone.theaiwebcompany.com",
     "pricing": "https://www.theaiwebcompany.com/pricing#phone",
     "vcap": "https://www.theaiwebcompany.com/vcap.json",
     "llms": "https://www.theaiwebcompany.com/llms.txt"
@@ -74,7 +74,7 @@
     "page": "AIWEB Page: callable identity",
     "directory": "AIWEB Directory: public discovery layer",
     "call": "AIWEB Call: asynchronous message from an AI assistant to an AIWEB identity — not a PSTN telephone call",
-    "mail": "AIWEB Mail: recipient inbox and response tracking",
+    "mail": "AIWEB Phone inbox: Conversations for inbound Calls (Mail UI parks to Phone)",
     "receipt": "AIWEB Receipt: sender delivery record",
     "callingCard": "Calling Card: in-conversation interface"
   }

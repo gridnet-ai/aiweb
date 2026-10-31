@@ -1800,13 +1800,14 @@ html:has(.marketing-home-chapters) {
 .seller-plan button.seller-plan-cta--phone,
 .seller-plan a.seller-plan-cta--phone {
   border: 0;
-  background: linear-gradient(120deg, #ff7a7a 0%, #ffb0a4 55%, #ffd0c8 100%);
-  color: #000;
+  background: #007aff;
+  color: #ffffff;
 }
 
 .seller-plan button.seller-plan-cta--phone:hover,
 .seller-plan a.seller-plan-cta--phone:hover {
-  filter: brightness(0.97);
+  background: #0066d6;
+  filter: none;
 }
 
 .seller-plan--best a,
@@ -1886,8 +1887,8 @@ html:has(.marketing-home-chapters) {
 .landing-v2--dark .lv2p-close .seller-plan button.seller-plan-cta--phone,
 .landing-v2--dark .lv2p-close .seller-plan a.seller-plan-cta--phone {
   border: 0;
-  background: linear-gradient(120deg, #ff7a7a 0%, #ffb0a4 55%, #ffd0c8 100%);
-  color: #000;
+  background: #007aff;
+  color: #ffffff;
 }
 
 .landing-v2--dark .lv2p-close .seller-plan--best a,

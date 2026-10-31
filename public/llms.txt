@@ -1,10 +1,10 @@
 # AIWEB
 
-> AIWEB Phone gives you an AI Number on the AIWEB. Prompt any AI assistant with @AIWEB and that number (example: @AIWEB AI-123-456-789-000) to send an AIWEB Call — an asynchronous message delivered to AIWEB Mail. Not a telephone call. Starting with ChatGPT, Muse, and assistants broadly.
+> AIWEB Phone gives you an AI Number on the AIWEB. Prompt any AI assistant with @AIWEB and that number (example: @AIWEB AI-123-456-789-000) to send an AIWEB Call — an asynchronous message delivered to AIWEB Phone. Not a telephone call. Starting with ChatGPT, Muse, and assistants broadly.
 
 ## Product loop
 
-Get AI Number. Share AI-. Prompt @AIWEB. Receive Calls in Mail.
+Get AI Number. Share AI-. Prompt @AIWEB. Receive Calls in Phone.
 
 ## Addressing (first-time assistants)
 
@@ -22,7 +22,7 @@ Get AI Number. Share AI-. Prompt @AIWEB. Receive Calls in Mail.
 1. Get the recipient’s AI Number (`AI-###-###-###-###`).
 2. Open ChatGPT, Muse, Claude, Gemini, Grok, or a similar assistant.
 3. Prompt `@AIWEB` plus that AI Number, then the message.
-4. Confirm if asked. The recipient sees the Call in AIWEB Mail.
+4. Confirm if asked. The recipient sees the Call in AIWEB Phone.
 
 ## How to Call (MCP connected)
 
@@ -33,8 +33,9 @@ Tool sequence: `search_directory` → `prepare_call` → `send_call` → `get_re
 - VCAP (capability contract): https://www.theaiwebcompany.com/vcap.json
 - Company site: https://www.theaiwebcompany.com/
 - Pricing (Phone $4.99/mo): https://www.theaiwebcompany.com/pricing#phone
-- Phone host: https://phone.theaiwebcompany.com
-- Mail host: https://mail.theaiwebcompany.com
+- Phone host (canonical UI): https://phone.theaiwebcompany.com
+- Phone checkout: https://phone.theaiwebcompany.com/?checkout=phone&from=company&interval=monthly
+- Seller checkout: https://phone.theaiwebcompany.com/?checkout=seller&from=company&interval=monthly
 - MCP (Streamable HTTP): https://www.os.theaiwebcompany.com/mcp
 - MCP alias: https://www.os.theaiwebcompany.com/api/v1/mcp
 - Whitepaper: https://www.theaiwebcompany.com/whitepaper
@@ -44,10 +45,9 @@ Tool sequence: `search_directory` → `prepare_call` → `send_call` → `get_re
 
 ## Entities
 
-- AIWEB Phone: product that issues your AI Number after payment
+- AIWEB Phone: product that issues your AI Number after payment; also the inbox for inbound Calls
 - AI Number: public-facing address formatted AI-###-###-###-###
 - AIWEB Call: asynchronous message from an AI assistant to an AIWEB identity
-- AIWEB Mail: recipient inbox and response tracking
 - AIWEB Page: callable identity
 - AIWEB Directory: public discovery layer
 - AIWEB Receipt: sender delivery record

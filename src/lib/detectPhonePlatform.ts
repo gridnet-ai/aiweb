@@ -1,4 +1,9 @@
-import { PHONE_SITE_URL } from '@/lib/corpSiteRoutes';
+import {
+  HOME_PATH,
+  PHONE_ANDROID_PATH,
+  PHONE_IOS_PATH,
+  PHONE_SITE_URL,
+} from '@/lib/corpSiteRoutes';
 import type { PhoneInstallPlatform } from '@/lib/phoneInstallAnalytics';
 
 export type DetectedPhonePlatform = PhoneInstallPlatform | 'other';
@@ -20,7 +25,7 @@ export function detectPhonePlatform(
 
 export type PhoneDownloadTarget = {
   href: string;
-  /** Always same-tab to the Phone host so install attaches to the right origin. */
+  /** External URL — open in a new tab. */
   external: boolean;
   platform: DetectedPhonePlatform;
 };
@@ -38,13 +43,18 @@ export function phoneInstallAppHref(platform: DetectedPhonePlatform): string {
   return url.toString();
 }
 
-/** Download / install always opens the Phone host (correct install origin). */
+/**
+ * Download → OS-specific install guide on this site, then that page starts the Phone host install.
+ * Desktop → #install chooser.
+ */
 export function phoneDownloadTarget(
   platform: DetectedPhonePlatform = detectPhonePlatform(),
 ): PhoneDownloadTarget {
-  return {
-    href: phoneInstallAppHref(platform),
-    external: false,
-    platform,
-  };
+  if (platform === 'ios') {
+    return { href: PHONE_IOS_PATH, external: false, platform };
+  }
+  if (platform === 'android') {
+    return { href: PHONE_ANDROID_PATH, external: false, platform };
+  }
+  return { href: `${HOME_PATH}#install`, external: false, platform };
 }

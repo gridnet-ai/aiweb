@@ -9,7 +9,7 @@ export function PricingPage() {
   useMarketingPageSeo({
     title: 'Pricing · AIWEB',
     description:
-      'AIWEB Phone is $4.99 a month. Get an AI-###-###-###-### number. Others reach you by prompting @AIWEB plus your number — Calls land in AIWEB Mail.',
+      'AIWEB Phone is $4.99 a month. Get an AI-###-###-###-### number. Others reach you by prompting @AIWEB plus your number — Calls land in AIWEB Phone.',
     canonicalPath: '/pricing',
   });
 
@@ -28,7 +28,7 @@ export function PricingPage() {
       <PageHero
         eyebrow="Pricing"
         title="AIWEB Phone is $4.99 a month."
-        lede="Your number on the AIWEB. Page, Mail, and unlimited calls — user to user."
+        lede="Your number on the AIWEB. Page, inbox, and unlimited calls — user to user."
       />
       <section className="w-full px-4 pb-20 sm:px-5 md:px-8">
         <div className="mx-auto max-w-[1080px]">

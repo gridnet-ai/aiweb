@@ -5,21 +5,22 @@ import { applyLandingTheme, useLandingTheme } from '@/hooks/useLandingTheme';
 import {
   GEEKDOM_PATH,
   HOME_PATH,
-  MAIL_SITE_URL,
+  PHONE_ANDROID_PATH,
+  PHONE_IOS_PATH,
+  PHONE_SITE_URL,
   PLUGIN_PATH,
 } from '@/lib/corpSiteRoutes';
 import {
   detectPhonePlatform,
   phoneDownloadTarget,
-  phoneInstallAppHref,
 } from '@/lib/detectPhonePlatform';
 import { trackPhoneInstallEvent } from '@/lib/phoneInstallAnalytics';
 
 export const AGENCY_PILOT_HREF =
   'mailto:support@theaiwebcompany.com?subject=Agency%20pilot%20application';
 
-/** Unsigned visitors land on the AIWEB Mail app, which opens sign-in. */
-export const OS_LOGIN_HREF = MAIL_SITE_URL;
+/** Unsigned visitors land on AIWEB Phone (sign-in / dialer). */
+export const OS_LOGIN_HREF = PHONE_SITE_URL;
 
 export const CHATGPT_AIWEB_PLUGIN_HREF =
   'https://chatgpt.com/plugins/plugin_asdk_app_6a8e85029ad08191b8cd1435be85f221?q=call';
@@ -95,32 +96,24 @@ export function LandingNavV2() {
         aria-label="Menu"
         aria-hidden={!open}
       >
-        <a className="lv2p-nav-item" href={MAIL_SITE_URL}>
-          <img className="lv2p-nav-item-icon lv2p-nav-item-icon--cloud" src="/icons/aiweb-cloud.png?v=2" alt="" />
-          Mail
+        <a className="lv2p-nav-item" href={PHONE_SITE_URL}>
+          <img className="lv2p-nav-item-icon lv2p-nav-item-icon--cloud" src="/brand/mail/aiweb-cloud.png" alt="" />
+          Phone
         </a>
         <Link className="lv2p-nav-item" to={PLUGIN_PATH} onClick={() => setOpen(false)}>
-          <img className="lv2p-nav-item-icon lv2p-nav-item-icon--cloud" src="/icons/aiweb-cloud.png?v=2" alt="" />
+          <img className="lv2p-nav-item-icon lv2p-nav-item-icon--cloud" src="/brand/mail/aiweb-cloud.png" alt="" />
           Plugin
         </Link>
-        <a
-          className="lv2p-nav-item"
-          href={phoneInstallAppHref('ios')}
-          onClick={() => setOpen(false)}
-        >
+        <Link className="lv2p-nav-item" to={PHONE_IOS_PATH} onClick={() => setOpen(false)}>
           <NavAppleIcon />
           iOS
-        </a>
-        <a
-          className="lv2p-nav-item"
-          href={phoneInstallAppHref('android')}
-          onClick={() => setOpen(false)}
-        >
+        </Link>
+        <Link className="lv2p-nav-item" to={PHONE_ANDROID_PATH} onClick={() => setOpen(false)}>
           <NavAndroidIcon />
           Android
-        </a>
+        </Link>
         <a className="lv2p-nav-item" href={OS_LOGIN_HREF} target="_blank" rel="noopener noreferrer">
-          <img className="lv2p-nav-item-icon lv2p-nav-item-icon--cloud" src="/icons/aiweb-cloud.png?v=2" alt="" />
+          <img className="lv2p-nav-item-icon lv2p-nav-item-icon--cloud" src="/brand/mail/aiweb-cloud.png" alt="" />
           Log in
         </a>
 
@@ -153,34 +146,34 @@ export function LandingNavV2() {
       <Link to="/" className="lv2p-nav-brand" aria-label="AIWEB — home">
         <img
           className="lv2p-nav-logo lv2p-nav-logo--on-light"
-          src="/images/promo/aiweb-nav-logo-black.png"
+          src="/brand/mail/aiweb-nav-logo-black.png"
           alt=""
         />
         <img
           className="lv2p-nav-logo lv2p-nav-logo--on-dark"
-          src="/images/promo/aiweb-nav-logo-white.png"
+          src="/brand/mail/aiweb-nav-logo-white.png"
           alt=""
         />
       </Link>
       <nav className="lv2p-nav-links" aria-label="Landing">
-        <a className="lv2p-nav-item" href={MAIL_SITE_URL}>
-          <img className="lv2p-nav-item-icon lv2p-nav-item-icon--cloud" src="/icons/aiweb-cloud.png?v=2" alt="" />
-          Mail
+        <a className="lv2p-nav-item" href={PHONE_SITE_URL}>
+          <img className="lv2p-nav-item-icon lv2p-nav-item-icon--cloud" src="/brand/mail/aiweb-cloud.png" alt="" />
+          Phone
         </a>
         <Link className="lv2p-nav-item" to={PLUGIN_PATH}>
-          <img className="lv2p-nav-item-icon lv2p-nav-item-icon--cloud" src="/icons/aiweb-cloud.png?v=2" alt="" />
+          <img className="lv2p-nav-item-icon lv2p-nav-item-icon--cloud" src="/brand/mail/aiweb-cloud.png" alt="" />
           Plugin
         </Link>
-        <a className="lv2p-nav-item" href={phoneInstallAppHref('ios')}>
+        <Link className="lv2p-nav-item" to={PHONE_IOS_PATH}>
           <NavAppleIcon />
           iOS
-        </a>
-        <a className="lv2p-nav-item" href={phoneInstallAppHref('android')}>
+        </Link>
+        <Link className="lv2p-nav-item" to={PHONE_ANDROID_PATH}>
           <NavAndroidIcon />
           Android
-        </a>
+        </Link>
         <a className="lv2p-nav-item" href={OS_LOGIN_HREF} target="_blank" rel="noopener noreferrer">
-          <img className="lv2p-nav-item-icon lv2p-nav-item-icon--cloud" src="/icons/aiweb-cloud.png?v=2" alt="" />
+          <img className="lv2p-nav-item-icon lv2p-nav-item-icon--cloud" src="/brand/mail/aiweb-cloud.png" alt="" />
           Log in
         </a>
       </nav>
@@ -195,7 +188,7 @@ export function LandingNavV2() {
               event: 'phone_install_download_click',
               platform: target.platform,
             });
-            // Same-tab to Phone host so Chrome/Safari install the real app, not this site.
+            // Same-tab to OS download page; that page starts the Phone host install.
             event.preventDefault();
             window.location.assign(target.href);
           }}

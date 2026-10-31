@@ -1,11 +1,13 @@
 .lv2p {
-  --px-cyan: #2ad4e6;
-  --px-pill: #8ef0f2;
-  --px-ink: #111111;
-  --px-mute: #425466;
-  --px-mint: #e7f6f6;
-  --px-line: #e6e8eb;
-  background: #fff;
+  /* Phone lane — AIWEB brand guide §5.1 */
+  --px-cyan: #007aff;
+  --aw-blue: #007aff;
+  --px-pill: #e8f2ff;
+  --px-ink: #0a0a0b;
+  --px-mute: #858995;
+  --px-mint: #f2f2f7;
+  --px-line: #e8e8ed;
+  background: #ffffff;
   color: var(--px-ink);
   font-family: 'Source Sans 3', 'DM Sans', system-ui, sans-serif;
 }
@@ -19,7 +21,7 @@
   justify-content: space-between;
   gap: 0.75rem;
   padding: 0.7rem 1rem;
-  background: transparent;
+  background: #ffffff;
   border-bottom: 1px solid transparent;
 }
 
@@ -292,8 +294,8 @@
 }
 
 .lv2p-nav-theme-toggle.is-on {
-  background: #2ad4e6;
-  border-color: #2ad4e6;
+  background: #007aff;
+  border-color: #007aff;
 }
 
 .lv2p-nav-theme-knob {
@@ -630,10 +632,10 @@
 }
 
 .lv2p-hero-phone-title-accent {
-  background: linear-gradient(105deg, #7ee8ff 0%, #2ad4e6 45%, #5eb8ff 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  background: none;
+  -webkit-background-clip: unset;
+  background-clip: unset;
+  color: #007aff;
 }
 
 .lv2p-hero p.lv2p-hero-phone-sub {
@@ -647,13 +649,106 @@
   color: rgba(255, 255, 255, 0.78);
 }
 
+.lv2p-hero-phone-dial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0.35rem 0 0;
+  min-height: 5.5rem;
+}
+
+.lv2p-hero .lv2p-hero-phone-dial-prefix {
+  margin: 0;
+  max-width: 22rem;
+  font-family: 'Nunito Sans', 'Source Sans 3', system-ui, sans-serif;
+  font-size: clamp(1.85rem, 7.2vw, 2.85rem);
+  font-weight: 800;
+  font-variation-settings: 'wght' 800, 'opsz' 12;
+  letter-spacing: -0.04em;
+  line-height: 1.08;
+  text-align: center;
+  text-wrap: balance;
+  text-transform: none;
+  color: #ffffff;
+}
+
+.landing-v2:not(.landing-v2--dark) .lv2p-hero .lv2p-hero-phone-dial-prefix {
+  color: #0a0a0b;
+}
+
+.landing-v2--dark .lv2p-hero .lv2p-hero-phone-dial-prefix {
+  color: #ffffff;
+}
+
+.lv2p-hero-phone-dial-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: min(100%, 18rem);
+  min-height: 2.4rem;
+  padding: 0.35rem 0.85rem;
+  border: 1px solid #e8e8ed;
+  border-radius: 14px;
+  background: #f2f2f7;
+  color: #0a0a0b;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: clamp(1.35rem, 4.2vw, 1.75rem);
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+}
+
+.lv2p-hero-phone-dial-number .is-pressing {
+  animation: lv2p-dial-press 0.14s ease-out;
+}
+
+.lv2p-hero-phone-dial-caret {
+  display: inline-block;
+  width: 2px;
+  height: 1.15em;
+  margin-left: 0.12rem;
+  background: #007aff;
+  border-radius: 1px;
+  animation: lv2p-dial-caret 0.9s steps(1) infinite;
+}
+
+.lv2p-hero-phone-dial-caret.is-idle {
+  opacity: 0.35;
+  animation: none;
+}
+
+@keyframes lv2p-dial-press {
+  from {
+    opacity: 0.45;
+    transform: translateY(0.08em);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes lv2p-dial-caret {
+  50% {
+    opacity: 0;
+  }
+}
+
+.landing-v2--dark .lv2p-hero-phone-dial-number {
+  border-color: rgba(255, 255, 255, 0.16);
+  background: #1c1c1e;
+  color: #ffffff;
+}
+
 .lv2p-hero-phone-example {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.7rem;
   width: min(100%, 17.5rem);
-  margin: 0.55rem auto 0;
+  margin: 1.25rem auto 0;
 }
 
 .lv2p-hero-phone-example-viewport {
@@ -764,13 +859,98 @@
   border: 0;
 }
 
+.lv2p-hero-phone-device {
+  display: block;
+  width: min(100%, 42rem);
+  max-width: 100%;
+  height: auto;
+  margin: 1.1rem 0 1.25rem;
+  object-fit: contain;
+  object-position: center;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 62%,
+    rgba(0, 0, 0, 0.55) 82%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 62%,
+    rgba(0, 0, 0, 0.55) 82%,
+    transparent 100%
+  );
+}
+
+.lv2p-hero-phone-device-wrap {
+  display: block;
+  width: min(100%, 42rem);
+  margin: 0;
+}
+
+.lv2p-hero-phone-device-wrap--hand {
+  position: relative;
+  width: min(100%, 22rem);
+  margin: 0.35rem 0 2.75rem;
+}
+
+.lv2p-hero-phone-device-wrap--hand::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  /* Bias dissolve to the cropped lower-right palm; keep phone screen mostly clear */
+  background:
+    linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent 78%,
+      rgba(255, 255, 255, 0.45) 90%,
+      #ffffff 100%
+    ),
+    radial-gradient(
+      ellipse 70% 48% at 100% 100%,
+      #ffffff 0%,
+      rgba(255, 255, 255, 0.85) 28%,
+      rgba(255, 255, 255, 0.25) 52%,
+      transparent 72%
+    );
+}
+
+.landing-v2--dark .lv2p-hero-phone-device-wrap--hand::after {
+  background:
+    linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent 78%,
+      rgba(0, 0, 0, 0.45) 90%,
+      #000000 100%
+    ),
+    radial-gradient(
+      ellipse 70% 48% at 100% 100%,
+      #000000 0%,
+      rgba(0, 0, 0, 0.85) 28%,
+      rgba(0, 0, 0, 0.25) 52%,
+      transparent 72%
+    );
+}
+
+.lv2p-hero-phone-device--hand {
+  width: 100%;
+  margin: 0;
+  /* Overlay wrap handles the dissolve; drop inherited mask */
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
 .lv2p-hero-phone-ctas {
   display: flex;
   flex-direction: column;
   align-items: stretch;
   gap: 0.7rem;
   width: min(100%, 22rem);
-  margin-top: 0.35rem;
+  margin-top: 1.5rem;
 }
 
 .lv2p-hero-phone-cta {
@@ -778,9 +958,9 @@
   align-items: center;
   justify-content: center;
   gap: 0.55rem;
-  min-height: 3.15rem;
+  min-height: 3rem;
   padding: 0.75rem 1.25rem;
-  border-radius: 999px;
+  border-radius: 14px;
   font-size: 1.02rem;
   font-weight: 700;
   letter-spacing: -0.02em;
@@ -788,7 +968,8 @@
   transition:
     transform 0.18s ease,
     background 0.18s ease,
-    border-color 0.18s ease;
+    border-color 0.18s ease,
+    filter 0.18s ease;
 }
 
 .lv2p-hero-phone-cta svg {
@@ -798,25 +979,26 @@
 }
 
 .lv2p-hero-phone-cta--primary {
-  background: linear-gradient(105deg, #3dd8f0 0%, #1ab8e8 55%, #2ad4e6 100%);
-  color: #041018;
-  box-shadow: 0 10px 28px rgba(42, 212, 230, 0.28);
+  background: #007aff;
+  color: #ffffff;
+  box-shadow: none;
 }
 
 .lv2p-hero-phone-cta--primary:hover {
   transform: translateY(-1px);
-  background: linear-gradient(105deg, #5ee2f5 0%, #2ad4e6 55%, #45dff0 100%);
+  background: #0066d6;
+  filter: brightness(1.02);
 }
 
 .lv2p-hero-phone-cta--secondary {
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  background: rgba(255, 255, 255, 0.04);
-  color: #ffffff;
+  border: 1px solid #e8e8ed;
+  background: #ffffff;
+  color: #0a0a0b;
 }
 
 .lv2p-hero-phone-cta--secondary:hover {
-  border-color: rgba(255, 255, 255, 0.5);
-  background: rgba(255, 255, 255, 0.08);
+  border-color: #0a0a0b;
+  background: #ffffff;
 }
 
 .lv2p-hero-phone-steps {
@@ -847,7 +1029,7 @@
   font-weight: 800;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #2ad4e6;
+  color: #007aff;
 }
 
 .lv2p-hero .lv2p-hero-phone-step-title {
@@ -970,7 +1152,7 @@
 }
 
 .lv2p-phone-install-card:focus-visible {
-  outline: 2px solid #2ad4e6;
+  outline: 2px solid #007aff;
   outline-offset: 3px;
 }
 
@@ -1680,8 +1862,9 @@
   gap: 0.4rem;
   min-width: 0;
   border: 0;
-  background: linear-gradient(120deg, #ff7a7a 0%, #ffb0a4 55%, #ffd0c8 100%);
-  color: #000;
+  border-radius: 14px;
+  background: #007aff;
+  color: #ffffff;
 }
 
 .lv2p-hero-mail a img.lv2p-mail-icon {
@@ -2867,6 +3050,7 @@
   }
 
   .lv2p-hero .lv2p-hero-phone-title,
+  .lv2p-hero .lv2p-hero-phone-dial-prefix,
   .lv2p-hero-how-title {
     max-width: 28rem;
     font-size: clamp(2.35rem, 3.8vw, 3.1rem);
@@ -2914,8 +3098,23 @@
     height: 2.45rem;
   }
 
+  .lv2p-hero-phone-device {
+    width: min(100%, 48rem);
+    margin: 1.35rem 0 1.5rem;
+  }
+
+  .lv2p-hero-phone-device-wrap--hand {
+    width: min(100%, 26rem);
+    margin: 0.5rem 0 3.5rem;
+  }
+
+  .lv2p-hero-phone-example {
+    margin-top: 1.75rem;
+  }
+
   .lv2p-hero-phone-ctas {
     width: min(100%, 24rem);
+    margin-top: 2rem;
   }
 
   .lv2p-hero-phone-steps {
@@ -3172,24 +3371,32 @@
 }
 
 /* —— Light mode (landing without .landing-v2--dark) —— */
+.landing-v2:not(.landing-v2--dark),
+.landing-v2:not(.landing-v2--dark) .lv2p,
+.landing-v2:not(.landing-v2--dark) .lv2p-hero,
+.landing-v2:not(.landing-v2--dark) .lv2p-impact {
+  background: #ffffff;
+  color: #0b0b0c;
+}
+
 .landing-v2:not(.landing-v2--dark) .lv2p-hero-phone {
-  background: #f4f7f8;
+  background: #ffffff;
 }
 
 .landing-v2:not(.landing-v2--dark) .lv2p-hero .lv2p-hero-phone-title,
 .landing-v2:not(.landing-v2--dark) .lv2p-hero .lv2p-hero-phone-step-title {
-  color: #0b0b0c;
+  color: #0a0a0b;
 }
 
 .landing-v2:not(.landing-v2--dark) .lv2p-hero-phone-title-accent {
-  background: linear-gradient(105deg, #0aa7bc 0%, #0890c8 45%, #1f6feb 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  background: none;
+  -webkit-background-clip: unset;
+  background-clip: unset;
+  color: #007aff;
 }
 
 .landing-v2:not(.landing-v2--dark) .lv2p-hero p.lv2p-hero-phone-sub {
-  color: #425466;
+  color: #858995;
 }
 
 .landing-v2:not(.landing-v2--dark) .lv2p-hero-phone-mark {
@@ -3225,25 +3432,25 @@
 }
 
 .landing-v2:not(.landing-v2--dark) .lv2p-hero-phone-cta--secondary {
-  border-color: rgba(11, 11, 12, 0.18);
-  background: #fff;
-  color: #0b0b0c;
-  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.06);
+  border-color: #e8e8ed;
+  background: #ffffff;
+  color: #0a0a0b;
+  box-shadow: none;
 }
 
 .landing-v2:not(.landing-v2--dark) .lv2p-hero-phone-cta--secondary:hover {
-  border-color: rgba(11, 11, 12, 0.35);
-  background: #fff;
+  border-color: #0a0a0b;
+  background: #ffffff;
 }
 
 .landing-v2:not(.landing-v2--dark) .lv2p-promo {
-  background: #eef3f5;
+  background: #ffffff;
   color: #0b0b0c;
   border-bottom: 1px solid rgba(11, 11, 12, 0.08);
 }
 
 .landing-v2:not(.landing-v2--dark) .lv2p-promo:hover {
-  background: #e7eef1;
+  background: #ffffff;
   color: #0b0b0c;
 }
 
@@ -3273,7 +3480,7 @@
 }
 
 .landing-v2:not(.landing-v2--dark) .lv2p-nav {
-  background: transparent;
+  background: #ffffff;
 }
 
 .welcome-cloud-carousel {

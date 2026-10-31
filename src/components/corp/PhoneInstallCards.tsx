@@ -1,8 +1,13 @@
-import { phoneInstallAppHref } from '@/lib/detectPhonePlatform';
+import { PHONE_ANDROID_PATH, PHONE_IOS_PATH } from '@/lib/corpSiteRoutes';
 import {
   trackPhoneInstallEvent,
   type PhoneInstallPlatform,
 } from '@/lib/phoneInstallAnalytics';
+
+const PLATFORM_PATH: Record<PhoneInstallPlatform, string> = {
+  ios: PHONE_IOS_PATH,
+  android: PHONE_ANDROID_PATH,
+};
 
 type PhoneInstallCard = {
   id: PhoneInstallPlatform;
@@ -59,7 +64,7 @@ export function PhoneInstallCards() {
             <a
               key={card.id}
               className="lv2p-phone-install-card"
-              href={phoneInstallAppHref(card.id)}
+              href={PLATFORM_PATH[card.id]}
               data-platform={card.id}
               onClick={() => onCardClick(card.id)}
             >

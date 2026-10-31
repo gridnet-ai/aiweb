@@ -180,7 +180,7 @@ const PHONE_FEATURES = [
   'AI Number (AI-###-###-###-###)',
   'Unlimited Calls',
   'Unlimited AIWEB Page',
-  'Unlimited Mailbox',
+  'Unlimited inbox',
   'Unlimited AIWEB Cloud',
 ] as const;
 
@@ -322,7 +322,7 @@ function PlanBrand({
 }) {
   const label = (
     <>
-      <img src="/images/promo/aiweb-nav-logo-black.png" alt="" className="seller-plan-logo" />
+      <img src="/brand/mail/aiweb-nav-logo-black.png" alt="" className="seller-plan-logo" />
       <span>{name}</span>
     </>
   );
@@ -496,7 +496,7 @@ export function PublisherPricingTable({
               >
                 {plan.id === BEST_PLAN_ID ? <p className="seller-plan-best">Best choice</p> : null}
                 <div className="flex items-center justify-between gap-2">
-                  <img src="/images/promo/aiweb-nav-logo-black.png" alt="" className="seller-plan-logo" />
+                  <img src="/brand/mail/aiweb-nav-logo-black.png" alt="" className="seller-plan-logo" />
                   <div className="flex flex-col items-end gap-1">
                     <h3
                       id={`plan-${plan.id}-name`}
@@ -548,7 +548,7 @@ export function PublisherPricingTable({
               aria-labelledby={`plan-${plan.id}-name`}
             >
               <div className="flex items-center justify-between gap-2">
-                <img src="/images/promo/aiweb-nav-logo-black.png" alt="" className="seller-plan-logo" />
+                <img src="/brand/mail/aiweb-nav-logo-black.png" alt="" className="seller-plan-logo" />
                 <div className="flex flex-col items-end gap-1">
                   <h3
                     id={`plan-${plan.id}-name`}

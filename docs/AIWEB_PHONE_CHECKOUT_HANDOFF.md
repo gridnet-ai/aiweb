@@ -6,8 +6,9 @@ Entry (after launch):
 
 ```
 https://phone.theaiwebcompany.com/
-https://mail.theaiwebcompany.com/?checkout=phone&from=phone&interval=monthly
+https://phone.theaiwebcompany.com/?checkout=phone&from=phone&interval=monthly
 ```
+
 
 Corp website pricing card: see [AIWEB_PHONE_CORP_PLAN_HANDOFF.md](./AIWEB_PHONE_CORP_PLAN_HANDOFF.md).
 

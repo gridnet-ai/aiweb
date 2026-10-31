@@ -48,7 +48,16 @@ export function PhonePlatformLanding({ content }: { content: PhonePlatformLandin
       event: 'phone_install_guide_view',
       platform: content.platform,
     });
-  }, [content.platform]);
+    // Land on this OS download page, then start the Phone host install.
+    const timer = window.setTimeout(() => {
+      trackPhoneInstallEvent({
+        event: 'phone_install_open_app',
+        platform: content.platform,
+      });
+      window.location.assign(installHref);
+    }, 700);
+    return () => window.clearTimeout(timer);
+  }, [content.platform, installHref]);
 
   return (
     <div className="phone-platform landing-v2">
@@ -56,7 +65,7 @@ export function PhonePlatformLanding({ content }: { content: PhonePlatformLandin
       <main className="phone-platform-main">
         <article className="phone-platform-card">
           <p className="phone-platform-eyebrow">
-            <img src="/icons/aiweb-cloud.png?v=2" alt="" className="phone-platform-cloud" />
+            <img src="/brand/mail/aiweb-cloud.png" alt="" className="phone-platform-cloud" />
             AIWEB Phone · Install first
           </p>
           <h1 className="phone-platform-title">
@@ -79,8 +88,8 @@ export function PhonePlatformLanding({ content }: { content: PhonePlatformLandin
               ))}
             </ol>
             <p className="phone-platform-install-note">
-              Sign up appears after you open AIWEB Phone from your Home Screen — not in the browser
-              tab.
+              Starting download… After you install and open AIWEB Phone from your Home Screen,
+              you&apos;ll see Sign up / Log in — not in the browser tab.
             </p>
           </section>
 

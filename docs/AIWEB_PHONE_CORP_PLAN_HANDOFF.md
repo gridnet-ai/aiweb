@@ -13,7 +13,7 @@ Update the company site pricing / plans section for AIWEB Phone from:
   c:\aiweb-publisher\docs\AIWEB_PHONE_CORP_PLAN_HANDOFF.md
 
 Hosts: www.theaiwebcompany.com (and apex redirect).
-Add an AIWEB Phone plan card ($4.99/mo). CTA opens Mail or Phone checkout — do not invent a second Stripe product.
+Add an AIWEB Phone plan card ($4.99/mo). CTA opens Phone checkout — do not invent a second Stripe product.
 Do not replace Seller, Plus, Business, Agency cards. Phone is additive.
 ```
 
@@ -24,7 +24,7 @@ Do not replace Seller, Plus, Business, Agency cards. Phone is additive.
 1. They open **Pricing** (or the homepage plans / seller block).
 2. They see **AIWEB Phone** as its own low-friction consumer plan: **your number on the AIWEB**.
 3. They tap the Phone CTA and land on checkout that creates an AIWEB Number **only after payment** (not at username green check).
-4. After pay they can Call / be Called via ChatGPT or Muse into AIWEB Mail.
+4. After pay they can Call / be Called via ChatGPT or Muse into AIWEB Phone.
 
 ---
 
@@ -51,10 +51,10 @@ Primary (consumer Phone host):
 https://phone.theaiwebcompany.com/
 ```
 
-Or Mail-armed checkout (same pattern as Seller):
+Or Phone-armed checkout (same query pattern as Seller; Mail host 301s here):
 
 ```
-https://mail.theaiwebcompany.com/?checkout=phone&from=company&interval=monthly
+https://phone.theaiwebcompany.com/?checkout=phone&from=company&interval=monthly
 ```
 
 Optional deep link with pricing section hash if you add `#phone` on the company page:
@@ -63,9 +63,9 @@ Optional deep link with pricing section hash if you add `#phone` on the company 
 https://www.theaiwebcompany.com/pricing#phone
 ```
 
-Company “Get AIWEB Phone” / card button → **mail or phone URL above**. Do not send Phone checkout to OS plan picker unless that surface already supports `tier=phone`.
+Company “Get AIWEB Phone” / card button → **Phone URL above**. Do not send Phone checkout to OS plan picker unless that surface already supports `tier=phone`.
 
-Mirror Seller: company site does **not** hold the Stripe secret. Checkout stays on Mail / Phone host → Big Search `createCheckoutSession` with `priceId=price_1UUCOdDSe2OspJOfFFkYPOSU`.
+Mirror Seller: company site does **not** hold the Stripe secret. Checkout stays on Phone host → Big Search `createCheckoutSession` with `priceId=price_1UUCOdDSe2OspJOfFFkYPOSU`.
 
 ---
 

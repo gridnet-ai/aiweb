@@ -293,6 +293,70 @@ function PhoneListingCarousel() {
   );
 }
 
+function HeroPhoneDialAnimation({ number = AIWEB_AI_NUMBER_EXAMPLE }: { number?: string }) {
+  const [visible, setVisible] = useState(0);
+  const [phase, setPhase] = useState<'dial' | 'hold' | 'clear'>('dial');
+
+  useEffect(() => {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (reduce.matches) {
+      setVisible(number.length);
+      setPhase('hold');
+      return;
+    }
+
+    let timer = 0;
+    if (phase === 'dial') {
+      if (visible >= number.length) {
+        timer = window.setTimeout(() => setPhase('hold'), 900);
+      } else {
+        const next = number[visible] ?? '';
+        const delay = next === '-' ? 220 : 140;
+        timer = window.setTimeout(() => setVisible((n) => n + 1), delay);
+      }
+    } else if (phase === 'hold') {
+      timer = window.setTimeout(() => setPhase('clear'), 1600);
+    } else {
+      timer = window.setTimeout(() => {
+        setVisible(0);
+        setPhase('dial');
+      }, 420);
+    }
+
+    return () => window.clearTimeout(timer);
+  }, [number, phase, visible]);
+
+  const shown = phase === 'clear' ? '' : number.slice(0, visible);
+  const head = shown.slice(0, -1);
+  const tail = shown.slice(-1);
+  const pressTail = phase === 'dial' && /\d/.test(tail);
+
+  return (
+    <p
+      className="lv2p-hero-phone-dial"
+      aria-label={`Example AI Number ${number}`}
+      aria-live="polite"
+    >
+      <span className="lv2p-hero-phone-dial-prefix" aria-hidden>
+        AI is the area code
+      </span>
+      <span className="lv2p-hero-phone-dial-number" aria-hidden>
+        {shown ? (
+          <>
+            {head}
+            <span key={`${visible}-${tail}`} className={pressTail ? 'is-pressing' : undefined}>
+              {tail}
+            </span>
+          </>
+        ) : (
+          '\u00A0'
+        )}
+        <span className={`lv2p-hero-phone-dial-caret${phase === 'hold' ? ' is-idle' : ''}`} />
+      </span>
+    </p>
+  );
+}
+
 function HeroPhoneBrand() {
   return (
     <div className="lv2p-hero-phone">
@@ -300,17 +364,13 @@ function HeroPhoneBrand() {
       <div className="lv2p-hero-phone-stage">
         <img
           className="lv2p-hero-phone-mark"
-          src="/images/promo/aiweb-phone-bear-lockup.png"
+          src="/brand/phone/reclining-bear-phone.png"
           alt="AIWEB Phone"
         />
         <h1 className="lv2p-hero-phone-title">
           Your direct business line for customers using{' '}
           <span className="lv2p-hero-phone-title-accent">AI assistants.</span>
         </h1>
-        <p className="lv2p-hero-phone-sub">
-          Make it easy for customers on ChatGPT, Claude, Gemini, Grok, Muse, and the web to connect
-          directly to your business.
-        </p>
         <ul className="lv2p-hero-phone-assistants" aria-label="Works with AI assistants and the internet">
           {PHONE_HERO_ASSISTANTS.map((assistant) => (
             <li
@@ -336,6 +396,19 @@ function HeroPhoneBrand() {
             </li>
           ))}
         </ul>
+        <HeroPhoneDialAnimation />
+        <img
+          className="lv2p-hero-phone-device"
+          src="/images/promo/aiweb-phone-foldable-dialer.png?v=4"
+          alt="AIWEB Phone dialer on a foldable phone beside the home screen."
+        />
+        <span className="lv2p-hero-phone-device-wrap lv2p-hero-phone-device-wrap--hand">
+          <img
+            className="lv2p-hero-phone-device lv2p-hero-phone-device--hand"
+            src="/images/promo/aiweb-phone-hand-dialer.png"
+            alt="AIWEB Phone dialer in hand."
+          />
+        </span>
         <PhoneListingCarousel />
         <div className="lv2p-hero-phone-ctas">
           <a className="lv2p-hero-phone-cta lv2p-hero-phone-cta--primary" href={PHONE_CHECKOUT_URL}>
@@ -425,7 +498,7 @@ const ENTITY_FAQS = [
     answer:
       'An asynchronous message from an AI assistant to an AIWEB identity — the DM for AI assistants. Not a PSTN telephone call.',
   },
-  { question: 'AIWEB Mail', answer: 'Recipient inbox and response tracking for inbound Calls.' },
+  { question: 'AIWEB Phone inbox', answer: 'Conversations where recipients track inbound Calls and respond.' },
   { question: 'AIWEB Receipt', answer: 'The sender’s delivery record.' },
   { question: 'Calling Card', answer: 'The in-conversation interface for a Call.' },
 ] as const;
@@ -433,7 +506,7 @@ const ENTITY_FAQS = [
 const HERO_STORY = [
   {
     src: '/images/promo/aiweb-call-hero-suppliers.png',
-    alt: 'ChatGPT compares packaging suppliers on AIWEB Calling Cards, from telling ChatGPT what you need through checking AIWEB Mail.',
+    alt: 'ChatGPT compares packaging suppliers on AIWEB Calling Cards, from telling ChatGPT what you need through checking AIWEB Phone.',
   },
   {
     src: '/images/promo/aiweb-call-hero-receipt.png',
@@ -443,7 +516,7 @@ const HERO_STORY = [
 
 const HERO_MAIL = {
   src: '/images/promo/aiweb-call-hero-mail.png',
-  alt: 'AIWEB Mail keeps the same Call going after one sync, from the inbox into the conversation.',
+  alt: 'AIWEB Phone keeps the same Call going after one sync, from the inbox into the conversation.',
 } as const;
 
 const INDUSTRY_ICONS: readonly { label: string; Icon: LucideIcon }[] = [
@@ -493,11 +566,11 @@ function HeroStory({ pitch = true }: { pitch?: boolean }) {
         <p className="lv2p-hero-story-follow">
           We provide the phone and phone book to AI assistants.
         </p>
-        <ul className="lv2p-hero-routes" aria-label="Mailbox routes">
-          <li>AI assistant → mailbox</li>
-          <li>mailbox → AI assistant</li>
-          <li>Internet → mailbox</li>
-          <li>mailbox → mailbox</li>
+        <ul className="lv2p-hero-routes" aria-label="Inbox routes">
+          <li>AI assistant → inbox</li>
+          <li>inbox → AI assistant</li>
+          <li>Internet → inbox</li>
+          <li>inbox → inbox</li>
         </ul>
       </div>
       <IndustrySearchGrid />
@@ -553,7 +626,7 @@ function HeroMail({ full = true }: { full?: boolean }) {
       <WelcomeCloudCarousel />
       <img
         className="lv2p-hero-mail-mark"
-        src="/images/promo/aiweb-phone-bear-lockup.png"
+        src="/brand/phone/reclining-bear-phone.png"
         alt="AIWEB Phone"
       />
       <h2>Get on the AIWEB</h2>
@@ -810,7 +883,7 @@ function CallPrompts() {
         {[
           'Find suppliers for 10,000 custom shipping boxes.',
           'Ask Meridian Packaging for pricing.',
-          'Check my AIWEB Mail.',
+          'Check my AIWEB Phone.',
         ].map((prompt) => (
           <a
             key={prompt}
@@ -929,7 +1002,7 @@ function OsBody() {
           <li>
             <span className="lv2p-hero-step-label">Step 3</span>
             <span className="lv2p-hero-step-text">
-              Receive AIWEB Calls in AIWEB Mail—starting with ChatGPT
+              Receive AIWEB Calls in AIWEB Phone—starting with ChatGPT
             </span>
           </li>
         </ol>
@@ -1187,7 +1260,7 @@ export function LandingParadoxV2({ page = 'home' }: { page?: LandingPage }) {
         <HeroPhoneBrand />
       </section>
       <PhoneInstallCards />
-      <section className="lv2p-hero" aria-label="AIWEB Mail">
+      <section className="lv2p-hero" aria-label="AIWEB Phone inbox">
         <div className="lv2p-hero-lead">
           <WelcomeCloudCarousel className="lv2p-hero-lead-clouds" />
           <HeroLeadInboxTitle />
@@ -1195,12 +1268,12 @@ export function LandingParadoxV2({ page = 'home' }: { page?: LandingPage }) {
             <img
               className="lv2p-hero-mailbox lv2p-hero-mailbox--for-dark"
               src="/images/promo/aiweb-mailbox-lightmode.png"
-              alt="AIWEB Mail inbox with direct messages from ChatGPT, Claude, Gemini, Grok, and the web."
+              alt="AIWEB Phone inbox with direct messages from ChatGPT, Claude, Gemini, Grok, and the web."
             />
             <img
               className="lv2p-hero-mailbox lv2p-hero-mailbox--for-light"
               src="/images/promo/aiweb-mailbox-darkmode.png"
-              alt="AIWEB Mail inbox with direct messages from ChatGPT, Claude, Gemini, Grok, and the web."
+              alt="AIWEB Phone inbox with direct messages from ChatGPT, Claude, Gemini, Grok, and the web."
             />
             <HeroDmHeadline />
           </div>
