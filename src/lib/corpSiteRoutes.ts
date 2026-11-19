@@ -32,6 +32,10 @@ export const BROWSER_PATH = '/browser';
  */
 export const BROWSER_DOWNLOAD_URL =
   'https://www.theaiwebcompany.com/downloads/AIWEB-Browser-Setup-win-x64.zip';
+/** Marketing page for AIWEB Page. */
+export const PAGE_PATH = '/page';
+/** Learn more — AIWEB Page product site. */
+export const PAGE_LEARN_MORE_URL = 'https://www.theaiwebapp.com';
 export const GEEKDOM_PATH = '/geekdom';
 export const ALBUM_PATH = '/album';
 /** Former marketing home (CorpHero + mission / team / products). */

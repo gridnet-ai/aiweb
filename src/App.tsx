@@ -29,6 +29,7 @@ import { HomePageV2 } from '@/pages/HomePageV2';
 import { OsPage } from '@/pages/OsPage';
 import { PluginPage } from '@/pages/PluginPage';
 import { BrowserPage } from '@/pages/BrowserPage';
+import { AiwebPageProductPage } from '@/pages/AiwebPageProductPage';
 import { GeekdomPage } from '@/pages/GeekdomPage';
 import { PhoneAndroidPage } from '@/pages/PhoneAndroidPage';
 import { PhoneIosPage } from '@/pages/PhoneIosPage';
@@ -72,6 +73,7 @@ export default function App() {
         <Route path="/os" element={<OsPage />} />
         <Route path="/plugin" element={<PluginPage />} />
         <Route path="/browser" element={<BrowserPage />} />
+        <Route path="/page" element={<AiwebPageProductPage />} />
         <Route path="/geekdom" element={<GeekdomPage />} />
         <Route path="/phone/ios" element={<PhoneIosPage />} />
         <Route path="/phone/android" element={<PhoneAndroidPage />} />

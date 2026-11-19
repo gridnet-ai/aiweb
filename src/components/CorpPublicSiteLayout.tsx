@@ -4,6 +4,7 @@ import {
   BROWSER_PATH,
   GEEKDOM_PATH,
   HOME_PATH,
+  PAGE_PATH,
   PLUGIN_PATH,
 } from '@/lib/corpSiteRoutes';
 import { applyLandingTheme, useLandingTheme } from '@/hooks/useLandingTheme';
@@ -23,6 +24,7 @@ export function CorpPublicSiteLayout({ children }: CorpPublicSiteLayoutProps) {
     pathname === HOME_PATH ||
     pathname === PLUGIN_PATH ||
     pathname === BROWSER_PATH ||
+    pathname === PAGE_PATH ||
     pathname === GEEKDOM_PATH;
   const isDarkHome = isThemeableHome ? isDark : false;
 

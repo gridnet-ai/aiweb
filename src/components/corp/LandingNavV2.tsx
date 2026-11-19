@@ -7,6 +7,7 @@ import {
   BROWSER_PATH,
   GEEKDOM_PATH,
   HOME_PATH,
+  PAGE_PATH,
   PHONE_ANDROID_PATH,
   PHONE_IOS_PATH,
   PHONE_SITE_URL,
@@ -55,6 +56,7 @@ export function LandingNavV2() {
     location.pathname === HOME_PATH ||
     location.pathname === PLUGIN_PATH ||
     location.pathname === BROWSER_PATH ||
+    location.pathname === PAGE_PATH ||
     location.pathname === GEEKDOM_PATH;
 
   useEffect(() => {
@@ -112,6 +114,10 @@ export function LandingNavV2() {
         <Link className="lv2p-nav-item" to={BROWSER_PATH} onClick={() => setOpen(false)}>
           <img className="lv2p-nav-item-icon lv2p-nav-item-icon--cloud" src="/brand/mail/aiweb-cloud.png" alt="" />
           Browser
+        </Link>
+        <Link className="lv2p-nav-item" to={PAGE_PATH} onClick={() => setOpen(false)}>
+          <img className="lv2p-nav-item-icon lv2p-nav-item-icon--cloud" src="/brand/mail/aiweb-cloud.png" alt="" />
+          Page
         </Link>
         <Link className="lv2p-nav-item" to={PLUGIN_PATH} onClick={() => setOpen(false)}>
           <img className="lv2p-nav-item-icon lv2p-nav-item-icon--cloud" src="/brand/mail/aiweb-cloud.png" alt="" />
@@ -176,6 +182,10 @@ export function LandingNavV2() {
         <Link className="lv2p-nav-item" to={BROWSER_PATH}>
           <img className="lv2p-nav-item-icon lv2p-nav-item-icon--cloud" src="/brand/mail/aiweb-cloud.png" alt="" />
           Browser
+        </Link>
+        <Link className="lv2p-nav-item" to={PAGE_PATH}>
+          <img className="lv2p-nav-item-icon lv2p-nav-item-icon--cloud" src="/brand/mail/aiweb-cloud.png" alt="" />
+          Page
         </Link>
         <Link className="lv2p-nav-item" to={PLUGIN_PATH}>
           <img className="lv2p-nav-item-icon lv2p-nav-item-icon--cloud" src="/brand/mail/aiweb-cloud.png" alt="" />
