@@ -13,3 +13,11 @@ functions/node_modules
 
 build-out.txt
 deploy-out.txt
+
+# Local browser installer binaries (too large for git; hosted via Firebase)
+public/downloads/*.exe
+public/downloads/*.zip
+public/downloads/*.dll
+public/downloads/*.bat
+releases/
+session-backup/

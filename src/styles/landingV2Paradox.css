@@ -3608,3 +3608,53 @@
     opacity: 0.35;
   }
 }
+
+/* Browser page */
+.browser-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  min-height: calc(100dvh - 4.5rem);
+  padding: 2rem 1.25rem 4rem;
+  text-align: center;
+}
+
+.browser-page-title {
+  margin: 0;
+  font-family: var(--lv2p-display, Georgia, 'Times New Roman', serif);
+  font-size: clamp(2.75rem, 8vw, 4.5rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: inherit;
+}
+
+.browser-page-download {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 1.6rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  color: inherit;
+  font-size: 0.85rem;
+  font-weight: 750;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.browser-page-download:hover {
+  background: #0b0b0c;
+  border-color: #0b0b0c;
+  color: #fff;
+}
+
+.landing-v2--dark .browser-page-download:hover {
+  background: #fff;
+  border-color: #fff;
+  color: #0b0b0c;
+}

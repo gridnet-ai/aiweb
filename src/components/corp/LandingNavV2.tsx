@@ -1,8 +1,10 @@
-import { useEffect, useId, useState } from 'react';
+import { useEffect, useId, useState, type MouseEvent } from 'react';
 import { createPortal } from 'react-dom';
 import { Link, useLocation } from 'react-router-dom';
 import { applyLandingTheme, useLandingTheme } from '@/hooks/useLandingTheme';
 import {
+  BROWSER_DOWNLOAD_URL,
+  BROWSER_PATH,
   GEEKDOM_PATH,
   HOME_PATH,
   PHONE_ANDROID_PATH,
@@ -52,6 +54,7 @@ export function LandingNavV2() {
   const themeable =
     location.pathname === HOME_PATH ||
     location.pathname === PLUGIN_PATH ||
+    location.pathname === BROWSER_PATH ||
     location.pathname === GEEKDOM_PATH;
 
   useEffect(() => {
@@ -59,9 +62,15 @@ export function LandingNavV2() {
     applyLandingTheme(isLight ? 'light' : 'dark');
   }, [isLight, themeable]);
 
+  const onBrowserPage = location.pathname === BROWSER_PATH;
+
   useEffect(() => {
+    if (onBrowserPage) {
+      setDownloadHref(BROWSER_DOWNLOAD_URL);
+      return;
+    }
     setDownloadHref(phoneDownloadTarget(detectPhonePlatform()).href);
-  }, []);
+  }, [onBrowserPage]);
 
   useEffect(() => {
     setOpen(false);
@@ -100,6 +109,10 @@ export function LandingNavV2() {
           <img className="lv2p-nav-item-icon lv2p-nav-item-icon--cloud" src="/brand/mail/aiweb-cloud.png" alt="" />
           Phone
         </a>
+        <Link className="lv2p-nav-item" to={BROWSER_PATH} onClick={() => setOpen(false)}>
+          <img className="lv2p-nav-item-icon lv2p-nav-item-icon--cloud" src="/brand/mail/aiweb-cloud.png" alt="" />
+          Browser
+        </Link>
         <Link className="lv2p-nav-item" to={PLUGIN_PATH} onClick={() => setOpen(false)}>
           <img className="lv2p-nav-item-icon lv2p-nav-item-icon--cloud" src="/brand/mail/aiweb-cloud.png" alt="" />
           Plugin
@@ -160,6 +173,10 @@ export function LandingNavV2() {
           <img className="lv2p-nav-item-icon lv2p-nav-item-icon--cloud" src="/brand/mail/aiweb-cloud.png" alt="" />
           Phone
         </a>
+        <Link className="lv2p-nav-item" to={BROWSER_PATH}>
+          <img className="lv2p-nav-item-icon lv2p-nav-item-icon--cloud" src="/brand/mail/aiweb-cloud.png" alt="" />
+          Browser
+        </Link>
         <Link className="lv2p-nav-item" to={PLUGIN_PATH}>
           <img className="lv2p-nav-item-icon lv2p-nav-item-icon--cloud" src="/brand/mail/aiweb-cloud.png" alt="" />
           Plugin
@@ -181,8 +198,10 @@ export function LandingNavV2() {
         <a
           className="lv2p-nav-try"
           href={downloadHref}
-          aria-label="Download the app"
-          onClick={(event) => {
+          aria-label={onBrowserPage ? 'Download AIWEB Browser' : 'Download the app'}
+          download={onBrowserPage ? 'AIWEB-Browser-Setup-win-x64.zip' : undefined}
+          onClick={(event: MouseEvent<HTMLAnchorElement>) => {
+            if (onBrowserPage) return;
             const target = phoneDownloadTarget(detectPhonePlatform());
             trackPhoneInstallEvent({
               event: 'phone_install_download_click',

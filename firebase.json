@@ -9,7 +9,7 @@
   ],
   "hosting": {
     "public": "dist",
-    "ignore": ["firebase.json", "**/node_modules/**"],
+    "ignore": ["firebase.json", "**/node_modules/**", "**/*.exe", "**/*.dll", "**/*.bat"],
     "headers": [
       {
         "source": "/press/boilerplate.txt",
@@ -41,6 +41,40 @@
         "headers": [
           { "key": "Content-Type", "value": "application/json; charset=utf-8" },
           { "key": "Access-Control-Allow-Origin", "value": "*" }
+        ]
+      },
+      {
+        "source": "/downloads/*.zip",
+        "headers": [
+          {
+            "key": "Content-Type",
+            "value": "application/zip"
+          },
+          {
+            "key": "Content-Disposition",
+            "value": "attachment"
+          },
+          {
+            "key": "Cache-Control",
+            "value": "public, max-age=3600"
+          }
+        ]
+      },
+      {
+        "source": "/downloads/*.exe",
+        "headers": [
+          {
+            "key": "Content-Type",
+            "value": "application/octet-stream"
+          },
+          {
+            "key": "Content-Disposition",
+            "value": "attachment"
+          },
+          {
+            "key": "Cache-Control",
+            "value": "public, max-age=3600"
+          }
         ]
       }
     ],

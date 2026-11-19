@@ -10,6 +10,8 @@ import { InvestorsPage } from '@/pages/InvestorsPage';
 import { NewsIndexPage } from '@/pages/NewsIndexPage';
 import { NewsPostPage } from '@/pages/NewsPostPage';
 import { OverviewPage } from '@/pages/OverviewPage';
+import { BusinessPitchDeckPage } from '@/pitchdeck/BusinessPitchDeckPage';
+import { PitchDeckIndexPage } from '@/pitchdeck/PitchDeckIndexPage';
 import { ProsperPitchDeckPage } from '@/pitchdeck/ProsperPitchDeckPage';
 import { ExecutiveSummaryPage } from '@/pitchdeck/ExecutiveSummaryPage';
 import { PressPage } from '@/pages/PressPage';
@@ -26,6 +28,7 @@ import { HomePageArchive } from '@/pages/archive/HomePageArchive';
 import { HomePageV2 } from '@/pages/HomePageV2';
 import { OsPage } from '@/pages/OsPage';
 import { PluginPage } from '@/pages/PluginPage';
+import { BrowserPage } from '@/pages/BrowserPage';
 import { GeekdomPage } from '@/pages/GeekdomPage';
 import { PhoneAndroidPage } from '@/pages/PhoneAndroidPage';
 import { PhoneIosPage } from '@/pages/PhoneIosPage';
@@ -45,7 +48,14 @@ export default function App() {
     return <AlbumPage />;
   }
   if (pathname.startsWith('/pitchdeck')) {
-    return <ProsperPitchDeckPage />;
+    return (
+      <Routes>
+        <Route path="/pitchdeck" element={<PitchDeckIndexPage />} />
+        <Route path="/pitchdeck/business" element={<BusinessPitchDeckPage />} />
+        <Route path="/pitchdeck/health" element={<ProsperPitchDeckPage />} />
+        <Route path="/pitchdeck/*" element={<Navigate to="/pitchdeck" replace />} />
+      </Routes>
+    );
   }
   if (pathname.startsWith('/executivesummary')) {
     return <ExecutiveSummaryPage />;
@@ -61,6 +71,7 @@ export default function App() {
         <Route path="/archive" element={<HomePageArchive />} />
         <Route path="/os" element={<OsPage />} />
         <Route path="/plugin" element={<PluginPage />} />
+        <Route path="/browser" element={<BrowserPage />} />
         <Route path="/geekdom" element={<GeekdomPage />} />
         <Route path="/phone/ios" element={<PhoneIosPage />} />
         <Route path="/phone/android" element={<PhoneAndroidPage />} />

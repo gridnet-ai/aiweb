@@ -13,7 +13,7 @@ export default defineConfig({
     port: 5173,
     host: true,
     watch: {
-      ignored: ['**/tmp/**', '**/session-backup/**'],
+      ignored: ['**/tmp/**', '**/session-backup/**', '**/public/downloads/**'],
     },
     proxy: {
       '/api': {

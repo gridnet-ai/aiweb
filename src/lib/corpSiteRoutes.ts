@@ -24,6 +24,14 @@ export const SELLER_CHECKOUT_URL = `${PHONE_SITE_URL}/?checkout=seller&from=comp
 export const PRICING_PATH = '/pricing';
 export const PLUGINS_PATH = '/plugins';
 export const PLUGIN_PATH = '/plugin';
+/** Marketing page for AIWEB Browser. */
+export const BROWSER_PATH = '/browser';
+/**
+ * Windows installer zip on this site (`public/downloads/`).
+ * Preferred `.exe` path needs Firebase Blaze — Spark forbids hosting executables.
+ */
+export const BROWSER_DOWNLOAD_URL =
+  'https://www.theaiwebcompany.com/downloads/AIWEB-Browser-Setup-win-x64.zip';
 export const GEEKDOM_PATH = '/geekdom';
 export const ALBUM_PATH = '/album';
 /** Former marketing home (CorpHero + mission / team / products). */

@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
+import { Link } from 'react-router-dom';
 import { DEFAULT_PAGE_TITLE } from '@/lib/siteSeo';
 import {
   PROSPER_DECK_SLIDES,
@@ -11,7 +12,17 @@ import {
 import '@/pages/pitchdeck.css';
 import '@/pitchdeck/prosper.css';
 
-const CONTENT_SLIDE_COUNT = Math.max(PROSPER_DECK_SLIDES.length - 1, 1);
+export type VerticalDeckSlides = typeof PROSPER_DECK_SLIDES;
+
+export type VerticalPitchDeckProps = {
+  coverAccent: string;
+  brandName: string;
+  documentTitle: string;
+  /** Health (default red) or Business (Phone blue). */
+  accentTone?: 'health' | 'business';
+  /** Health or Business deck slides. */
+  deckSlides?: readonly Record<string, unknown>[];
+};
 
 type Slide = {
   id: string;
@@ -207,13 +218,102 @@ function ContactSocialIcon({ kind }: { kind: string }) {
   }
 }
 
-const SLIDES: Slide[] = PROSPER_DECK_SLIDES.map((slide) => {
-  if (slide.id === 'cover' && 'loop' in slide) {
+function buildVerticalSlides(
+  deckSlides: readonly Record<string, unknown>[],
+  coverAccent: string,
+  accentTone: 'health' | 'business' = 'health',
+): Slide[] {
+  return (deckSlides as VerticalDeckSlides).map((slide) => {
+  // Business-only slide — not present on the Health deck union.
+  if ((slide as { id: string }).id === 'useoffunds') {
+    const funds = slide as unknown as {
+      id: string;
+      section: string;
+      title: string;
+      lede: string;
+      note: string;
+      timelineLabel: string;
+      estimate: { value: string; label: string; detail: string };
+      events: readonly { id: string; city: string; date: string }[];
+    };
+    return {
+      id: funds.id,
+      section: funds.section,
+      render: () => (
+        <div className="pd-stack prosper-slide prosper-slide--funds">
+          <header className="prosper-funds-head">
+            <h1 className="prosper-title">{funds.title}</h1>
+            <p className="prosper-funds-lede">{funds.lede}</p>
+            <div className="prosper-funds-estimate">
+              <p className="prosper-funds-estimate-value">{funds.estimate.value}</p>
+              <div className="prosper-funds-estimate-copy">
+                <p className="prosper-funds-estimate-label">{funds.estimate.label}</p>
+                <p className="prosper-funds-estimate-detail">{funds.estimate.detail}</p>
+              </div>
+            </div>
+            <p className="prosper-funds-note">{funds.note}</p>
+          </header>
+
+          <div className="prosper-funds-timeline" aria-label={funds.timelineLabel}>
+            <p className="prosper-funds-timeline-label">{funds.timelineLabel}</p>
+            <ol className="prosper-funds-events">
+              {funds.events.map((event, index) => (
+                <li key={event.id} className="prosper-funds-event">
+                  <span className="prosper-funds-event-num" aria-hidden>
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <span className="prosper-funds-event-dot" aria-hidden />
+                  <div className="prosper-funds-event-body">
+                    <p className="prosper-funds-event-city">{event.city}</p>
+                    <p className="prosper-funds-event-date">{event.date}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
+      ),
+    };
+  }
+
+  if (slide.id === 'cover') {
+    const partners =
+      'partners' in slide && Array.isArray(slide.partners)
+        ? (slide.partners as { id: string; label: string; src: string }[])
+        : [];
+    const tagline = 'tagline' in slide && typeof slide.tagline === 'string' ? slide.tagline : '';
+    const loop = 'loop' in slide ? (slide.loop as ProductLoopData) : null;
+
+    const headline =
+      'headline' in slide && typeof slide.headline === 'string' ? slide.headline : '';
+    const coverCard =
+      loop && 'backdrop' in loop.receive && loop.receive.backdrop
+        ? loop.receive.backdrop
+        : null;
+    const coverReceive =
+      'coverReceive' in slide &&
+      slide.coverReceive &&
+      typeof slide.coverReceive === 'object' &&
+      'src' in slide.coverReceive &&
+      typeof (slide.coverReceive as { src: unknown }).src === 'string'
+        ? (slide.coverReceive as { src: string; alt: string })
+        : loop
+          ? { src: loop.receive.src, alt: loop.receive.alt }
+          : null;
+    const isBusinessCover = accentTone === 'business';
+
     return {
       id: slide.id,
       section: slide.section,
       render: () => (
-        <div className="pd-stack pd-stack--cover prosper-cover">
+        <div
+          className={[
+            'pd-stack pd-stack--cover prosper-cover',
+            isBusinessCover ? 'prosper-cover--business' : '',
+          ]
+            .filter(Boolean)
+            .join(' ')}
+        >
           <div className="prosper-cover-brand">
             <div className="prosper-cover-lockup">
               <img
@@ -221,16 +321,56 @@ const SLIDES: Slide[] = PROSPER_DECK_SLIDES.map((slide) => {
                 src="/images/promo/aiweb-logo-black.png"
                 alt="aiweb"
               />
-              <span className="prosper-cover-accent">For Health</span>
+              <span
+                className={[
+                  'prosper-cover-accent',
+                  isBusinessCover ? 'prosper-cover-accent--business' : '',
+                ]
+                  .filter(Boolean)
+                  .join(' ')}
+              >
+                {coverAccent}
+              </span>
             </div>
-            <p className="prosper-cover-tagline">{slide.tagline}</p>
+            {headline ? <p className="prosper-cover-headline">{headline}</p> : null}
+            <p className="prosper-cover-tagline">{tagline}</p>
           </div>
-          <div className="prosper-cover-phones prosper-cover-phones--loop">
-            <ProductLoop loop={slide.loop} />
-          </div>
+          {loop ? (
+            isBusinessCover ? (
+              <div className="prosper-cover-visual">
+                <div className="prosper-cover-phone-pair">
+                  <img
+                    className="prosper-cover-phone prosper-cover-phone--send"
+                    src={loop.send.src}
+                    alt={loop.send.alt}
+                  />
+                  {coverReceive ? (
+                    <span className="prosper-cover-phone-wrap prosper-cover-phone-wrap--receive">
+                      <img
+                        className="prosper-cover-phone prosper-cover-phone--receive"
+                        src={coverReceive.src}
+                        alt={coverReceive.alt}
+                      />
+                    </span>
+                  ) : null}
+                  {coverCard ? (
+                    <img
+                      className="prosper-cover-calling-card"
+                      src={coverCard.src}
+                      alt={coverCard.alt}
+                    />
+                  ) : null}
+                </div>
+              </div>
+            ) : (
+              <div className="prosper-cover-phones prosper-cover-phones--loop">
+                <ProductLoop loop={loop} />
+              </div>
+            )
+          ) : null}
           <div className="prosper-cover-foot">
             <ul className="prosper-cover-partners">
-              {slide.partners.map((partner) => (
+              {partners.map((partner) => (
                 <li
                   key={partner.id}
                   className={`prosper-cover-partner prosper-cover-partner--${partner.id}`}
@@ -264,10 +404,18 @@ const SLIDES: Slide[] = PROSPER_DECK_SLIDES.map((slide) => {
             ) : null}
           </figure>
           <div className="prosper-founder-copy">
-            <p className="prosper-founder-eyebrow">{slide.eyebrow}</p>
+            {'eyebrow' in slide && slide.eyebrow ? (
+              <p className="prosper-founder-eyebrow">{slide.eyebrow as string}</p>
+            ) : null}
             <h1 className="prosper-founder-title">{slide.title}</h1>
-            <p className="prosper-founder-lede">{slide.lede}</p>
             <div className="prosper-founder-identity">
+              {'headshot' in slide && slide.headshot ? (
+                <img
+                  className="prosper-founder-headshot"
+                  src={(slide.headshot as { src: string; alt: string }).src}
+                  alt={(slide.headshot as { src: string; alt: string }).alt}
+                />
+              ) : null}
               <p className="prosper-founder-name">{slide.name}</p>
               <p className="prosper-founder-role">{slide.role}</p>
               <p className="prosper-founder-company">{slide.company}</p>
@@ -282,6 +430,7 @@ const SLIDES: Slide[] = PROSPER_DECK_SLIDES.map((slide) => {
                 </li>
               ))}
             </ul>
+            <p className="prosper-founder-lede">{slide.lede}</p>
             <blockquote className="prosper-founder-quote">
               <p>{slide.quote.text}</p>
               <footer>— {slide.quote.by}</footer>
@@ -297,6 +446,84 @@ const SLIDES: Slide[] = PROSPER_DECK_SLIDES.map((slide) => {
                 </li>
               ))}
             </ul>
+          </div>
+        </div>
+      ),
+    };
+  }
+
+  if (
+    slide.id === 'problem' &&
+    'layout' in slide &&
+    slide.layout === 'business' &&
+    'headline' in slide &&
+    'headlineAccent' in slide &&
+    'lede' in slide &&
+    'prompt' in slide &&
+    'metrics' in slide
+  ) {
+    const metrics = slide.metrics as readonly string[];
+    const headline = slide.headline as string;
+    const headlineAccent = slide.headlineAccent as string;
+    const lede = slide.lede as string;
+    const ledeStat =
+      'ledeStat' in slide && typeof slide.ledeStat === 'string' ? slide.ledeStat : '';
+    const prompt = slide.prompt as string;
+    return {
+      id: slide.id,
+      section: slide.section,
+      render: () => (
+        <div className="pd-stack prosper-slide prosper-slide--problem prosper-slide--problem-business">
+          <div className="prosper-problem-biz-copy">
+            <h1 className="prosper-problem-biz-headline">
+              <span className="prosper-problem-biz-headline-line">{headline}</span>
+              <span className="prosper-problem-biz-headline-accent">{headlineAccent}</span>
+            </h1>
+            <p className="prosper-problem-biz-lede">
+              {ledeStat ? (
+                <span className="prosper-problem-biz-stat">{ledeStat}</span>
+              ) : null}
+              {ledeStat ? ' ' : null}
+              {lede}
+            </p>
+          </div>
+          <div className="prosper-problem-biz-visual" aria-hidden>
+            <div className="prosper-problem-biz-card prosper-problem-biz-card--prompt">
+              <span className="prosper-problem-biz-prompt-icon">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden>
+                  <path
+                    d="M5 6.75A2.75 2.75 0 0 1 7.75 4h8.5A2.75 2.75 0 0 1 19 6.75v6.5A2.75 2.75 0 0 1 16.25 16H12l-3.6 3.15c-.55.48-1.4.09-1.4-.65V16H7.75A2.75 2.75 0 0 1 5 13.25v-6.5Z"
+                    fill="currentColor"
+                  />
+                  <circle cx="9" cy="10" r="1" fill="#fff" />
+                  <circle cx="12" cy="10" r="1" fill="#fff" />
+                  <circle cx="15" cy="10" r="1" fill="#fff" />
+                </svg>
+              </span>
+              <span className="prosper-problem-biz-prompt-text">{prompt}</span>
+            </div>
+            <div className="prosper-problem-biz-card prosper-problem-biz-card--results">
+              <ul className="prosper-problem-biz-rows">
+                {[0, 1, 2].map((row) => (
+                  <li key={row} className={`prosper-problem-biz-row prosper-problem-biz-row--${row}`}>
+                    <span className="prosper-problem-biz-swatch" />
+                    <span className="prosper-problem-biz-lines">
+                      <span />
+                      <span />
+                    </span>
+                  </li>
+                ))}
+              </ul>
+              <span className="prosper-problem-biz-unknown">?</span>
+            </div>
+            <div className="prosper-problem-biz-card prosper-problem-biz-card--metrics">
+              {metrics.map((metric) => (
+                <div key={metric} className="prosper-problem-biz-metric">
+                  <span className="prosper-problem-biz-metric-label">{metric}</span>
+                  <span className="prosper-problem-biz-metric-mark">?</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       ),
@@ -345,6 +572,71 @@ const SLIDES: Slide[] = PROSPER_DECK_SLIDES.map((slide) => {
               </div>
             </div>
           </div>
+        </div>
+      ),
+    };
+  }
+
+  if (
+    slide.id === 'solution' &&
+    'layout' in slide &&
+    slide.layout === 'business' &&
+    'headlineBefore' in slide &&
+    'headlineAccent' in slide &&
+    'headlineAfter' in slide &&
+    'number' in slide &&
+    'lede' in slide &&
+    'note' in slide &&
+    'visual' in slide
+  ) {
+    const number = slide.number as { areaCode: string; digits: string };
+    const visual = slide.visual as { src: string; alt: string };
+    const headlineBefore = slide.headlineBefore as string;
+    const headlineAccent = slide.headlineAccent as string;
+    const headlineAfter = slide.headlineAfter as string;
+    const lede = slide.lede as string;
+    return {
+      id: slide.id,
+      section: slide.section,
+      render: () => (
+        <div className="pd-stack prosper-slide prosper-slide--product prosper-slide--solution-business">
+          <div className="prosper-solution-biz-copy">
+            <h1 className="prosper-solution-biz-headline">
+              <span>{headlineBefore}</span>
+              <span className="prosper-solution-biz-headline-accent">{headlineAccent}</span>
+              <span>{headlineAfter}</span>
+            </h1>
+            <p className="prosper-solution-biz-number" aria-label={`${number.areaCode}-${number.digits}`}>
+              <span className="prosper-solution-biz-number-area">{number.areaCode}</span>
+              <span className="prosper-solution-biz-number-sep">-</span>
+              <span className="prosper-solution-biz-number-digits">{number.digits}</span>
+            </p>
+            <p className="prosper-solution-biz-lede">{lede}</p>
+          </div>
+          <figure className="prosper-solution-biz-visual">
+            <span className="prosper-solution-biz-phone-wrap">
+              <img src={visual.src} alt={visual.alt} />
+            </span>
+          </figure>
+          {'noteIcon' in slide && slide.noteIcon ? (
+            <div className="prosper-product-compat">
+              <p className="prosper-note prosper-note--plugin">
+                <img
+                  className="prosper-note-plugin-icon"
+                  src={slide.noteIcon.src}
+                  alt=""
+                  aria-hidden
+                />
+                <span>{slide.note}</span>
+              </p>
+              {'compatible' in slide && slide.compatible?.length ? (
+                <div className="prosper-product-compat-also">
+                  <p className="prosper-product-compat-label">Also compatible with</p>
+                  <AssistantLogoRow assistants={slide.compatible} />
+                </div>
+              ) : null}
+            </div>
+          ) : null}
         </div>
       ),
     };
@@ -806,18 +1098,30 @@ const SLIDES: Slide[] = PROSPER_DECK_SLIDES.map((slide) => {
 
   const _exhaustive: never = slide;
   throw new Error(`Unhandled Prosper slide: ${JSON.stringify(_exhaustive)}`);
-});
+  });
+}
 
-export function ProsperPitchDeckPage() {
+export function VerticalPitchDeckPage({
+  coverAccent,
+  brandName,
+  documentTitle,
+  accentTone = 'health',
+  deckSlides = PROSPER_DECK_SLIDES,
+}: VerticalPitchDeckProps) {
+  const slides = useMemo(
+    () => buildVerticalSlides(deckSlides, coverAccent, accentTone),
+    [accentTone, coverAccent, deckSlides],
+  );
+  const contentSlideCount = Math.max(slides.length - 1, 1);
   const [index, setIndex] = useState(0);
-  const [progress, setProgress] = useState(1 / SLIDES.length);
+  const [progress, setProgress] = useState(1 / Math.max(slides.length, 1));
   const sectionRefs = useRef<(HTMLElement | null)[]>([]);
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const scrollingRef = useRef(false);
   const wheelLock = useRef(false);
 
   const scrollTo = useCallback((i: number) => {
-    const clamped = Math.max(0, Math.min(SLIDES.length - 1, i));
+    const clamped = Math.max(0, Math.min(slides.length - 1, i));
     const el = sectionRefs.current[clamped];
     const scroller = scrollRef.current;
     if (!el || !scroller) return;
@@ -827,19 +1131,19 @@ export function ProsperPitchDeckPage() {
     window.setTimeout(() => {
       scrollingRef.current = false;
     }, 700);
-  }, []);
+  }, [slides.length]);
 
   const next = useCallback(() => scrollTo(index + 1), [index, scrollTo]);
   const prev = useCallback(() => scrollTo(index - 1), [index, scrollTo]);
 
   useEffect(() => {
-    document.title = 'AIWEB — Prosper Pitch Deck';
+    document.title = documentTitle;
     document.documentElement.classList.add('pd-html');
     return () => {
       document.title = DEFAULT_PAGE_TITLE;
       document.documentElement.classList.remove('pd-html');
     };
-  }, []);
+  }, [documentTitle]);
 
   useEffect(() => {
     const scroller = scrollRef.current;
@@ -912,17 +1216,17 @@ export function ProsperPitchDeckPage() {
         scrollTo(0);
       } else if (e.key === 'End') {
         e.preventDefault();
-        scrollTo(SLIDES.length - 1);
+        scrollTo(slides.length - 1);
       }
     }
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [next, prev, scrollTo]);
+  }, [next, prev, scrollTo, slides.length]);
 
   return (
     <div className="pd-root pd-root--vertical prosper-root">
       <div className="pd-scroll" ref={scrollRef}>
-        {SLIDES.map((s, i) => {
+        {slides.map((s, i) => {
           const isCover = i === 0;
           const pageNum = i;
           return (
@@ -940,7 +1244,9 @@ export function ProsperPitchDeckPage() {
               <div className="pd-panel-inner">{s.render()}</div>
               <footer className={`pd-chrome${isCover ? ' pd-chrome--cover' : ''}`}>
                 <div className="pd-chrome-brand">
-                  <span className="pd-chrome-name">AIWEB for Health</span>
+                  <Link className="pd-chrome-name" to="/pitchdeck">
+                    {brandName}
+                  </Link>
                   <span className="pd-chrome-dot" aria-hidden>
                     ·
                   </span>
@@ -956,7 +1262,7 @@ export function ProsperPitchDeckPage() {
                       /
                     </span>
                     <span className="pd-counter-total">
-                      {String(CONTENT_SLIDE_COUNT).padStart(2, '0')}
+                      {String(contentSlideCount).padStart(2, '0')}
                     </span>
                   </p>
                 )}
@@ -969,5 +1275,16 @@ export function ProsperPitchDeckPage() {
         <div className="pd-progress-bar" style={{ width: `${Math.max(progress, 0.04) * 100}%` }} />
       </div>
     </div>
+  );
+}
+
+export function ProsperPitchDeckPage() {
+  return (
+    <VerticalPitchDeckPage
+      coverAccent="For Health"
+      brandName="AIWEB for Health"
+      documentTitle="AIWEB — Health Pitch Deck"
+      deckSlides={PROSPER_DECK_SLIDES}
+    />
   );
 }

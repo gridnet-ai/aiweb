@@ -1,6 +1,7 @@
 import { useEffect, type ReactNode } from 'react';
 import { useLocation } from 'react-router-dom';
 import {
+  BROWSER_PATH,
   GEEKDOM_PATH,
   HOME_PATH,
   PLUGIN_PATH,
@@ -19,7 +20,10 @@ export function CorpPublicSiteLayout({ children }: CorpPublicSiteLayoutProps) {
   const { theme, isDark } = useLandingTheme();
   const isClassicHome = pathname === '/classic';
   const isThemeableHome =
-    pathname === HOME_PATH || pathname === PLUGIN_PATH || pathname === GEEKDOM_PATH;
+    pathname === HOME_PATH ||
+    pathname === PLUGIN_PATH ||
+    pathname === BROWSER_PATH ||
+    pathname === GEEKDOM_PATH;
   const isDarkHome = isThemeableHome ? isDark : false;
 
   useEffect(() => {

@@ -416,7 +416,7 @@
 }
 
 .prosper-founder-lede {
-  margin: 0.2rem 0 0;
+  margin: 0.35rem 0 0;
   font-size: clamp(0.84rem, 1.5vw, 0.95rem);
   font-weight: 500;
   line-height: 1.3;
@@ -426,6 +426,18 @@
 
 .prosper-founder-identity {
   margin-top: 0.35rem;
+}
+
+.prosper-founder-headshot {
+  display: block;
+  width: clamp(5.5rem, 9.5vw, 7rem);
+  height: clamp(6.75rem, 11.5vw, 8.75rem);
+  margin: 0 0 0.65rem;
+  object-fit: cover;
+  object-position: center 18%;
+  border-radius: 0.7rem;
+  background: rgba(16, 42, 67, 0.06);
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.12);
 }
 
 .prosper-founder-name {
@@ -586,6 +598,225 @@
   max-width: 2.35rem;
 }
 
+/* Business problem — mockup layout */
+.prosper-slide--problem-business {
+  --problem-biz-blue: #007aff;
+  grid-template-columns: 1fr;
+  gap: clamp(1.5rem, 3.5vh, 2.5rem);
+  align-items: center;
+}
+
+.prosper-problem-biz-copy {
+  min-width: 0;
+  max-width: 28rem;
+}
+
+.prosper-problem-biz-headline {
+  margin: 0;
+  display: grid;
+  gap: 0.15em;
+  font-family: var(--pd-sans, 'Segoe UI', sans-serif);
+  font-size: clamp(2.05rem, 4.6vw, 3.35rem);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 1.05;
+}
+
+.prosper-problem-biz-headline-line {
+  color: var(--pd-ink, #0b0b0c);
+}
+
+.prosper-problem-biz-headline-accent {
+  color: var(--problem-biz-blue);
+}
+
+.prosper-problem-biz-lede {
+  margin: 1.15rem 0 0;
+  max-width: 28rem;
+  font-family: var(--pd-sans, 'Segoe UI', sans-serif);
+  font-size: clamp(1rem, 2vw, 1.18rem);
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--pd-ink, #0b0b0c);
+  text-wrap: pretty;
+}
+
+.prosper-problem-biz-stat {
+  display: inline;
+  margin-right: 0.12em;
+  font-size: clamp(1.85rem, 3.6vw, 2.55rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--problem-biz-blue, #007aff);
+  vertical-align: -0.08em;
+}
+
+.prosper-problem-biz-visual {
+  display: grid;
+  gap: 0.85rem;
+  width: min(100%, 22rem);
+  margin: 0 auto;
+  justify-self: center;
+}
+
+.prosper-problem-biz-card {
+  position: relative;
+  margin: 0;
+  padding: 0.95rem 1.05rem;
+  border-radius: 1.15rem;
+  background: #fff;
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.04),
+    0 14px 34px rgba(15, 23, 42, 0.1);
+}
+
+.prosper-problem-biz-card--prompt {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 1rem 1.15rem;
+}
+
+.prosper-problem-biz-prompt-icon {
+  display: grid;
+  place-items: center;
+  width: 2.55rem;
+  height: 2.55rem;
+  border-radius: 0.85rem;
+  color: var(--problem-biz-blue);
+  background: rgba(0, 122, 255, 0.1);
+}
+
+.prosper-problem-biz-prompt-icon svg {
+  width: 1.35rem;
+  height: 1.35rem;
+}
+
+.prosper-problem-biz-prompt-text {
+  padding-left: 0.85rem;
+  border-left: 1px solid rgba(15, 23, 42, 0.12);
+  font-size: clamp(1rem, 2vw, 1.12rem);
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  color: var(--pd-ink, #0b0b0c);
+}
+
+.prosper-problem-biz-card--results {
+  padding: 1.05rem 1.15rem 1.25rem;
+}
+
+.prosper-problem-biz-rows {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.prosper-problem-biz-row {
+  display: grid;
+  grid-template-columns: 2.35rem 1fr;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+.prosper-problem-biz-swatch {
+  width: 2.35rem;
+  height: 2.35rem;
+  border-radius: 0.7rem;
+  background: #007aff;
+}
+
+.prosper-problem-biz-row--1 .prosper-problem-biz-swatch {
+  background: #3d9bff;
+}
+
+.prosper-problem-biz-row--2 .prosper-problem-biz-swatch {
+  background: #8fc5ff;
+}
+
+.prosper-problem-biz-lines {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.prosper-problem-biz-lines span {
+  display: block;
+  height: 0.55rem;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.12);
+}
+
+.prosper-problem-biz-lines span:first-child {
+  width: 78%;
+}
+
+.prosper-problem-biz-lines span:last-child {
+  width: 58%;
+}
+
+.prosper-problem-biz-unknown {
+  position: absolute;
+  right: 0.85rem;
+  bottom: 0.7rem;
+  display: grid;
+  place-items: center;
+  width: 1.55rem;
+  height: 1.55rem;
+  border-radius: 999px;
+  border: 1.5px solid rgba(15, 23, 42, 0.28);
+  color: rgba(15, 23, 42, 0.55);
+  font-size: 0.85rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.prosper-problem-biz-card--metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  padding: 1rem 0.35rem 1.05rem;
+}
+
+.prosper-problem-biz-metric {
+  display: grid;
+  justify-items: center;
+  gap: 0.65rem;
+  padding: 0 0.35rem;
+}
+
+.prosper-problem-biz-metric + .prosper-problem-biz-metric {
+  border-left: 1px solid rgba(15, 23, 42, 0.12);
+}
+
+.prosper-problem-biz-metric-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--pd-ink, #0b0b0c);
+}
+
+.prosper-problem-biz-metric-mark {
+  display: grid;
+  place-items: center;
+  width: 2.35rem;
+  height: 2.35rem;
+  border-radius: 0.55rem;
+  background: rgba(15, 23, 42, 0.08);
+  color: rgba(15, 23, 42, 0.45);
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.prosper-root #pd-problem .prosper-slide--problem-business {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  align-content: center;
+}
+
 @media (min-width: 820px) {
   .prosper-slide--product {
     grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.15fr);
@@ -597,6 +828,18 @@
     grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
     gap: 2rem;
     align-items: stretch;
+  }
+
+  .prosper-slide--problem-business {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.95fr);
+    gap: clamp(1.75rem, 4vw, 3.25rem);
+    align-items: center;
+  }
+
+  .prosper-problem-biz-visual {
+    width: min(100%, 24rem);
+    margin: 0;
+    justify-self: end;
   }
 
   .prosper-slide--founder {
@@ -1239,6 +1482,8 @@
   padding-top: clamp(0.65rem, 1.5vh, 1.15rem);
   padding-left: 0;
   padding-right: 0;
+  /* Sit content flush above the absolute footer chrome. */
+  padding-bottom: calc(3.35rem + env(safe-area-inset-bottom, 0px));
   /* visible + hidden collapses to auto in CSS; keep both visible so the card isn’t clipped. */
   overflow: visible;
   justify-content: flex-start;
@@ -1294,8 +1539,8 @@
   align-items: start;
   justify-content: start;
   padding-top: clamp(0.35rem, 1.2vh, 0.85rem);
-  /* Clear the absolute footer chrome. */
-  padding-bottom: 0.35rem;
+  /* Reserve space for the footer-pinned compat row. */
+  padding-bottom: 3.75rem;
 }
 
 .prosper-title--phone-example,
@@ -1394,10 +1639,11 @@
 }
 
 .prosper-root #pd-product .prosper-product-compat {
-  grid-column: 1 / -1;
-  grid-row: 3;
-  align-self: end;
-  justify-self: stretch;
+  position: absolute;
+  left: clamp(1.25rem, 4vw, 2.5rem);
+  right: clamp(1.25rem, 3vw, 2rem);
+  bottom: calc(3.35rem + env(safe-area-inset-bottom, 0px));
+  z-index: 2;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -1405,7 +1651,7 @@
   justify-content: center;
   gap: clamp(0.85rem, 2vw, 1.5rem);
   margin: 0;
-  padding: 0.15rem 0 0;
+  padding: 0;
   justify-items: unset;
 }
 
@@ -1599,6 +1845,119 @@
   object-position: center right;
   border-top-left-radius: 0.85rem;
   border-bottom-left-radius: 0.85rem;
+}
+
+/* Business solution — mockup layout */
+.prosper-root #pd-solution .prosper-slide--solution-business {
+  --solution-biz-blue: #007aff;
+  grid-template-columns: minmax(0, 30rem) minmax(14rem, 20rem);
+  grid-template-rows: minmax(0, 1fr) auto;
+  justify-content: center;
+  column-gap: clamp(1rem, 2.2vw, 1.85rem);
+  row-gap: clamp(1rem, 2.5vh, 1.75rem);
+  align-items: center;
+}
+
+.prosper-solution-biz-copy {
+  grid-column: 1;
+  grid-row: 1;
+  align-self: center;
+  max-width: 30rem;
+  min-width: 0;
+}
+
+.prosper-solution-biz-headline {
+  margin: 0;
+  font-family: var(--pd-sans, 'Segoe UI', sans-serif);
+  font-size: clamp(2.15rem, 4.8vw, 3.55rem);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 1.05;
+  color: var(--pd-ink, #0b0b0c);
+  text-wrap: balance;
+}
+
+.prosper-solution-biz-headline-accent {
+  color: var(--solution-biz-blue, #007aff);
+}
+
+.prosper-solution-biz-number {
+  display: inline-flex;
+  align-items: center;
+  margin: 1.35rem 0 0;
+  padding: 0.72rem 1.25rem;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.05);
+  font-family: var(--pd-sans, 'Segoe UI', sans-serif);
+  font-size: clamp(1.15rem, 2.4vw, 1.55rem);
+  font-weight: 750;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--pd-ink, #0b0b0c);
+}
+
+.prosper-solution-biz-number-area {
+  color: var(--solution-biz-blue, #007aff);
+}
+
+.prosper-solution-biz-number-sep,
+.prosper-solution-biz-number-digits {
+  color: inherit;
+}
+
+.prosper-solution-biz-lede {
+  margin: 1.15rem 0 0;
+  max-width: 28rem;
+  font-family: var(--pd-sans, 'Segoe UI', sans-serif);
+  font-size: clamp(1.02rem, 2vw, 1.2rem);
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--pd-ink, #0b0b0c);
+  text-wrap: pretty;
+}
+
+.prosper-solution-biz-visual {
+  grid-column: 2;
+  grid-row: 1;
+  margin: 0;
+  justify-self: start;
+  align-self: center;
+  width: min(100%, 20rem);
+}
+
+.prosper-solution-biz-phone-wrap {
+  position: relative;
+  display: block;
+  line-height: 0;
+}
+
+.prosper-solution-biz-phone-wrap img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: min(68vh, calc(100dvh - 10rem), 34rem);
+  object-fit: contain;
+  object-position: center bottom;
+  /* Dissolve hard crop at bottom-right into white cover */
+  -webkit-mask-image: linear-gradient(
+    to bottom right,
+    #000 48%,
+    rgba(0, 0, 0, 0.7) 66%,
+    rgba(0, 0, 0, 0.25) 82%,
+    transparent 96%
+  );
+  mask-image: linear-gradient(
+    to bottom right,
+    #000 48%,
+    rgba(0, 0, 0, 0.7) 66%,
+    rgba(0, 0, 0, 0.25) 82%,
+    transparent 96%
+  );
+}
+
+.prosper-root #pd-solution .prosper-slide--solution-business .prosper-product-compat {
+  grid-column: 1 / -1;
+  grid-row: 2;
 }
 
 /* Founder: fit one viewport — no inner scrollbar. */
@@ -2033,6 +2392,20 @@
   text-align: left;
 }
 
+.prosper-cover--hero {
+  justify-content: center;
+  gap: 1rem;
+}
+
+.prosper-cover-hero {
+  display: block;
+  width: min(100%, 58rem);
+  max-height: min(72vh, calc(100dvh - 9rem));
+  margin: 0 auto;
+  object-fit: contain;
+  object-position: center;
+}
+
 .prosper-cover-brand {
   position: absolute;
   top: var(--prosper-cover-band);
@@ -2067,6 +2440,32 @@
   white-space: nowrap;
 }
 
+.prosper-cover-accent--business {
+  color: #007aff;
+}
+
+.prosper-cover-headline {
+  margin: 1.15rem 0 0;
+  max-width: 18ch;
+  font-family: var(--pd-sans, 'Segoe UI', sans-serif);
+  font-size: clamp(2.35rem, 5.2vw, 3.55rem);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 1.02;
+  color: var(--pd-ink, #0b0b0c);
+}
+
+.prosper-cover-headline::after {
+  content: '';
+  display: inline-block;
+  width: 0.28em;
+  height: 0.28em;
+  margin-left: 0.12em;
+  border-radius: 50%;
+  background: #007aff;
+  vertical-align: 0.12em;
+}
+
 .prosper-cover-tagline {
   margin: 0.55rem 0 0;
   max-width: 26rem;
@@ -2077,6 +2476,131 @@
   line-height: 1.25;
   color: var(--pd-ink, #0b0b0c);
   white-space: pre-line;
+}
+
+/* Business cover: mockup layout — copy left, phone pair + card right */
+.prosper-cover--business {
+  display: grid;
+  grid-template-columns: minmax(17rem, 0.92fr) minmax(0, 1.45fr);
+  grid-template-rows: minmax(0, 1fr) auto;
+  grid-template-areas:
+    'brand visual'
+    'foot foot';
+  align-items: center;
+  justify-content: stretch;
+  gap: clamp(1rem, 2.5vw, 2rem) clamp(1.25rem, 3vw, 2.75rem);
+  padding-top: clamp(1.25rem, 3.5vh, 2.5rem);
+}
+
+.prosper-cover--business .prosper-cover-brand {
+  position: relative;
+  top: auto;
+  left: auto;
+  z-index: 1;
+  grid-area: brand;
+  align-self: center;
+  max-width: min(28rem, 100%);
+}
+
+.prosper-cover--business .prosper-cover-tagline {
+  margin-top: 0.85rem;
+  max-width: 22rem;
+  font-size: clamp(1.05rem, 2.1vw, 1.28rem);
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.prosper-cover--business .prosper-cover-visual {
+  grid-area: visual;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.prosper-cover--business .prosper-cover-phone-pair {
+  --cover-phone-h: min(62vh, calc(100dvh - 11rem), 34rem);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.35rem, 0.9vw, 0.75rem);
+  width: 100%;
+  max-width: min(100%, 64rem);
+  margin: 0 auto;
+  padding: 0 0 clamp(2.5rem, 6vh, 4rem);
+}
+
+.prosper-cover--business .prosper-cover-phone {
+  display: block;
+  position: relative;
+  z-index: 1;
+  width: auto;
+  height: var(--cover-phone-h);
+  max-width: none;
+  object-fit: contain;
+  object-position: bottom center;
+}
+
+.prosper-cover--business .prosper-cover-phone--send {
+  flex: 0 0 auto;
+  width: auto;
+  max-width: min(18.5rem, 28%);
+  height: var(--cover-phone-h);
+}
+
+.prosper-cover--business .prosper-cover-phone-wrap--receive {
+  position: relative;
+  z-index: 1;
+  display: block;
+  flex: 0 1 auto;
+  width: auto;
+  max-width: min(48rem, 72%);
+  line-height: 0;
+}
+
+.prosper-cover--business .prosper-cover-phone-wrap--receive .prosper-cover-phone {
+  width: auto;
+  height: var(--cover-phone-h);
+  max-width: 100%;
+  /* Dissolve the hard crop into the white cover at bottom-right */
+  -webkit-mask-image: linear-gradient(
+    to bottom right,
+    #000 48%,
+    rgba(0, 0, 0, 0.7) 66%,
+    rgba(0, 0, 0, 0.25) 82%,
+    transparent 96%
+  );
+  mask-image: linear-gradient(
+    to bottom right,
+    #000 48%,
+    rgba(0, 0, 0, 0.7) 66%,
+    rgba(0, 0, 0, 0.25) 82%,
+    transparent 96%
+  );
+}
+
+.prosper-cover--business .prosper-cover-calling-card {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  bottom: 0;
+  width: min(16.5rem, 48%);
+  max-height: min(28vh, 14rem);
+  transform: translateX(-50%);
+  object-fit: contain;
+  object-position: center bottom;
+  filter: drop-shadow(0 18px 36px rgba(15, 23, 42, 0.22));
+  pointer-events: none;
+}
+
+.prosper-cover--business .prosper-cover-foot {
+  grid-area: foot;
+  align-self: end;
 }
 
 .prosper-cover-phones {
@@ -3269,6 +3793,215 @@ html.prosper-exec-html body {
   }
 }
 
+/* Use of funds */
+.prosper-root #pd-useoffunds {
+  --funds-blue: #007aff;
+  justify-content: flex-start;
+  padding-top: clamp(0.75rem, 1.8vh, 1.2rem);
+  padding-bottom: calc(4.75rem + env(safe-area-inset-bottom, 0px));
+  overflow: hidden;
+}
+
+.prosper-root #pd-useoffunds .pd-panel-inner {
+  width: min(100%, 74rem);
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: 100%;
+  align-items: stretch;
+  justify-content: flex-start;
+  padding: 0;
+  overflow: hidden;
+}
+
+.prosper-slide--funds {
+  display: grid;
+  grid-template-columns: minmax(16rem, 0.95fr) minmax(0, 1.35fr);
+  gap: clamp(1.25rem, 3vw, 2.75rem);
+  align-items: start;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+
+.prosper-funds-head {
+  display: grid;
+  gap: 0.85rem;
+  align-content: start;
+  min-width: 0;
+}
+
+.prosper-root #pd-useoffunds .prosper-title {
+  margin: 0;
+  font-size: clamp(2rem, 4.2vw, 3rem);
+}
+
+.prosper-funds-lede,
+.prosper-funds-note {
+  margin: 0;
+  max-width: 34rem;
+  font-size: clamp(0.98rem, 1.7vw, 1.12rem);
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--pd-ink, #0b0b0c);
+  text-wrap: pretty;
+}
+
+.prosper-funds-note {
+  color: var(--pd-mute, #5f5e5a);
+  font-size: clamp(0.9rem, 1.5vw, 1.02rem);
+}
+
+.prosper-funds-estimate {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin: 0.15rem 0;
+  padding: 0.85rem 1rem;
+  border-radius: 1rem;
+  background: rgba(0, 122, 255, 0.08);
+}
+
+.prosper-funds-estimate-value {
+  margin: 0;
+  flex: 0 0 auto;
+  font-size: clamp(1.85rem, 3.4vw, 2.45rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--funds-blue);
+}
+
+.prosper-funds-estimate-copy {
+  display: grid;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.prosper-funds-estimate-label {
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 750;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--pd-ink, #0b0b0c);
+}
+
+.prosper-funds-estimate-detail {
+  margin: 0;
+  font-size: clamp(0.88rem, 1.4vw, 0.98rem);
+  font-weight: 550;
+  line-height: 1.3;
+  color: var(--pd-mute, #5f5e5a);
+  text-wrap: pretty;
+}
+
+.prosper-funds-timeline {
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.prosper-funds-timeline-label {
+  margin: 0;
+  flex: 0 0 auto;
+  font-size: 0.78rem;
+  font-weight: 750;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--funds-blue);
+}
+
+.prosper-funds-events {
+  position: relative;
+  margin: 0;
+  padding: 0.15rem 0 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.35rem 1.25rem;
+  flex: 1 1 auto;
+  min-height: 0;
+  align-content: start;
+}
+
+.prosper-funds-events::before {
+  content: '';
+  position: absolute;
+  top: 0.55rem;
+  bottom: 0.55rem;
+  left: calc(50% - 0.5px);
+  width: 1px;
+  background: rgba(0, 122, 255, 0.22);
+  pointer-events: none;
+}
+
+.prosper-funds-event {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.6rem 0.7rem minmax(0, 1fr);
+  gap: 0.45rem;
+  align-items: start;
+  min-width: 0;
+  padding: 0.28rem 0.2rem;
+}
+
+.prosper-funds-event-num {
+  font-family: var(--pd-mono, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.35;
+  color: rgba(15, 23, 42, 0.4);
+}
+
+.prosper-funds-event-dot {
+  width: 0.55rem;
+  height: 0.55rem;
+  margin-top: 0.28rem;
+  border-radius: 50%;
+  background: var(--funds-blue);
+  box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.14);
+}
+
+.prosper-funds-event-body {
+  min-width: 0;
+}
+
+.prosper-funds-event-city {
+  margin: 0;
+  font-size: clamp(0.86rem, 1.35vw, 0.98rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--pd-ink, #0b0b0c);
+}
+
+.prosper-funds-event-date {
+  margin: 0.12rem 0 0;
+  font-size: 0.78rem;
+  font-weight: 550;
+  color: var(--pd-mute, #5f5e5a);
+}
+
+@media (max-width: 900px) {
+  .prosper-slide--funds {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    overflow: auto;
+  }
+
+  .prosper-funds-events {
+    grid-template-columns: 1fr;
+  }
+
+  .prosper-funds-events::before {
+    left: 2.05rem;
+  }
+}
+
 /* Contact */
 .prosper-root #pd-contact {
   --contact-blue: #0866ff;
@@ -3810,6 +4543,52 @@ html.prosper-exec-html body {
     margin-top: 0.25rem;
   }
 
+  .prosper-cover--business {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 1rem;
+    padding-top: 0.35rem;
+  }
+
+  .prosper-cover--business .prosper-cover-brand,
+  .prosper-cover--business .prosper-cover-visual,
+  .prosper-cover--business .prosper-cover-foot {
+    grid-area: auto;
+    width: 100%;
+    max-width: none;
+  }
+
+  .prosper-cover--business .prosper-cover-headline {
+    max-width: 12ch;
+    font-size: clamp(1.85rem, 8vw, 2.45rem);
+  }
+
+  .prosper-cover--business .prosper-cover-phone-pair {
+    max-width: 100%;
+    padding-bottom: 2.25rem;
+  }
+
+  .prosper-cover--business .prosper-cover-phone,
+  .prosper-cover--business .prosper-cover-phone--send {
+    height: min(34vh, 13rem);
+    max-width: min(9.5rem, 38%);
+  }
+
+  .prosper-cover--business .prosper-cover-phone-wrap--receive {
+    width: min(100%, 62%);
+  }
+
+  .prosper-cover--business .prosper-cover-phone-wrap--receive .prosper-cover-phone {
+    max-height: min(34vh, 13rem);
+  }
+
+  .prosper-cover--business .prosper-cover-calling-card {
+    width: min(11.5rem, 58%);
+    max-height: 9.5rem;
+  }
+
   .prosper-cover-partners {
     justify-content: flex-start;
     flex-wrap: wrap;
@@ -3823,6 +4602,53 @@ html.prosper-exec-html body {
     display: flex;
     flex-direction: column;
     gap: 0.9rem;
+  }
+
+  .prosper-root #pd-solution:has(.prosper-slide--solution-business) .pd-panel-inner {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .prosper-root #pd-solution .prosper-slide--solution-business {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    gap: 0.85rem;
+    width: 100%;
+    min-height: 100%;
+    height: 100%;
+    padding-bottom: 7.25rem;
+    box-sizing: border-box;
+  }
+
+  .prosper-solution-biz-copy,
+  .prosper-solution-biz-visual {
+    grid-column: auto;
+    grid-row: auto;
+    width: 100%;
+    max-width: none;
+    justify-self: stretch;
+  }
+
+  .prosper-solution-biz-visual {
+    order: 2;
+    width: min(100%, 16rem);
+    margin: 0 auto;
+  }
+
+  .prosper-root #pd-solution .prosper-slide--solution-business .prosper-product-compat {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    order: 3;
+    margin-top: 0;
+    margin-bottom: 0;
+    align-self: stretch;
   }
 
   .prosper-root #pd-founder .prosper-founder-portrait {
@@ -4633,4 +5459,82 @@ html.prosper-exec-html body {
   .prosper-competition-marks {
     max-width: none;
   }
+}
+
+/* —— Pitch deck industry index (/pitchdeck) —— */
+.pitchdeck-index {
+  min-height: 100dvh;
+  background: #ffffff;
+  color: #0a0a0b;
+}
+
+.pitchdeck-index-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  width: min(100%, 52rem);
+  margin: 0 auto;
+  padding: clamp(2rem, 6vw, 3.5rem) 1.25rem 3rem;
+  text-align: center;
+}
+
+.pitchdeck-index-logo {
+  display: block;
+  height: 1.75rem;
+  width: auto;
+  margin: 0 0 0.35rem;
+  object-fit: contain;
+}
+
+.pitchdeck-index-industry {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.pitchdeck-index-industry .lv2p-industry-item {
+  padding: 0;
+}
+
+.pitchdeck-index-industry-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  width: 100%;
+  padding: 0.85rem 0.55rem;
+  border-radius: 12px;
+  color: inherit;
+  text-decoration: none;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+
+a.pitchdeck-index-industry-link:hover {
+  background: #f2f2f7;
+}
+
+a.pitchdeck-index-industry-link:hover .lv2p-industry-icon {
+  color: #007aff;
+}
+
+a.pitchdeck-index-industry-link:focus-visible {
+  outline: 2px solid #007aff;
+  outline-offset: 3px;
+}
+
+.pitchdeck-index-industry-link--soon {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.pitchdeck-index-soon {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #858995;
+}
+
+.pitchdeck-index .prosper-title {
+  max-width: 20rem;
 }

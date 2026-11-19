@@ -6,22 +6,12 @@ import {
   ChevronLeft,
   ChevronRight,
   ExternalLink,
-  HeartPulse,
-  Home,
-  Landmark,
   Mail,
-  Megaphone,
-  Network,
-  Package,
   Phone,
   Play,
-  Scale,
   Send,
-  Shield,
-  Truck,
-  UtensilsCrossed,
-  type LucideIcon,
 } from 'lucide-react';
+import { INDUSTRY_VERTICALS } from '@/lib/industryVerticals';
 import { CHATGPT_AIWEB_PLUGIN_HREF } from '@/components/corp/LandingNavV2';
 import { PhoneInstallCards } from '@/components/corp/PhoneInstallCards';
 import { businessCheckoutUrl } from '@/lib/stripeCheckout';
@@ -527,26 +517,13 @@ const HERO_MAIL = {
   alt: 'AIWEB Phone keeps the same Call going after one sync, from the inbox into the conversation.',
 } as const;
 
-const INDUSTRY_ICONS: readonly { label: string; Icon: LucideIcon }[] = [
-  { label: 'Healthcare', Icon: HeartPulse },
-  { label: 'Finance', Icon: Landmark },
-  { label: 'Insurance', Icon: Shield },
-  { label: 'Logistics', Icon: Truck },
-  { label: 'IT managed services', Icon: Network },
-  { label: 'Legal', Icon: Scale },
-  { label: 'Supply Chain', Icon: Package },
-  { label: 'Real Estate', Icon: Home },
-  { label: 'Restaurant', Icon: UtensilsCrossed },
-  { label: 'Marketing', Icon: Megaphone },
-] as const;
-
 function IndustrySearchGrid() {
   return (
     <div className="lv2p-industry" aria-label="Find your industry">
       <h3 className="lv2p-industry-title">Find your industry</h3>
       <ul className="lv2p-industry-grid">
-        {INDUSTRY_ICONS.map(({ label, Icon }) => (
-          <li key={label} className="lv2p-industry-item">
+        {INDUSTRY_VERTICALS.map(({ id, label, Icon }) => (
+          <li key={id} className="lv2p-industry-item">
             <span className="lv2p-industry-icon" aria-hidden>
               <Icon strokeWidth={1.6} />
             </span>
