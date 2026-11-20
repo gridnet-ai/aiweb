@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { CORP_CONTACTS, SITE_ORIGIN } from '@/lib/aiWebCompanyBrand';
 import {
   BROWSER_PATH,
   CORP_NAV_LINKS,
@@ -41,6 +42,30 @@ export function CorpSiteFooter({ dark = false }: CorpSiteFooterProps) {
             <p className="corp-site-footer-operator">
               This website is operated by Super eComm, Inc., a Delaware corporation.
             </p>
+            <address className="corp-site-footer-org">
+              <p className="corp-site-footer-org-name">
+                Super eComm, Inc.
+                <br />
+                DBA AIWEB Company
+              </p>
+              <p>
+                110 E Houston Street
+                <br />
+                3rd Floor
+                <br />
+                San Antonio, TX 78205
+              </p>
+              <p>
+                Customer Support
+                <br />
+                <a href={CORP_CONTACTS.support}>support@theaiwebcompany.com</a>
+              </p>
+              <p>
+                <a href={SITE_ORIGIN} rel="noopener noreferrer">
+                  theaiwebcompany.com
+                </a>
+              </p>
+            </address>
           </div>
 
           <div className="corp-site-footer-cols">

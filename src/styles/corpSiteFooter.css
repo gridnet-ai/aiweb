@@ -52,11 +52,43 @@
 }
 
 .corp-site-footer-operator {
-  margin: 0;
+  margin: 0 0 1rem;
   color: color-mix(in srgb, currentColor 68%, transparent);
   font-size: 0.9rem;
   font-weight: 500;
   line-height: 1.5;
+}
+
+.corp-site-footer-org {
+  margin: 0;
+  font-style: normal;
+  color: color-mix(in srgb, currentColor 68%, transparent);
+  font-size: 0.88rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.corp-site-footer-org p {
+  margin: 0 0 0.85rem;
+}
+
+.corp-site-footer-org p:last-child {
+  margin-bottom: 0;
+}
+
+.corp-site-footer-org-name {
+  color: inherit;
+  font-weight: 700;
+}
+
+.corp-site-footer-org a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.corp-site-footer-org a:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
 }
 
 .corp-site-footer-cols {
