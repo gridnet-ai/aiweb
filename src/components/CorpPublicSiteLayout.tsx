@@ -7,6 +7,7 @@ import {
   PAGE_PATH,
   PLUGIN_PATH,
 } from '@/lib/corpSiteRoutes';
+import { CorpSiteFooter } from '@/components/corp/CorpSiteFooter';
 import { applyLandingTheme, useLandingTheme } from '@/hooks/useLandingTheme';
 import '@/styles/marketing.css';
 import '@/styles/welcome.css';
@@ -46,6 +47,7 @@ export function CorpPublicSiteLayout({ children }: CorpPublicSiteLayoutProps) {
       ].join(' ')}
     >
       <main className="flex min-w-0 flex-1 flex-col overflow-x-clip">{children}</main>
+      <CorpSiteFooter dark={isDarkHome} />
     </div>
   );
 }

@@ -21,3 +21,5 @@ public/downloads/*.dll
 public/downloads/*.bat
 releases/
 session-backup/
+
+tmp/
